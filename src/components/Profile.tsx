@@ -11,6 +11,21 @@ function Profile() {
     button: 'absolute right-0 top-0'
   };
 
+  const textFieldProps = {
+    labelProps: {
+      className: inputLabelStyle.labelTextArea
+    },
+    textAreaProps: {
+      className: inputLabelStyle.input
+    },
+    IconButtonProps: {
+      Icon: <FaEdit className={inputLabelStyle.icon} />,
+      buttonProps: {
+        className: inputLabelStyle.button
+      }
+    }
+  };
+
   return (
     <div>
       <InputLabel
@@ -25,33 +40,9 @@ function Profile() {
         שנות ניסיון
       </InputLabel>
 
-      <InputLabel
-        labelProps={{
-          className: inputLabelStyle.labelTextArea
-        }}
-        textAreaProps={{
-          className: inputLabelStyle.input
-        }}
-        IconButtonProps={{
-          Icon: <FaEdit className={inputLabelStyle.icon} />,
-          buttonProps: {
-            className: inputLabelStyle.button
-          }
-        }}
-      >
-        היכולות שלי
-      </InputLabel>
+      <InputLabel {...textFieldProps}>היכולות שלי</InputLabel>
 
-      <InputLabel
-        labelProps={{
-          className: inputLabelStyle.labelTextArea
-        }}
-        textAreaProps={{
-          className: inputLabelStyle.input
-        }}
-      >
-        אני לא מחפש:
-      </InputLabel>
+      <InputLabel {...textFieldProps}>אני לא מחפש:</InputLabel>
     </div>
   );
 }
