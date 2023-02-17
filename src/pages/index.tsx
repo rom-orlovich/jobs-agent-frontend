@@ -1,9 +1,14 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import styles from '@/styles/Home.module.css'
-import Profile from '@/components/Profile'
+import styles from '@/styles/Home.module.css';
+import Profile from '@/components/Profile';
+import UserQuery from '@/components/UserQuery/UserQuery';
 
 export default function Home() {
+  const formStyle = {
+    form: 'w-[20rem]'
+  };
+
   return (
     <>
       <Head>
@@ -13,8 +18,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Profile />
+        <form className={formStyle.form}>
+          <Profile />
+          <UserQuery />
+        </form>
       </main>
     </>
-  )
+  );
 }
