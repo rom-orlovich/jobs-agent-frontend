@@ -1,7 +1,5 @@
 /* eslint-disable prettier/prettier */
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+module.exports = {plugins: {
+  tailwindcss: {},
+  autoprefixer: {},
+},}
