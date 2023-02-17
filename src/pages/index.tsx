@@ -3,7 +3,8 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Profile from '@/components/Profile';
 import UserQuery from '@/components/UserQuery/UserQuery';
-
+import DynamicInput from '@/components/DynamicInputs/DynamicInputs';
+import Autocomplete from '@/components/Autocomplete/Autocomplete';
 export default function Home() {
   const formStyle = {
     form: 'w-[20rem]'
@@ -21,6 +22,30 @@ export default function Home() {
         <form className={formStyle.form}>
           <Profile />
           <UserQuery />
+          <DynamicInput
+            firstElement={{
+              value: 'Durward Reynolds'
+            }}
+            Render={({ onClick, setValue }) => (
+              <>
+                <button onClick={onClick}> click </button>
+                <Autocomplete setValue={setValue} />
+              </>
+            )}
+          >
+            {(values) => {
+              return (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log(values);
+                  }}
+                >
+                  Submit
+                </button>
+              );
+            }}
+          </DynamicInput>
         </form>
       </main>
     </>

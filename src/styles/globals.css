@@ -7,3 +7,6 @@
     @apply rounded-lg border border-gray-300 font-normal focus:border focus:border-blue-300 focus:outline-blue-100;
   }
 }
+body {
+  height: 200vh;
+}

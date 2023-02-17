@@ -3,12 +3,7 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 
 import SelectInput from '../Inputs/SelectInput/SelectInput';
 import { Option } from '../Inputs/SelectInput/selectInput';
-import {
-  DISTANCE_OPTIONS,
-  EXPERIENCE_OPTIONS,
-  JOB_TYPES_OPTIONS,
-  SCOPES_OPTIONS
-} from './options';
+import { DISTANCE_OPTIONS, EXPERIENCE_OPTIONS, JOB_TYPES_OPTIONS, SCOPES_OPTIONS } from './options';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
@@ -32,9 +27,7 @@ function UserQuery() {
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
         <Autocomplete />
-        <SelectInput
-          {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS)}
-        />
+        <SelectInput {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS)} />
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>

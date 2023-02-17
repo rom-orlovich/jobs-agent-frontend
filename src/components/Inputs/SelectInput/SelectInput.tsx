@@ -3,11 +3,7 @@ import { Listbox } from '@headlessui/react';
 
 import { SelectInputProps } from './selectInput';
 import { classNameGenerator } from '@/lib/utils';
-export default function SelectInput({
-  options,
-  optionsElProps,
-  labelProps
-}: SelectInputProps) {
+export default function SelectInput({ options, optionsElProps, labelProps }: SelectInputProps) {
   const [selectOption, setOption] = useState(options[0]);
 
   const optionsStyle = {
@@ -22,10 +18,7 @@ export default function SelectInput({
       <div className="flex flex-col">
         <Listbox.Label
           {...labelProps}
-          className={classNameGenerator(
-            optionsStyle.label,
-            labelProps.className
-          )}
+          className={classNameGenerator(optionsStyle.label, labelProps.className)}
         >
           {labelProps.title}
         </Listbox.Label>

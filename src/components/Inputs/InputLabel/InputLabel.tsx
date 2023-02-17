@@ -21,18 +21,12 @@ function InputLabel({
   const Input = textAreaProps ? (
     <textarea
       {...textAreaProps}
-      className={classNameGenerator(
-        inputLabelStyle.textArea,
-        textAreaProps?.className
-      )}
+      className={classNameGenerator(inputLabelStyle.textArea, textAreaProps?.className)}
     />
   ) : (
     <input
       {...inputProps}
-      className={classNameGenerator(
-        inputLabelStyle.input,
-        inputProps?.className
-      )}
+      className={classNameGenerator(inputLabelStyle.input, inputProps?.className)}
     />
   );
 
@@ -46,10 +40,7 @@ function InputLabel({
     <>
       <label
         {...labelProps}
-        className={classNameGenerator(
-          inputLabelStyle.label,
-          labelProps?.className
-        )}
+        className={classNameGenerator(inputLabelStyle.label, labelProps?.className)}
       >
         <span {...textProps}>{children} </span>
         <span className={inputLabelStyle.inputContainer}>
