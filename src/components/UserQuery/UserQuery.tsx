@@ -1,4 +1,5 @@
 import React from 'react';
+import Autocomplete from '../Autocomplete/Autocomplete';
 
 import SelectInput from '../Inputs/SelectInput/SelectInput';
 import { Option } from '../Inputs/SelectInput/selectInput';
@@ -8,7 +9,7 @@ import {
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from './options';
-// Const selectBoxStyle = { selectInput: 'max-w-xs' };
+
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
   optionContainer: 'text-right',
@@ -30,13 +31,14 @@ function UserQuery() {
   return (
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
-        {/* <SelectInput /> */}
+        <Autocomplete />
         <SelectInput
           {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS)}
         />
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>
+        <Autocomplete />
         {/* <SelectInput /> */}
         <SelectInput {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS)} />
       </div>
