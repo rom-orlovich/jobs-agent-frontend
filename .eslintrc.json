@@ -1,14 +1,33 @@
 {
-  "plugins": ["@typescript-eslint"],
+  "root": true,
+  "plugins": ["@typescript-eslint", "tailwindcss"],
   "extends": [
+    // "plugin:@typescript-eslint/recommended",
+    "next",
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier"
   ],
   "rules": {
+    // "prettier/prettier": ["error"],
     // I suggest you add those two rules:
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
-    "no-multiple-empty-lines": ["error", { "max": 1 }]
+
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+
+    "indent": ["error", 2],
+    "no-multi-spaces": "error",
+    "capitalized-comments": [
+      "error",
+      "always",
+      { "ignoreInlineComments": true }
+    ]
+    // "max-len": ["error", { "code": 80 }]
   }
 }
