@@ -1,9 +1,9 @@
 import { DivProps, LabelProps } from '@/components/HTMLProps';
 
-export interface Option {
+export interface Option<V> {
   id: string;
   title: string;
-  value: string;
+  value: V;
 }
 export interface SelectInputProps {
   labelProps: LabelProps;

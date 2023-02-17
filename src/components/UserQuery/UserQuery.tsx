@@ -1,5 +1,5 @@
 import React from 'react';
-import Autocomplete from '../Autocomplete/Autocomplete';
+// Import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
 
 import SelectInput from '../Inputs/SelectInput/SelectInput';
 import { Option } from '../Inputs/SelectInput/selectInput';
@@ -11,7 +11,7 @@ const userQueryStyle = {
   label: 'text-right'
 };
 
-const selectInputProps = (title: string, options: Option[]) => ({
+const selectInputProps = (title: string, options: Option<string>[]) => ({
   labelProps: {
     title: title,
     className: userQueryStyle.label
@@ -26,12 +26,12 @@ function UserQuery() {
   return (
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
-        <Autocomplete />
+        {/* <Autocomplete /> */}
         <SelectInput {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS)} />
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>
-        <Autocomplete />
+        {/* <Autocomplete /> */}
         {/* <SelectInput /> */}
         <SelectInput {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS)} />
       </div>

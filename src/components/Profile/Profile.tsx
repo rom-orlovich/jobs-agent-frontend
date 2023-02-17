@@ -1,5 +1,5 @@
 import React from 'react';
-import InputLabel from './Inputs/InputLabel/InputLabel';
+import InputLabel from '../Inputs/InputLabel/InputLabel';
 import { FaEdit } from 'react-icons/fa';
 function Profile() {
   const inputLabelStyle = {
