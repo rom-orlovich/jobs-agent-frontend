@@ -9,7 +9,7 @@ export interface MinMaxSelectOption {
 }
 export interface MinMaxSelectProps {
   options: string[];
-  setValue: (value: MinMaxSelectOption) => void;
+  setValue?: (value: MinMaxSelectOption) => void;
 }
 
 function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
@@ -27,7 +27,7 @@ function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
   useEffect(() => {
     if (!state.max) return;
     if (!state.title) return;
-    setValue(state);
+    setValue && setValue(state);
   }, [state.max, state.title]);
 
   const setTitle = (value: string) => {

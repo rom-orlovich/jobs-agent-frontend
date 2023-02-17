@@ -3,10 +3,9 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 
 import UserQuery from '@/components/UserQuery/UserQuery';
-
-import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import DynamicInput from '@/components/Inputs/DynamicInputs/DynamicInputs';
 import Profile from '@/components/Profile/Profile';
+import MinMaxSelect, { MinMaxSelectOption, MinMaxSelectProps } from '@/components/Profile/MinMaxSelect';
 export default function Home() {
   const formStyle = {
     form: 'w-[20rem]'
@@ -24,29 +23,16 @@ export default function Home() {
         <form className={formStyle.form}>
           <Profile />
           <UserQuery />
-          <DynamicInput
+          <DynamicInput<MinMaxSelectProps, MinMaxSelectOption>
             firstElement={{
-              title: 'sasdas',
-              value: 'max'
+              min: 0,
+              max: 1,
+              title: 'javascript'
             }}
             Render={({ onClick, setValue }) => (
               <>
                 <button onClick={onClick}> Add </button>
-                <Autocomplete
-                  options={[
-                    {
-                      id: '1',
-                      title: '22wdsad',
-                      value: 'asdsdasd'
-                    },
-                    {
-                      id: '2',
-                      title: '22wdsasd',
-                      value: 'assdas'
-                    }
-                  ]}
-                  setValue={setValue}
-                />
+                <MinMaxSelect options={['javascript', 'react', 'typescript']} setValue={setValue} />
               </>
             )}
           >
