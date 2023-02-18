@@ -24,6 +24,7 @@ function DynamicInput<T extends DynamicInputRenderProps, V extends { title: stri
       const curInput = inputs[index];
       const firstPart = inputs.slice(0, index);
       const secPart = inputs.slice(index + 1);
+
       firstPart.push({
         ...curInput,
         ...value
@@ -56,9 +57,14 @@ function DynamicInput<T extends DynamicInputRenderProps, V extends { title: stri
   return (
     <>
       {inputs?.map((input, i) => {
-        return <Render key={input?.id} {...input} onClick={addMoreInput} setValue={setValue(i)} />;
+        return (
+          <span key={input?.id}>
+            <Render {...input} setValue={setValue(i)} />
+            <button onClick={addMoreInput}> Add </button>
+          </span>
+        );
       })}
-      {children ? children(inputs.map((input) => input.value)) : <></>}
+      {children ? children(inputs.map((input) => input)) : <></>}
     </>
   );
 }

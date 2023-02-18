@@ -1,11 +1,10 @@
 import { GenericRecord } from '@/lib/type';
-import { MouseEventHandler } from 'react';
+
 import { InputProps } from '../HTMLProps';
 
 export type DynamicInputRenderProps = GenericRecord<unknown> & InputProps;
 
 export type RenderElement<T, V> = T & {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
   setValue?: (value: V) => void;
 };
 

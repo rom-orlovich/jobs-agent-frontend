@@ -29,9 +29,8 @@ export default function Home() {
               max: 1,
               title: 'javascript'
             }}
-            Render={({ onClick, setValue }) => (
+            Render={({ setValue }) => (
               <>
-                <button onClick={onClick}> Add </button>
                 <MinMaxSelect options={['javascript', 'react', 'typescript']} setValue={setValue} />
               </>
             )}

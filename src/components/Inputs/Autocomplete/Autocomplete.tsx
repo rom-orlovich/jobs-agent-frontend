@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete';
-// Import { Option } from '../SelectInput/selectInput';
-// Import { Option } from '../SelectInput/selectInput';
-
 export default function Autocomplete<V>({ setValue, options, multiple }: AutocompleteProps<V>) {
   const [selectedOption, setSelectedOption] = useState(multiple ? options : options[0]);
   const [query, setQuery] = useState('');
@@ -19,7 +16,10 @@ export default function Autocomplete<V>({ setValue, options, multiple }: Autocom
     <Combobox
       value={selectedOption}
       onChange={(value) => {
-        if (!multiple && !Array.isArray(value)) setValue && setValue(value.value);
+        if (!multiple && !Array.isArray(value) && typeof value !== 'object') {
+          setValue && setValue(value);
+        }
+
         setSelectedOption(value);
       }}
     >
