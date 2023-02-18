@@ -1,6 +1,9 @@
+/* eslint-disable capitalized-comments */
 import React from 'react';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
-import { FaEdit } from 'react-icons/fa';
+// import { FaEdit } from 'react-icons/fa';
+import MyStack from './ProfileStack';
+// import BlackListStack from './BlackListStack';
 function Profile() {
   const inputLabelStyle = {
     label: 'flex flex-col max-w-[theme(spacing.40)] text-right',
@@ -10,20 +13,20 @@ function Profile() {
     button: 'absolute right-0 top-0'
   };
 
-  const textFieldProps = {
-    labelProps: {
-      className: inputLabelStyle.labelTextArea
-    },
-    textAreaProps: {
-      className: inputLabelStyle.input
-    },
-    IconButtonProps: {
-      Icon: <FaEdit className={inputLabelStyle.icon} />,
-      buttonProps: {
-        className: inputLabelStyle.button
-      }
-    }
-  };
+  // const textFieldProps = {
+  //   labelProps: {
+  //     className: inputLabelStyle.labelTextArea
+  //   },
+  //   textAreaProps: {
+  //     className: inputLabelStyle.input
+  //   },
+  //   IconButtonProps: {
+  //     Icon: <FaEdit className={inputLabelStyle.icon} />,
+  //     buttonProps: {
+  //       className: inputLabelStyle.button
+  //     }
+  //   }
+  // };
 
   return (
     <div>
@@ -39,9 +42,11 @@ function Profile() {
         שנות ניסיון
       </InputLabel>
 
-      <InputLabel {...textFieldProps}>היכולות שלי</InputLabel>
+      <MyStack />
 
-      <InputLabel {...textFieldProps}>אני לא מחפש:</InputLabel>
+      {/* <InputLabel {...textFieldProps}>היכולות שלי</InputLabel>
+
+      <InputLabel {...textFieldProps}>אני לא מחפש:</InputLabel> */}
     </div>
   );
 }

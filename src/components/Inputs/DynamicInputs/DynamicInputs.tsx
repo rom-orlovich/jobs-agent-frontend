@@ -6,7 +6,7 @@ import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dy
  * Each time the user execute the addMoreInput function which pass as props to the Render element,a new input is created.
  * This component return the array of inputs and children function that get the values of the inputs as parameter.
  */
-function DynamicInput<T extends DynamicInputRenderProps, V extends { title: string }>({
+function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: string }>({
   firstElement,
   Render,
   children
@@ -69,4 +69,4 @@ function DynamicInput<T extends DynamicInputRenderProps, V extends { title: stri
   );
 }
 
-export default DynamicInput;
+export default DynamicInputs;

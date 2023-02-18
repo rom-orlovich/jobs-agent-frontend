@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete';
-export default function Autocomplete<V>({ setValue, options, multiple }: AutocompleteProps<V>) {
+export default function Autocomplete<V>({ setValue, options, multiple, label }: AutocompleteProps<V>) {
   const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0]);
   const [query, setQuery] = useState('');
 
@@ -25,6 +25,7 @@ export default function Autocomplete<V>({ setValue, options, multiple }: Autocom
         setSelectedOption(value);
       }}
     >
+      {label ? <Combobox.Label className={'font-medium'}>{label}</Combobox.Label> : <></>}
       <div>
         <Combobox.Input<'input', { value: V; title: string }[]>
           displayValue={

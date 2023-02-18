@@ -1,4 +1,5 @@
 import React from 'react';
+import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
 // Import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
 
 import SelectInput from '../Inputs/SelectInput/SelectInput';
@@ -26,12 +27,26 @@ function UserQuery() {
   return (
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
-        {/* <Autocomplete /> */}
+        <Autocomplete
+          label="תפקיד"
+          options={['full stack', 'front-end'].map((el) => ({
+            id: el,
+            title: el,
+            value: el
+          }))}
+        />
         <SelectInput {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS)} />
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>
-        {/* <Autocomplete /> */}
+        <Autocomplete
+          label="עיר"
+          options={['kiryat ono', 'tel aviv'].map((el) => ({
+            id: el,
+            title: el,
+            value: el
+          }))}
+        />
         {/* <SelectInput /> */}
         <SelectInput {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS)} />
       </div>
