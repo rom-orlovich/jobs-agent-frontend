@@ -1,16 +1,26 @@
 import useForm from '@/hooks/useForm/useForm';
+import { UserOptions } from '@/lib/user';
+import { useEffect } from 'react';
 
 import { MinMaxSelectOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements } from './handlers';
 
 function useUserForm() {
-  const formInitialValue = {
-    'overall-experience': 0,
+  const formInitialValue: UserOptions = {
+    overallEx: 0,
     requirements: {},
-    excludedRequirements: {}
+    excludedRequirements: {},
+    userQuery: {}
   };
+  const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
+    UserOptions,
+    { message: string }
+  >(formInitialValue);
 
-  const { formValues, onChange, onSubmit, setFormValues } = useForm(formInitialValue);
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues]);
+
   const setRequirements = (minMaxValues: MinMaxSelectOption[]) => {
     const requirements = handleRequirements(minMaxValues);
     setFormValues((pre) => {
@@ -30,16 +40,28 @@ function useUserForm() {
     });
   };
 
-  const setSelectionInput = (id: string) => (value: string) => {
+  const setSelectionInput: <V extends string>(id: string) => (value: V) => void = (id) => (value) => {
     setFormValues((pre) => {
       return {
         ...pre,
-        [id]: value
+        userQuery: {
+          ...pre.userQuery,
+          [id]: value
+        }
       };
     });
   };
 
-  const handleUserFormSubmit = onSubmit((values) => Promise.resolve(console.log(values)));
+  const handleUserFormSubmit = onSubmit(async (values) => {
+    const data = await fetch('http://localhost:3000/api/user/1', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    });
+    return await data.json();
+  });
 
   const setOverallExperience = onChange;
   return {
@@ -48,8 +70,11 @@ function useUserForm() {
     handleUserFormSubmit,
     setRequirements,
     setExcludedRequirements,
-    setSelectionInput
+    setSelectionInput,
+    formState
   };
 }
 
 export default useUserForm;
+
+export type FormComponents<T> = T & ReturnType<typeof useUserForm>;

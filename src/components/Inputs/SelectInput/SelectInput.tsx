@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Listbox } from '@headlessui/react';
 
 import { SelectInputProps } from './selectInput';
 import { classNameGenerator } from '@/lib/utils';
-export default function SelectInput<V>({ options, optionsElProps, labelProps }: SelectInputProps<V>) {
+export default function SelectInput<V extends string>({
+  options,
+  optionsElProps,
+  labelProps,
+  setValue
+}: SelectInputProps<V>) {
   const [selectOption, setOption] = useState(options[0]);
 
   const optionsStyle = {
@@ -13,8 +18,17 @@ export default function SelectInput<V>({ options, optionsElProps, labelProps }: 
     label: 'font-medium'
   };
 
+  useEffect(() => {
+    setValue && setValue(options[0].value);
+  }, []);
   return (
-    <Listbox value={selectOption} onChange={(value) => setOption(value)}>
+    <Listbox
+      value={selectOption}
+      onChange={(value) => {
+        setValue && setValue(value.value);
+        setOption(value);
+      }}
+    >
       <div className="flex flex-col">
         <Listbox.Label
           {...labelProps}

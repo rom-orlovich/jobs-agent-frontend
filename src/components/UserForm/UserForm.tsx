@@ -13,7 +13,9 @@ function UserForm() {
     <form onSubmit={userForm.handleUserFormSubmit} className={formStyle.form}>
       <Profile {...userForm} />
       <UserQuery {...userForm} />
+
       <button type="submit">אשר</button>
+      <p>{userForm.formState.data?.message}</p>
     </form>
   );
 }

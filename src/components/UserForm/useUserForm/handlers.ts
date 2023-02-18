@@ -1,9 +1,9 @@
 import { MinMaxSelectOption } from '@/components/UserForm/Profile/MinMaxSelect';
 import { GenericRecord } from '@/lib/type';
+import { Requirements } from '@/lib/user';
 
-import { requirements } from '../userForm';
 export const handleRequirements = (minMaxValues: MinMaxSelectOption[]) => {
-  const minMaxValuesObj: requirements = {};
+  const minMaxValuesObj: Requirements = {};
   for (const minMaxValue of minMaxValues) {
     minMaxValuesObj[minMaxValue.title] = {
       min: minMaxValue.min,

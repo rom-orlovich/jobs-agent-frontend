@@ -1,7 +1,8 @@
 /* eslint-disable capitalized-comments */
 import React from 'react';
 import InputLabel from '../../Inputs/InputLabel/InputLabel';
-import { FormComponents } from '../userForm';
+import { FormComponents } from '../useUserForm/useUserForm';
+
 import ExcludedRequirements from './ExcludedRequirements';
 // import { FaEdit } from 'react-icons/fa';
 
@@ -23,7 +24,7 @@ function Profile(userFormState: FormComponents<unknown>) {
           className: inputLabelStyle.label
         }}
         inputProps={{
-          id: 'overall-experience',
+          id: 'overallEx',
           className: inputLabelStyle.input,
           type: 'text',
           onChange: userFormState.setOverallExperience

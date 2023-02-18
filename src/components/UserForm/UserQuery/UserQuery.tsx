@@ -2,8 +2,7 @@ import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput';
 import React from 'react';
-import { FormComponents } from '../userForm';
-
+import { FormComponents } from '../useUserForm/useUserForm';
 // Import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
 import { DISTANCE_OPTIONS, EXPERIENCE_OPTIONS, JOB_TYPES_OPTIONS, SCOPES_OPTIONS } from './options';
 
