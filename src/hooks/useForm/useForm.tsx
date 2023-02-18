@@ -1,7 +1,8 @@
 import { AnyFun, GenericRecord } from '@/lib/type';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 
-function useForm<T extends GenericRecord<unknown>>(initialState: T) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function useForm<T extends GenericRecord<any>>(initialState: T) {
   const [formValues, setFormValues] = useState(initialState);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
