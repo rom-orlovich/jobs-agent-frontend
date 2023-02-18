@@ -6,6 +6,7 @@ import UserQuery from '@/components/UserQuery/UserQuery';
 import DynamicInput from '@/components/Inputs/DynamicInputs/DynamicInputs';
 import Profile from '@/components/Profile/Profile';
 import MinMaxSelect, { MinMaxSelectOption, MinMaxSelectProps } from '@/components/Profile/MinMaxSelect';
+import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 export default function Home() {
   const formStyle = {
     form: 'w-[20rem]'
@@ -49,6 +50,14 @@ export default function Home() {
             }}
           </DynamicInput>
         </form>
+        <Autocomplete
+          multiple
+          options={['pthp', 'angular', 'c+'].map((el) => ({
+            id: el,
+            title: el,
+            value: el
+          }))}
+        />
       </main>
     </>
   );
