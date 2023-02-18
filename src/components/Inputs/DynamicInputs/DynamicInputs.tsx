@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useState } from 'react';
-import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynmicInputs';
+import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs';
 
 /**
  * This component create dynamic array of inputs.
@@ -10,12 +10,12 @@ function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: str
   firstElement,
   Render,
   children
-}: DynamicInputsProps<V>) {
+}: DynamicInputsProps<T, V>) {
   const firstElementWithID = {
     ...firstElement,
     id: `input-${1}`
   };
-  const [inputs, setInputState] = useState<DynamicInputRenderProps[]>([firstElementWithID]);
+  const [inputs, setInputState] = useState<RenderElement<T, V>[]>([firstElementWithID]);
 
   // Set a new value in the input that placed in the provided index.
   // Slice until the index, add the value, slice until the length of the inputs and concat the arrays.

@@ -1,10 +1,12 @@
 /* eslint-disable capitalized-comments */
 import React from 'react';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
+import { FormComponents } from '../UserForm/userForm';
 // import { FaEdit } from 'react-icons/fa';
+import BlackListStack from './BlackListStack';
 import MyStack from './ProfileStack';
-// import BlackListStack from './BlackListStack';
-function Profile() {
+
+function Profile(userFormState: FormComponents<unknown>) {
   const inputLabelStyle = {
     label: 'flex flex-col max-w-[theme(spacing.40)] text-right',
     input: '',
@@ -13,21 +15,6 @@ function Profile() {
     button: 'absolute right-0 top-0'
   };
 
-  // const textFieldProps = {
-  //   labelProps: {
-  //     className: inputLabelStyle.labelTextArea
-  //   },
-  //   textAreaProps: {
-  //     className: inputLabelStyle.input
-  //   },
-  //   IconButtonProps: {
-  //     Icon: <FaEdit className={inputLabelStyle.icon} />,
-  //     buttonProps: {
-  //       className: inputLabelStyle.button
-  //     }
-  //   }
-  // };
-
   return (
     <div>
       <InputLabel
@@ -35,19 +22,38 @@ function Profile() {
           className: inputLabelStyle.label
         }}
         inputProps={{
+          id: 'overall-experience',
           className: inputLabelStyle.input,
-          type: 'text'
+          type: 'text',
+          onChange: userFormState.setOverallExperience
         }}
       >
         שנות ניסיון
       </InputLabel>
 
-      <MyStack />
-
-      {/* <InputLabel {...textFieldProps}>היכולות שלי</InputLabel>
-
-      <InputLabel {...textFieldProps}>אני לא מחפש:</InputLabel> */}
+      <MyStack {...userFormState} />
+      <BlackListStack />
     </div>
   );
 }
 export default Profile;
+// const textFieldProps = {
+//   labelProps: {
+//     className: inputLabelStyle.labelTextArea
+//   },
+//   textAreaProps: {
+//     className: inputLabelStyle.input
+//   },
+//   IconButtonProps: {
+//     Icon: <FaEdit className={inputLabelStyle.icon} />,
+//     buttonProps: {
+//       className: inputLabelStyle.button
+//     }
+//   }
+// };
+
+{
+  /* <InputLabel {...textFieldProps}>היכולות שלי</InputLabel>
+
+      <InputLabel {...textFieldProps}>אני לא מחפש:</InputLabel> */
+}

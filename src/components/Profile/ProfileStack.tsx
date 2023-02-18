@@ -1,10 +1,11 @@
 import React from 'react';
-import MinMaxSelect, { MinMaxSelectOption, MinMaxSelectProps } from './MinMaxSelect';
+import MinMaxSelect from './MinMaxSelect';
 import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
+import { FormComponents } from '../UserForm/userForm';
 
-function MyStack() {
+function MyStack({}: FormComponents<unknown>) {
   return (
-    <DynamicInputs<MinMaxSelectProps, MinMaxSelectOption>
+    <DynamicInputs
       firstElement={{
         min: 0,
         max: 1,

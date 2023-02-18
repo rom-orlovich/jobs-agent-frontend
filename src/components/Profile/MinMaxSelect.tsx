@@ -13,7 +13,6 @@ export interface MinMaxSelectProps {
 }
 
 function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
-  console.log(options);
   const autocompleteOptions: Option<string>[] = options.map((el, i) => ({
     id: el + i,
     title: el,
@@ -24,11 +23,13 @@ function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
     max: 1,
     title: ''
   });
+
   useEffect(() => {
     if (!state.title) return;
     if (!state.max) return;
     setValue && setValue(state);
   }, [state]);
+
   const setTitle = (value: string) => {
     setState((pre) => {
       return {
