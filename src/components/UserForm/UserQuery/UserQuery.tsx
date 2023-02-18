@@ -34,7 +34,7 @@ function UserQuery({ setSelectionInput }: FormComponents<unknown>) {
         <Autocomplete
           setValue={setSelectionInput('position')}
           label="תפקיד"
-          options={['full stack', 'front-end'].map((el) => ({
+          options={['full stack', 'frontend'].map((el) => ({
             id: el,
             title: el,
             value: el
@@ -47,7 +47,7 @@ function UserQuery({ setSelectionInput }: FormComponents<unknown>) {
         <Autocomplete
           setValue={setSelectionInput('location')}
           label="עיר"
-          options={['kiryat ono', 'tel aviv'].map((el) => ({
+          options={['תל אביב', 'קרית אונו'].map((el) => ({
             id: el,
             title: el,
             value: el

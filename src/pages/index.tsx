@@ -2,7 +2,9 @@ import Head from 'next/head';
 
 import styles from '@/styles/Home.module.css';
 import UserForm from '@/components/UserForm/UserForm';
+import { useState } from 'react';
 export default function Home() {
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <Head>
@@ -13,6 +15,52 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <UserForm />
+        <button
+          onClick={async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            // Const res = await fetch('http://localhost:5000/api/hello');
+            // // /api/jobs-agent/start/
+            try {
+              const res = await fetch('http://localhost:5000/api/jobs-agent/start/1?activeQuery=true');
+              const data = await res.json();
+              console.log(data);
+              setLoading(false);
+            } catch (error) {
+              setLoading(false);
+              console.log(error);
+            }
+          }}
+        >
+          Load
+        </button>
+        <button
+          onClick={async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            // Const res = await fetch('http://localhost:5000/api/hello');
+            // // /api/jobs-agent/start/
+            try {
+              const res = await fetch(
+                'http://localhost:5000/api/jobs-agent/download/1?activeQuery=false'
+              );
+              setLoading(false);
+              res.blob().then((blob) => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'jobs';
+                a.click();
+              });
+            } catch (error) {
+              setLoading(false);
+              console.log(error);
+            }
+          }}
+        >
+          Download
+        </button>
+        {loading && <p>loading</p>}
       </main>
     </>
   );
