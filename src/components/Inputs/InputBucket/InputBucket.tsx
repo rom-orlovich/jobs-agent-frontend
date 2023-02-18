@@ -15,7 +15,7 @@ function InputBucket({ inputLabelProps, children }: InputBucketProps) {
 
   const inputRef = useRef<null | HTMLInputElement>(null);
 
-  const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleAddValue: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     if (!inputRef) return;
     if (!inputRef.current?.value) return;
@@ -25,6 +25,16 @@ function InputBucket({ inputLabelProps, children }: InputBucketProps) {
       if (!inputRef?.current?.value) return pre;
       const newSet = new Set(pre.add(inputRef.current.value));
       inputRef.current.value = '';
+      return newSet;
+    });
+  };
+  const handleRemoveValue: (value: string) => MouseEventHandler<HTMLButtonElement> = (value) => (e) => {
+    e.preventDefault();
+
+    setNewBucketValue((pre) => {
+      pre.delete(value);
+      const newSet = new Set(pre);
+
       return newSet;
     });
   };
@@ -40,11 +50,21 @@ function InputBucket({ inputLabelProps, children }: InputBucketProps) {
         >
           {inputLabelProps.labelProps?.title}
         </InputLabel>
-        <button onClick={onClick}>+</button>
+        <button className="bg-green-400 text-cyan-50" onClick={handleAddValue}>
+          הוסף
+        </button>
       </div>
       <ul>
         {curBucketValuesArr.map((el, i) => {
-          return <li key={el + i}>{el}</li>;
+          return (
+            <li key={el + i}>
+              {el}
+
+              <button className="bg-red-400 text-cyan-50" onClick={handleRemoveValue(el)}>
+                הסר
+              </button>
+            </li>
+          );
         })}
       </ul>
       {children(curBucketValuesArr)}

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import InputBucket from '../Inputs/InputBucket/InputBucket';
-import { FormComponents } from '../UserForm/userForm';
+import InputBucket from '../../Inputs/InputBucket/InputBucket';
+import { FormComponents } from '../userForm';
 
 function ExcludedRequirements({ setExcludedRequirements }: FormComponents<unknown>) {
   return (
@@ -13,8 +13,16 @@ function ExcludedRequirements({ setExcludedRequirements }: FormComponents<unknow
       }}
     >
       {(bucketValues) => {
-        setExcludedRequirements(bucketValues);
-        return <></>;
+        return (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setExcludedRequirements(bucketValues);
+            }}
+          >
+            אשר
+          </button>
+        );
       }}
     </InputBucket>
   );

@@ -5,8 +5,9 @@ export interface Option<V> {
   title: string;
   value: V;
 }
-export interface SelectInputProps {
+export interface SelectInputProps<V> {
   labelProps: LabelProps;
-  options: Option[];
+  options: Option<V>[];
   optionsElProps?: DivProps;
+  setValue?: (value: string) => void;
 }

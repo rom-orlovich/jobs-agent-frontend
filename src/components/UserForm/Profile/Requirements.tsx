@@ -1,7 +1,7 @@
 import React from 'react';
 import MinMaxSelect from './MinMaxSelect';
-import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
-import { FormComponents } from '../UserForm/userForm';
+import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
+import { FormComponents } from '../userForm';
 
 function ProfileRequirements({ setRequirements }: FormComponents<unknown>) {
   return (
@@ -20,7 +20,7 @@ function ProfileRequirements({ setRequirements }: FormComponents<unknown>) {
             // Options={['javascript', 'react', 'typescript']}
             inputLabelProps={{
               labelProps: {
-                title: 'Requirement'
+                title: 'דרישה'
               }
             }}
             setValue={setValue}
@@ -33,11 +33,10 @@ function ProfileRequirements({ setRequirements }: FormComponents<unknown>) {
           <button
             onClick={(e) => {
               e.preventDefault();
-
               setRequirements(values);
             }}
           >
-            Submit
+            אשר
           </button>
         );
       }}

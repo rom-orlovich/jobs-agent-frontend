@@ -32,6 +32,11 @@ function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: str
       return firstPart.concat(secPart);
     };
   };
+  const removeInputValue = (index: number) => {
+    return (inputs: RenderElement<T, V>[]) => {
+      return inputs.filter((el, i) => i !== index);
+    };
+  };
 
   // Active setInputValue with the index and the value.
   const setValue = (index: number) => {
@@ -54,13 +59,24 @@ function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: str
     e.preventDefault();
     setInputState(addNewInput);
   };
+
+  // The function that execute the removing of a exist input in the array.
+  const removeExistInput: (index: number) => MouseEventHandler<HTMLButtonElement> = (index) => (e) => {
+    e.preventDefault();
+    setInputState(removeInputValue(index));
+  };
   return (
     <>
       {inputs?.map((input, i) => {
         return (
           <span key={input?.id}>
             <Render {...input} setValue={setValue(i)} />
-            <button onClick={addMoreInput}> Add </button>
+            <button className="bg-green-400 text-cyan-50" onClick={addMoreInput}>
+              הוסף
+            </button>
+            <button className="bg-red-400 text-cyan-50" onClick={removeExistInput(i)}>
+              הסר
+            </button>
           </span>
         );
       })}

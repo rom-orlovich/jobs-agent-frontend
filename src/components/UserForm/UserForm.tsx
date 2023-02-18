@@ -1,6 +1,7 @@
 import React from 'react';
-import Profile from '../Profile/Profile';
-import UserQuery from '../UserQuery/UserQuery';
+import Profile from './Profile/Profile';
+import UserQuery from './UserQuery/UserQuery';
+
 import useUserForm from './useUserForm/useUserForm';
 const formStyle = {
   form: 'w-[20rem]'
@@ -9,9 +10,10 @@ const formStyle = {
 function UserForm() {
   const userForm = useUserForm();
   return (
-    <form className={formStyle.form}>
+    <form onSubmit={userForm.handleUserFormSubmit} className={formStyle.form}>
       <Profile {...userForm} />
-      <UserQuery />
+      <UserQuery {...userForm} />
+      <button type="submit">אשר</button>
     </form>
   );
 }

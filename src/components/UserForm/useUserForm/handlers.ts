@@ -1,4 +1,4 @@
-import { MinMaxSelectOption } from '@/components/Profile/MinMaxSelect';
+import { MinMaxSelectOption } from '@/components/UserForm/Profile/MinMaxSelect';
 import { GenericRecord } from '@/lib/type';
 
 import { requirements } from '../userForm';
