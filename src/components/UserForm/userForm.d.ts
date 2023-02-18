@@ -4,4 +4,4 @@ import useUserForm from './useUserForm/useUserForm';
 export type FormComponents<T> = T & ReturnType<typeof useUserForm>;
 
 export type MinMaxSelectValueWithoutTitle = OmitKey<MinMaxSelectOption, 'title'>;
-export type RequirementsOptions = GenericRecord<MinMaxSelectValueWithoutTitle>;
+export type requirements = GenericRecord<MinMaxSelectValueWithoutTitle>;

@@ -3,7 +3,7 @@ export interface ExperienceRange {
   max: number;
 }
 
-export type RequirementsOptions = GenericRecord<ExperienceRange>;
+export type requirements = GenericRecord<ExperienceRange>;
 export type ExcludeTechsOptions = GenericRecord<boolean>;
 
 interface HashQueryProps {
@@ -27,7 +27,7 @@ export type HashQueryEntity = InstanceType<typeof HashQuery>;
 interface UserOptions {
   _id: string;
   overallEx?: number;
-  requirementsOptions: RequirementsOptions;
+  requirements: requirements;
   excludeTechs: ExcludeTechsOptions;
   // BlackList: string[];
   userQuery: UserQuery;

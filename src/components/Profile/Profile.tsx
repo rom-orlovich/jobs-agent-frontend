@@ -2,9 +2,10 @@
 import React from 'react';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import { FormComponents } from '../UserForm/userForm';
+import ExcludedRequirements from './ExcludedRequirements';
 // import { FaEdit } from 'react-icons/fa';
-import BlackListStack from './BlackListStack';
-import MyStack from './ProfileStack';
+
+import Requirements from './Requirements';
 
 function Profile(userFormState: FormComponents<unknown>) {
   const inputLabelStyle = {
@@ -31,8 +32,8 @@ function Profile(userFormState: FormComponents<unknown>) {
         שנות ניסיון
       </InputLabel>
 
-      <MyStack {...userFormState} />
-      <BlackListStack />
+      <Requirements {...userFormState} />
+      <ExcludedRequirements {...userFormState} />
     </div>
   );
 }

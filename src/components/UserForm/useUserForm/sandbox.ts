@@ -1,6 +1,6 @@
 export const EXAMPLE_USER = {
   overallEx: 2,
-  requirementsOptions: {
+  requirements: {
     javascript: {
       min: 0,
       max: 0

@@ -3,7 +3,7 @@ import MinMaxSelect from './MinMaxSelect';
 import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
 import { FormComponents } from '../UserForm/userForm';
 
-function MyStack({}: FormComponents<unknown>) {
+function ProfileRequirements({ setRequirements }: FormComponents<unknown>) {
   return (
     <DynamicInputs
       firstElement={{
@@ -13,7 +13,18 @@ function MyStack({}: FormComponents<unknown>) {
       }}
       Render={({ setValue }) => (
         <>
-          <MinMaxSelect options={['javascript', 'react', 'typescript']} setValue={setValue} />
+          <MinMaxSelect
+            // AutocompleteProps={{
+            //   Label: 'Requirement'
+            // }}
+            // Options={['javascript', 'react', 'typescript']}
+            inputLabelProps={{
+              labelProps: {
+                title: 'Requirement'
+              }
+            }}
+            setValue={setValue}
+          />
         </>
       )}
     >
@@ -22,7 +33,8 @@ function MyStack({}: FormComponents<unknown>) {
           <button
             onClick={(e) => {
               e.preventDefault();
-              console.log(values);
+
+              setRequirements(values);
             }}
           >
             Submit
@@ -33,4 +45,4 @@ function MyStack({}: FormComponents<unknown>) {
   );
 }
 
-export default MyStack;
+export default ProfileRequirements;

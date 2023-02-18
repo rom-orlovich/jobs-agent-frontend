@@ -1,21 +1,30 @@
 import useForm from '@/hooks/useForm/useForm';
 
 import { MinMaxSelectOption } from '../../Profile/MinMaxSelect';
-import { handleMinMaxValuesTransform } from './handlers';
+import { handleExcludedRequirements, handleRequirements } from './handlers';
 
 function useUserForm() {
   const formInitialValue = {
     'overall-experience': 0,
-    requirementsOptions: {}
+    requirements: {}
   };
 
   const { formValues, onChange, onSubmit, setFormValues } = useForm(formInitialValue);
-  const setMinMaxSelect = (minMaxValues: MinMaxSelectOption[]) => {
-    const requirementsOptions = handleMinMaxValuesTransform(minMaxValues);
+  const setRequirements = (minMaxValues: MinMaxSelectOption[]) => {
+    const requirements = handleRequirements(minMaxValues);
     setFormValues((pre) => {
       return {
         ...pre,
-        requirementsOptions: requirementsOptions
+        requirements: requirements
+      };
+    });
+  };
+  const setExcludedRequirements = (values: string[]) => {
+    const excludedRequirements = handleExcludedRequirements(values);
+    setFormValues((pre) => {
+      return {
+        ...pre,
+        excludedRequirements: excludedRequirements
       };
     });
   };
@@ -25,7 +34,8 @@ function useUserForm() {
     formValues,
     setOverallExperience,
     onSubmit,
-    setMinMaxSelect
+    setRequirements,
+    setExcludedRequirements
   };
 }
 

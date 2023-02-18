@@ -1,23 +1,28 @@
 import React, { ChangeEventHandler, useEffect, useState } from 'react';
-import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
+// Import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
+// Import { AutocompleteProps } from '../Inputs/Autocomplete/autocomplete';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
-import { Option } from '../Inputs/SelectInput/selectInput';
+import { InputLabelProps } from '../Inputs/InputLabel/inputLabel';
+// Import { Option } from '../Inputs/SelectInput/selectInput';
 export interface MinMaxSelectOption {
   min: number;
   max: number;
   title: string;
 }
 export interface MinMaxSelectProps {
-  options: string[];
+  // Options: string[];
+  inputLabelProps: InputLabelProps;
+  // AutocompleteProps?: AutocompleteProps<string>;
+
   setValue?: (value: MinMaxSelectOption) => void;
 }
 
-function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
-  const autocompleteOptions: Option<string>[] = options.map((el, i) => ({
-    id: el + i,
-    title: el,
-    value: el
-  }));
+function MinMaxSelect({ setValue, inputLabelProps }: MinMaxSelectProps) {
+  // Const autocompleteOptions: Option<string>[] = options.map((el, i) => ({
+  //   Id: el + i,
+  //   Title: el,
+  //   Value: el
+  // }));
   const [state, setState] = useState<MinMaxSelectOption>({
     min: 0,
     max: 1,
@@ -30,11 +35,19 @@ function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
     setValue && setValue(state);
   }, [state]);
 
-  const setTitle = (value: string) => {
+  // Const setTitle = (value: string) => {
+  //   SetState((pre) => {
+  //     Return {
+  //       ...pre,
+  //       Title: value
+  //     };
+  //   });
+  // };
+  const setTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
     setState((pre) => {
       return {
         ...pre,
-        title: value
+        title: e.target.value
       };
     });
   };
@@ -56,7 +69,15 @@ function MinMaxSelect({ options, setValue }: MinMaxSelectProps) {
   };
   return (
     <div>
-      <Autocomplete options={autocompleteOptions} setValue={setTitle} />
+      {/* <Autocomplete options={autocompleteOptions} setValue={setTitle} /> */}
+      <InputLabel
+        {...inputLabelProps}
+        inputProps={{
+          onChange: setTitle
+        }}
+      >
+        {inputLabelProps.labelProps?.title}{' '}
+      </InputLabel>
       <InputLabel
         inputProps={{
           type: 'number',
