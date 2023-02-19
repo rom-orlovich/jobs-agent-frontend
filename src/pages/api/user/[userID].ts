@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handleAddProfile(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    console.log(req.body);
     const userID = req.query.userID;
     const result = await createUser({
       userID,

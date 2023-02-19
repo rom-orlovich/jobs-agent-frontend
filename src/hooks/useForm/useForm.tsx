@@ -30,6 +30,7 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
       try {
         setFromState((pre) => ({
           ...pre,
+          data: undefined,
           isLoading: true,
           isSent: true
         }));

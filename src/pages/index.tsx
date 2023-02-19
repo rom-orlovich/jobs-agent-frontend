@@ -3,8 +3,10 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import UserForm from '@/components/UserForm/UserForm';
 import { useState } from 'react';
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
+
   return (
     <>
       <Head>
@@ -16,6 +18,7 @@ export default function Home() {
       <main className={styles.main}>
         <UserForm />
         <button
+          className="mr-2"
           onClick={async (e) => {
             e.preventDefault();
             setLoading(true);
