@@ -6,12 +6,15 @@ import { InputLabelProps } from '../InputLabel/inputLabel';
 export interface InputBucketProps {
   inputLabelProps: InputLabelProps;
   children: (values: string[]) => JSX.Element;
+  defaultValues?: string[];
 }
 /**
  * This component is for creation of bucket of input values that return as array.
  */
-function InputBucket({ inputLabelProps, children }: InputBucketProps) {
-  const [curBucketValues, setNewBucketValue] = useState<globalThis.Set<string>>(new Set());
+function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketProps) {
+  const [curBucketValues, setNewBucketValue] = useState<globalThis.Set<string>>(
+    new Set(defaultValues?.length ? defaultValues : [])
+  );
 
   const inputRef = useRef<null | HTMLInputElement>(null);
 

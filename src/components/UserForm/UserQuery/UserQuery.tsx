@@ -4,8 +4,13 @@ import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/select
 import React from 'react';
 import { FormComponents } from '../useUserForm/useUserForm';
 import useSwr from 'swr';
-// Import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
-import { DISTANCE_OPTIONS, EXPERIENCE_OPTIONS, JOB_TYPES_OPTIONS, SCOPES_OPTIONS } from './options';
+
+import {
+  DISTANCE_OPTIONS,
+  EXPERIENCE_OPTIONS,
+  JOB_TYPES_OPTIONS,
+  SCOPES_OPTIONS
+} from './userQueryOptions';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',

@@ -2,9 +2,10 @@ import React from 'react';
 
 import InputBucket from '../../Inputs/InputBucket/InputBucket';
 import { FormComponents } from '../useUserForm/useUserForm';
-function ExcludedRequirements({ setExcludedRequirements }: FormComponents<unknown>) {
+function ExcludedRequirements({ setExcludedRequirements, formValues }: FormComponents<unknown>) {
   return (
     <InputBucket
+      defaultValues={formValues.excludedRequirements}
       inputLabelProps={{
         labelProps: {
           title: 'מה אני לא רוצה'

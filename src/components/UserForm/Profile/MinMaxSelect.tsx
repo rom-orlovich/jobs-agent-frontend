@@ -12,9 +12,6 @@ export interface MinMaxInputsOption {
 export interface MinMaxInputsProps {
   inputTitle?: InputLabelProps;
   initialValues: MinMaxInputsOption;
-  // InputMin?: InputLabelProps;
-  // InputMax?: InputLabelProps;
-
   setValue?: (value: MinMaxInputsOption) => void;
 }
 
@@ -74,7 +71,7 @@ function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps
           onChange: setMin
         }}
       >
-        מינמום
+        מינימום
       </InputLabel>
       <InputLabel
         inputProps={{
