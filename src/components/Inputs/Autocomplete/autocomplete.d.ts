@@ -4,4 +4,5 @@ export interface AutocompleteProps<V> {
   options: Option<V>[];
   multiple?: boolean;
   label?: string;
+  defaultValue?: Option<V>;
 }

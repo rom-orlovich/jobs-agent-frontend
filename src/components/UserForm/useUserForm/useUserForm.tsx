@@ -1,5 +1,6 @@
 import useForm from '@/hooks/useForm/useForm';
 import useUser from '@/hooks/useUser';
+import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserOptions } from '@/lib/user';
 
 import { useEffect } from 'react';
@@ -16,7 +17,14 @@ function useUserForm() {
         overallEx: 0,
         requirements: {},
         excludedRequirements: {},
-        userQuery: {}
+        userQuery: {
+          distance: '',
+          experience: '',
+          jobType: '',
+          location: '',
+          position: '',
+          scope: ''
+        }
       };
 
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
@@ -59,7 +67,7 @@ function useUserForm() {
   };
 
   const handleUserFormSubmit = onSubmit(async (values) => {
-    const data = await fetch(`http://localhost:3000/api/user/${user?.userID}`, {
+    const data = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {

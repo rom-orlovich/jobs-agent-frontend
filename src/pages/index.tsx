@@ -3,7 +3,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import UserForm from '@/components/UserForm/UserForm';
 import { useState } from 'react';
-
+import { API_ENDPOINTS } from '@/lib/endpoints';
 export default function Home() {
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,9 @@ export default function Home() {
             // Const res = await fetch('http://localhost:5000/api/hello');
             // // /api/jobs-agent/start/
             try {
-              const res = await fetch('http://localhost:5000/api/jobs-agent/start/1?activeQuery=true');
+              const res = await fetch(
+                `http://localhost:5000/${API_ENDPOINTS.SCANNER_START}/1?activeQuery=true`
+              );
               const data = await res.json();
               console.log(data);
               setLoading(false);
@@ -45,7 +47,7 @@ export default function Home() {
             // // /api/jobs-agent/start/
             try {
               const res = await fetch(
-                'http://localhost:5000/api/jobs-agent/download/1?activeQuery=false'
+                `http://localhost:5000/${API_ENDPOINTS.SCANNER_DOWNLOAD}/1?activeQuery=false`
               );
               setLoading(false);
               res.blob().then((blob) => {

@@ -16,7 +16,7 @@ export interface UserQuery {
   position: string;
   experience: string;
   location: string;
-  distance: '1' | '2' | '3';
+  distance: string;
   jobType: string;
   scope: string;
   // Active: boolean = false;
@@ -33,6 +33,6 @@ interface UserOptions {
   requirements: Requirements;
   excludedRequirements: ExcludeTechsOptions;
   // BlackList: string[];
-  userQuery: GenericRecord<string>;
+  userQuery: UserQuery;
   // HashQueries?: HashQueryEntity[];
 }

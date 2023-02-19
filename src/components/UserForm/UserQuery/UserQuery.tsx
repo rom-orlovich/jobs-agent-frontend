@@ -11,6 +11,7 @@ import {
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from './userQueryOptions';
+import { UserQuery } from '@/lib/user';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
@@ -28,7 +29,7 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
   const selectInputProps: (
     title: string,
     options: Option<string>[],
-    id: string
+    id: keyof UserQuery
   ) => SelectInputProps<string> = (title, options, id) => ({
     labelProps: {
       title: title,
@@ -38,13 +39,19 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
     optionsElProps: {
       className: userQueryStyle.optionContainer
     },
-    setValue: setSelectionInput(id)
+    setValue: setSelectionInput(id),
+    defaultValue: formValues.userQuery[id]
   });
 
   return (
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
         <Autocomplete
+          defaultValue={{
+            id: `default-position`,
+            title: formValues.userQuery.position,
+            value: formValues.userQuery.position
+          }}
           setValue={setSelectionInput('position')}
           label="תפקיד"
           options={(positionData?.data || []).map((el) => ({
@@ -58,6 +65,11 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
 
       <div className={userQueryStyle.selectInputsContainer}>
         <Autocomplete
+          defaultValue={{
+            id: `default-location`,
+            title: formValues.userQuery.location,
+            value: formValues.userQuery.location
+          }}
           setValue={setSelectionInput('location')}
           label="עיר"
           options={(locationData?.data || []).map((el) => ({

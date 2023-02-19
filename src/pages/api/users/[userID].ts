@@ -8,6 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       userID,
       ...req.body
     });
+    console.log('post', result);
 
     if (result?.acknowledged) {
       return res.status(201).send({

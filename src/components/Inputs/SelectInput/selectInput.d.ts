@@ -10,4 +10,5 @@ export interface SelectInputProps<V> {
   options: Option<V>[];
   optionsElProps?: DivProps;
   setValue?: (value: string) => void;
+  defaultValue?: V;
 }

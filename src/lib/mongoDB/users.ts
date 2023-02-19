@@ -4,7 +4,7 @@ import clientPromise from './mongoDB';
 export const createUser = async (userData: UserOptions) => {
   const jobsDB = (await clientPromise).db('jobs-agent-db');
   const users = jobsDB.collection('users');
-
+  console.log(userData, 'post');
   try {
     const res = await users.updateOne(
       {

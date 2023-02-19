@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete';
-export default function Autocomplete<V>({ setValue, options, multiple, label }: AutocompleteProps<V>) {
-  const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0] || '');
+export default function Autocomplete<V>({
+  setValue,
+  options,
+  multiple,
+  label,
+  defaultValue
+}: AutocompleteProps<V>) {
+  const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0] || defaultValue);
   const [query, setQuery] = useState('');
 
   const filteredOptions =

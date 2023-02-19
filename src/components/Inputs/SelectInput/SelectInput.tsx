@@ -7,9 +7,10 @@ export default function SelectInput<V extends string>({
   options,
   optionsElProps,
   labelProps,
-  setValue
+  setValue,
+  defaultValue
 }: SelectInputProps<V>) {
-  const [selectOption, setOption] = useState(options[0]);
+  const [selectOption, setOption] = useState(options[0] || defaultValue);
 
   const optionsStyle = {
     active: (active: boolean) => {
