@@ -2,7 +2,9 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import React, { PropsWithChildren } from 'react';
 
 function Layout({ children }: PropsWithChildren) {
-  const { data } = useSession();
+  const { status } = useSession({
+    required: true
+  });
   const userIsLoginLayout = (
     <>
       <header>{<button onClick={() => signOut()}>Logout</button>}</header> {children}
@@ -15,7 +17,7 @@ function Layout({ children }: PropsWithChildren) {
     </>
   );
 
-  return data?.user ? userIsLoginLayout : userNotLoginLayout;
+  return status === 'authenticated' ? userIsLoginLayout : userNotLoginLayout;
 }
 
 export default Layout;

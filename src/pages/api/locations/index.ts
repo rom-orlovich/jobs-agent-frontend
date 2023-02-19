@@ -1,7 +1,7 @@
 import { getLocations } from '@/lib/mongoDB/locations';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handleLocations(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const locations = await getLocations(String(req.query.name));
 
@@ -10,7 +10,7 @@ export default async function handleLocations(req: NextApiRequest, res: NextApiR
       message: 'Success!'
     });
   } catch (error) {
-    console.log(error);
+    // Console.log(error);
     return res.status(500).send({
       message: 'Something went wrong',
       data: undefined

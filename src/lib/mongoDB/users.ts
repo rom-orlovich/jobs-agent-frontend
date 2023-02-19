@@ -25,3 +25,17 @@ export const createUser = async (userData: UserOptions) => {
     return undefined;
   }
 };
+export const getUserByID = async (userID: string) => {
+  const jobsDB = (await clientPromise).db('jobs-agent-db');
+  const users = jobsDB.collection('users');
+
+  try {
+    const res = await users.findOne({
+      userID: userID
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};

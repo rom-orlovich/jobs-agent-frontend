@@ -1,11 +1,16 @@
 import useForm from '@/hooks/useForm/useForm';
+import useUser from '@/hooks/useUser';
 import { UserOptions } from '@/lib/user';
+
 import { useEffect } from 'react';
 
 import { MinMaxSelectOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements } from './handlers';
 
 function useUserForm() {
+  // Const { data: userSession } = useSession();
+  const { user } = useUser();
+  console.log(user);
   const formInitialValue: UserOptions = {
     overallEx: 0,
     requirements: {},
@@ -53,7 +58,7 @@ function useUserForm() {
   };
 
   const handleUserFormSubmit = onSubmit(async (values) => {
-    const data = await fetch('http://localhost:3000/api/user/1', {
+    const data = await fetch(`http://localhost:3000/api/user/${user?.userID}`, {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {

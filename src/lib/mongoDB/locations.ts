@@ -6,7 +6,7 @@ export const getLocations = async (name: string) => {
   try {
     const db = client.db('jobs-agent-db');
     const locations = db.collection('locations');
-    console.log(name);
+    // Console.log(name);
     const regex = new RegExp(`^${name}`);
     const res = locations
       .find({

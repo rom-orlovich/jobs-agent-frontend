@@ -1,7 +1,7 @@
 import { getPositions } from '@/lib/mongoDB/positions';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handlePosition(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const position = await getPositions(String(req.query.name));
 
