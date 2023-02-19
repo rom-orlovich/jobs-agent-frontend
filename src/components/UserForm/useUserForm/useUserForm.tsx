@@ -10,18 +10,20 @@ import { handleExcludedRequirements, handleRequirements } from './handlers';
 function useUserForm() {
   // Const { data: userSession } = useSession();
   const { user } = useUser();
-  console.log(user);
-  const formInitialValue: UserOptions = {
-    overallEx: 0,
-    requirements: {},
-    excludedRequirements: {},
-    userQuery: {}
-  };
+
+  const formInitialValue: UserOptions = user
+    ? user
+    : {
+        overallEx: 0,
+        requirements: {},
+        excludedRequirements: {},
+        userQuery: {}
+      };
+
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
     UserOptions,
     { message: string }
   >(formInitialValue);
-
   useEffect(() => {
     console.log(formValues);
   }, [formValues]);
