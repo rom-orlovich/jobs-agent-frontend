@@ -1,21 +1,52 @@
-import { MinMaxSelectOption } from '@/components/UserForm/Profile/MinMaxSelect';
 import { GenericRecord } from '@/lib/type';
-import { Requirements } from '@/lib/user';
+import { Requirements, UserOptions } from '@/lib/user';
+import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 
-export const handleRequirements = (minMaxValues: MinMaxSelectOption[]) => {
+export const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
   const minMaxValuesObj: Requirements = {};
   for (const minMaxValue of minMaxValues) {
-    minMaxValuesObj[minMaxValue.title] = {
+    minMaxValuesObj[minMaxValue.field] = {
       min: minMaxValue.min,
       max: minMaxValue.max
     };
   }
   return minMaxValuesObj;
 };
-export const handleExcludedRequirements = (values: string[]) => {
+export const handleExcludedRequirements = (inputBucketValues: string[]) => {
   const excludedRequirement: GenericRecord<boolean> = {};
-  for (const value of values) {
+  for (const value of inputBucketValues) {
     excludedRequirement[value] = true;
   }
   return excludedRequirement;
+};
+
+export const handleRequirementsTransformDefaultValues = (
+  requirements: Requirements
+): MinMaxInputsOption[] => {
+  const requirementsEntries = Object.entries(requirements);
+  const minMaxSelectOptions = requirementsEntries.map(([key, value]) => ({
+    field: key,
+    min: value?.min || 0,
+    max: value?.max || 1
+  }));
+  return minMaxSelectOptions;
+};
+export const handleExcludedRequirementsTransformDefaultValues = (
+  excludedRequirements: GenericRecord<boolean>
+): string[] => {
+  const requirementsEntries = Object.keys(excludedRequirements);
+  const minMaxSelectOptions = requirementsEntries.map((key) => key);
+  return minMaxSelectOptions;
+};
+
+export const transformDefaultFormValues = ({
+  requirements,
+  excludedRequirements,
+  ...formValues
+}: UserOptions) => {
+  return {
+    requirements: handleRequirementsTransformDefaultValues(requirements),
+    excludedRequirements: handleExcludedRequirementsTransformDefaultValues(excludedRequirements),
+    ...formValues
+  };
 };

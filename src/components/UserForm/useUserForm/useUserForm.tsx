@@ -3,9 +3,8 @@ import useUser from '@/hooks/useUser';
 import { UserOptions } from '@/lib/user';
 
 import { useEffect } from 'react';
-
-import { MinMaxSelectOption } from '../Profile/MinMaxSelect';
-import { handleExcludedRequirements, handleRequirements } from './handlers';
+import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
+import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 
 function useUserForm() {
   // Const { data: userSession } = useSession();
@@ -28,7 +27,7 @@ function useUserForm() {
     console.log(formValues);
   }, [formValues]);
 
-  const setRequirements = (minMaxValues: MinMaxSelectOption[]) => {
+  const setRequirements = (minMaxValues: MinMaxInputsOption[]) => {
     const requirements = handleRequirements(minMaxValues);
     setFormValues((pre) => {
       return {
@@ -72,7 +71,7 @@ function useUserForm() {
 
   const setOverallExperience = onChange;
   return {
-    formValues,
+    formValues: transformDefaultFormValues(formValues),
     setOverallExperience,
     handleUserFormSubmit,
     setRequirements,

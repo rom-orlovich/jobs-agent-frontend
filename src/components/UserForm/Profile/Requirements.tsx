@@ -1,30 +1,34 @@
 import React from 'react';
-import MinMaxSelect from './MinMaxSelect';
+
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import { FormComponents } from '../useUserForm/useUserForm';
-function ProfileRequirements({ setRequirements }: FormComponents<unknown>) {
+import MinMaxInputs from './MinMaxSelect';
+function ProfileRequirements({ setRequirements, formValues }: FormComponents<unknown>) {
+  const initialRequirement = [
+    {
+      min: 0,
+      max: 1,
+      field: ''
+    }
+  ];
+  console.log(formValues.requirements);
   return (
     <DynamicInputs
-      firstElement={{
-        min: 0,
-        max: 1,
-        title: 'javascript'
-      }}
-      Render={({ setValue }) => (
-        <>
-          <MinMaxSelect
-            // AutocompleteProps={{
-            //   Label: 'Requirement'
-            // }}
-            // Options={['javascript', 'react', 'typescript']}
-            inputLabelProps={{
-              labelProps: {
-                title: 'דרישה'
-              }
-            }}
-            setValue={setValue}
-          />
-        </>
+      defaultValues={formValues.requirements.length ? formValues.requirements : initialRequirement}
+      Render={({ setValue, max, min, field }) => (
+        <MinMaxInputs
+          inputTitle={{
+            labelProps: {
+              title: 'דרישה'
+            }
+          }}
+          initialValues={{
+            min,
+            max,
+            field
+          }}
+          setValue={setValue}
+        />
       )}
     >
       {(values) => {

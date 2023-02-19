@@ -17,6 +17,7 @@ function Profile(userFormState: FormComponents<unknown>) {
     button: 'absolute right-0 top-0'
   };
 
+  console.log(userFormState.formValues);
   return (
     <div>
       <InputLabel

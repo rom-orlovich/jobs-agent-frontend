@@ -4,50 +4,37 @@ import React, { ChangeEventHandler, useEffect, useState } from 'react';
 import InputLabel from '../../Inputs/InputLabel/InputLabel';
 import { InputLabelProps } from '../../Inputs/InputLabel/inputLabel';
 // Import { Option } from '../Inputs/SelectInput/selectInput';
-export interface MinMaxSelectOption {
+export interface MinMaxInputsOption {
   min: number;
   max: number;
-  title: string;
+  field: string;
 }
-export interface MinMaxSelectProps {
-  // Options: string[];
-  inputLabelProps: InputLabelProps;
-  // AutocompleteProps?: AutocompleteProps<string>;
+export interface MinMaxInputsProps {
+  inputTitle?: InputLabelProps;
+  initialValues: MinMaxInputsOption;
+  // InputMin?: InputLabelProps;
+  // InputMax?: InputLabelProps;
 
-  setValue?: (value: MinMaxSelectOption) => void;
+  setValue?: (value: MinMaxInputsOption) => void;
 }
 
-function MinMaxSelect({ setValue, inputLabelProps }: MinMaxSelectProps) {
-  // Const autocompleteOptions: Option<string>[] = options.map((el, i) => ({
-  //   Id: el + i,
-  //   Title: el,
-  //   Value: el
-  // }));
-  const [state, setState] = useState<MinMaxSelectOption>({
-    min: 0,
-    max: 1,
-    title: ''
+function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps) {
+  const [state, setState] = useState<MinMaxInputsOption>({
+    min: Number(initialValues.min || 0),
+    max: Number(initialValues.max || 1),
+    field: String(initialValues.field || '')
   });
 
   useEffect(() => {
-    if (!state.title) return;
+    if (!state.field) return;
     if (!state.max) return;
     setValue && setValue(state);
   }, [state]);
-
-  // Const setTitle = (value: string) => {
-  //   SetState((pre) => {
-  //     Return {
-  //       ...pre,
-  //       Title: value
-  //     };
-  //   });
-  // };
   const setTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
     setState((pre) => {
       return {
         ...pre,
-        title: e.target.value
+        field: e.target.value
       };
     });
   };
@@ -69,14 +56,14 @@ function MinMaxSelect({ setValue, inputLabelProps }: MinMaxSelectProps) {
   };
   return (
     <div>
-      {/* <Autocomplete options={autocompleteOptions} setValue={setTitle} /> */}
       <InputLabel
-        {...inputLabelProps}
+        {...inputTitle}
         inputProps={{
-          onChange: setTitle
+          onChange: setTitle,
+          value: state.field
         }}
       >
-        {inputLabelProps.labelProps?.title}{' '}
+        {inputTitle?.labelProps?.title}
       </InputLabel>
       <InputLabel
         inputProps={{
@@ -103,4 +90,4 @@ function MinMaxSelect({ setValue, inputLabelProps }: MinMaxSelectProps) {
   );
 }
 
-export default MinMaxSelect;
+export default MinMaxInputs;

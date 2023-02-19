@@ -1,14 +1,14 @@
 import { GenericRecord } from '@/lib/type';
 import { InputProps } from '../../HTMLProps';
 
-export type DynamicInputRenderProps = GenericRecord<unknown> & InputProps;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type DynamicInputRenderProps = GenericRecord<any> & InputProps;
 
-export type RenderElement<T, V> = T & {
-  setValue?: (value: V) => void;
+export type RenderElement<T> = T & {
+  setValue?: (value: T) => void;
 };
-
-export interface DynamicInputsProps<T extends DynamicInputRenderProps, V> {
-  firstElement: RenderElement<T, V>;
-  Render: (props: RenderElement<T, V>) => JSX.Element;
-  children?: (values: RenderElement<T, V>[]) => JSX.Element;
+export interface DynamicInputsProps<T extends DynamicInputRenderProps> {
+  defaultValues: RenderElement<T>[];
+  Render: (props: RenderElement<T>) => JSX.Element;
+  children?: (values: RenderElement<T>[]) => JSX.Element;
 }

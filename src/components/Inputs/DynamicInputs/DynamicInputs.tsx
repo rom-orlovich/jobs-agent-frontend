@@ -6,21 +6,22 @@ import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dy
  * Each time the user execute the addMoreInput function which pass as props to the Render element,a new input is created.
  * This component return the array of inputs and children function that get the values of the inputs as parameter.
  */
-function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: string }>({
-  firstElement,
+function DynamicInputs<T extends DynamicInputRenderProps>({
+  defaultValues,
   Render,
   children
-}: DynamicInputsProps<T, V>) {
-  const firstElementWithID = {
-    ...firstElement,
-    id: `input-${1}`
-  };
-  const [inputs, setInputState] = useState<RenderElement<T, V>[]>([firstElementWithID]);
+}: DynamicInputsProps<T>) {
+  const defaultValuesWithID = defaultValues.map((el, i) => ({
+    ...el,
+    id: `input-${i + 1}`
+  }));
+
+  const [inputs, setInputState] = useState<RenderElement<T>[]>(defaultValuesWithID);
 
   // Set a new value in the input that placed in the provided index.
   // Slice until the index, add the value, slice until the length of the inputs and concat the arrays.
-  const setInputValue = (index: number, value: V) => {
-    return (inputs: RenderElement<T, V>[]) => {
+  const setInputValue = (index: number, value: T) => {
+    return (inputs: RenderElement<T[]>) => {
       const curInput = inputs[index];
       const firstPart = inputs.slice(0, index);
       const secPart = inputs.slice(index + 1);
@@ -33,18 +34,18 @@ function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: str
     };
   };
   const removeInputValue = (index: number) => {
-    return (inputs: RenderElement<T, V>[]) => {
+    return (inputs: RenderElement<T[]>) => {
       return inputs.filter((el, i) => i !== index);
     };
   };
 
   // Active setInputValue with the index and the value.
   const setValue = (index: number) => {
-    return (value: V) => setInputState(setInputValue(index, value));
+    return (value: T) => setInputState(setInputValue(index, value));
   };
 
   // Add new index in the inputs array.
-  const addNewInput = (pre: RenderElement<T, V>[]) => {
+  const addNewInput = (pre: RenderElement<T[]>) => {
     return [
       ...pre,
       {
@@ -80,7 +81,7 @@ function DynamicInputs<T extends DynamicInputRenderProps, V extends { title: str
           </span>
         );
       })}
-      {children ? children(inputs.map((input) => input)) : <></>}
+      {children ? children(inputs) : <></>}
     </>
   );
 }
