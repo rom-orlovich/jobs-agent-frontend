@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete';
 export default function Autocomplete<V>({ setValue, options, multiple, label }: AutocompleteProps<V>) {
-  const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0]);
+  const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0] || '');
   const [query, setQuery] = useState('');
 
   const filteredOptions =
@@ -36,7 +36,10 @@ export default function Autocomplete<V>({ setValue, options, multiple, label }: 
               : undefined
           }
           className="input-custom"
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setValue && setValue(event.target.value as V);
+          }}
         />
 
         <div className="relative ">
