@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useRef, useState } from 'react';
 
 import InputLabel from '../InputLabel/InputLabel';
-import { InputLabelProps } from '../InputLabel/inputLabel';
+import { InputLabelProps } from '../InputLabel/inputLabel.types';
 
 export interface InputBucketProps {
   inputLabelProps: InputLabelProps;

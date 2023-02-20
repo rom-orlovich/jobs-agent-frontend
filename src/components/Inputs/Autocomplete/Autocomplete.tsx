@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
-import { AutocompleteProps } from './autocomplete';
+import { AutocompleteProps } from './autocomplete.types';
 export default function Autocomplete<V>({
   setValue,
   options,

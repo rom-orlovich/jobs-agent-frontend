@@ -1,7 +1,12 @@
-import { ButtonProps } from '@/components/Buttons/button';
-import { InputProps, LabelProps, TextAreaProps } from '@/components/HTMLProps';
+import {
+  ButtonProps,
+  InputProps,
+  LabelProps,
+  LabelTextProps,
+  TextAreaProps
+} from '@/components/HTMLProps.types';
 import { ReactNode } from 'react';
-interface InputLabelProps {
+export interface InputLabelProps {
   inputProps?: InputProps;
   labelProps?: LabelProps & { textProps?: LabelTextProps };
   textAreaProps?: TextAreaProps;

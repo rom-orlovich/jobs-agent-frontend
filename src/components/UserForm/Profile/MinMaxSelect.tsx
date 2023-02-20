@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, useEffect, useState } from 'react';
 // Import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
 // Import { AutocompleteProps } from '../Inputs/Autocomplete/autocomplete';
 import InputLabel from '../../Inputs/InputLabel/InputLabel';
-import { InputLabelProps } from '../../Inputs/InputLabel/inputLabel';
+import { InputLabelProps } from '../../Inputs/InputLabel/inputLabel.types';
 // Import { Option } from '../Inputs/SelectInput/selectInput';
 export interface MinMaxInputsOption {
   min: number;

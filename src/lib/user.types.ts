@@ -1,17 +1,5 @@
-import { MinMaxInputsOption } from '@/components/UserForm/Profile/MinMaxInputs';
-import { GenericRecord, OmitKey, PickKey } from './type';
-
-export interface ExperienceRange {
-  min: number;
-  max: number;
-}
-
-interface HashQueryProps {
-  hash: string;
-  addedAt: Date;
-  expireAt: number;
-}
-
+import { MinMaxInputsOption } from '@/components/UserForm/Profile/MinMaxSelect';
+import { GenericRecord, OmitKey, PickKey } from './types';
 export interface UserQuery {
   position: string;
   experience: string;
@@ -19,31 +7,26 @@ export interface UserQuery {
   distance: string;
   jobType: string;
   scope: string;
-  // Active: boolean = false;
 }
-export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'title'>;
+export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'field'>;
 export type Requirements = GenericRecord<MinMaxInputsValueWithoutTitle>;
 export type ExcludeTechsOptions = GenericRecord<boolean>;
-
-export type HashQueryEntity = InstanceType<typeof HashQuery>;
-interface UserOptions {
-  // _id: string;
+export interface UserOptions {
   userID?: string;
   overallEx?: number;
   requirements: Requirements;
   excludedRequirements: ExcludeTechsOptions;
-  // BlackList: string[];
+
   userQuery: UserQuery;
-  // HashQueries?: HashQueryEntity[];
 }
+
 type OmitKeyUserPosAndLoc = OmitKey<UserQuery, 'location' | 'position'>;
 type PickKeyUserPosAndLoc = PickKey<UserQuery, 'location' | 'position'>;
 
 export type UserQueryTransform = PickKeyUserPosAndLoc &
   Record<keyof OmitKeyUserPosAndLoc, string | string[]>;
 
-export type UserOptionsTransform = PickKey<UserOptions, 'overallEx' | 'userID'> & {
+export type UserOptionsTransform = PickKey<UserOptions, 'overallEx' | 'userID' | 'requirements'> & {
   requirements: MinMaxInputsOption[];
   excludedRequirements: string[];
-  UserQueryTransform;
 };

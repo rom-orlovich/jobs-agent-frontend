@@ -1,6 +1,6 @@
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
-import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput';
+
 import React from 'react';
 import { FormComponents } from '../useUserForm/useUserForm';
 import useSwr from 'swr';
@@ -11,8 +11,9 @@ import {
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from './userQueryOptions';
-import { UserQuery } from '@/lib/user';
+import { UserQuery } from '@/lib/user.types';
 import { API_ENDPOINTS } from '@/lib/endpoints';
+import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput.types';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
@@ -87,7 +88,10 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
           }))}
         />
 
-        <SelectInput {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')} />
+        <SelectInput
+          {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')}
+          multiple={false}
+        />
       </div>
       <div className={userQueryStyle.selectInputsContainer}>
         <SelectInput {...selectInputProps('סוג עבודה', JOB_TYPES_OPTIONS, 'jobType')} />

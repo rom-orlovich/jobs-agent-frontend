@@ -1,6 +1,6 @@
 import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
-import { InputLabelProps } from './inputLabel';
+import { InputLabelProps } from './inputLabel.types';
 
 function InputLabel({
   inputProps,

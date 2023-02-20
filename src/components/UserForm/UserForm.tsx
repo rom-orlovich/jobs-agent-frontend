@@ -1,4 +1,4 @@
-import { UserOptions } from '@/lib/user';
+import { UserOptions } from '@/lib/user.types';
 import React from 'react';
 import Profile from './Profile/Profile';
 import UserQuery from './UserQuery/UserQuery';

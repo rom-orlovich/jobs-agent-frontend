@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import { AiOutlineCheck } from 'react-icons/ai';
 
-import { Option as OptionV, SelectInputProps } from './selectInput';
+import { Option as OptionV, SelectInputProps } from './selectInput.types';
 import { classNameGenerator } from '@/lib/utils';
 export default function SelectInput<V extends string>({
   options,

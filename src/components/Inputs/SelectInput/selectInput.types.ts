@@ -1,5 +1,4 @@
-import { DivProps, LabelProps } from '@/components/HTMLProps';
-
+import { DivProps, LabelProps } from '@/components/HTMLProps.types';
 export interface Option<V> {
   id: string;
   title: string;

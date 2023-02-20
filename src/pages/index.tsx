@@ -7,7 +7,7 @@ import { API_ENDPOINTS } from '@/lib/endpoints';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getUserByID } from '@/lib/mongoDB/users';
 import { getServerSession } from 'next-auth';
-import { UserOptions } from '@/lib/user';
+import { UserOptions } from '@/lib/user.types';
 import { authOptions } from './api/auth/[...nextauth]';
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {

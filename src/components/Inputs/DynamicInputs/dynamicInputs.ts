@@ -1,5 +1,5 @@
-import { GenericRecord } from '@/lib/type';
-import { InputProps } from '../../HTMLProps';
+import { GenericRecord } from '@/lib/types';
+import { InputProps } from '../../HTMLProps.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DynamicInputRenderProps = GenericRecord<any> & InputProps;
