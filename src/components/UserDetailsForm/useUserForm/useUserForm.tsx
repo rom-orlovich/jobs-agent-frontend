@@ -5,7 +5,7 @@ import { UserOptions } from '@/lib/types/user.types';
 import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 
-function useUserForm(user: UserOptions) {
+function UserDetailsForm(user: UserOptions) {
   const formInitialValue: UserOptions = user;
 
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
@@ -46,7 +46,7 @@ function useUserForm(user: UserOptions) {
       });
     };
 
-  const handleUserFormSubmit = onSubmit(async (values) => {
+  const handleUserDetailsFormSubmit = onSubmit(async (values) => {
     const data = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -61,7 +61,7 @@ function useUserForm(user: UserOptions) {
   return {
     formValues: transformDefaultFormValues(formValues),
     setOverallExperience,
-    handleUserFormSubmit,
+    handleUserDetailsFormSubmit,
     setRequirements,
     setExcludedRequirements,
     setSelectionInput,
@@ -69,6 +69,6 @@ function useUserForm(user: UserOptions) {
   };
 }
 
-export default useUserForm;
+export default UserDetailsForm;
 
-export type FormComponents<T> = T & ReturnType<typeof useUserForm>;
+export type FormComponents<T> = T & ReturnType<typeof UserDetailsForm>;

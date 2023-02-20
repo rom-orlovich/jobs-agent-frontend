@@ -3,15 +3,15 @@ import React from 'react';
 import Profile from './Profile/Profile';
 import UserQuery from './UserQuery/UserQuery';
 
-import useUserForm from './useUserForm/useUserForm';
+import useUserDetailsForm from './useUserForm/useUserForm';
 const formStyle = {
   form: 'w-[20rem]'
 };
 
-function UserForm({ user }: { user: UserOptions }) {
-  const userForm = useUserForm(user);
+function UserDetailsForm({ user }: { user: UserOptions }) {
+  const userForm = useUserDetailsForm(user);
   return (
-    <form onSubmit={userForm.handleUserFormSubmit} className={formStyle.form}>
+    <form onSubmit={userForm.handleUserDetailsFormSubmit} className={formStyle.form}>
       <Profile {...userForm} />
       <UserQuery {...userForm} />
 
@@ -21,4 +21,4 @@ function UserForm({ user }: { user: UserOptions }) {
   );
 }
 
-export default UserForm;
+export default UserDetailsForm;

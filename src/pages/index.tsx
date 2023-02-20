@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import styles from '@/styles/Home.module.css';
-import UserForm from '@/components/UserForm/UserForm';
+import UserDetailsForm from '@/components/UserDetailsForm/UserDetailsForm';
 
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getUserByID } from 'mongoDB/users';
@@ -47,7 +47,7 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
       </Head>
       <main className={styles.main}>
         <h1>Hey {session.data?.user.name}</h1>
-        <UserForm user={user} />
+        <UserDetailsForm user={user} />
         <ScannerControlButtons user={user} />
       </main>
     </>
