@@ -1,4 +1,4 @@
-import { GenericRecord } from '@/lib/types';
+import { GenericRecord } from '@/lib/types/types';
 import { InputProps } from '../../HTML.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

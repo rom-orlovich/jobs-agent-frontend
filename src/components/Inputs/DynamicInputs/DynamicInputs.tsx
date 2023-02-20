@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useState } from 'react';
-import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs';
+import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs.types';
 
 /**
  * This component create dynamic array of inputs.

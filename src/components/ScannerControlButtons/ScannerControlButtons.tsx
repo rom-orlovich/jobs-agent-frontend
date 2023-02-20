@@ -1,5 +1,5 @@
 import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
-import { UserOptions } from '@/lib/user.types';
+import { UserOptions } from '@/lib/types/user.types';
 import { useSession } from 'next-auth/react';
 
 import React, { MouseEventHandler, useState } from 'react';

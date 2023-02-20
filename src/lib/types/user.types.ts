@@ -16,7 +16,6 @@ export interface UserOptions {
   overallEx?: number;
   requirements: Requirements;
   excludedRequirements: ExcludeTechsOptions;
-
   userQuery: UserQuery;
 }
 

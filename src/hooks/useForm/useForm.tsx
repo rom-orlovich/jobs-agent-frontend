@@ -1,4 +1,4 @@
-import { GenericRecord } from '@/lib/types';
+import { GenericRecord } from '@/lib/types/types';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 
 interface FormState<D> {

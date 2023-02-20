@@ -4,7 +4,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const position = await getPositions(String(req.query.name));
-
     return res.status(200).send({
       data: position,
       message: 'Success!'

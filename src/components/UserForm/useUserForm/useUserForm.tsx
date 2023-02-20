@@ -1,7 +1,7 @@
 import useForm from '@/hooks/useForm/useForm';
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { UserOptions } from '@/lib/user.types';
+import { UserOptions } from '@/lib/types/user.types';
 import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 

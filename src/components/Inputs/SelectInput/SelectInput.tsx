@@ -37,8 +37,6 @@ export default function SelectInput<V extends string>({
       multiple={multiple ? true : false}
       value={selectOption}
       onChange={(value) => {
-        // Const curValueArg = getCurValue(value);
-
         setValue && setValue(getCurValue(value));
         setOption(value);
       }}

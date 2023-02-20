@@ -3,7 +3,7 @@ import NextAuth, { User } from 'next-auth';
 import { AdapterUser } from 'next-auth/adapters';
 
 import { JWT } from 'next-auth/jwt';
-import { GenericRecord } from './lib/types';
+import { GenericRecord } from './lib/types/types';
 declare module 'next-auth' {
   interface Session {
     user: User & GenericRecord<string>;

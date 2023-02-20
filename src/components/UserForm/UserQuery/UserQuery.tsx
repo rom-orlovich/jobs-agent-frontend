@@ -11,7 +11,7 @@ import {
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from './userQueryOptions';
-import { UserQuery } from '@/lib/user.types';
+import { UserQuery } from '@/lib/types/user.types';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput.types';
 
