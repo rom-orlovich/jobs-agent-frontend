@@ -7,7 +7,7 @@ export const getPositions = async (name: string) => {
     const db = client.db('jobs-agent-db');
     const position = db.collection('positions');
 
-    const regex = new RegExp(`^${name}`);
+    const regex = new RegExp(`^${name}`, 'i');
     const res = position
       .find({
         positionName: regex
