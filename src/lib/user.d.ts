@@ -1,5 +1,5 @@
 import { MinMaxInputsOption } from '@/components/UserForm/Profile/MinMaxInputs';
-import { GenericRecord } from './type';
+import { GenericRecord, OmitKey, PickKey } from './type';
 
 export interface ExperienceRange {
   min: number;
@@ -36,3 +36,14 @@ interface UserOptions {
   userQuery: UserQuery;
   // HashQueries?: HashQueryEntity[];
 }
+type OmitKeyUserPosAndLoc = OmitKey<UserQuery, 'location' | 'position'>;
+type PickKeyUserPosAndLoc = PickKey<UserQuery, 'location' | 'position'>;
+
+export type UserQueryTransform = PickKeyUserPosAndLoc &
+  Record<keyof OmitKeyUserPosAndLoc, string | string[]>;
+
+export type UserOptionsTransform = PickKey<UserOptions, 'overallEx' | 'userID'> & {
+  requirements: MinMaxInputsOption[];
+  excludedRequirements: string[];
+  UserQueryTransform;
+};

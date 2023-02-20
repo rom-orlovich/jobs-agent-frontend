@@ -1,40 +1,18 @@
 import useForm from '@/hooks/useForm/useForm';
-import useUser from '@/hooks/useUser';
+
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserOptions } from '@/lib/user';
 
-import { useEffect } from 'react';
 import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 
-function useUserForm() {
-  // Const { data: userSession } = useSession();
-  const { user } = useUser();
-
-  const formInitialValue: UserOptions = user
-    ? user
-    : {
-        overallEx: 0,
-        requirements: {},
-        excludedRequirements: {},
-        userQuery: {
-          distance: '',
-          experience: '',
-          jobType: '',
-          location: '',
-          position: '',
-          scope: ''
-        }
-      };
+function useUserForm(user: UserOptions) {
+  const formInitialValue: UserOptions = user;
 
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
     UserOptions,
     { message: string }
   >(formInitialValue);
-  useEffect(() => {
-    console.log(formValues);
-  }, [formValues]);
-
   const setRequirements = (minMaxValues: MinMaxInputsOption[]) => {
     const requirements = handleRequirements(minMaxValues);
     setFormValues((pre) => {
@@ -54,17 +32,22 @@ function useUserForm() {
     });
   };
 
-  const setSelectionInput: <V extends string>(id: string) => (value: V) => void = (id) => (value) => {
-    setFormValues((pre) => {
-      return {
-        ...pre,
-        userQuery: {
-          ...pre.userQuery,
-          [id]: value
-        }
-      };
-    });
-  };
+  const setSelectionInput: <V extends string>(id: string) => (value: V | V[]) => void =
+    (id) => (value) => {
+      // Const extractValue = value;
+      // Console.log(extractValue);
+      const extractValue = Array.isArray(value) ? value.join(',') : value;
+      console.log('extractValue', extractValue);
+      setFormValues((pre) => {
+        return {
+          ...pre,
+          userQuery: {
+            ...pre.userQuery,
+            [id]: extractValue
+          }
+        };
+      });
+    };
 
   const handleUserFormSubmit = onSubmit(async (values) => {
     const data = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {

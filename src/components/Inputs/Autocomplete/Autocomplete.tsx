@@ -41,6 +41,7 @@ export default function Autocomplete<V>({
                 }
               : undefined
           }
+          value={defaultValue?.value as string}
           className="input-custom"
           onChange={(event) => {
             setQuery(event.target.value);

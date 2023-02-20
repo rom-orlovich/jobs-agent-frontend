@@ -1,3 +1,4 @@
+import { UserOptions } from '@/lib/user';
 import React from 'react';
 import Profile from './Profile/Profile';
 import UserQuery from './UserQuery/UserQuery';
@@ -7,8 +8,8 @@ const formStyle = {
   form: 'w-[20rem]'
 };
 
-function UserForm() {
-  const userForm = useUserForm();
+function UserForm({ user }: { user: UserOptions }) {
+  const userForm = useUserForm(user);
   return (
     <form onSubmit={userForm.handleUserFormSubmit} className={formStyle.form}>
       <Profile {...userForm} />

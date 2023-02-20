@@ -9,6 +9,7 @@ export interface SelectInputProps<V> {
   labelProps: LabelProps;
   options: Option<V>[];
   optionsElProps?: DivProps;
-  setValue?: (value: string) => void;
-  defaultValue?: V;
+  setValue?: (value: V | V[]) => void;
+  defaultValue?: Option<V> | Option<V>[];
+  multiple?: boolean;
 }

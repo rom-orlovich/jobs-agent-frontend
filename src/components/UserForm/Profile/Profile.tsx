@@ -16,8 +16,6 @@ function Profile(userFormState: FormComponents<unknown>) {
     icon: 'text-green-400',
     button: 'absolute right-0 top-0'
   };
-
-  console.log(userFormState.formValues);
   return (
     <div>
       <InputLabel
@@ -25,6 +23,7 @@ function Profile(userFormState: FormComponents<unknown>) {
           className: inputLabelStyle.label
         }}
         inputProps={{
+          value: userFormState.formValues.overallEx,
           id: 'overallEx',
           className: inputLabelStyle.input,
           type: 'text',

@@ -11,7 +11,7 @@ function ProfileRequirements({ setRequirements, formValues }: FormComponents<unk
       field: ''
     }
   ];
-  console.log(formValues.requirements);
+
   return (
     <DynamicInputs
       defaultValues={formValues.requirements.length ? formValues.requirements : initialRequirement}

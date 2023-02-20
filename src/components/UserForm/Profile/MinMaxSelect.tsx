@@ -21,7 +21,6 @@ function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps
     max: Number(initialValues.max || 1),
     field: String(initialValues.field || '')
   });
-
   useEffect(() => {
     if (!state.field) return;
     if (!state.max) return;

@@ -12,6 +12,7 @@ import {
   SCOPES_OPTIONS
 } from './userQueryOptions';
 import { UserQuery } from '@/lib/user';
+import { API_ENDPOINTS } from '@/lib/endpoints';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
@@ -20,10 +21,10 @@ const userQueryStyle = {
 };
 function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
   const { data: locationData } = useSwr<{ data: { locationID: string; locationName: string }[] }>(
-    `http://localhost:3000/api/locations?name=${formValues.userQuery.location}`
+    `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
   );
   const { data: positionData } = useSwr<{ data: { positionID: string; positionName: string }[] }>(
-    `http://localhost:3000/api/positions?name=${formValues.userQuery.position}`
+    `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
   );
 
   const selectInputProps: (
@@ -35,12 +36,19 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
       title: title,
       className: userQueryStyle.label
     },
+    multiple: true,
     options: options,
     optionsElProps: {
       className: userQueryStyle.optionContainer
     },
     setValue: setSelectionInput(id),
-    defaultValue: formValues.userQuery[id]
+    defaultValue: Array.isArray(formValues?.userQuery[id])
+      ? options.filter((el) => formValues.userQuery[id].includes(el.value))
+      : {
+          id: id,
+          title: title,
+          value: formValues?.userQuery[id][0]
+        }
   });
 
   return (
@@ -78,7 +86,7 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
             value: el.locationName
           }))}
         />
-        {/* <SelectInput /> */}
+
         <SelectInput {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')} />
       </div>
       <div className={userQueryStyle.selectInputsContainer}>

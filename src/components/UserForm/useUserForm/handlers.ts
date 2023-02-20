@@ -1,5 +1,5 @@
 import { GenericRecord } from '@/lib/type';
-import { Requirements, UserOptions } from '@/lib/user';
+import { Requirements, UserOptions, UserQuery, UserQueryTransform } from '@/lib/user';
 import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 
 export const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
@@ -39,14 +39,25 @@ export const handleExcludedRequirementsTransformDefaultValues = (
   return minMaxSelectOptions;
 };
 
+export const transformUserQuery = (userQuery: UserQuery) => {
+  const transformUserQuery: GenericRecord<string | string[]> = {};
+  for (const [key, value] of Object.entries(userQuery)) {
+    const joinValue = value?.split(',');
+    transformUserQuery[key] = joinValue;
+  }
+  return transformUserQuery as UserQueryTransform;
+};
+
 export const transformDefaultFormValues = ({
   requirements,
   excludedRequirements,
+  userQuery,
   ...formValues
 }: UserOptions) => {
   return {
+    ...formValues,
     requirements: handleRequirementsTransformDefaultValues(requirements),
     excludedRequirements: handleExcludedRequirementsTransformDefaultValues(excludedRequirements),
-    ...formValues
+    userQuery: transformUserQuery(userQuery)
   };
 };

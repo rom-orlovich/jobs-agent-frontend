@@ -4,7 +4,36 @@ import styles from '@/styles/Home.module.css';
 import UserForm from '@/components/UserForm/UserForm';
 import { useState } from 'react';
 import { API_ENDPOINTS } from '@/lib/endpoints';
-export default function Home() {
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { getUserByID } from '@/lib/mongoDB/users';
+import { getServerSession } from 'next-auth';
+import { UserOptions } from '@/lib/user';
+import { authOptions } from './api/auth/[...nextauth]';
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  const user = await getUserByID(session?.user?.id);
+  console.log(user);
+  const defaultUser = {
+    overallEx: 0,
+    requirements: {},
+    excludedRequirements: {},
+    userQuery: {
+      distance: '',
+      experience: '',
+      jobType: '',
+      location: '',
+      position: '',
+      scope: ''
+    }
+  };
+  const result: UserOptions = user || defaultUser;
+  return {
+    props: result
+  };
+};
+
+export default function Home(user: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [loading, setLoading] = useState(false);
 
   return (
@@ -16,17 +45,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <UserForm />
+        <UserForm user={user} />
         <button
           className="mr-2"
           onClick={async (e) => {
             e.preventDefault();
             setLoading(true);
-            // Const res = await fetch('http://localhost:5000/api/hello');
-            // // /api/jobs-agent/start/
+
             try {
               const res = await fetch(
-                `http://localhost:5000/${API_ENDPOINTS.SCANNER_START}/1?activeQuery=true`
+                `http://localhost:5000/${API_ENDPOINTS.SCANNER_START}/${user.userID}?activeQuery=true`
               );
               const data = await res.json();
               console.log(data);
@@ -47,7 +75,7 @@ export default function Home() {
             // // /api/jobs-agent/start/
             try {
               const res = await fetch(
-                `http://localhost:5000/${API_ENDPOINTS.SCANNER_DOWNLOAD}/1?activeQuery=false`
+                `http://localhost:5000/${API_ENDPOINTS.SCANNER_DOWNLOAD}/${user.userID}?activeQuery=false`
               );
               setLoading(false);
               res.blob().then((blob) => {
