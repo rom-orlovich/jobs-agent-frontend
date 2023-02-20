@@ -7,7 +7,6 @@ import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 
 function useUserForm(user: UserOptions) {
-  console.log(user?.userID);
   const formInitialValue: UserOptions = user;
 
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
