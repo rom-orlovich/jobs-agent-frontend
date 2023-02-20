@@ -7,6 +7,7 @@ import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 
 function useUserForm(user: UserOptions) {
+  console.log(user?.userID);
   const formInitialValue: UserOptions = user;
 
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
@@ -34,10 +35,8 @@ function useUserForm(user: UserOptions) {
 
   const setSelectionInput: <V extends string>(id: string) => (value: V | V[]) => void =
     (id) => (value) => {
-      // Const extractValue = value;
-      // Console.log(extractValue);
       const extractValue = Array.isArray(value) ? value.join(',') : value;
-      console.log('extractValue', extractValue);
+
       setFormValues((pre) => {
         return {
           ...pre,

@@ -13,8 +13,9 @@ import { authOptions } from './api/auth/[...nextauth]';
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const user = await getUserByID(session?.user?.id);
-  console.log(user);
+
   const defaultUser = {
+    userID: session?.user?.id,
     overallEx: 0,
     requirements: {},
     excludedRequirements: {},

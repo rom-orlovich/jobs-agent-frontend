@@ -41,7 +41,6 @@ export const getUserByID = async (userID: string) => {
         }
       }
     );
-    console.log(res);
     return res;
   } catch (error) {
     console.log(error);

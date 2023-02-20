@@ -17,7 +17,7 @@ export default function SelectInput<V extends string>({
       ? defaultValue
       : [options[0]]
     : options[0];
-  console.log(curDefaultValue);
+
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
 
   const optionsStyle = {
@@ -38,7 +38,7 @@ export default function SelectInput<V extends string>({
       value={selectOption}
       onChange={(value) => {
         // Const curValueArg = getCurValue(value);
-        console.log(value);
+
         setValue && setValue(getCurValue(value));
         setOption(value);
       }}
@@ -58,7 +58,6 @@ export default function SelectInput<V extends string>({
           </Listbox.Button>
           <Listbox.Options className="absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm">
             {options.map((option) => {
-              console.log(option);
               return (
                 <Listbox.Option key={option.id} value={option}>
                   {({ active, selected }) => {
