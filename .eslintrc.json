@@ -36,12 +36,12 @@
     ],
     "quote-props": ["error", "as-needed"],
     // "indent": ["error", 2],
-    "no-multi-spaces": "error",
-    "capitalized-comments": [
-      "error",
-      "always",
-      { "ignoreInlineComments": true }
-    ]
+    "no-multi-spaces": "error"
+    // "capitalized-comments": [
+    //   "error",
+    //   "always",
+    //   { "ignoreInlineComments": true }
+    // ]
     // "max-len": ["error", { "code": 80 }]
   }
 }

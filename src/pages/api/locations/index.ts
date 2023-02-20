@@ -1,4 +1,4 @@
-import { getLocations } from '@/lib/mongoDB/locations';
+import { getLocations } from 'mongoDB/locations';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

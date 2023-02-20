@@ -2,17 +2,17 @@ import Head from 'next/head';
 
 import styles from '@/styles/Home.module.css';
 import UserForm from '@/components/UserForm/UserForm';
-import { useState } from 'react';
-import { API_ENDPOINTS } from '@/lib/endpoints';
+
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { getUserByID } from '@/lib/mongoDB/users';
+import { getUserByID } from 'mongoDB/users';
 import { getServerSession } from 'next-auth';
 import { UserOptions } from '@/lib/user.types';
 import { authOptions } from './api/auth/[...nextauth]';
+import ScannerControlButtons from '@/components/ScannerControlButtons/ScannerControlButtons';
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-  const user = await getUserByID(session?.user?.id);
+  const user = await getUserByID(session?.user.id || '');
 
   const defaultUser = {
     userID: session?.user?.id,
@@ -35,8 +35,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 export default function Home(user: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [loading, setLoading] = useState(false);
-  const [activeQuery, setActiveQuery] = useState(true);
+  // const [loading, setLoading] = useState(false);
+  // const [activeQuery, setActiveQuery] = useState(true);
 
   return (
     <>
@@ -48,7 +48,8 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
       </Head>
       <main className={styles.main}>
         <UserForm user={user} />
-        <button
+        <ScannerControlButtons user={user} />
+        {/* <button
           className="mr-2"
           onClick={async (e) => {
             e.preventDefault();
@@ -73,8 +74,6 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
           onClick={async (e) => {
             e.preventDefault();
             setLoading(true);
-            // Const res = await fetch('http://localhost:5000/api/hello');
-            // // /api/jobs-agent/start/
             try {
               const res = await fetch(
                 `http://localhost:5000/${API_ENDPOINTS.SCANNER_DOWNLOAD}/${user.userID}?activeQuery=false`
@@ -98,7 +97,7 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
         <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
           {activeQuery ? 'בטל' : 'הפעל'} חיפוש לפי חיפוש אחרון
         </button>
-        {loading && <p>loading</p>}
+        {loading && <p>loading</p>} */}
       </main>
     </>
   );

@@ -7,17 +7,18 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
-  // Secret: process.env.JWT_SECRET
+
   callbacks: {
     jwt: ({ token, account, user }) => {
       if (account) {
-        token.id = user?.id;
+        token.user = user;
       }
       return token;
     },
     session: ({ session, token }) => {
-      session.user.id = token.id;
-
+      session.user.id = token.id || '';
+      session.user.email = token?.email || '';
+      session.user.name = token?.name || '';
       return session;
     }
   }

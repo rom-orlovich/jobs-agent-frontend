@@ -1,4 +1,4 @@
-import { UserOptions } from '../user.types';
+import { UserOptions } from '../src/lib/user.types';
 import clientPromise from './mongoDB';
 
 export const createUser = async (userData: UserOptions) => {
