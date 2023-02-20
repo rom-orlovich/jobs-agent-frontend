@@ -36,6 +36,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
 export default function Home(user: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [loading, setLoading] = useState(false);
+  const [activeQuery, setActiveQuery] = useState(true);
 
   return (
     <>
@@ -55,7 +56,7 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
 
             try {
               const res = await fetch(
-                `http://localhost:5000/${API_ENDPOINTS.SCANNER_START}/${user.userID}?activeQuery=true`
+                `http://localhost:5000/${API_ENDPOINTS.SCANNER_START}/${user.userID}?activeQuery=${activeQuery}`
               );
               const data = await res.json();
               console.log(data);
@@ -93,6 +94,9 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
           }}
         >
           Download
+        </button>
+        <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
+          {activeQuery ? 'בטל' : 'הפעל'} חיפוש לפי חיפוש אחרון
         </button>
         {loading && <p>loading</p>}
       </main>

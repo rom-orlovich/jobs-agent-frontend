@@ -37,7 +37,8 @@ export const getUserByID = async (userID: string) => {
       },
       {
         projection: {
-          _id: false
+          _id: false,
+          hashQueries: false
         }
       }
     );
