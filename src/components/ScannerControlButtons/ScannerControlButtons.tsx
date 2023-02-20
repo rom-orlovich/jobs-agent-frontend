@@ -32,7 +32,7 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
   };
 
   // Attaches the blob result to link element.
-  const downloadFile = (blob: Blob, name?: string) => {
+  const downloadFile = (blob: Blob, name?: string | null) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

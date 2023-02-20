@@ -16,9 +16,11 @@ export const authOptions: AuthOptions = {
       return token;
     },
     session: ({ session, token }) => {
-      session.user.id = token.id || '';
-      session.user.email = token?.email || '';
-      session.user.name = token?.name || '';
+      if (token.user) {
+        session.user.id = token.user?.id;
+        session.user.email = token?.user?.email || '';
+        session.user.name = token?.user?.email || '';
+      }
       return session;
     }
   }
