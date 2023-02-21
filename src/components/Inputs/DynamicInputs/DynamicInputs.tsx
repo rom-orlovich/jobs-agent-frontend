@@ -1,4 +1,6 @@
 import React, { MouseEventHandler, useState } from 'react';
+import { IoMdRemoveCircle } from 'react-icons/io';
+import { AiFillPlusCircle } from 'react-icons/ai';
 import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs.types';
 
 /**
@@ -70,17 +72,21 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
     <>
       {inputs?.map((input, i) => {
         return (
-          <span key={input?.id}>
+          <span key={input?.id} className="relative">
             <Render {...input} setValue={setValue(i)} />
-            <button className="bg-green-400 text-cyan-50" onClick={addMoreInput}>
-              הוסף
-            </button>
-            <button className="bg-red-400 text-cyan-50" onClick={removeExistInput(i)}>
-              הסר
+
+            <button className="absolute left-0 top-[50%]  text-red-400" onClick={removeExistInput(i)}>
+              <IoMdRemoveCircle className="h-[1.5rem] w-[1.5rem]" />
             </button>
           </span>
         );
       })}
+      <div className="mt-2 flex w-full justify-center">
+        <button className="text-green-400" onClick={addMoreInput}>
+          <AiFillPlusCircle className="h-[1.5rem] w-[1.5rem]" />
+        </button>
+      </div>
+
       {children ? children(inputs) : <></>}
     </>
   );

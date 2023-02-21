@@ -56,7 +56,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
         </InputLabel>
       </div>
 
-      <div>
+      <div className="">
         <ToggleTopic
           headingProps={{
             className: userDetailsFormStyle.heading,

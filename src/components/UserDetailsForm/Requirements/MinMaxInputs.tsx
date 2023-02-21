@@ -21,9 +21,9 @@ export interface MinMaxInputsProps {
 function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps) {
   const minMaxInputsStyle = {
     container: 'flex flex-row gap-0.5 max-w-[18rem]',
-    field: '[&_.input-custom]:py-[0.2rem] flex-[2]',
-    'label-field': 'flex-[1]',
-    'label-range-num': 'flex-[0.5]'
+    field: '[&_.input-custom]:py-[0.2rem] flex-[1.5]',
+
+    'label-range-num': 'flex-[0.75] min-w-[3rem]'
   };
   const [state, setState] = useState<MinMaxInputsOption>({
     min: Number(initialValues.min || 0),
@@ -92,7 +92,7 @@ function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps
           }
         }}
       >
-        מינימום
+        מינ
       </InputLabel>
       <InputLabel
         labelProps={{
@@ -108,7 +108,7 @@ function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps
           }
         }}
       >
-        מקסימום
+        מקס
       </InputLabel>
     </div>
   );

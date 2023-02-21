@@ -33,14 +33,17 @@ function Requirements({ handleRequirements, formValues }: FormComponents<unknown
     >
       {(values) => {
         return (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleRequirements(values);
-            }}
-          >
-            אשר
-          </button>
+          <div className="flex w-full justify-end">
+            <button
+              className="rounded-lg bg-blue-500 p-1 px-4 text-cyan-50"
+              onClick={(e) => {
+                e.preventDefault();
+                handleRequirements(values);
+              }}
+            >
+              אשר
+            </button>
+          </div>
         );
       }}
     </DynamicInputs>
