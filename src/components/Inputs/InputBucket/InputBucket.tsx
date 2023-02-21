@@ -9,15 +9,18 @@ export interface InputBucketProps {
   defaultValues?: string[];
 }
 /**
- * This component is for creation of bucket of input values that return as array.
+ * This component is for creation of input bucket values that will provide as string[] to component's children element.
  */
 function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketProps) {
-  const [curBucketValues, setNewBucketValue] = useState<globalThis.Set<string>>(
-    new Set(defaultValues?.length ? defaultValues : [])
-  );
+  const defaultSet = new Set(defaultValues?.length ? defaultValues : []);
+
+  const [curBucketValues, setNewBucketValue] = useState<globalThis.Set<string>>(defaultSet);
+
+  const curBucketValuesArr = Array.from(curBucketValues);
 
   const inputRef = useRef<null | HTMLInputElement>(null);
 
+  // Add value to data set data structure state.
   const handleAddValue: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     if (!inputRef) return;
@@ -31,17 +34,17 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
       return newSet;
     });
   };
+
+  // Remove value from the set data structure state.
   const handleRemoveValue: (value: string) => MouseEventHandler<HTMLButtonElement> = (value) => (e) => {
     e.preventDefault();
-
     setNewBucketValue((pre) => {
       pre.delete(value);
       const newSet = new Set(pre);
-
       return newSet;
     });
   };
-  const curBucketValuesArr = Array.from(curBucketValues);
+
   return (
     <div>
       <div>

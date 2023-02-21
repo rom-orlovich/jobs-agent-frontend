@@ -9,14 +9,6 @@ export default function Autocomplete<V>({
   defaultValue
 }: AutocompleteProps<V>) {
   const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0] || defaultValue);
-  // Const [query, setQuery] = useState('');
-
-  // // Const filteredOptions =
-  // //   Query === ''
-  // //     ? options
-  // //     : options.filter((option) => {
-  // //         Return option.title.toLowerCase().includes(query);
-  // //       });
 
   return (
     <Combobox
@@ -45,7 +37,6 @@ export default function Autocomplete<V>({
           value={defaultValue?.value as string}
           className="input-custom"
           onChange={(event) => {
-            // SetQuery(event.target.value.toLowerCase());
             setValue && setValue(event.target.value as V);
           }}
         />
