@@ -1,7 +1,8 @@
 import React, { MouseEventHandler, useState } from 'react';
-import { IoMdRemoveCircle } from 'react-icons/io';
-import { AiFillPlusCircle } from 'react-icons/ai';
+
 import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs.types';
+import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
+import CircleAddButton from '@/components/Buttons/CircleAddButton';
 
 /**
  * This component create dynamic array of inputs.
@@ -74,17 +75,12 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
         return (
           <span key={input?.id} className="relative">
             <Render {...input} setValue={setValue(i)} />
-
-            <button className="absolute left-0 top-[50%]  text-red-400" onClick={removeExistInput(i)}>
-              <IoMdRemoveCircle className="h-[1.5rem] w-[1.5rem]" />
-            </button>
+            <CircleRemoveButton onClick={removeExistInput(i)} />
           </span>
         );
       })}
       <div className="mt-2 flex w-full justify-center">
-        <button className="text-green-400" onClick={addMoreInput}>
-          <AiFillPlusCircle className="h-[1.5rem] w-[1.5rem]" />
-        </button>
+        <CircleAddButton onClick={addMoreInput} />
       </div>
 
       {children ? children(inputs) : <></>}
