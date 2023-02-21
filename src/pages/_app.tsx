@@ -5,6 +5,7 @@ import { SWRConfig } from 'swr';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
 import Layout from '@/components/Layout/Layout';
+import { classNameGenerator } from '@/lib/utils';
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700'],
   subsets: ['latin']
@@ -20,7 +21,7 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
         }}
       >
         <Layout>
-          <main className={poppins.className}>
+          <main className={classNameGenerator(poppins.className)}>
             <Component {...pageProps} />
           </main>
         </Layout>
