@@ -10,14 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
     console.log('post', result);
 
-    if (result?.acknowledged) {
+    if (result?.acknowledged)
       return res.status(201).send({
         message: 'The user is created successfully'
       });
-    } else
-      return res.status(404).send({
-        message: 'The user is not created'
-      });
+
+    return res.status(404).send({
+      message: 'The user is not created'
+    });
   }
 
   if (req.method === 'GET') {
@@ -25,16 +25,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).send({
         message: 'enter valid query parameters'
       });
+
     const user = await getUserByID(req.query.userID);
 
-    if (user) {
+    if (user)
       return res.status(201).send({
         message: 'The user is was found',
         data: user
       });
-    } else
-      return res.status(404).send({
-        message: 'The user is not found'
-      });
+
+    return res.status(404).send({
+      message: 'The user is not found'
+    });
   }
 }
