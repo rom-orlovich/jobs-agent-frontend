@@ -1,5 +1,6 @@
 import { GenericRecord } from '@/lib/types/types';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+// import { useDebounce, useDebouncedCallback } from 'use-debounce';
 
 interface FormState<D> {
   isLoading: boolean;
@@ -20,6 +21,9 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
     data: undefined,
     isSent: false
   });
+  // const [formValuesDebounce] = useDebouncedCallback((newState)=>{
+
+  // }, 200);
 
   // On change handler by input's id.
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {

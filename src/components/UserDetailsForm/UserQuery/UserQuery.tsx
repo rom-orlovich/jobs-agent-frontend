@@ -14,20 +14,22 @@ import {
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput.types';
-import { Location, Position, UserQuery } from '@/lib/types/api.types';
+import { Location, UserQuery } from '@/lib/types/api.types';
+import PositionsAutocomplete from './PositionsAutocomplete';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
   optionContainer: 'text-right',
   label: 'text-right'
 };
-function UserQuery({ handleSelectionInput, formValues }: FormComponents<unknown>) {
+function UserQuery(formComponentsProps: FormComponents<unknown>) {
+  const { handleSelectionInput, formValues } = formComponentsProps;
   const { data: locationData } = useSwr<{ data: Location[] }>(
     `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
   );
-  const { data: positionData } = useSwr<{ data: Position[] }>(
-    `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
-  );
+  // const { data: positionData } = useSwr<{ data: Position[] }>(
+  //   `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
+  // );
 
   const selectInputProps: (
     title: string,
@@ -56,20 +58,7 @@ function UserQuery({ handleSelectionInput, formValues }: FormComponents<unknown>
   return (
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
-        <Autocomplete
-          defaultValue={{
-            id: `default-position`,
-            title: formValues.userQuery.position,
-            value: formValues.userQuery.position
-          }}
-          setValue={handleSelectionInput('position')}
-          label="תפקיד"
-          options={(positionData?.data || []).map((el) => ({
-            id: el.positionID,
-            title: el.positionName,
-            value: el.positionName
-          }))}
-        />
+        <PositionsAutocomplete {...formComponentsProps} />
         <SelectInput {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS, 'experience')} />
       </div>
 
