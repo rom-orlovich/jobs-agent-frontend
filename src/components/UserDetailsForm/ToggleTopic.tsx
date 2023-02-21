@@ -11,12 +11,12 @@ function ToggleTopic({ heading, children }: ToggleTopicProps & PropsWithChildren
       {({ handleOnClick, isON }) => {
         return (
           <>
-            <div>
-              <h1>{heading}</h1>
-              <button onClick={handleOnClick}>
-                {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}
-              </button>
-            </div>
+            <button className="flex items-center gap-2" onClick={handleOnClick}>
+              <div> {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}</div>
+
+              <h1 className="text-2xl font-normal">{heading}</h1>
+            </button>
+
             {isON && children}
           </>
         );
