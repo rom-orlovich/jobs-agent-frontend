@@ -1,7 +1,7 @@
 /* eslint-disable capitalized-comments */
 import React from 'react';
 import InputLabel from '../../Inputs/InputLabel/InputLabel';
-import { FormComponents } from '../useUserForm/useUserForm';
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
 
 import ExcludedRequirements from './ExcludedRequirements';
 // import { FaEdit } from 'react-icons/fa';

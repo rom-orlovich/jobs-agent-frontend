@@ -1,9 +1,17 @@
-import { UserOptions } from '../src/lib/types/user.types';
-import clientPromise from './mongoDB';
+import { UserOptions } from '@/lib/types/api.types';
+import { getCollection, getDocumentsByName } from './lib/utils';
+export const getLocations = async (name: string) => {
+  const locationsDocs = await getDocumentsByName(name, 'locations', 'locationName');
+  return locationsDocs;
+};
+
+export const getPositions = async (name: string) => {
+  const positionsDocs = await getDocumentsByName(name, 'positions', 'positionName');
+  return positionsDocs;
+};
 
 export const createUser = async (userData: UserOptions) => {
-  const jobsDB = (await clientPromise).db('jobs-agent-db');
-  const users = jobsDB.collection('users');
+  const users = await getCollection('users');
 
   try {
     const res = await users.updateOne(
@@ -11,9 +19,7 @@ export const createUser = async (userData: UserOptions) => {
         userID: userData.userID
       },
       {
-        $set: {
-          ...userData
-        }
+        $set: userData
       },
       {
         upsert: true
@@ -27,8 +33,7 @@ export const createUser = async (userData: UserOptions) => {
 };
 
 export const getUserByID = async (userID: string) => {
-  const jobsDB = (await clientPromise).db('jobs-agent-db');
-  const users = jobsDB.collection('users');
+  const users = await getCollection('users');
 
   try {
     const res = await users.findOne<UserOptions>(

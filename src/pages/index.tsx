@@ -4,12 +4,13 @@ import styles from '@/styles/Home.module.css';
 import UserDetailsForm from '@/components/UserDetailsForm/UserDetailsForm';
 
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { getUserByID } from 'mongoDB/users';
+
 import { getServerSession } from 'next-auth';
-import { UserOptions } from '@/lib/types/user.types';
-import { authOptions } from './api/auth/[...nextauth]';
 import ScannerControlButtons from '@/components/ScannerControlButtons/ScannerControlButtons';
 import { useSession } from 'next-auth/react';
+import { getUserByID } from 'mongoDB/handlers';
+import { authOptions } from './api/auth/[...nextauth]';
+import { UserOptions } from '@/lib/types/api.types';
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 

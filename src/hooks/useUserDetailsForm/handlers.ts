@@ -1,6 +1,8 @@
+import { Requirements, UserOptions, UserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
-import { Requirements, UserOptions, UserQuery, UserQueryTransform } from '@/lib/types/user.types';
-import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
+
+import { MinMaxInputsOption } from '../../components/UserDetailsForm/Profile/MinMaxSelect';
+import { UserQueryTransform } from './types';
 
 export const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
   const minMaxValuesObj: Requirements = {};

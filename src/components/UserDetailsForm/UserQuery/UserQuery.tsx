@@ -2,7 +2,7 @@ import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 import React from 'react';
-import { FormComponents } from '../useUserForm/useUserForm';
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
 import useSwr from 'swr';
 
 import {
@@ -11,9 +11,10 @@ import {
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from './userQueryOptions';
-import { UserQuery } from '@/lib/types/user.types';
+
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput.types';
+import { Location, Position, UserQuery } from '@/lib/types/api.types';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
@@ -21,10 +22,10 @@ const userQueryStyle = {
   label: 'text-right'
 };
 function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
-  const { data: locationData } = useSwr<{ data: { locationID: string; locationName: string }[] }>(
+  const { data: locationData } = useSwr<{ data: Location[] }>(
     `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
   );
-  const { data: positionData } = useSwr<{ data: { positionID: string; positionName: string }[] }>(
+  const { data: positionData } = useSwr<{ data: Position[] }>(
     `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
   );
 

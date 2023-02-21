@@ -1,5 +1,6 @@
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { UserOptions } from '@/lib/types/user.types';
+import { UserOptions } from '@/lib/types/api.types';
+
 import { useSession } from 'next-auth/react';
 
 import useSwr from 'swr';

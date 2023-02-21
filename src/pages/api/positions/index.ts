@@ -1,4 +1,4 @@
-import { getPositions } from 'mongoDB/positions';
+import { getPositions } from 'mongoDB/handlers';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

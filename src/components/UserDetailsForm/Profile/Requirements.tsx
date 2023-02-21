@@ -1,7 +1,7 @@
 import React from 'react';
 
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
-import { FormComponents } from '../useUserForm/useUserForm';
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
 import MinMaxInputs from './MinMaxSelect';
 function ProfileRequirements({ setRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [

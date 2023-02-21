@@ -1,5 +1,6 @@
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
-import { UserQuery } from '@/lib/types/user.types';
+import { UserQuery } from '@/lib/types/api.types';
+
 /**
  * Experience
  * Without

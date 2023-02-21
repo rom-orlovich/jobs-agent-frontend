@@ -1,7 +1,7 @@
 import React from 'react';
 
 import InputBucket from '../../Inputs/InputBucket/InputBucket';
-import { FormComponents } from '../useUserForm/useUserForm';
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
 function ExcludedRequirements({ setExcludedRequirements, formValues }: FormComponents<unknown>) {
   return (
     <InputBucket

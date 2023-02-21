@@ -1,8 +1,9 @@
 import useForm from '@/hooks/useForm/useForm';
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { UserOptions } from '@/lib/types/user.types';
-import { MinMaxInputsOption } from '../Profile/MinMaxSelect';
+import { UserOptions } from '@/lib/types/api.types';
+
+import { MinMaxInputsOption } from '../../components/UserDetailsForm/Profile/MinMaxSelect';
 import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
 
 function UserDetailsForm(user: UserOptions) {
