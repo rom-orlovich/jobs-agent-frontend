@@ -1,6 +1,4 @@
 import Head from 'next/head';
-
-import styles from '@/styles/Home.module.css';
 import UserDetailsForm from '@/components/UserDetailsForm/UserDetailsForm';
 
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
@@ -46,7 +44,7 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <h1>Hey {session.data?.user.name}</h1>
         <UserDetailsForm user={user} />
         <ScannerControlButtons user={user} />
