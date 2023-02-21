@@ -15,18 +15,25 @@ export interface MinMaxInputsProps {
   setValue?: (value: MinMaxInputsOption) => void;
 }
 
+/**
+ *Input that contains field and inputs that present min max range of that field name.
+ */
 function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps) {
   const [state, setState] = useState<MinMaxInputsOption>({
     min: Number(initialValues.min || 0),
     max: Number(initialValues.max || 1),
     field: String(initialValues.field || '')
   });
+
+  // Set curState on the external setValue setter only when the field value and max value are not empty.
   useEffect(() => {
     if (!state.field) return;
     if (!state.max) return;
     setValue && setValue(state);
   }, [state]);
-  const setTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
+
+  //
+  const setFieldValue: ChangeEventHandler<HTMLInputElement> = (e) => {
     setState((pre) => {
       return {
         ...pre,
@@ -55,7 +62,7 @@ function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps
       <InputLabel
         {...inputTitle}
         inputProps={{
-          onChange: setTitle,
+          onChange: setFieldValue,
           value: state.field
         }}
       >

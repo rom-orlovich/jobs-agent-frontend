@@ -32,3 +32,13 @@ export const EXAMPLE_USER = {
     scope: '1,2' // 1 full, 2:part
   }
 };
+export const EXAMPLE_QUERY = {
+  position: 'Frontend',
+  experience: '1,2', //Without -1 ,between 1-2,2-3,3-4,4-5,
+  location: 'תל אביב',
+  distance: '1', // 10,25,50,75,
+  jobType: '1,2,3', // 1 hybrid, 2:home ,3:onsite
+  scope: '1,2' // 1 full, 2:part
+
+  //   Active: true,
+};
