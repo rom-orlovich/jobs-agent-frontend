@@ -27,7 +27,7 @@ function Profile(userFormState: FormComponents<unknown>) {
           id: 'overallEx',
           className: inputLabelStyle.input,
           type: 'text',
-          onChange: userFormState.setOverallExperience
+          onChange: userFormState.handleOverallExperience
         }}
       >
         שנות ניסיון

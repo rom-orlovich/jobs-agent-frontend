@@ -17,11 +17,16 @@ import {
 function useUserDetailsForm(user: UserOptions) {
   const formInitialValue: UserOptions = user;
 
-  // Initialize form state and get the utils function from userForm hook.
+  // Initializes the form state and get the utils functions from useForm hook.
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
     UserOptions,
     { message: string }
   >(formInitialValue);
+
+  // Handles the overallExperience on change event.
+  const handleOverallExperience = onChange;
+
+  // Handles the transform of requirements values to be valid before form's submitting.
   const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
     const requirements = transformRequirements(minMaxValues);
     setFormValues((pre) => {
@@ -32,6 +37,7 @@ function useUserDetailsForm(user: UserOptions) {
     });
   };
 
+  // Handles the transform of excludedRequirements values to be valid before form's submitting.
   const handleExcludedRequirements = (values: string[]) => {
     const excludedRequirements = transformExcludedRequirements(values);
     setFormValues((pre) => {
@@ -41,7 +47,7 @@ function useUserDetailsForm(user: UserOptions) {
       };
     });
   };
-
+  // Handles the transform of userQuery values to be valid before form's submitting.
   const handleSelectionInput: <V extends string>(id: string) => (value: V | V[]) => void =
     (id) => (value) => {
       const extractValue = Array.isArray(value) ? value.join(',') : value;
@@ -57,6 +63,7 @@ function useUserDetailsForm(user: UserOptions) {
       });
     };
 
+  // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserDetailsFormSubmit = onSubmit(async (values) => {
     const data = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
       method: 'POST',
@@ -68,10 +75,9 @@ function useUserDetailsForm(user: UserOptions) {
     return await data.json();
   });
 
-  const setOverallExperience = onChange;
   return {
     formValues: transformDefaultFormValues(formValues),
-    setOverallExperience,
+    handleOverallExperience,
     handleUserDetailsFormSubmit,
     handleRequirements,
     handleExcludedRequirements,
