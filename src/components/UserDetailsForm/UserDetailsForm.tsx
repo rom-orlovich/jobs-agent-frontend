@@ -10,7 +10,7 @@ import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 
 const formStyle = {
-  form: 'w-[20rem]'
+  form: 'w-[28rem]'
 };
 
 const inputLabelStyle = {
@@ -55,17 +55,18 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
           שנות ניסיון
         </InputLabel>
       </div>
-
-      <div className="">
-        <ToggleTopic
-          headingProps={{
-            className: userDetailsFormStyle.heading,
-            title: 'מה הדרישות שלך?'
-          }}
-        >
-          <Requirements {...userForm} />
-        </ToggleTopic>
-      </div>
+      <ToggleTopic
+        headingProps={{
+          className: userDetailsFormStyle.heading,
+          title: 'מה הדרישות שלך?'
+        }}
+      >
+        <div className="h-[50vh] overflow-x-hidden overflow-y-scroll">
+          <div className="h-[80vh]  p-2">
+            <Requirements {...userForm} />
+          </div>
+        </div>
+      </ToggleTopic>
 
       <div>
         <ToggleTopic
