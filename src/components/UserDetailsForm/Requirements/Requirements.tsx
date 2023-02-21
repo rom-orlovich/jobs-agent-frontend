@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
-import MinMaxInputs from './MinMaxInputs';
+import MinMaxInputs, { MinMaxInputsOption } from './MinMaxInputs';
+import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
+import ConfirmButton from '@/components/Buttons/ConfirmButton';
 function Requirements({ handleRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [
     {
@@ -11,6 +13,14 @@ function Requirements({ handleRequirements, formValues }: FormComponents<unknown
       field: ''
     }
   ];
+
+  // Handle the the user's requirements confirm.
+  const handleConfirmRequirements: (
+    values: RenderElement<MinMaxInputsOption>[]
+  ) => MouseEventHandler<HTMLButtonElement> = (values) => (e) => {
+    e.preventDefault();
+    handleRequirements(values);
+  };
 
   return (
     <DynamicInputs
@@ -34,15 +44,7 @@ function Requirements({ handleRequirements, formValues }: FormComponents<unknown
       {(values) => {
         return (
           <div className="flex w-full justify-end">
-            <button
-              className="rounded-lg bg-blue-500 p-1 px-4 text-cyan-50"
-              onClick={(e) => {
-                e.preventDefault();
-                handleRequirements(values);
-              }}
-            >
-              אשר
-            </button>
+            <ConfirmButton onClick={handleConfirmRequirements(values)} />
           </div>
         );
       }}
