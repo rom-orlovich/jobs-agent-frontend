@@ -4,7 +4,7 @@ import { GenericRecord } from '@/lib/types/types';
 import { MinMaxInputsOption } from '../../components/UserDetailsForm/Profile/MinMaxSelect';
 import { UserQueryTransform } from './types';
 
-export const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
+export const transformRequirements = (minMaxValues: MinMaxInputsOption[]) => {
   const minMaxValuesObj: Requirements = {};
   for (const minMaxValue of minMaxValues) {
     minMaxValuesObj[minMaxValue.field] = {
@@ -14,7 +14,7 @@ export const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
   }
   return minMaxValuesObj;
 };
-export const handleExcludedRequirements = (inputBucketValues: string[]) => {
+export const transformExcludedRequirements = (inputBucketValues: string[]) => {
   const excludedRequirement: GenericRecord<boolean> = {};
   for (const value of inputBucketValues) {
     excludedRequirement[value] = true;
@@ -22,9 +22,7 @@ export const handleExcludedRequirements = (inputBucketValues: string[]) => {
   return excludedRequirement;
 };
 
-export const handleRequirementsTransformDefaultValues = (
-  requirements: Requirements
-): MinMaxInputsOption[] => {
+export const transformRequirementsDefaultValues = (requirements: Requirements): MinMaxInputsOption[] => {
   const requirementsEntries = Object.entries(requirements);
   const minMaxSelectOptions = requirementsEntries.map(([key, value]) => ({
     field: key,
@@ -33,7 +31,7 @@ export const handleRequirementsTransformDefaultValues = (
   }));
   return minMaxSelectOptions;
 };
-export const handleExcludedRequirementsTransformDefaultValues = (
+export const transformExcludedRequirementsDefaultValues = (
   excludedRequirements: GenericRecord<boolean>
 ): string[] => {
   const requirementsEntries = Object.keys(excludedRequirements);
@@ -58,8 +56,8 @@ export const transformDefaultFormValues = ({
 }: UserOptions) => {
   return {
     ...formValues,
-    requirements: handleRequirementsTransformDefaultValues(requirements),
-    excludedRequirements: handleExcludedRequirementsTransformDefaultValues(excludedRequirements),
+    requirements: transformRequirementsDefaultValues(requirements),
+    excludedRequirements: transformExcludedRequirementsDefaultValues(excludedRequirements),
     userQuery: transformUserQuery(userQuery)
   };
 };

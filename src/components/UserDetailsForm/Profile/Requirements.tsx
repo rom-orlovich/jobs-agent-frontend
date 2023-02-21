@@ -1,9 +1,9 @@
 import React from 'react';
 
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
-import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
 import MinMaxInputs from './MinMaxSelect';
-function ProfileRequirements({ setRequirements, formValues }: FormComponents<unknown>) {
+function ProfileRequirements({ handleRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [
     {
       min: 0,
@@ -36,7 +36,7 @@ function ProfileRequirements({ setRequirements, formValues }: FormComponents<unk
           <button
             onClick={(e) => {
               e.preventDefault();
-              setRequirements(values);
+              handleRequirements(values);
             }}
           >
             אשר

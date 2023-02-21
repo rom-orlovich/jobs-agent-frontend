@@ -7,6 +7,11 @@ interface FormState<D> {
   isSent: boolean;
   error?: Error;
 }
+/**
+ *
+ * @param {T} initialState The initialState of the form.
+ * @returns The form's state, form's values and utilities functions.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
   const [formValues, setFormValues] = useState(initialState);
@@ -15,6 +20,8 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
     data: undefined,
     isSent: false
   });
+
+  // On change handler by input's id.
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormValues((pre) => {
       return {
@@ -24,6 +31,10 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
     });
   };
 
+  /**
+   * This function return the submit function that execute the callback function that provided to execute during the submit event.
+   * During the submit event, the submit function handles the state of the submit event and return an appropriate response.
+   */
   const onSubmit: (cb: (formValue: T) => Promise<D>) => FormEventHandler<HTMLFormElement> =
     (cb) => async (e) => {
       e.preventDefault();
@@ -54,10 +65,10 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
     };
 
   return {
-    formValues,
     setFormValues,
     onChange,
     onSubmit,
+    formValues,
     formState
   };
 }

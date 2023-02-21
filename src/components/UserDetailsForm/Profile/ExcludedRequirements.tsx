@@ -1,8 +1,8 @@
 import React from 'react';
 
 import InputBucket from '../../Inputs/InputBucket/InputBucket';
-import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
-function ExcludedRequirements({ setExcludedRequirements, formValues }: FormComponents<unknown>) {
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
+function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormComponents<unknown>) {
   return (
     <InputBucket
       defaultValues={formValues.excludedRequirements}
@@ -17,7 +17,7 @@ function ExcludedRequirements({ setExcludedRequirements, formValues }: FormCompo
           <button
             onClick={(e) => {
               e.preventDefault();
-              setExcludedRequirements(bucketValues);
+              handleExcludedRequirements(bucketValues);
             }}
           >
             אשר

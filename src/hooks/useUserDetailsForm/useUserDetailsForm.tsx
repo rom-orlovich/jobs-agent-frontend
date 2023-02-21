@@ -4,17 +4,26 @@ import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserOptions } from '@/lib/types/api.types';
 
 import { MinMaxInputsOption } from '../../components/UserDetailsForm/Profile/MinMaxSelect';
-import { handleExcludedRequirements, handleRequirements, transformDefaultFormValues } from './handlers';
+import {
+  transformDefaultFormValues,
+  transformExcludedRequirements,
+  transformRequirements
+} from './utils';
 
-function UserDetailsForm(user: UserOptions) {
+/**
+ * Manage the user details form state.
+ * @param {UserOptions} user The current login user.
+ */
+function useUserDetailsForm(user: UserOptions) {
   const formInitialValue: UserOptions = user;
 
+  // Initialize form state and get the utils function from userForm hook.
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
     UserOptions,
     { message: string }
   >(formInitialValue);
-  const setRequirements = (minMaxValues: MinMaxInputsOption[]) => {
-    const requirements = handleRequirements(minMaxValues);
+  const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {
+    const requirements = transformRequirements(minMaxValues);
     setFormValues((pre) => {
       return {
         ...pre,
@@ -22,8 +31,9 @@ function UserDetailsForm(user: UserOptions) {
       };
     });
   };
-  const setExcludedRequirements = (values: string[]) => {
-    const excludedRequirements = handleExcludedRequirements(values);
+
+  const handleExcludedRequirements = (values: string[]) => {
+    const excludedRequirements = transformExcludedRequirements(values);
     setFormValues((pre) => {
       return {
         ...pre,
@@ -32,7 +42,7 @@ function UserDetailsForm(user: UserOptions) {
     });
   };
 
-  const setSelectionInput: <V extends string>(id: string) => (value: V | V[]) => void =
+  const handleSelectionInput: <V extends string>(id: string) => (value: V | V[]) => void =
     (id) => (value) => {
       const extractValue = Array.isArray(value) ? value.join(',') : value;
 
@@ -63,13 +73,13 @@ function UserDetailsForm(user: UserOptions) {
     formValues: transformDefaultFormValues(formValues),
     setOverallExperience,
     handleUserDetailsFormSubmit,
-    setRequirements,
-    setExcludedRequirements,
-    setSelectionInput,
+    handleRequirements,
+    handleExcludedRequirements,
+    handleSelectionInput,
     formState
   };
 }
 
-export default UserDetailsForm;
+export default useUserDetailsForm;
 
-export type FormComponents<T> = T & ReturnType<typeof UserDetailsForm>;
+export type FormComponents<T> = T & ReturnType<typeof useUserDetailsForm>;

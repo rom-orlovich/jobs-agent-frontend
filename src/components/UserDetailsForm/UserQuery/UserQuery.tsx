@@ -2,7 +2,7 @@ import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 import React from 'react';
-import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserForm';
+import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
 import useSwr from 'swr';
 
 import {
@@ -21,7 +21,7 @@ const userQueryStyle = {
   optionContainer: 'text-right',
   label: 'text-right'
 };
-function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
+function UserQuery({ handleSelectionInput, formValues }: FormComponents<unknown>) {
   const { data: locationData } = useSwr<{ data: Location[] }>(
     `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
   );
@@ -43,7 +43,7 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
     optionsElProps: {
       className: userQueryStyle.optionContainer
     },
-    setValue: setSelectionInput(id),
+    setValue: handleSelectionInput(id),
     defaultValue: Array.isArray(formValues?.userQuery[id])
       ? options.filter((el) => formValues.userQuery[id].includes(el.value))
       : {
@@ -62,7 +62,7 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
             title: formValues.userQuery.position,
             value: formValues.userQuery.position
           }}
-          setValue={setSelectionInput('position')}
+          setValue={handleSelectionInput('position')}
           label="תפקיד"
           options={(positionData?.data || []).map((el) => ({
             id: el.positionID,
@@ -80,7 +80,7 @@ function UserQuery({ setSelectionInput, formValues }: FormComponents<unknown>) {
             title: formValues.userQuery.location,
             value: formValues.userQuery.location
           }}
-          setValue={setSelectionInput('location')}
+          setValue={handleSelectionInput('location')}
           label="עיר"
           options={(locationData?.data || []).map((el) => ({
             id: el.locationID,

@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile/Profile';
 import UserQuery from './UserQuery/UserQuery';
 
-import useUserDetailsForm from '../../hooks/useUserDetailsForm/useUserForm';
+import useUserDetailsForm from '../../hooks/useUserDetailsForm/useUserDetailsForm';
 import { UserOptions } from '@/lib/types/api.types';
 const formStyle = {
   form: 'w-[20rem]'
