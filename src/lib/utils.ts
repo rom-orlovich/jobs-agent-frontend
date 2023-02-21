@@ -6,11 +6,3 @@
 export const classNameGenerator = (...classes: (string | undefined)[]) => {
   return `${classes.filter((el) => el).join(' ')}`;
 };
-
-export const spreadSet = <T>(set: Set<T>) => {
-  const newArr: T[] = [];
-  for (const value of set.values()) {
-    newArr.push(value);
-  }
-  return newArr;
-};
