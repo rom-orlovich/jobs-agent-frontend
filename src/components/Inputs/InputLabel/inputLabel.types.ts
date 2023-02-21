@@ -7,8 +7,9 @@ import {
 } from '@/components/HTML.types';
 import { ReactNode } from 'react';
 export interface InputLabelProps {
-  inputProps?: InputProps;
-  labelProps?: LabelProps & { textProps?: LabelTextProps };
+  inputProps?: InputProps & { inputContainer?: { className: string } };
+  labelProps?: LabelProps;
+  textProps?: LabelTextProps;
   textAreaProps?: TextAreaProps;
   IconButtonProps?: { Icon: ReactNode; buttonProps: ButtonProps };
 }

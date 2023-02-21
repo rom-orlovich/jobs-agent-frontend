@@ -14,9 +14,11 @@ const formStyle = {
 };
 
 const inputLabelStyle = {
-  label: 'flex flex-col max-w-[theme(spacing.40)] text-right',
-  input: '',
-  labelTextArea: 'flex flex-col max-w-[theme(spacing.80)] text-right',
+  label: 'flex items-center text-center gap-1',
+  text: '',
+  inputContainer: 'max-w-[4rem]',
+  input: 'text-center py-[0.3rem] text-[0.8rem]',
+  labelTextArea: 'flex flex-col max-w-[theme(spacing.80)]',
   icon: 'text-green-400',
   button: 'absolute right-0 top-0'
 };
@@ -35,11 +37,18 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
           labelProps={{
             className: inputLabelStyle.label
           }}
+          textProps={{
+            className: inputLabelStyle.text
+          }}
           inputProps={{
+            inputContainer: {
+              className: inputLabelStyle.inputContainer
+            },
             value: userForm.formValues.overallEx,
             id: 'overallEx',
             className: inputLabelStyle.input,
-            type: 'text',
+            type: 'number',
+            min: 0,
             onChange: userForm.handleOverallExperience
           }}
         >

@@ -20,8 +20,9 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
         }}
       >
         <Layout>
-          <main className={poppins.className}> </main>
-          <Component {...pageProps} />
+          <main className={poppins.className}>
+            <Component {...pageProps} />
+          </main>
         </Layout>
       </SWRConfig>
     </SessionProvider>

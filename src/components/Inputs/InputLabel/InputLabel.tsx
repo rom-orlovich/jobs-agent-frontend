@@ -1,3 +1,4 @@
+import { GenericRecord } from '@/lib/types/types';
 import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { InputLabelProps } from './inputLabel.types';
@@ -9,15 +10,18 @@ function InputLabel({
   inputProps,
   labelProps,
   children,
+  textProps,
   textAreaProps,
   IconButtonProps
 }: InputLabelProps & PropsWithChildren) {
-  const textProps = labelProps?.textProps ? labelProps?.textProps : {};
-
+  let inputContainer: GenericRecord<string> | undefined = {};
+  if (inputProps) {
+    ({ inputContainer, ...inputProps } = inputProps);
+  }
   const inputLabelStyle = {
     label: 'font-medium',
     inputContainer: 'w-full h-full relative',
-    input: `px-4 py-2 w-full h-full rounded-lg input-custom`,
+    input: `px-[0.5rem] py-[0.3rem] text-[0.8rem] w-full h-full rounded-lg input-custom`,
     textArea: `px-4 py-2 w-full h-full rounded-lg input-custom`
   };
 
@@ -46,7 +50,7 @@ function InputLabel({
         className={classNameGenerator(inputLabelStyle.label, labelProps?.className)}
       >
         <span {...textProps}>{children} </span>
-        <span className={inputLabelStyle.inputContainer}>
+        <span className={inputLabelStyle.inputContainer} {...inputContainer}>
           {Input}
           {IconButton}
         </span>
