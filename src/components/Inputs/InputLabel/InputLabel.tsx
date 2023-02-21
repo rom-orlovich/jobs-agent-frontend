@@ -2,6 +2,9 @@ import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { InputLabelProps } from './inputLabel.types';
 
+/**
+ * Simple input label component that can get also render as textarea input instead the regular input element.
+ */
 function InputLabel({
   inputProps,
   labelProps,

@@ -18,6 +18,15 @@ export default function SelectInput<V extends string>({
       : [options[0]]
     : options[0];
 
+  //Extract the value from the input as single value or array of values depends on the type of the option.
+  const getCurValue = (value: OptionV<V> | OptionV<V>[]) =>
+    Array.isArray(value) ? value.map((el) => el.value) : value.value;
+
+  // Set the cur default value during the mounting stage of the component.
+  useEffect(() => {
+    setValue && setValue(getCurValue(curDefaultValue));
+  }, []);
+
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
 
   const optionsStyle = {
@@ -26,12 +35,6 @@ export default function SelectInput<V extends string>({
     },
     label: 'font-medium'
   };
-  const getCurValue = (value: OptionV<V> | OptionV<V>[]) =>
-    Array.isArray(value) ? value.map((el) => el.value) : value.value;
-  useEffect(() => {
-    setValue && setValue(getCurValue(curDefaultValue));
-  }, []);
-
   return (
     <Listbox
       multiple={multiple ? true : false}
