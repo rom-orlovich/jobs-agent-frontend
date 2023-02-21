@@ -1,3 +1,5 @@
+import CircleAddButton from '@/components/Buttons/CircleAddButton';
+import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
 import React, { MouseEventHandler, useRef, useState } from 'react';
 
 import InputLabel from '../InputLabel/InputLabel';
@@ -47,7 +49,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
 
   return (
     <div>
-      <div>
+      <div className="relative">
         <InputLabel
           {...inputLabelProps}
           inputProps={{
@@ -56,23 +58,21 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
         >
           {inputLabelProps.labelProps?.title}
         </InputLabel>
-        <button className="bg-green-400 text-cyan-50" onClick={handleAddValue}>
-          הוסף
-        </button>
-      </div>
-      <ul>
-        {curBucketValuesArr.map((el, i) => {
-          return (
-            <li key={el + i}>
-              {el}
 
-              <button className="bg-red-400 text-cyan-50" onClick={handleRemoveValue(el)}>
-                הסר
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+        <CircleAddButton className="absolute top-[50%]" onClick={handleAddValue} />
+      </div>
+      <div>
+        <ul>
+          {curBucketValuesArr.map((el, i) => {
+            return (
+              <li className="relative min-w-[15rem] text-center" key={el + i}>
+                {el}
+                <CircleRemoveButton onClick={handleRemoveValue(el)} />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       {children(curBucketValuesArr)}
     </div>
   );
