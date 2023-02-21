@@ -21,7 +21,7 @@ function InputLabel({
   const inputLabelStyle = {
     label: 'font-medium',
     inputContainer: 'w-full h-full relative',
-    input: `px-[0.5rem] py-[0.3rem] text-[0.8rem] w-full h-full rounded-lg input-custom`,
+    input: `px-[0.5rem] py-[0.3rem] text-[0.8rem] w-full rounded-lg input-custom`,
     textArea: `px-4 py-2 w-full h-full rounded-lg input-custom`
   };
 

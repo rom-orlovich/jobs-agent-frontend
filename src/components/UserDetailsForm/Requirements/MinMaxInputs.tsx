@@ -19,6 +19,12 @@ export interface MinMaxInputsProps {
  *Input that contains field and inputs that present min max range of that field name.
  */
 function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps) {
+  const minMaxInputsStyle = {
+    container: 'flex flex-row gap-0.5 max-w-[18rem]',
+    field: '[&_.input-custom]:py-[0.2rem] flex-[2]',
+    'label-field': 'flex-[1]',
+    'label-range-num': 'flex-[0.5]'
+  };
   const [state, setState] = useState<MinMaxInputsOption>({
     min: Number(initialValues.min || 0),
     max: Number(initialValues.max || 1),
@@ -58,33 +64,48 @@ function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps
     });
   };
   return (
-    <div>
+    <div className={minMaxInputsStyle.container}>
       <InputLabel
         {...inputTitle}
         inputProps={{
           onChange: setFieldValue,
-          value: state.field
+          value: state.field,
+          inputContainer: {
+            className: minMaxInputsStyle.field
+          }
         }}
       >
         {inputTitle?.labelProps?.title}
       </InputLabel>
       <InputLabel
+        labelProps={{
+          className: minMaxInputsStyle['label-range-num']
+        }}
         inputProps={{
           type: 'number',
           value: state.min,
           min: 0,
           max: state.max,
-          onChange: setMin
+          onChange: setMin,
+          inputContainer: {
+            className: minMaxInputsStyle.field
+          }
         }}
       >
         מינימום
       </InputLabel>
       <InputLabel
+        labelProps={{
+          className: minMaxInputsStyle['label-range-num']
+        }}
         inputProps={{
           type: 'number',
           min: state.min,
           value: state.max,
-          onChange: setMax
+          onChange: setMax,
+          inputContainer: {
+            className: minMaxInputsStyle.field
+          }
         }}
       >
         מקסימום
