@@ -3,7 +3,7 @@ import React from 'react';
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
 import MinMaxInputs from './MinMaxSelect';
-function ProfileRequirements({ handleRequirements, formValues }: FormComponents<unknown>) {
+function Requirements({ handleRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [
     {
       min: 0,
@@ -47,4 +47,4 @@ function ProfileRequirements({ handleRequirements, formValues }: FormComponents<
   );
 }
 
-export default ProfileRequirements;
+export default Requirements;
