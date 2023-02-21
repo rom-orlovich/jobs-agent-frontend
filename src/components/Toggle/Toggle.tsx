@@ -2,7 +2,7 @@ import React, { MouseEventHandler, useState } from 'react';
 
 interface ToggleChildrenProps {
   handleOnClick: MouseEventHandler<HTMLButtonElement>;
-  toggleState: boolean;
+  isON: boolean;
 }
 interface ToggleProps {
   children: (props: ToggleChildrenProps) => void;
@@ -12,18 +12,18 @@ interface ToggleProps {
  * This component enable to reuse the state of on/off to the children component.
  */
 function Toggle({ children }: ToggleProps) {
-  const [toggleState, setToggleState] = useState(false);
+  const [isON, setIsOff] = useState(false);
 
   // Handle the onClick event in order to change the state of the toggle.
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    setToggleState((pre) => !pre);
+    setIsOff((pre) => !pre);
   };
   return (
     <>
       {children({
         handleOnClick,
-        toggleState
+        isON
       })}
     </>
   );

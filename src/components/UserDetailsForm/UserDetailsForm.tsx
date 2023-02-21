@@ -7,6 +7,8 @@ import { UserOptions } from '@/lib/types/api.types';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
+import ToggleTopic from './ToggleTopic';
+
 const formStyle = {
   form: 'w-[20rem]'
 };
@@ -41,14 +43,20 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </div>
 
       <div>
-        <Requirements {...userForm} />
+        <ToggleTopic heading="מה הדרישות שלך?">
+          <Requirements {...userForm} />
+        </ToggleTopic>
       </div>
 
       <div>
-        <ExcludedRequirements {...userForm} />
+        <ToggleTopic heading="מה אתה לא מחפש?">
+          <ExcludedRequirements {...userForm} />
+        </ToggleTopic>
       </div>
       <div>
-        <UserQuery {...userForm} />
+        <ToggleTopic heading="מה אתה מחפש?">
+          <UserQuery {...userForm} />
+        </ToggleTopic>
       </div>
 
       <button type="submit">אשר</button>
