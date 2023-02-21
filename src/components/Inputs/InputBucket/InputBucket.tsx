@@ -59,7 +59,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
           {inputLabelProps.labelProps?.title}
         </InputLabel>
 
-        <CircleAddButton className="absolute top-[50%]" onClick={handleAddValue} />
+        <CircleAddButton className="absolute top-[10%]" onClick={handleAddValue} />
       </div>
       <div>
         <ul>
