@@ -1,21 +1,18 @@
-import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 import React from 'react';
 import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
-import useSwr from 'swr';
-
 import {
   DISTANCE_OPTIONS,
   EXPERIENCE_OPTIONS,
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from './userQueryOptions';
-
-import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput.types';
-import { Location, UserQuery } from '@/lib/types/api.types';
+
 import PositionsAutocomplete from './PositionsAutocomplete';
+import LocationsAutocomplete from './LocationsAutocomplete';
+import { UserQuery } from '@/lib/types/api.types';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
@@ -24,13 +21,6 @@ const userQueryStyle = {
 };
 function UserQuery(formComponentsProps: FormComponents<unknown>) {
   const { handleSelectionInput, formValues } = formComponentsProps;
-  const { data: locationData } = useSwr<{ data: Location[] }>(
-    `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
-  );
-  // const { data: positionData } = useSwr<{ data: Position[] }>(
-  //   `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
-  // );
-
   const selectInputProps: (
     title: string,
     options: Option<string>[],
@@ -63,21 +53,7 @@ function UserQuery(formComponentsProps: FormComponents<unknown>) {
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>
-        <Autocomplete
-          defaultValue={{
-            id: `default-location`,
-            title: formValues.userQuery.location,
-            value: formValues.userQuery.location
-          }}
-          setValue={handleSelectionInput('location')}
-          label="עיר"
-          options={(locationData?.data || []).map((el) => ({
-            id: el.locationID,
-            title: el.locationName,
-            value: el.locationName
-          }))}
-        />
-
+        <LocationsAutocomplete {...formComponentsProps} />
         <SelectInput
           {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')}
           multiple={false}
