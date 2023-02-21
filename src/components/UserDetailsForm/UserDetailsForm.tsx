@@ -13,6 +13,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
   return (
     <form onSubmit={userForm.handleUserDetailsFormSubmit} className={formStyle.form}>
       <Profile {...userForm} />
+
       <UserQuery {...userForm} />
 
       <button type="submit">אשר</button>
