@@ -32,6 +32,7 @@ export const EXAMPLE_USER = {
     scope: '1,2' // 1 full, 2:part
   }
 };
+
 export const EXAMPLE_QUERY = {
   position: 'Frontend',
   experience: '1,2', //Without -1 ,between 1-2,2-3,3-4,4-5,
