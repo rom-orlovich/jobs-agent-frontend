@@ -1,4 +1,4 @@
-import { MinMaxInputsOption } from '@/components/UserDetailsForm/Profile/MinMaxSelect';
+import { MinMaxInputsOption } from '@/components/UserDetailsForm/Requirements/MinMaxInputs';
 import { GenericRecord, OmitKey } from './types';
 
 export interface Location {

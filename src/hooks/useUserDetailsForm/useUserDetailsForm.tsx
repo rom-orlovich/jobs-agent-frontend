@@ -3,7 +3,7 @@ import useForm from '@/hooks/useForm/useForm';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserOptions } from '@/lib/types/api.types';
 
-import { MinMaxInputsOption } from '../../components/UserDetailsForm/Profile/MinMaxSelect';
+import { MinMaxInputsOption } from '../../components/UserDetailsForm/Requirements/MinMaxInputs';
 import {
   transformDefaultFormValues,
   transformExcludedRequirements,

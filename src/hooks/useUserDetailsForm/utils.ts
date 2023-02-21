@@ -1,7 +1,7 @@
 import { Requirements, UserOptions, UserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
 
-import { MinMaxInputsOption } from '../../components/UserDetailsForm/Profile/MinMaxSelect';
+import { MinMaxInputsOption } from '../../components/UserDetailsForm/Requirements/MinMaxInputs';
 import { UserQueryTransform } from './types';
 
 /**

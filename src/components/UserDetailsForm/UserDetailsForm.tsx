@@ -5,8 +5,8 @@ import UserQuery from './UserQuery/UserQuery';
 import useUserDetailsForm from '../../hooks/useUserDetailsForm/useUserDetailsForm';
 import { UserOptions } from '@/lib/types/api.types';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
-import ExcludedRequirements from './Profile/ExcludedRequirements';
-import Requirements from './Profile/Requirements';
+import ExcludedRequirements from './ExcludedRequirements';
+import Requirements from './Requirements/Requirements';
 const formStyle = {
   form: 'w-[20rem]'
 };

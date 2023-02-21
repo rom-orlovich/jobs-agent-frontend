@@ -2,7 +2,7 @@ import React from 'react';
 
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
-import MinMaxInputs from './MinMaxSelect';
+import MinMaxInputs from './MinMaxInputs';
 function Requirements({ handleRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [
     {
