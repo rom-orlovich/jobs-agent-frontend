@@ -4,7 +4,7 @@ import {
   LabelProps,
   LabelTextProps,
   TextAreaProps
-} from '@/components/Inputs/HTML.types';
+} from '@/components/HTML.types';
 import { ReactNode } from 'react';
 export interface InputLabelProps {
   inputProps?: InputProps;

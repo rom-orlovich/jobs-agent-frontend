@@ -19,3 +19,8 @@ export type ButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
+
+export type HeadingProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>;

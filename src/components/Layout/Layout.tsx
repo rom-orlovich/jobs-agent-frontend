@@ -7,7 +7,8 @@ function Layout({ children }: PropsWithChildren) {
   });
   const userIsLoginLayout = (
     <>
-      <header>{<button onClick={() => signOut()}>Logout</button>}</header> {children}
+      <header>{<button onClick={() => signOut()}>Logout</button>}</header>
+      {children}
     </>
   );
 

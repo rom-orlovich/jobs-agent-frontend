@@ -1,10 +1,16 @@
 import '@/styles/globals.css';
+import { Poppins } from '@next/font/google';
 import type { AppProps } from 'next/app';
 import { SWRConfig } from 'swr';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
 import Layout from '@/components/Layout/Layout';
+const poppins = Poppins({
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  subsets: ['latin']
+});
 type AppPropsWithSession = AppProps & { session: Session };
+
 export default function App({ Component, pageProps, session }: AppPropsWithSession) {
   return (
     <SessionProvider session={session}>
@@ -14,6 +20,7 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
         }}
       >
         <Layout>
+          <main className={poppins.className}> </main>
           <Component {...pageProps} />
         </Layout>
       </SWRConfig>

@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/react';
 import { getUserByID } from 'mongoDB/handlers';
 import { authOptions } from './api/auth/[...nextauth]';
 import { UserOptions } from '@/lib/types/api.types';
-
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const user = await getUserByID(session?.user.id || '');
@@ -33,7 +32,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     props: result
   };
 };
-
 export default function Home(user: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const session = useSession();
   return (
@@ -44,11 +42,10 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1>Hey {session.data?.user.name}</h1>
-        <UserDetailsForm user={user} />
-        <ScannerControlButtons user={user} />
-      </main>
+
+      <h1>Hey {session.data?.user.name}</h1>
+      <UserDetailsForm user={user} />
+      <ScannerControlButtons user={user} />
     </>
   );
 }

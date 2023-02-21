@@ -23,9 +23,14 @@ const inputLabelStyle = {
 
 function UserDetailsForm({ user }: { user: UserOptions }) {
   const userForm = useUserDetailsForm(user);
+
+  const userDetailsFormStyle = {
+    heading: 'text-xl font-[500]'
+  };
   return (
     <form onSubmit={userForm.handleUserDetailsFormSubmit} className={formStyle.form}>
       <div>
+        <h3 className={userDetailsFormStyle.heading}> מה הניסיון הכללי שלך?</h3>
         <InputLabel
           labelProps={{
             className: inputLabelStyle.label
@@ -43,18 +48,33 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </div>
 
       <div>
-        <ToggleTopic heading="מה הדרישות שלך?">
+        <ToggleTopic
+          headingProps={{
+            className: userDetailsFormStyle.heading,
+            title: 'מה הדרישות שלך?'
+          }}
+        >
           <Requirements {...userForm} />
         </ToggleTopic>
       </div>
 
       <div>
-        <ToggleTopic heading="מה אתה לא מחפש?">
+        <ToggleTopic
+          headingProps={{
+            className: userDetailsFormStyle.heading,
+            title: 'מה אתה לא מחפש?'
+          }}
+        >
           <ExcludedRequirements {...userForm} />
         </ToggleTopic>
       </div>
       <div>
-        <ToggleTopic heading="מה אתה מחפש?">
+        <ToggleTopic
+          headingProps={{
+            className: userDetailsFormStyle.heading,
+            title: 'מה אתה מחפש?'
+          }}
+        >
           <UserQuery {...userForm} />
         </ToggleTopic>
       </div>
