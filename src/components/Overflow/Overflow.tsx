@@ -3,12 +3,22 @@ import React, { PropsWithChildren } from 'react';
 
 function Overflow({
   children,
+  active,
   outerElementClass,
   innerElementClass
-}: PropsWithChildren & { outerElementClass: string; innerElementClass: string }) {
+}: PropsWithChildren & {
+  outerElementClass: string;
+  innerElementClass: string;
+  active: boolean;
+}) {
+  const outerElementStyle = classNameGenerator(`overflow-x-hidden `, outerElementClass);
+  const innerElementStyle = classNameGenerator(innerElementClass);
+  const isActive = (className: string) => {
+    return `${active ? className : ''}`;
+  };
   return (
-    <div className={classNameGenerator('overflow-y-auto overflow-x-hidden', outerElementClass)}>
-      <div className={classNameGenerator(innerElementClass)}>{children}</div>
+    <div className={isActive(outerElementStyle)}>
+      <div className={isActive(innerElementStyle)}>{children}</div>
     </div>
   );
 }

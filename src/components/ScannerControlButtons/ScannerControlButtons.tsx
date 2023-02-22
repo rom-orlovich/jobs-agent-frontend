@@ -8,6 +8,7 @@ import useSWRMutation from 'swr/mutation';
 
 function ScannerControlButtons({ user }: { user: UserOptions }) {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeQuery, setActiveQuery] = useState(true);
 
   const session = useSession();
@@ -55,9 +56,9 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
         טען
       </button>
       <button onClick={handleDownloadButton}>הורד</button>
-      <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
+      {/* <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
         {activeQuery ? 'בטל' : 'הפעל'} חיפוש לפי חיפוש אחרון
-      </button>
+      </button> */}
       {scanner.isMutating && <p>טוען...</p>}
     </>
   );
