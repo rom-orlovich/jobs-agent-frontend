@@ -12,7 +12,7 @@ function ToggleTopic({ headingProps, children }: ToggleTopicProps & PropsWithChi
     <Toggle>
       {({ handleOnClick, isON }) => {
         return (
-          <>
+          <div>
             <button className="flex items-center gap-2" onClick={handleOnClick}>
               <div> {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}</div>
 
@@ -21,8 +21,8 @@ function ToggleTopic({ headingProps, children }: ToggleTopicProps & PropsWithChi
               </h3>
             </button>
 
-            {isON && children}
-          </>
+            <div className="mt-2"> {isON && children} </div>
+          </div>
         );
       }}
     </Toggle>
