@@ -32,13 +32,10 @@ function UserQuery(formComponentsProps: FormComponents<unknown>) {
     },
     labelProps: {
       title: title
-      // className: userQueryStyle.label
     },
     multiple: true,
     options: options,
-    // optionsElProps: {
-    //   // className: userQueryStyle.optionContainer
-    // },
+
     setValue: handleSelectionInput(id),
     defaultValue: Array.isArray(formValues?.userQuery[id])
       ? options.filter((el) => formValues.userQuery[id].includes(el.value))

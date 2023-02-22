@@ -1,15 +1,22 @@
 import CircleAddButton from '@/components/Buttons/CircleAddButton';
-import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
-import React, { MouseEventHandler, useRef, useState } from 'react';
 
+import React, { MouseEventHandler, useRef, useState } from 'react';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import InputLabel from '../InputLabel/InputLabel';
 import { InputLabelProps } from '../InputLabel/inputLabel.types';
 
 export interface InputBucketProps {
-  inputLabelProps: InputLabelProps;
+  inputLabelProps?: InputLabelProps;
   children: (values: string[]) => JSX.Element;
   defaultValues?: string[];
 }
+const inputBucketStyle = {
+  'add-button': 'absolute top-[12%] mr-1',
+  'tags-list': 'mt-2 flex flex-wrap gap-2',
+  tag: 'relative  flex h-8 min-w-[5rem] cursor-pointer items-center justify-center rounded-md bg-tag-500 text-center text-text-secondary hover:bg-tag-400',
+  'button-x': 'absolute right-0 top-0'
+};
+
 /**
  * This component is for creation of input bucket values that will provide as string[] to component's children element.
  */
@@ -48,33 +55,36 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
   };
 
   return (
-    <>
+    <div className="p-4">
       <div className="relative">
         <InputLabel
           {...inputLabelProps}
           inputProps={{
-            ref: inputRef
+            ref: inputRef,
+            className: 'max-w-[20rem]'
           }}
         >
-          {inputLabelProps.labelProps?.title}
+          {inputLabelProps?.labelProps?.title}
         </InputLabel>
 
-        <CircleAddButton className="absolute top-[10%] mr-1" onClick={handleAddValue} />
+        <CircleAddButton className={inputBucketStyle['add-button']} onClick={handleAddValue} />
       </div>
 
-      <ul className="p-2">
+      <ul className={inputBucketStyle['tags-list']}>
         {curBucketValuesArr.map((el, i) => {
           return (
-            <li className="relative text-center" key={el + i}>
+            <li className={inputBucketStyle.tag} key={el + i}>
               {el}
-              <CircleRemoveButton className="!top-[10%]" onClick={handleRemoveValue(el)} />
+              <button onClick={handleRemoveValue(el)} className={inputBucketStyle['button-x']}>
+                <AiFillCloseCircle />
+              </button>
             </li>
           );
         })}
       </ul>
 
       {children(curBucketValuesArr)}
-    </>
+    </div>
   );
 }
 

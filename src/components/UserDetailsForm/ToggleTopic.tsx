@@ -21,7 +21,7 @@ function ToggleTopic({ headingProps, children }: ToggleTopicProps & PropsWithChi
               </h3>
             </button>
 
-            <div className="mt-2"> {isON && children} </div>
+            <div> {isON && children} </div>
           </div>
         );
       }}

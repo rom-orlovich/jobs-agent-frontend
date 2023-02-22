@@ -11,7 +11,7 @@ function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormCo
     handleExcludedRequirements(bucketValues);
   };
   return (
-    <InputBucket defaultValues={formValues.excludedRequirements} inputLabelProps={{}}>
+    <InputBucket defaultValues={formValues.excludedRequirements}>
       {(bucketValues) => {
         return (
           <div className="flex w-full justify-end">

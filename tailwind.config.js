@@ -38,7 +38,11 @@ module.exports = {
           secondary: 'white'
         },
         warning: '#fb923c',
-        info: '#9ca3af'
+        info: '#9ca3af',
+        tag: {
+          400: '#5eead4',
+          500: '#2dd4bf'
+        }
       }
     }
   },
