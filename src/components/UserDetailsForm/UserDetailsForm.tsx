@@ -17,7 +17,7 @@ const userDetailsFormStyle = {
   inputContainer: 'max-w-[4rem]',
   input: 'text-center py-[0.3rem] text-[0.8rem]',
   labelTextArea: 'flex flex-col max-w-[theme(spacing.80)]',
-  icon: 'text-green-400',
+  icon: 'text-adding-primary',
 
   buttonContainer: 'flex justify-end'
 };
@@ -79,7 +79,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       <div className={userDetailsFormStyle.buttonContainer}>
         <ConfirmButton type="submit">אשר</ConfirmButton>
       </div>
-      <p>{userForm.formState.data?.message}</p>
+      {/* <p>{userForm.formState.data?.message}</p> */}
     </form>
   );
 }

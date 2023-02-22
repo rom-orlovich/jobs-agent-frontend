@@ -14,7 +14,7 @@ function Requirements({ handleRequirements, formValues }: FormComponents<unknown
     }
   ];
 
-  // Handle the the user's requirements confirm.
+  // Handle the the user's requirements success.
   const handleConfirmRequirements: (
     values: RenderElement<MinMaxInputsOption>[]
   ) => MouseEventHandler<HTMLButtonElement> = (values) => (e) => {

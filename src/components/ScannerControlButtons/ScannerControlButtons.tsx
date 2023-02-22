@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 
 import React, { MouseEventHandler, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
+import { FaCloudDownloadAlt } from 'react-icons/fa';
 
 function ScannerControlButtons({ user }: { user: UserOptions }) {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.
@@ -55,7 +56,12 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
       <button className="mr-2" onClick={handleLoadButton}>
         טען
       </button>
-      <button onClick={handleDownloadButton}>הורד</button>
+      <button
+        className="button-custom bg-success-secondary flex items-center justify-between gap-2 bg-success-secondary-500 text-xl text-text-secondary hover:bg-success-secondary-400"
+        onClick={handleDownloadButton}
+      >
+        הורדה <FaCloudDownloadAlt />
+      </button>
       {/* <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
         {activeQuery ? 'בטל' : 'הפעל'} חיפוש לפי חיפוש אחרון
       </button> */}

@@ -2,7 +2,7 @@ import useForm from '@/hooks/useForm/useForm';
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserOptions } from '@/lib/types/api.types';
-
+import { toast } from 'react-toastify';
 import { MinMaxInputsOption } from '../../components/UserDetailsForm/Requirements/MinMaxInputs';
 import {
   transformDefaultFormValues,
@@ -65,14 +65,17 @@ function useUserDetailsForm(user: UserOptions) {
 
   // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserDetailsFormSubmit = onSubmit(async (values) => {
-    const data = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
+    const result = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {
         'Content-type': 'application/json'
       }
     });
-    return await data.json();
+
+    const data = await result.json();
+    toast(data.message);
+    return data;
   });
 
   return {

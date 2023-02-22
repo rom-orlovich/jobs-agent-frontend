@@ -12,30 +12,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (result?.acknowledged)
       return res.status(201).send({
-        message: 'The user is update successfully.'
+        message: 'המשתמש עודכן בהצלחה!'
       });
 
     return res.status(404).send({
-      message: 'The user is not created'
+      message: ' :( לא הצלחנו למצוא את המשתמש'
     });
   }
 
   if (req.method === 'GET') {
     if (typeof req?.query?.userID !== 'string')
       return res.status(400).send({
-        message: 'enter valid query parameters'
+        message: 'הכנס פרמטרים חוקיים!'
       });
 
     const user = await getUserByID(req.query.userID);
 
     if (user)
       return res.status(201).send({
-        message: 'The user is was found',
+        message: ' :( לא הצלחנו למצוא את המשתמש',
         data: user
       });
 
     return res.status(404).send({
-      message: 'The user is not found'
+      message: ' :( לא הצלחנו למצוא את המשתמש'
     });
   }
 }

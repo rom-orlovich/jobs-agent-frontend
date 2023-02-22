@@ -5,11 +5,10 @@ function ConfirmButton({ className, ...props }: ButtonProps) {
   return (
     <button
       {...props}
-      className={classNameGenerator('rounded-lg bg-blue-500 p-1 px-4 text-cyan-50', className)}
-      // onClick={(e) => {
-      //   e.preventDefault();
-      //   handleRequirements(values);
-      // }}
+      className={classNameGenerator(
+        'button-custom bg-success-primary bg-success-primary-500 text-text-secondary hover:bg-success-primary-400',
+        className
+      )}
     >
       אשר
     </button>
