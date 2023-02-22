@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete.types';
 import { classNameGenerator } from '@/lib/utils';
+import { isActive } from '../SelectInput/SelectInput';
 
 const autoCompleteStyle = {
-  options: 'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md',
+  options:
+    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-hidden rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm',
   label: 'font-semibold',
   input: 'input-custom'
 };
@@ -48,8 +50,8 @@ export default function Autocomplete<V>({
           <Combobox.Options className={autoCompleteStyle.options}>
             {options.map((option) => (
               <Combobox.Option key={option.id} value={option}>
-                {({}) => {
-                  return <div>{option.title} </div>;
+                {({ active }) => {
+                  return <div className={isActive(active)}>{option.title} </div>;
                 }}
               </Combobox.Option>
             ))}

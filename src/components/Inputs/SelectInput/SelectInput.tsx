@@ -5,11 +5,12 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import { Option as OptionV, SelectInputProps } from './selectInput.types';
 import { classNameGenerator } from '@/lib/utils';
 
-//
+export const isActive = (active: boolean) => {
+  return `${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`;
+};
+
 const selectOptionsStyle = {
-  active: (active: boolean) => {
-    return `${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`;
-  },
+  isActive,
   label: 'font-semibold',
   button: 'input-custom px-2 shadow-sm min-w-[8rem]',
   options:
@@ -84,7 +85,7 @@ export default function SelectInput<V extends string>({
                     return (
                       <div
                         className={classNameGenerator(
-                          selectOptionsStyle['active'](active),
+                          selectOptionsStyle['isActive'](active),
                           selectOptionsStyle.option,
                           optionsElProps?.className
                         )}

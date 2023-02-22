@@ -62,27 +62,23 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       >
         <Requirements {...userForm} />
       </ToggleTopic>
+      <ToggleTopic
+        headingProps={{
+          className: inputLabelStyle.heading,
+          title: 'מה אתה לא מחפש?'
+        }}
+      >
+        <ExcludedRequirements {...userForm} />
+      </ToggleTopic>
+      <ToggleTopic
+        headingProps={{
+          className: inputLabelStyle.heading,
+          title: 'מה אתה מחפש?'
+        }}
+      >
+        <UserQuery {...userForm} />
+      </ToggleTopic>
 
-      <div>
-        <ToggleTopic
-          headingProps={{
-            className: inputLabelStyle.heading,
-            title: 'מה אתה לא מחפש?'
-          }}
-        >
-          <ExcludedRequirements {...userForm} />
-        </ToggleTopic>
-      </div>
-      <div>
-        <ToggleTopic
-          headingProps={{
-            className: inputLabelStyle.heading,
-            title: 'מה אתה מחפש?'
-          }}
-        >
-          <UserQuery {...userForm} />
-        </ToggleTopic>
-      </div>
       <div className={inputLabelStyle.buttonContainer}>
         <ConfirmButton type="submit">אשר</ConfirmButton>
       </div>
