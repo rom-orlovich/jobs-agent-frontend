@@ -11,7 +11,7 @@ const selectOptionsStyle = {
     return `${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`;
   },
   label: 'font-semibold',
-  button: 'input-custom px-2 shadow-sm',
+  button: 'input-custom px-2 shadow-sm min-w-[8rem]',
   options:
     'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm',
   option: 'flex flex-row items-center justify-between'

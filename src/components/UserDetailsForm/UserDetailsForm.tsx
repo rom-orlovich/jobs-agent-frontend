@@ -60,12 +60,6 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
           title: 'מה הדרישות שלך?'
         }}
       >
-        {/* <div className="h-[50vh] overflow-x-hidden overflow-y-scroll">
-          <div className="h-[80vh] p-2">
-            <Requirements {...userForm} />
-          </div>
-        </div> */}
-
         <Requirements {...userForm} />
       </ToggleTopic>
 
