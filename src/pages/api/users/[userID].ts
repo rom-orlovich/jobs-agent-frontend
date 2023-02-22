@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (result?.acknowledged)
       return res.status(201).send({
-        message: 'The user is created successfully'
+        message: 'The user is update successfully.'
       });
 
     return res.status(404).send({

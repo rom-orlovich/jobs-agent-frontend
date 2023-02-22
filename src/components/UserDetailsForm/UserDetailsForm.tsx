@@ -9,11 +9,8 @@ import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 import ConfirmButton from '../Buttons/ConfirmButton';
-const formStyle = {
-  form: 'w-[28rem]'
-};
-
-const inputLabelStyle = {
+const userDetailsFormStyle = {
+  form: 'w-[28rem]',
   heading: 'text-xl font-[500]',
   label: 'flex items-center text-center gap-1',
   text: '',
@@ -29,23 +26,23 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
   const userForm = useUserDetailsForm(user);
 
   return (
-    <form onSubmit={userForm.handleUserDetailsFormSubmit} className={formStyle.form}>
+    <form onSubmit={userForm.handleUserDetailsFormSubmit} className={userDetailsFormStyle.form}>
       <div>
-        <h3 className={inputLabelStyle.heading}> מה הניסיון הכללי שלך?</h3>
+        <h3 className={userDetailsFormStyle.heading}> מה הניסיון הכללי שלך?</h3>
         <InputLabel
           labelProps={{
-            className: inputLabelStyle.label
+            className: userDetailsFormStyle.label
           }}
           textProps={{
-            className: inputLabelStyle.text
+            className: userDetailsFormStyle.text
           }}
           inputProps={{
             inputContainer: {
-              className: inputLabelStyle.inputContainer
+              className: userDetailsFormStyle.inputContainer
             },
             value: userForm.formValues.overallEx,
             id: 'overallEx',
-            className: inputLabelStyle.input,
+            className: userDetailsFormStyle.input,
             type: 'number',
             min: 0,
             onChange: userForm.handleOverallExperience
@@ -56,7 +53,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </div>
       <ToggleTopic
         headingProps={{
-          className: inputLabelStyle.heading,
+          className: userDetailsFormStyle.heading,
           title: 'מה הדרישות שלך?'
         }}
       >
@@ -64,7 +61,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </ToggleTopic>
       <ToggleTopic
         headingProps={{
-          className: inputLabelStyle.heading,
+          className: userDetailsFormStyle.heading,
           title: 'מה אתה לא מחפש?'
         }}
       >
@@ -72,14 +69,14 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </ToggleTopic>
       <ToggleTopic
         headingProps={{
-          className: inputLabelStyle.heading,
+          className: userDetailsFormStyle.heading,
           title: 'מה אתה מחפש?'
         }}
       >
         <UserQuery {...userForm} />
       </ToggleTopic>
 
-      <div className={inputLabelStyle.buttonContainer}>
+      <div className={userDetailsFormStyle.buttonContainer}>
         <ConfirmButton type="submit">אשר</ConfirmButton>
       </div>
       <p>{userForm.formState.data?.message}</p>
