@@ -13,7 +13,8 @@ const selectOptionsStyle = {
   label: 'font-semibold',
   button: 'input-custom px-2 shadow-sm',
   options:
-    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm'
+    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm',
+  option: 'flex flex-row items-center justify-between'
 };
 
 export default function SelectInput<V extends string>({
@@ -25,9 +26,16 @@ export default function SelectInput<V extends string>({
   multiple,
   selectInputWrapper
 }: SelectInputProps<V>) {
+  //Check if the defaultValue is array or single value.
+  //If defaultValue is array and has a values so use the defaultValue as is.
+  //Otherwise use the the first option as array of array.
+  //Else, if defaultValue is not array use the first option as is.
+  console.log(defaultValue);
   const curDefaultValue = Array.isArray(defaultValue)
-    ? defaultValue.length
-      ? defaultValue
+    ? defaultValue?.length
+      ? defaultValue.length === 1
+        ? defaultValue[0]
+        : defaultValue
       : [options[0]]
     : options[0];
 
@@ -37,7 +45,9 @@ export default function SelectInput<V extends string>({
 
   // Set the cur default value during the mounting stage of the component.
   useEffect(() => {
-    setValue && setValue(getCurValue(curDefaultValue));
+    const defaultValue = getCurValue(curDefaultValue);
+
+    setValue && setValue(defaultValue);
   }, []);
 
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
@@ -75,7 +85,7 @@ export default function SelectInput<V extends string>({
                       <div
                         className={classNameGenerator(
                           selectOptionsStyle['active'](active),
-                          'flex flex-row items-center justify-between',
+                          selectOptionsStyle.option,
                           optionsElProps?.className
                         )}
                       >
