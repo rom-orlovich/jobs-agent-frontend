@@ -52,9 +52,9 @@ export default function SelectInput<V extends string>({
           {labelProps.title}
         </Listbox.Label>
         <div className="relative mt-1">
-          <Listbox.Button>
+          <Listbox.Button className={'input-custom border-none border-cyan-500 shadow-sm'}>
             {Array.isArray(selectOption)
-              ? selectOption.map((el) => el.title).join(',')
+              ? selectOption.map((el) => el.title).join(', ')
               : selectOption.title}
           </Listbox.Button>
           <Listbox.Options className="absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm">

@@ -57,7 +57,7 @@ function UserQuery(formComponentsProps: FormComponents<unknown>) {
             }
           }}
         />
-        <SelectInput {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS, 'experience')} />
+        <SelectInput {...selectInputProps('שנות ניסיון', EXPERIENCE_OPTIONS, 'experience')} />
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>

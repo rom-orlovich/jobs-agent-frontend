@@ -49,20 +49,20 @@ export default function Autocomplete<V>({
             setValue && setValue(event.target.value as V);
           }}
         />
+        <div className="relative ">
+          <Combobox.Options
+            className={'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md'}
+          >
+            {options.map((option) => (
+              <Combobox.Option key={option.id} value={multiple ? option : option.value}>
+                {({}) => {
+                  return <div>{option.title} </div>;
+                }}
+              </Combobox.Option>
+            ))}
+          </Combobox.Options>
+        </div>
         <div />
-      </div>
-      <div className="relative ">
-        <Combobox.Options
-          className={'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md'}
-        >
-          {options.map((option) => (
-            <Combobox.Option key={option.id} value={multiple ? option : option.value}>
-              {({}) => {
-                return <div>{option.title} </div>;
-              }}
-            </Combobox.Option>
-          ))}
-        </Combobox.Options>
       </div>
     </Combobox>
   );
