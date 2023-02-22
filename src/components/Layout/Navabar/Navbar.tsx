@@ -27,7 +27,7 @@ function Navbar({ isAuthenticated }: { isAuthenticated: boolean }) {
   );
 
   return (
-    <nav className="flex h-[4rem] items-center justify-start bg-slate-500">
+    <nav className="flex h-[4rem] w-full items-center justify-start bg-slate-500">
       <div> {button} </div>
     </nav>
   );
