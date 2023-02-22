@@ -5,43 +5,38 @@ import { classNameGenerator } from '@/lib/utils';
 
 const autoCompleteStyle = {
   options: 'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md',
+  label: 'font-semibold',
   input: 'input-custom'
 };
 
 export default function Autocomplete<V>({
   setValue,
   options,
-  multiple,
+  // multiple,
   label,
   defaultValue,
   inputLabelProps
 }: AutocompleteProps<V>) {
-  const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0] || defaultValue);
-
+  const [selectedOption, setSelectedOption] = useState(defaultValue || options[0]);
   return (
     <Combobox
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      multiple={(multiple ? multiple : false) as any}
       value={selectedOption}
       onChange={(value) => {
-        if (!multiple && !Array.isArray(value) && typeof value !== 'object') {
-          setValue && setValue(value);
-        }
+        setValue && setValue(value.value);
 
         setSelectedOption(value);
       }}
     >
       <div className={inputLabelProps?.wrapperInputLabel?.className}>
-        {label ? <Combobox.Label {...inputLabelProps?.labelProps}>{label}</Combobox.Label> : <></>}
+        {label ? (
+          <Combobox.Label className={autoCompleteStyle.label} {...inputLabelProps?.labelProps}>
+            {label}
+          </Combobox.Label>
+        ) : (
+          <></>
+        )}
         <Combobox.Input<'input', { value: V; title: string }[]>
           {...inputLabelProps?.inputProps}
-          displayValue={
-            multiple
-              ? (values) => {
-                  return values.map((el) => el.title).join(', ');
-                }
-              : undefined
-          }
           autoComplete={'off'}
           value={defaultValue?.value as string}
           className={classNameGenerator(autoCompleteStyle.input, inputLabelProps?.inputProps?.className)}
@@ -52,7 +47,7 @@ export default function Autocomplete<V>({
         <div className="relative ">
           <Combobox.Options className={autoCompleteStyle.options}>
             {options.map((option) => (
-              <Combobox.Option key={option.id} value={multiple ? option : option.value}>
+              <Combobox.Option key={option.id} value={option}>
                 {({}) => {
                   return <div>{option.title} </div>;
                 }}

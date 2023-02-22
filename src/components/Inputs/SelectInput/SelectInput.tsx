@@ -10,7 +10,7 @@ const selectOptionsStyle = {
   active: (active: boolean) => {
     return `${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`;
   },
-  label: 'font-medium',
+  label: 'font-semibold',
   button: 'input-custom px-2 shadow-sm',
   options:
     'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm'
