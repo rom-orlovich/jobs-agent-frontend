@@ -30,7 +30,7 @@ export default function SelectInput<V extends string>({
   //If defaultValue is array and has a values so use the defaultValue as is.
   //Otherwise use the the first option as array of array.
   //Else, if defaultValue is not array use the first option as is.
-  console.log(defaultValue);
+
   const curDefaultValue = Array.isArray(defaultValue)
     ? defaultValue?.length
       ? defaultValue.length === 1

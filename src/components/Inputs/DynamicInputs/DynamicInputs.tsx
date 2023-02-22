@@ -1,9 +1,8 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { MouseEventHandler, useRef, useState } from 'react';
 
 import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs.types';
 import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
 import CircleAddButton from '@/components/Buttons/CircleAddButton';
-
 /**
  * This component create dynamic array of inputs.
  * Each time the user execute the addMoreInput function which pass as props to the Render element,a new input is created.
@@ -57,11 +56,19 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
       }
     ];
   };
+  const ref = useRef<null | HTMLDivElement>(null);
+  console.log(ref);
 
   // The function that execute the adding of a new input in the array.
   const addMoreInput: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+
     setInputState(addNewInput);
+    // setTimeout(() => {
+    //   ref.current?.scrollIntoView({
+    //     behavior: 'smooth'
+    //   });
+    // }, 100);
   };
 
   // The function that execute the removing of a exist input in the array.
@@ -71,6 +78,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   };
   return (
     <>
+      {/* <Overflow outerElementClass="h-[12rem]" innerElementClass="min-h-[15rem] max-h-[40rem]"> */}
       {inputs?.map((input, i) => {
         return (
           <span key={input?.id} className="relative">
@@ -79,10 +87,10 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
           </span>
         );
       })}
-      <div className="mt-2 flex w-full justify-center">
+      <div ref={ref} className="mt-2 flex w-full justify-center">
         <CircleAddButton onClick={addMoreInput} />
       </div>
-
+      {/* </Overflow> */}
       {children ? children(inputs) : <></>}
     </>
   );
