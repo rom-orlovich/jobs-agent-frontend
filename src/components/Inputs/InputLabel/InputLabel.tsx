@@ -42,7 +42,6 @@ function InputLabel({
   ) : (
     <></>
   );
-
   return (
     <>
       <label

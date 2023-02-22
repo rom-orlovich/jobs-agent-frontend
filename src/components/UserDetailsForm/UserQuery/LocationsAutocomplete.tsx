@@ -1,14 +1,20 @@
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
+
 import { useSwrHook } from '@/hooks/useSwr';
-import { FormComponents } from '@/hooks/useUserDetailsForm/useUserDetailsForm';
+
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Location } from '@/lib/types/api.types';
-
 import React from 'react';
-function LocationsAutocomplete({ formValues, handleSelectionInput }: FormComponents<unknown>) {
+import { AutocompletePropsUserQuery } from './userQuery.types';
+function LocationsAutocomplete({
+  formValues,
+  handleSelectionInput,
+  inputLabelProps
+}: AutocompletePropsUserQuery) {
   const { data: locationData } = useSwrHook<{ data: Location[] }>(
     `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
   );
+
   return (
     <Autocomplete
       defaultValue={{
@@ -23,6 +29,7 @@ function LocationsAutocomplete({ formValues, handleSelectionInput }: FormCompone
         title: el.locationName,
         value: el.locationName
       }))}
+      inputLabelProps={inputLabelProps}
     />
   );
 }

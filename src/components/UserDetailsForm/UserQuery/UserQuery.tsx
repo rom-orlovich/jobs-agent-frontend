@@ -16,8 +16,9 @@ import { UserQuery } from '@/lib/types/api.types';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
-  optionContainer: 'text-right',
-  label: 'text-right'
+  optionContainer: '',
+  label: '',
+  'input-label-wrapper': 'flex flex-col'
 };
 function UserQuery(formComponentsProps: FormComponents<unknown>) {
   const { handleSelectionInput, formValues } = formComponentsProps;
@@ -48,12 +49,26 @@ function UserQuery(formComponentsProps: FormComponents<unknown>) {
   return (
     <div className="flex flex-col gap-2">
       <div className={userQueryStyle.selectInputsContainer}>
-        <PositionsAutocomplete {...formComponentsProps} />
+        <PositionsAutocomplete
+          {...formComponentsProps}
+          inputLabelProps={{
+            wrapperInputLabel: {
+              className: userQueryStyle['input-label-wrapper']
+            }
+          }}
+        />
         <SelectInput {...selectInputProps('ניסיון מקצועי', EXPERIENCE_OPTIONS, 'experience')} />
       </div>
 
       <div className={userQueryStyle.selectInputsContainer}>
-        <LocationsAutocomplete {...formComponentsProps} />
+        <LocationsAutocomplete
+          inputLabelProps={{
+            wrapperInputLabel: {
+              className: userQueryStyle['input-label-wrapper']
+            }
+          }}
+          {...formComponentsProps}
+        />
         <SelectInput
           {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')}
           multiple={false}

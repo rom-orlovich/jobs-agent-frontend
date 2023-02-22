@@ -1,10 +1,16 @@
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
+
 import { useSwrHook } from '@/hooks/useSwr';
-import { FormComponents } from '@/hooks/useUserDetailsForm/useUserDetailsForm';
+
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Position } from '@/lib/types/api.types';
 import React from 'react';
-function PositionsAutocomplete({ formValues, handleSelectionInput }: FormComponents<unknown>) {
+import { AutocompletePropsUserQuery } from './userQuery.types';
+function PositionsAutocomplete({
+  formValues,
+  handleSelectionInput,
+  inputLabelProps
+}: AutocompletePropsUserQuery) {
   const { data: positionData } = useSwrHook<{ data: Position[] }>(
     `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
   );
@@ -22,6 +28,7 @@ function PositionsAutocomplete({ formValues, handleSelectionInput }: FormCompone
         title: el.positionName,
         value: el.positionName
       }))}
+      inputLabelProps={inputLabelProps}
     />
   );
 }

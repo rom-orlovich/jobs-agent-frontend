@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete.types';
+import { classNameGenerator } from '@/lib/utils';
 export default function Autocomplete<V>({
   setValue,
   options,
   multiple,
   label,
-  defaultValue
+  defaultValue,
+  inputLabelProps
 }: AutocompleteProps<V>) {
   const [selectedOption, setSelectedOption] = useState(multiple ? [] : options[0] || defaultValue);
 
@@ -23,9 +25,16 @@ export default function Autocomplete<V>({
         setSelectedOption(value);
       }}
     >
-      {label ? <Combobox.Label className={'font-medium'}>{label}</Combobox.Label> : <></>}
-      <div>
+      <div className={inputLabelProps?.wrapperInputLabel?.className}>
+        {label ? (
+          <Combobox.Label className={'font-medium'} {...inputLabelProps?.labelProps}>
+            {label}
+          </Combobox.Label>
+        ) : (
+          <></>
+        )}
         <Combobox.Input<'input', { value: V; title: string }[]>
+          {...inputLabelProps?.inputProps}
           displayValue={
             multiple
               ? (values) => {
@@ -35,25 +44,25 @@ export default function Autocomplete<V>({
           }
           autoComplete={'off'}
           value={defaultValue?.value as string}
-          className="input-custom"
+          className={classNameGenerator('input-custom', inputLabelProps?.inputProps?.className)}
           onChange={(event) => {
             setValue && setValue(event.target.value as V);
           }}
         />
-
-        <div className="relative ">
-          <Combobox.Options
-            className={'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md'}
-          >
-            {options.map((option) => (
-              <Combobox.Option key={option.id} value={multiple ? option : option.value}>
-                {({}) => {
-                  return <div>{option.title} </div>;
-                }}
-              </Combobox.Option>
-            ))}
-          </Combobox.Options>
-        </div>
+        <div />
+      </div>
+      <div className="relative ">
+        <Combobox.Options
+          className={'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md'}
+        >
+          {options.map((option) => (
+            <Combobox.Option key={option.id} value={multiple ? option : option.value}>
+              {({}) => {
+                return <div>{option.title} </div>;
+              }}
+            </Combobox.Option>
+          ))}
+        </Combobox.Options>
       </div>
     </Combobox>
   );
