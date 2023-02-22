@@ -4,7 +4,7 @@ import UserDetailsForm from '@/components/UserDetailsForm/UserDetailsForm';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
 import { getServerSession } from 'next-auth';
-import ScannerControlButtons from '@/components/ScannerControlButtons/ScannerControlButtons';
+
 import { useSession } from 'next-auth/react';
 import { getUserByID } from 'mongoDB/handlers';
 import { authOptions } from './api/auth/[...nextauth]';
@@ -46,7 +46,6 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
       <h1>Hey {session.data?.user.name}</h1>
       <div className="flex h-full flex-col items-center justify-center">
         <UserDetailsForm user={user} />
-        <ScannerControlButtons user={user} />
       </div>
     </>
   );

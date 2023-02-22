@@ -1,7 +1,7 @@
 import { classNameGenerator } from '@/lib/utils';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { ButtonProps } from '../HTML.types';
-function ConfirmButton({ className, ...props }: ButtonProps) {
+function ConfirmButton({ className, children, ...props }: ButtonProps & PropsWithChildren) {
   return (
     <button
       {...props}
@@ -10,7 +10,7 @@ function ConfirmButton({ className, ...props }: ButtonProps) {
         className
       )}
     >
-      אשר
+      {children || 'שמור'}
     </button>
   );
 }

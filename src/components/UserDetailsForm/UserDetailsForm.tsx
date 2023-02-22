@@ -9,6 +9,7 @@ import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 import ConfirmButton from '../Buttons/ConfirmButton';
+import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
 const userDetailsFormStyle = {
   form: 'w-[28rem]',
   heading: 'text-xl font-[500]',
@@ -18,8 +19,7 @@ const userDetailsFormStyle = {
   input: 'text-center py-[0.3rem] text-[0.8rem]',
   labelTextArea: 'flex flex-col max-w-[theme(spacing.80)]',
   icon: 'text-adding-primary',
-
-  buttonContainer: 'flex justify-end'
+  buttonContainer: 'flex justify-end mt-2'
 };
 
 function UserDetailsForm({ user }: { user: UserOptions }) {
@@ -27,8 +27,12 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
 
   return (
     <form onSubmit={userForm.handleUserDetailsFormSubmit} className={userDetailsFormStyle.form}>
-      <div>
-        <h3 className={userDetailsFormStyle.heading}> מה הניסיון הכללי שלך?</h3>
+      <ToggleTopic
+        headingProps={{
+          className: userDetailsFormStyle.heading,
+          title: 'מה הניסיון הכללי שלך?'
+        }}
+      >
         <InputLabel
           labelProps={{
             className: userDetailsFormStyle.label
@@ -50,7 +54,8 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
         >
           שנות ניסיון
         </InputLabel>
-      </div>
+      </ToggleTopic>
+
       <ToggleTopic
         headingProps={{
           className: userDetailsFormStyle.heading,
@@ -77,9 +82,9 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </ToggleTopic>
 
       <div className={userDetailsFormStyle.buttonContainer}>
-        <ConfirmButton type="submit">אשר</ConfirmButton>
+        <ConfirmButton type="submit">שמור חיפוש</ConfirmButton>
       </div>
-      {/* <p>{userForm.formState.data?.message}</p> */}
+      <ScannerControlButtons user={user} />
     </form>
   );
 }

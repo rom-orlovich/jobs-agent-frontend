@@ -43,7 +43,7 @@ function Requirements({ handleRequirements, formValues }: FormComponents<unknown
     >
       {(values) => {
         return (
-          <div className="flex w-full justify-end">
+          <div className="mt-1 flex w-full justify-end">
             <ConfirmButton onClick={handleConfirmRequirements(values)} />
           </div>
         );

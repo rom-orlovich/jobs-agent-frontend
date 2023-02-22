@@ -6,7 +6,7 @@ import { Option as OptionV, SelectInputProps } from './selectInput.types';
 import { classNameGenerator } from '@/lib/utils';
 
 export const isActiveStyle = (active: boolean) => {
-  return `${active ? 'bg-success-primary bg-text-secondary' : 'bg-text-secondary bg-text-primary'}`;
+  return `${active ? 'bg-confirm-primary bg-text-secondary' : 'bg-text-secondary bg-text-primary'}`;
 };
 
 const selectOptionsStyle = {
@@ -52,6 +52,9 @@ export default function SelectInput<V extends string>({
   }, []);
 
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
+
+  console.log('defaultValue', defaultValue);
+  console.log('selectOption', selectOption);
   return (
     <Listbox
       multiple={multiple ? true : false}

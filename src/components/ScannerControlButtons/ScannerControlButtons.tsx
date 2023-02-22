@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import React, { MouseEventHandler, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { FaCloudDownloadAlt } from 'react-icons/fa';
+import { AiOutlineReload } from 'react-icons/ai';
 
 function ScannerControlButtons({ user }: { user: UserOptions }) {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.
@@ -52,9 +53,12 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
   };
 
   return (
-    <>
-      <button className="mr-2" onClick={handleLoadButton}>
-        טען
+    <div className="mt-3 flex justify-between">
+      <button
+        className="button-custom flex items-center justify-between gap-2 bg-[#8b5cf6]  text-xl text-text-secondary"
+        onClick={handleLoadButton}
+      >
+        טען משרות <AiOutlineReload />
       </button>
       <button
         className="button-custom bg-success-secondary flex items-center justify-between gap-2 bg-success-secondary-500 text-xl text-text-secondary hover:bg-success-secondary-400"
@@ -62,12 +66,15 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
       >
         הורדה <FaCloudDownloadAlt />
       </button>
-      {/* <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
-        {activeQuery ? 'בטל' : 'הפעל'} חיפוש לפי חיפוש אחרון
-      </button> */}
+
       {scanner.isMutating && <p>טוען...</p>}
-    </>
+    </div>
   );
 }
 
 export default ScannerControlButtons;
+{
+  /* <button className="bg-blue-300" onClick={() => setActiveQuery((pre) => !pre)}>
+        {activeQuery ? 'בטל' : 'הפעל'} חיפוש לפי חיפוש אחרון
+      </button> */
+}

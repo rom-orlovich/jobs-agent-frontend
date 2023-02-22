@@ -19,7 +19,7 @@ const contextClass = {
   error: 'bg-error-primary',
   info: 'bg-info',
   warning: 'bg-warning',
-  default: 'bg-success-primary',
+  default: 'bg-success-primary-500',
   dark: ''
 };
 
