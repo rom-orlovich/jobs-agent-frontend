@@ -51,8 +51,8 @@ export default function SelectInput<V extends string>({
         >
           {labelProps.title}
         </Listbox.Label>
-        <div className="relative mt-1">
-          <Listbox.Button className={'input-custom border-none border-cyan-500 shadow-sm'}>
+        <div className="relative">
+          <Listbox.Button className={'input-custom px-2 shadow-sm'}>
             {Array.isArray(selectOption)
               ? selectOption.map((el) => el.title).join(', ')
               : selectOption.title}

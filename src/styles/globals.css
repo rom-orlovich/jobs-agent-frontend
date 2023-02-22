@@ -4,7 +4,7 @@
 
 @layer components {
   .input-custom {
-    @apply rounded-lg border border-gray-300 font-normal focus:border focus:border-blue-300 focus:outline-blue-100;
+    @apply rounded-lg border border-gray-300 px-2 font-normal focus:border focus:border-blue-300 focus:outline-blue-100;
   }
 }
 body {
