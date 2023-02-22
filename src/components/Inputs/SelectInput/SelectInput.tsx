@@ -34,9 +34,9 @@ export default function SelectInput<V extends string>({
 
   const curDefaultValue = Array.isArray(defaultValue)
     ? defaultValue?.length
-      ? defaultValue.length === 1
-        ? defaultValue[0]
-        : defaultValue
+      ? // ? defaultValue.length === 1
+        //   ? defaultValue[0]
+        defaultValue
       : [options[0]]
     : options[0];
 
@@ -52,9 +52,6 @@ export default function SelectInput<V extends string>({
   }, []);
 
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
-
-  console.log('defaultValue', defaultValue);
-  console.log('selectOption', selectOption);
   return (
     <Listbox
       multiple={multiple ? true : false}

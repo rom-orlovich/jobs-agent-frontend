@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react';
 import React, { MouseEventHandler, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { FaCloudDownloadAlt } from 'react-icons/fa';
-import { AiOutlineReload } from 'react-icons/ai';
-
+import { MdOutlineDataSaverOff } from 'react-icons/md';
+import Spinner from '../Spinner/Spinner';
 function ScannerControlButtons({ user }: { user: UserOptions }) {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -31,8 +31,12 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
   // Handles the Load button click event.
   const handleLoadButton: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    await scanner.trigger();
-    console.log(scanner.data);
+    try {
+      await scanner.trigger();
+      console.log(scanner.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Attaches the blob result to link element.
@@ -58,7 +62,7 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
         className="button-custom flex items-center justify-between gap-2 bg-[#8b5cf6]  text-xl text-text-secondary"
         onClick={handleLoadButton}
       >
-        טען משרות <AiOutlineReload />
+        טען משרות <MdOutlineDataSaverOff />
       </button>
       <button
         className="button-custom bg-success-secondary flex items-center justify-between gap-2 bg-success-secondary-500 text-xl text-text-secondary hover:bg-success-secondary-400"
@@ -66,8 +70,7 @@ function ScannerControlButtons({ user }: { user: UserOptions }) {
       >
         הורדה <FaCloudDownloadAlt />
       </button>
-
-      {scanner.isMutating && <p>טוען...</p>}
+      <Spinner isLoading={scanner.isMutating} />
     </div>
   );
 }

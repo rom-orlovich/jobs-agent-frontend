@@ -10,6 +10,18 @@
     @apply rounded-lg p-1 px-4;
   }
 }
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 body {
   height: 200vh;

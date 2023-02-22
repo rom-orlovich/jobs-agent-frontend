@@ -10,8 +10,9 @@ import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 import ConfirmButton from '../Buttons/ConfirmButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
+import { MdSave } from 'react-icons/md';
 const userDetailsFormStyle = {
-  form: 'w-[28rem]',
+  form: 'w-[28rem] flex flex-col gap-2',
   heading: 'text-xl font-[500]',
   label: 'flex items-center text-center gap-1',
   text: '',
@@ -82,7 +83,9 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </ToggleTopic>
 
       <div className={userDetailsFormStyle.buttonContainer}>
-        <ConfirmButton type="submit">שמור חיפוש</ConfirmButton>
+        <ConfirmButton type="submit">
+          שמור חיפוש <MdSave />
+        </ConfirmButton>
       </div>
       <ScannerControlButtons user={user} />
     </form>

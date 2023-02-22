@@ -75,7 +75,6 @@ function useUserDetailsForm(user: UserOptions) {
 
     const data = await result.json();
     toast(data.message);
-    // toast(data.message);
     return data;
   });
 
