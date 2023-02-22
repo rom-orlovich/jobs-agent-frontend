@@ -62,7 +62,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
         }}
       >
         <div className="h-[50vh] overflow-x-hidden overflow-y-scroll">
-          <div className="h-[80vh]  p-2">
+          <div className="h-[80vh] p-2">
             <Requirements {...userForm} />
           </div>
         </div>

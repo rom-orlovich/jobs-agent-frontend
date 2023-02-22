@@ -17,8 +17,8 @@ import { UserQuery } from '@/lib/types/api.types';
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2',
   optionContainer: '',
-  label: '',
-  'input-label-wrapper': 'flex flex-col'
+  selectInputWrapper: '',
+  'input-label-wrapper': 'flex flex-col font-lg'
 };
 function UserQuery(formComponentsProps: FormComponents<unknown>) {
   const { handleSelectionInput, formValues } = formComponentsProps;
@@ -27,15 +27,18 @@ function UserQuery(formComponentsProps: FormComponents<unknown>) {
     options: Option<string>[],
     id: keyof UserQuery
   ) => SelectInputProps<string> = (title, options, id) => ({
+    selectInputWrapper: {
+      className: userQueryStyle.selectInputWrapper
+    },
     labelProps: {
-      title: title,
-      className: userQueryStyle.label
+      title: title
+      // className: userQueryStyle.label
     },
     multiple: true,
     options: options,
-    optionsElProps: {
-      className: userQueryStyle.optionContainer
-    },
+    // optionsElProps: {
+    //   // className: userQueryStyle.optionContainer
+    // },
     setValue: handleSelectionInput(id),
     defaultValue: Array.isArray(formValues?.userQuery[id])
       ? options.filter((el) => formValues.userQuery[id].includes(el.value))

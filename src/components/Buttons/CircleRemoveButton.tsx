@@ -7,8 +7,8 @@ import { CircleButtonProps } from './Button.types';
 function CircleRemoveButton({ className, iconsProps, ...props }: CircleButtonProps) {
   return (
     <button
-      className={classNameGenerator('absolute left-0 top-[50%]  text-red-400', className)}
       {...props}
+      className={classNameGenerator('absolute left-0 top-[50%]  text-red-400', className)}
     >
       <IoMdRemoveCircle className={classNameGenerator('h-[1.5rem] w-[1.5rem]', iconsProps?.className)} />
     </button>

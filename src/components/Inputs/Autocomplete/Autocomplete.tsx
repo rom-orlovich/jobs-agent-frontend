@@ -2,6 +2,12 @@ import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { AutocompleteProps } from './autocomplete.types';
 import { classNameGenerator } from '@/lib/utils';
+
+const autoCompleteStyle = {
+  options: 'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md',
+  input: 'input-custom'
+};
+
 export default function Autocomplete<V>({
   setValue,
   options,
@@ -26,13 +32,7 @@ export default function Autocomplete<V>({
       }}
     >
       <div className={inputLabelProps?.wrapperInputLabel?.className}>
-        {label ? (
-          <Combobox.Label className={'font-medium'} {...inputLabelProps?.labelProps}>
-            {label}
-          </Combobox.Label>
-        ) : (
-          <></>
-        )}
+        {label ? <Combobox.Label {...inputLabelProps?.labelProps}>{label}</Combobox.Label> : <></>}
         <Combobox.Input<'input', { value: V; title: string }[]>
           {...inputLabelProps?.inputProps}
           displayValue={
@@ -44,15 +44,13 @@ export default function Autocomplete<V>({
           }
           autoComplete={'off'}
           value={defaultValue?.value as string}
-          className={classNameGenerator('input-custom', inputLabelProps?.inputProps?.className)}
+          className={classNameGenerator(autoCompleteStyle.input, inputLabelProps?.inputProps?.className)}
           onChange={(event) => {
             setValue && setValue(event.target.value as V);
           }}
         />
         <div className="relative ">
-          <Combobox.Options
-            className={'absolute z-50 flex w-full flex-col items-center bg-slate-100 shadow-md'}
-          >
+          <Combobox.Options className={autoCompleteStyle.options}>
             {options.map((option) => (
               <Combobox.Option key={option.id} value={multiple ? option : option.value}>
                 {({}) => {

@@ -4,13 +4,26 @@ import { AiOutlineCheck } from 'react-icons/ai';
 
 import { Option as OptionV, SelectInputProps } from './selectInput.types';
 import { classNameGenerator } from '@/lib/utils';
+
+//
+const selectOptionsStyle = {
+  active: (active: boolean) => {
+    return `${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`;
+  },
+  label: 'font-medium',
+  button: 'input-custom px-2 shadow-sm',
+  options:
+    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm'
+};
+
 export default function SelectInput<V extends string>({
   options,
   optionsElProps,
   labelProps,
   setValue,
   defaultValue,
-  multiple
+  multiple,
+  selectInputWrapper
 }: SelectInputProps<V>) {
   const curDefaultValue = Array.isArray(defaultValue)
     ? defaultValue.length
@@ -28,13 +41,6 @@ export default function SelectInput<V extends string>({
   }, []);
 
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
-
-  const optionsStyle = {
-    active: (active: boolean) => {
-      return `${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`;
-    },
-    label: 'font-medium'
-  };
   return (
     <Listbox
       multiple={multiple ? true : false}
@@ -44,20 +50,23 @@ export default function SelectInput<V extends string>({
         setOption(value);
       }}
     >
-      <div className="flex flex-col">
+      <div
+        {...selectInputWrapper}
+        className={classNameGenerator('flex flex-col', selectInputWrapper?.className)}
+      >
         <Listbox.Label
           {...labelProps}
-          className={classNameGenerator(optionsStyle.label, labelProps.className)}
+          className={classNameGenerator(selectOptionsStyle.label, labelProps.className)}
         >
           {labelProps.title}
         </Listbox.Label>
         <div className="relative">
-          <Listbox.Button className={'input-custom px-2 shadow-sm'}>
+          <Listbox.Button className={selectOptionsStyle.button}>
             {Array.isArray(selectOption)
               ? selectOption.map((el) => el.title).join(', ')
               : selectOption.title}
           </Listbox.Button>
-          <Listbox.Options className="absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm">
+          <Listbox.Options className={selectOptionsStyle.options}>
             {options.map((option) => {
               return (
                 <Listbox.Option key={option.id} value={option}>
@@ -65,12 +74,13 @@ export default function SelectInput<V extends string>({
                     return (
                       <div
                         className={classNameGenerator(
-                          optionsStyle['active'](active),
+                          selectOptionsStyle['active'](active),
+                          'flex flex-row items-center justify-between',
                           optionsElProps?.className
                         )}
                       >
-                        {selected && <AiOutlineCheck />}
                         {option.title}
+                        {selected && <AiOutlineCheck />}
                       </div>
                     );
                   }}

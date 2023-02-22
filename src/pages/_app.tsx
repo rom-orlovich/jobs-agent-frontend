@@ -1,13 +1,13 @@
 import '@/styles/globals.css';
-import { Poppins } from '@next/font/google';
+import { Roboto } from '@next/font/google';
 import type { AppProps } from 'next/app';
 import { SWRConfig } from 'swr';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
 import Layout from '@/components/Layout/Layout';
 import { classNameGenerator } from '@/lib/utils';
-const poppins = Poppins({
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
+const roboto = Roboto({
+  weight: ['100', '300', '400', '500', '700', '900'],
   subsets: ['latin']
 });
 type AppPropsWithSession = AppProps & { session: Session };
@@ -21,7 +21,7 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
         }}
       >
         <Layout>
-          <main className={classNameGenerator(poppins.className)}>
+          <main className={classNameGenerator(roboto.className)}>
             <Component {...pageProps} />
           </main>
         </Layout>

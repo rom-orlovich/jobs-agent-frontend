@@ -67,7 +67,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
             return (
               <li className="relative min-w-[15rem] text-center" key={el + i}>
                 {el}
-                <CircleRemoveButton className="top-[10%]" onClick={handleRemoveValue(el)} />
+                <CircleRemoveButton className="!top-[10%]" onClick={handleRemoveValue(el)} />
               </li>
             );
           })}
