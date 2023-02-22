@@ -14,7 +14,7 @@ function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormCo
     <InputBucket defaultValues={formValues.excludedRequirements} inputLabelProps={{}}>
       {(bucketValues) => {
         return (
-          <div className="m-2 flex w-full justify-end">
+          <div className="flex w-full justify-end">
             <ConfirmButton className="mt-2" onClick={handleConfirmExcludedRequirements(bucketValues)} />
           </div>
         );

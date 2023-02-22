@@ -48,7 +48,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
   };
 
   return (
-    <div>
+    <>
       <div className="relative">
         <InputLabel
           {...inputLabelProps}
@@ -65,7 +65,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
         <ul>
           {curBucketValuesArr.map((el, i) => {
             return (
-              <li className="relative min-w-[15rem] text-center" key={el + i}>
+              <li className="relative text-center" key={el + i}>
                 {el}
                 <CircleRemoveButton className="!top-[10%]" onClick={handleRemoveValue(el)} />
               </li>
@@ -74,7 +74,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
         </ul>
       </div>
       {children(curBucketValuesArr)}
-    </div>
+    </>
   );
 }
 
