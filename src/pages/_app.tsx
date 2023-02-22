@@ -26,7 +26,7 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
         <Layout>
           <main
             className={
-              (classNameGenerator(roboto.className), 'flex min-h-[100vh] flex-col justify-center')
+              (classNameGenerator(roboto.className), 'flex min-h-[85vh] flex-col justify-center')
             }
           >
             <Component {...pageProps} />

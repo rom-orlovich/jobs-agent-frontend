@@ -12,7 +12,7 @@ import ConfirmButton from '../Buttons/ConfirmButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
 import { MdSave } from 'react-icons/md';
 const userDetailsFormStyle = {
-  form: 'max-w-[30rem] min-w-[12rem] flex flex-col gap-4',
+  form: 'max-w-[35rem] min-w-[26rem] flex flex-col gap-4 shadow-lg p-4 rounded-sm',
   heading: 'text-xl font-[500]',
   label: 'flex items-center text-center gap-1',
   text: '',
