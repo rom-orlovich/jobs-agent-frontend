@@ -8,30 +8,30 @@ import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
+import ConfirmButton from '../Buttons/ConfirmButton';
 const formStyle = {
   form: 'w-[28rem]'
 };
 
 const inputLabelStyle = {
+  heading: 'text-xl font-[500]',
   label: 'flex items-center text-center gap-1',
   text: '',
   inputContainer: 'max-w-[4rem]',
   input: 'text-center py-[0.3rem] text-[0.8rem]',
   labelTextArea: 'flex flex-col max-w-[theme(spacing.80)]',
   icon: 'text-green-400',
-  button: 'absolute right-0 top-0'
+
+  buttonContainer: 'flex justify-end'
 };
 
 function UserDetailsForm({ user }: { user: UserOptions }) {
   const userForm = useUserDetailsForm(user);
 
-  const userDetailsFormStyle = {
-    heading: 'text-xl font-[500]'
-  };
   return (
     <form onSubmit={userForm.handleUserDetailsFormSubmit} className={formStyle.form}>
       <div>
-        <h3 className={userDetailsFormStyle.heading}> מה הניסיון הכללי שלך?</h3>
+        <h3 className={inputLabelStyle.heading}> מה הניסיון הכללי שלך?</h3>
         <InputLabel
           labelProps={{
             className: inputLabelStyle.label
@@ -56,7 +56,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       </div>
       <ToggleTopic
         headingProps={{
-          className: userDetailsFormStyle.heading,
+          className: inputLabelStyle.heading,
           title: 'מה הדרישות שלך?'
         }}
       >
@@ -66,7 +66,7 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       <div>
         <ToggleTopic
           headingProps={{
-            className: userDetailsFormStyle.heading,
+            className: inputLabelStyle.heading,
             title: 'מה אתה לא מחפש?'
           }}
         >
@@ -76,15 +76,16 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
       <div>
         <ToggleTopic
           headingProps={{
-            className: userDetailsFormStyle.heading,
+            className: inputLabelStyle.heading,
             title: 'מה אתה מחפש?'
           }}
         >
           <UserQuery {...userForm} />
         </ToggleTopic>
       </div>
-
-      <button type="submit">אשר</button>
+      <div className={inputLabelStyle.buttonContainer}>
+        <ConfirmButton type="submit">אשר</ConfirmButton>
+      </div>
       <p>{userForm.formState.data?.message}</p>
     </form>
   );
