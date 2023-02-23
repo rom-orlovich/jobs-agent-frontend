@@ -11,12 +11,12 @@ import SideNavItem from './SideNavItem';
 import { navLinks } from './SidebarLinks';
 
 const sideBarStyle = {
-  nav: 'fixed top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
+  nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
 
   isOn: {
     nav: {
       true: 'min-w-[12rem]',
-      false: 'min-w-[4rem]'
+      false: 'min-w-[2rem]'
     }
   },
   'hover-link': 'hover:bg-nav-600',

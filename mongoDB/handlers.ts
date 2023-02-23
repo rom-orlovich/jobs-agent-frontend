@@ -1,4 +1,5 @@
 import { UserOptions } from '@/lib/types/api.types';
+import { JobsPosts } from './lib/types';
 import { getCollection, getDocumentsByName } from './lib/utils';
 export const getLocations = async (name: string) => {
   const locationsDocs = await getDocumentsByName(name, 'locations', 'locationName');
@@ -52,4 +53,9 @@ export const getUserByID = async (userID: string) => {
     console.log(error);
     return undefined;
   }
+};
+
+export const getJobsPostsByTitle = async (name: string, hash: string, page = 1, limit = 20) => {
+  const jobsDocs = await getDocumentsByName<JobsPosts>(name, 'jobs', 'title', page, limit);
+  return jobsDocs;
 };

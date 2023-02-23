@@ -20,12 +20,15 @@ export const getCollection = async (colName: string, dbName = 'jobs-agent-db'): 
  * @param {string} dbName The DB name. default 'jobs-agent-db'.
  * @returns {Promise<D[]>} The array of the documents that were found.
  */
-export const getDocumentsByName = async <D extends GenericRecord<string>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getDocumentsByName = async <D extends GenericRecord<any>>(
   name: string,
   colName: string,
   fieldName: string,
+  page = 1,
+  limit = 20,
   dbName = 'jobs-agent-db'
-) => {
+): Promise<D[]> => {
   try {
     const collection = await getCollection(colName, dbName);
     const regex = new RegExp(`^${name}`, 'i');
@@ -33,10 +36,11 @@ export const getDocumentsByName = async <D extends GenericRecord<string>>(
       .find<D>({
         [fieldName]: regex
       })
-      .limit(20)
-      .sort({
-        [fieldName]: 1
-      });
+      .limit(limit)
+      .skip((page - 1) * limit);
+    // .sort({
+    //   [fieldName]: 1
+    // });
 
     const data = await res.toArray();
     return data;
