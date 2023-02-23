@@ -10,9 +10,9 @@ import { MdOutlineDataSaverOff } from 'react-icons/md';
 import Spinner from '../Spinner/Spinner';
 const buttonsStyle = {
   buttonsContainer: 'mt-3 flex justify-between',
-  load: 'button-custom flex items-center justify-between gap-2 bg-loading-500 hover:bg-loading-400 disabled:bg-loading-600  text-xl text-text-secondary',
+  load: 'button-custom flex items-center justify-between gap-2 bg-loading-500 hover:bg-loading-400 disabled:bg-loading-600  text-xl text-white',
   download:
-    'button-custom bg-success-secondary flex items-center justify-between gap-2 disabled:bg-success-primary-600 bg-success-secondary-500 text-xl text-text-secondary hover:bg-success-secondary-400'
+    'button-custom bg-success-secondary flex items-center justify-between gap-2 disabled:bg-success-primary-600 bg-success-secondary-500 text-xl text-white hover:bg-success-secondary-400'
 };
 function ScannerControlButtons({ user }: { user: UserOptions }) {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.

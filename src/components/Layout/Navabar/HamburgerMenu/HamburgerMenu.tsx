@@ -9,9 +9,9 @@ function HamburgerMenu() {
       }}
       className={`relative ${state ? 'hamburger-menu-close' : ''} space-y-2`}
     >
-      <div className="first h-0.5 w-8 bg-text-secondary"></div>
-      <div className=" third h-0.5 w-8  bg-text-secondary"></div>
-      <div className="sec h-0.5 w-8  bg-text-secondary"></div>
+      <div className="first h-0.5 w-8 bg-white"></div>
+      <div className=" third h-0.5 w-8  bg-white"></div>
+      <div className="sec h-0.5 w-8  bg-white"></div>
     </button>
   );
 }

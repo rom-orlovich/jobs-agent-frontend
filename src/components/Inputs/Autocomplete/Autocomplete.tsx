@@ -6,7 +6,7 @@ import { isActiveStyle } from '../SelectInput/SelectInput';
 
 const autoCompleteStyle = {
   options:
-    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-hidden rounded-md bg-text-secondary py-1 text-base shadow-md  ring-1 sm:text-sm',
+    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-hidden rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm',
   label: 'font-semibold',
   input: 'input-custom'
 };

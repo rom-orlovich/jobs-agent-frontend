@@ -1,8 +1,17 @@
 import React, { PropsWithChildren } from 'react';
-const dashboardStyle = 'flex min-h-[85vh] flex-col justify-center';
+import Sidebar from './Sidebar/Sidebar';
+const dashboardStyle = {
+  mainContainer: 'flex min-h-[100vh] flex-col justify-center'
+};
 
 function Dashboard({ isAuthenticated, children }: { isAuthenticated: boolean } & PropsWithChildren) {
-  return <section className={dashboardStyle}>{isAuthenticated && children}</section>;
+  if (!isAuthenticated) return <></>;
+  return (
+    <section className={dashboardStyle.mainContainer}>
+      <Sidebar />
+      <section> {children} </section>
+    </section>
+  );
 }
 
 export default Dashboard;

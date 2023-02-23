@@ -13,7 +13,7 @@ export interface InputBucketProps {
 const inputBucketStyle = {
   'add-button': 'absolute top-[12%] mr-1',
   'tags-list': 'mt-2 flex flex-wrap gap-2',
-  tag: 'relative  flex h-8 min-w-[5rem] cursor-pointer items-center justify-center rounded-md bg-tag-500 text-center text-text-secondary hover:bg-tag-400',
+  tag: 'relative  flex h-8 min-w-[5rem] cursor-pointer items-center justify-center rounded-md bg-tag-500 text-center text-white hover:bg-tag-400',
   'button-x': 'absolute right-0 top-0'
 };
 

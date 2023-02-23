@@ -6,16 +6,12 @@ import { Option as OptionV, SelectInputProps } from './selectInput.types';
 import { classNameGenerator } from '@/lib/utils';
 
 export const isActiveStyle = (active: boolean) => {
-  return `${
-    active
-      ? ' bg-success-primary-400 bg-text-secondary cursor-pointer'
-      : 'bg-text-secondary bg-text-primary'
-  }`;
+  return `${active ? ' bg-success-primary-400 text-white cursor-pointer' : 'bg-white text-black'}`;
 };
 
 const selectOptionsStyle = {
   isActiveStyle,
-  label: 'font-semibold ',
+  label: 'font-semibold cursor-pointer',
   button: 'input-custom px-2 shadow-sm min-w-[8rem]',
   options:
     'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-auto rounded-md bg-text-secondary py-1 text-base shadow-md  ring-1 sm:text-sm',

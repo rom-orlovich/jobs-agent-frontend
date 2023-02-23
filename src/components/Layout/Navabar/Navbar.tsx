@@ -17,17 +17,17 @@ function Navbar({ isAuthenticated }: { isAuthenticated: boolean }) {
   };
   const curButtonOptions = buttonOptions[`${isAuthenticated}`];
 
+  const navbarStyle = {
+    nav: 'fix top-0 flex h-[3rem] w-full items-center justify-start bg-slate-400'
+  };
   const button = (
-    <button
-      className="button-custom  text-text-secondary hover:opacity-75"
-      onClick={curButtonOptions.onClick}
-    >
+    <button className="button-custom  text-white hover:opacity-75" onClick={curButtonOptions.onClick}>
       {curButtonOptions.text}
     </button>
   );
 
   return (
-    <nav className="flex h-[4rem] w-full items-center justify-start bg-slate-500">
+    <nav className={navbarStyle.nav}>
       <div> {button} </div>
     </nav>
   );

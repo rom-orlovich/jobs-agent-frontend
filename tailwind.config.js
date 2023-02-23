@@ -34,10 +34,7 @@ module.exports = {
             500: '#ef4444'
           }
         },
-        text: {
-          primary: '#171717',
-          secondary: 'white'
-        },
+
         warning: '#fb923c',
         info: '#9ca3af',
         tag: {
@@ -48,7 +45,11 @@ module.exports = {
           400: '#8153ec',
           500: '#8b5cf6',
           600: '#715e9e'
-        }
+        },
+        nav: {
+          500: '#64748b'
+        },
+        background: '#e2e8f0'
       }
     }
   },
