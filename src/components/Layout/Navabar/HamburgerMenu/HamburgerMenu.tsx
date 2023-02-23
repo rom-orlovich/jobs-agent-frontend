@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { ToggleChildrenProps } from '@/components/Toggle/Toggle';
+import { classNameGenerator } from '@/lib/utils';
+import React from 'react';
 
-function HamburgerMenu() {
-  const [state, setState] = useState(false);
-
+function HamburgerMenu(props: ToggleChildrenProps) {
   const hamburgerMenuStyle = {
+    line: 'h-0.5 w-6 bg-white duration-100',
     x: {
       true: {
         first: 'translate-y-[2px] rotate-[45deg]',
@@ -17,19 +18,15 @@ function HamburgerMenu() {
       }
     }
   };
-  const boolStr = String(state) as 'true' | 'false';
+  const line = hamburgerMenuStyle.line;
+  const boolStr = String(props.isON) as 'true' | 'false';
   const menu = hamburgerMenuStyle['x'][boolStr];
   return (
     <div className="mt-4 flex h-8 w-full flex-col items-center justify-center">
-      <button
-        onClick={() => {
-          setState((pre) => !pre);
-        }}
-        className={` ${state ? '' : ''} h-4 w-fit `}
-      >
-        <div className={`h-0.5 w-6 bg-white duration-100 ${menu.first}`} />
-        <div className={`h-0.5 w-6 bg-white duration-100 ${menu.sec}`} />
-        <div className={`h-0.5 w-6 bg-white duration-100 ${menu.third}`} />
+      <button onClick={props.handleOnClick} className={`h-4 w-fit `}>
+        <div className={classNameGenerator(line, menu.first)} />
+        <div className={classNameGenerator(line, menu.sec)} />
+        <div className={classNameGenerator(line, menu.third)} />
       </button>
     </div>
   );

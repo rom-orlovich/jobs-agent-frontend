@@ -6,3 +6,5 @@ export type GenericRecord<T> = Record<string, T>;
 export type ExtractKey<T, K extends T> = Extract<T, K>;
 export type ExcludeKey<T, K extends T> = Exclude<T, K>;
 export type ValueObj<T extends Record<string, unknown>> = T[keyof T];
+
+export type BoolKey = 'true' | 'false';

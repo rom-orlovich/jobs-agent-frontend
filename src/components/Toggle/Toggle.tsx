@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useState } from 'react';
 
-interface ToggleChildrenProps {
+export interface ToggleChildrenProps {
   handleOnClick: MouseEventHandler<HTMLButtonElement>;
   isON: boolean;
 }
