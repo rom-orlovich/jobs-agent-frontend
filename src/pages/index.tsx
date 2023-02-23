@@ -43,7 +43,6 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <h1>Hey {session.data?.user.name}</h1> */}
       <div className="flex h-full flex-col items-center justify-center">
         <UserDetailsForm user={user} />
       </div>
