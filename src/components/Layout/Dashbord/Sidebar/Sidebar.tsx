@@ -4,7 +4,7 @@ import { BoolKey } from '@/lib/types/types';
 import { classNameGenerator } from '@/lib/utils';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import HamburgerMenu from '../../Navabar/HamburgerMenu/HamburgerMenu';
+import HamburgerMenu from '../../Navabar/HamburgerMenu';
 import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
 import SideNavItem from './SideNavItem';
