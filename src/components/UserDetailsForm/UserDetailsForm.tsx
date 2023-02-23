@@ -8,9 +8,9 @@ import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
-import ConfirmButton from '../Buttons/ConfirmButton';
+// import ConfirmButton from '../Buttons/ConfirmButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
-import { MdSave } from 'react-icons/md';
+// import { MdSave } from 'react-icons/md';
 const userDetailsFormStyle = {
   form: 'max-w-[35rem] min-w-[23rem] flex flex-col gap-4 shadow-lg p-4 rounded-md bg-white ',
   heading: 'text-xl font-[500]',
@@ -19,8 +19,7 @@ const userDetailsFormStyle = {
   inputContainer: 'max-w-[4rem]',
   input: 'text-center py-[0.3rem] text-[0.8rem]',
   labelTextArea: 'flex flex-col max-w-[theme(spacing.80)]',
-  icon: 'text-adding-primary',
-  buttonContainer: 'flex justify-end mt-2'
+  icon: 'text-adding-primary'
 };
 
 function UserDetailsForm({ user }: { user: UserOptions }) {
@@ -82,11 +81,6 @@ function UserDetailsForm({ user }: { user: UserOptions }) {
         <UserQuery {...userForm} />
       </ToggleTopic>
 
-      <div className={userDetailsFormStyle.buttonContainer}>
-        <ConfirmButton type="submit">
-          שמור חיפוש <MdSave />
-        </ConfirmButton>
-      </div>
       <ScannerControlButtons user={user} />
     </form>
   );
