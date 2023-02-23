@@ -4,7 +4,8 @@ import React from 'react';
 
 function HamburgerMenu(props: ToggleChildrenProps) {
   const hamburgerMenuStyle = {
-    line: 'h-0.5 w-6 bg-white duration-100',
+    container: 'mt-5 flex h-8 w-full flex-col items-center justify-center',
+    line: 'h-0.5 w-6 bg-white duration-500',
     x: {
       true: {
         first: 'translate-y-[2px] rotate-[45deg]',
@@ -22,7 +23,7 @@ function HamburgerMenu(props: ToggleChildrenProps) {
   const boolStr = String(props.isON) as 'true' | 'false';
   const menu = hamburgerMenuStyle['x'][boolStr];
   return (
-    <div className="mt-4 flex h-8 w-full flex-col items-center justify-center">
+    <div className={hamburgerMenuStyle.container}>
       <button onClick={props.handleOnClick} className={`h-4 w-fit `}>
         <div className={classNameGenerator(line, menu.first)} />
         <div className={classNameGenerator(line, menu.sec)} />

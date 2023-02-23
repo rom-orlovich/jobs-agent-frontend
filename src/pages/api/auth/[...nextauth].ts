@@ -19,7 +19,7 @@ export const authOptions: AuthOptions = {
       if (token.user) {
         session.user.id = token.user?.id;
         session.user.email = token?.user?.email || '';
-        session.user.name = token?.user?.email || '';
+        session.user.name = token?.user?.name || '';
       }
       return session;
     }
