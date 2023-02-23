@@ -1,3 +1,4 @@
+import ButtonAuth from '@/components/Buttons/ButtonAuth';
 import Toggle from '@/components/Toggle/Toggle';
 import { BoolKey } from '@/lib/types/types';
 import { classNameGenerator } from '@/lib/utils';
@@ -33,15 +34,11 @@ const navLinks: NavLinkProps[] = [
   },
   {
     link: '/',
-    text: 'חיפוש'
+    text: 'משרות'
   },
   {
     link: '/',
-    text: 'חיפוש'
-  },
-  {
-    link: '/',
-    text: 'חיפוש'
+    text: 'היסטוריה'
   }
 ];
 
@@ -66,6 +63,7 @@ function Sidebar() {
                 );
               })}
             </ul>
+            <ButtonAuth />
           </section>
         );
       }}
