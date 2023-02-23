@@ -1,19 +1,18 @@
-import { SERVER_URL } from '@/lib/endpoints';
+import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
 import { fetchData } from '@/lib/utils';
 
 import { JobsPosts } from 'mongoDB/lib/types';
 import { GetServerSidePropsContext, InferGetStaticPropsType } from 'next';
 import { getServerSession } from 'next-auth';
-// import { getServerSession } from 'next-auth';
+import Link from 'next/link';
+
 import React from 'react';
 import { authOptions } from '../api/auth/[...nextauth]';
-// import { authOptions } from '../api/auth/[...nextauth]';
-
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-  // const user = await getUserByID(session?.user.id || '');
-
-  const data = await fetchData<JobsPosts[]>(`${SERVER_URL}/jobs/${session?.user.id}`);
+  const data = await fetchData<JobsPosts[]>(
+    `${SERVER_URL}/${API_ENDPOINTS.GET_JOBS}/${session?.user.id}`
+  );
 
   return {
     props: {
@@ -23,24 +22,21 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 function Jobs({ jobs }: InferGetStaticPropsType<typeof getServerSideProps>) {
   return (
-    <div>
+    <ul className="flex flex-wrap justify-center gap-2 p-4">
       {jobs?.map((el) => {
-        return <li key={el.jobID}>{el.title}</li>;
+        return (
+          <li className="rounded-md bg-white p-4 shadow-md" key={el.jobID}>
+            <div>
+              <Link href={el.link}> {el.title}</Link>{' '}
+            </div>
+
+            <div> {el.from} </div>
+            <div> {el.reason} </div>
+          </li>
+        );
       })}
-    </div>
+    </ul>
   );
 }
-
-// ``;
-// function Jobs() {
-//   return (
-//     <div>
-//       {jobs.map((el) => {
-//         <li key={el.jobID}>{el.title}</li>;
-//       })}
-//     </div>
-//   );
-// }
-``;
 
 export default Jobs;
