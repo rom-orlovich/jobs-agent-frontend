@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 const dashboardStyle = {
-  mainContainer: 'flex min-h-[100vh] flex-col justify-center'
+  mainContainer: 'min-h-[100vh]'
 };
 
 function Dashboard({ isAuthenticated, children }: { isAuthenticated: boolean } & PropsWithChildren) {
@@ -9,7 +9,7 @@ function Dashboard({ isAuthenticated, children }: { isAuthenticated: boolean } &
   return (
     <section className={dashboardStyle.mainContainer}>
       <Sidebar />
-      <section className=".dashboard p-8"> {children} </section>
+      <section className="w-full p-8"> {children} </section>
     </section>
   );
 }

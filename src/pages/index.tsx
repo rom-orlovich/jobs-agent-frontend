@@ -34,7 +34,7 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
   return (
     <>
       <PageHead title="Home" description="Welcome to Jobs agent!" />
-      <div className="flex h-full flex-col items-center justify-center">
+      <div className="m-[20vh] flex h-full flex-col items-center justify-center">
         <UserDetailsForm user={user} />
       </div>
     </>
