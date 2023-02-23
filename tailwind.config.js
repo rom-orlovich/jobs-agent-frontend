@@ -14,7 +14,8 @@ module.exports = {
         success: {
           primary: {
             400: '#60a5fa',
-            500: '#3b82f6'
+            500: '#3b82f6',
+            600: '#4a6f9c'
           },
           secondary: {
             400: '#38bdf8',
@@ -42,6 +43,11 @@ module.exports = {
         tag: {
           400: '#5eead4',
           500: '#2dd4bf'
+        },
+        loading: {
+          400: '#8153ec',
+          500: '#8b5cf6',
+          600: '#715e9e'
         }
       }
     }
