@@ -12,7 +12,7 @@ import useAuth from '@/hooks/useAuth';
 function Layout({ children }: PropsWithChildren) {
   const { isAuthenticated } = useAuth();
   return (
-    <main className={roboto.className + ' ' + 'bg-background p-8'}>
+    <main className={roboto.className + ' ' + 'bg-background'}>
       {/* <Navbar isAuthenticated={isAuthenticated} /> */}
 
       <Dashboard isAuthenticated={isAuthenticated}> {children} </Dashboard>

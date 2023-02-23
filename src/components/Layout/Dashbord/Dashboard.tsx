@@ -9,7 +9,7 @@ function Dashboard({ isAuthenticated, children }: { isAuthenticated: boolean } &
   return (
     <section className={dashboardStyle.mainContainer}>
       <Sidebar />
-      <section> {children} </section>
+      <section className=".dashboard p-8"> {children} </section>
     </section>
   );
 }
