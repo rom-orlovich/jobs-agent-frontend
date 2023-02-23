@@ -3,7 +3,7 @@ import React from 'react';
 import UserQuery from './UserQuery/UserQuery';
 
 import useUserDetailsForm from '../../hooks/useUserDetailsForm/useUserDetailsForm';
-import { UserOptions } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
@@ -22,7 +22,7 @@ const userDetailsFormStyle = {
   icon: 'text-adding-primary'
 };
 
-function UserDetailsForm({ user }: { user: UserOptions }) {
+function UserDetailsForm({ user }: { user: UserProfileWithOneUserQuery }) {
   const userForm = useUserDetailsForm(user);
 
   return (

@@ -1,10 +1,10 @@
-import { createUser, getUserByID } from 'mongoDB/handlers';
+import { updateUser, getUserByID } from 'mongoDB/handlers';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const userID = req.query.userID;
-    const result = await createUser({
+    const result = await updateUser({
       userID,
       ...req.body
     });

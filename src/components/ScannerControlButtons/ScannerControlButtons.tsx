@@ -1,5 +1,5 @@
 import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
-import { UserOptions } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 
 import React, { MouseEventHandler, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
@@ -15,7 +15,7 @@ const buttonsStyle = {
 
   //  seacrhButton: 'flex justify-end mt-2'
 };
-function ScannerControlButtons({ user }: { user: UserOptions }) {
+function ScannerControlButtons({ user }: { user: UserProfileWithOneUserQuery }) {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeQuery, setActiveQuery] = useState(true);

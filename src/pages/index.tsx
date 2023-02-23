@@ -5,13 +5,14 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
 import { getUserByID } from 'mongoDB/handlers';
 import { authOptions } from './api/auth/[...nextauth]';
-import { UserOptions } from '@/lib/types/api.types';
+
 import PageHead from '@/components/Layout/PageHead/PageHead';
+import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const user = await getUserByID(session?.user.id || '');
 
-  const defaultUser = {
+  const defaultUser: UserProfileWithOneUserQuery = {
     userID: session?.user?.id,
     overallEx: 0,
     requirements: {},
@@ -25,9 +26,22 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       scope: ''
     }
   };
-  const result: UserOptions = user || defaultUser;
+  let result: UserProfileWithOneUserQuery | undefined = undefined;
+  if (user) {
+    const { userQueries, ...restUserProps } = user;
+    const lengthUserQuery = userQueries.length;
+    console.log(userQueries[lengthUserQuery - 1]);
+    result = {
+      ...restUserProps,
+      userQuery: {
+        ...userQueries[lengthUserQuery - 1],
+        createdAt: userQueries[lengthUserQuery - 1].createdAt?.toISOString() as unknown as Date
+      }
+    };
+  }
+
   return {
-    props: result
+    props: result || defaultUser
   };
 };
 export default function Home(user: InferGetServerSidePropsType<typeof getServerSideProps>) {

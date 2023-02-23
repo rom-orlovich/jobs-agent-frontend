@@ -1,4 +1,4 @@
-import { Requirements, UserOptions, UserQuery } from '@/lib/types/api.types';
+import { Requirements, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
 
 import { MinMaxInputsOption } from '../../components/UserDetailsForm/Requirements/MinMaxInputs';
@@ -78,7 +78,7 @@ export const transformDefaultFormValues = ({
   excludedRequirements,
   userQuery,
   ...formValues
-}: UserOptions) => {
+}: UserProfileWithOneUserQuery) => {
   return {
     ...formValues,
     requirements: transformRequirementsDefaultValues(requirements),

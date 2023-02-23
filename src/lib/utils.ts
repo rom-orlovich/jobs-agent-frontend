@@ -19,3 +19,14 @@ export function capitalFirstLetter(words?: string | null): string | undefined | 
         .join(' ')
     : words;
 }
+
+export const fetchData = async <D>(url: string) => {
+  try {
+    const result = await fetch(url);
+    const data = await result.json();
+    return data as D;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};

@@ -1,7 +1,7 @@
 import useForm from '@/hooks/useForm/useForm';
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { UserOptions } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { toast } from 'react-toastify';
 import { MinMaxInputsOption } from '../../components/UserDetailsForm/Requirements/MinMaxInputs';
 import {
@@ -12,14 +12,13 @@ import {
 
 /**
  * Manage the user details form state.
- * @param {UserOptions} user The current login user.
+ * @param {UserProfile} user The current login user.
  */
-function useUserDetailsForm(user: UserOptions) {
-  const formInitialValue: UserOptions = user;
-
+function useUserDetailsForm(user: UserProfileWithOneUserQuery) {
+  const formInitialValue: UserProfileWithOneUserQuery = user;
   // Initializes the form state and get the utils functions from useForm hook.
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
-    UserOptions,
+    UserProfileWithOneUserQuery,
     { message: string }
   >(formInitialValue);
 

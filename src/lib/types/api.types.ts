@@ -17,14 +17,18 @@ export interface UserQuery {
   distance: string;
   jobType: string;
   scope: string;
+  hash?: string;
+  createdAt?: Date;
 }
 export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'field'>;
 export type Requirements = GenericRecord<MinMaxInputsValueWithoutTitle>;
 export type ExcludeTechsOptions = GenericRecord<boolean>;
-export interface UserOptions {
+export interface UserProfile {
   userID?: string;
   overallEx?: number;
   requirements: Requirements;
   excludedRequirements: ExcludeTechsOptions;
-  userQuery: UserQuery;
+  userQueries: UserQuery[];
 }
+
+export type UserProfileWithOneUserQuery = OmitKey<UserProfile, 'userQueries'> & { userQuery: UserQuery };

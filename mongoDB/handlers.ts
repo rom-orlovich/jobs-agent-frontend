@@ -1,5 +1,5 @@
-import { UserOptions } from '@/lib/types/api.types';
-import { JobsPosts } from './lib/types';
+import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+// import { JobsPosts } from './lib/types';
 import { getCollection, getDocumentsByName } from './lib/utils';
 export const getLocations = async (name: string) => {
   const locationsDocs = await getDocumentsByName(name, 'locations', 'locationName');
@@ -11,16 +11,22 @@ export const getPositions = async (name: string) => {
   return positionsDocs;
 };
 
-export const createUser = async (userData: UserOptions) => {
+export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
-
+  const { userQuery, ...restUserData } = userData;
   try {
     const res = await users.updateOne(
       {
         userID: userData.userID
       },
       {
-        $set: userData
+        $set: restUserData,
+        $addToSet: {
+          userQueries: {
+            ...userQuery,
+            createdAt: new Date()
+          }
+        }
       },
       {
         upsert: true
@@ -37,14 +43,13 @@ export const getUserByID = async (userID: string) => {
   const users = await getCollection('users');
 
   try {
-    const res = await users.findOne<UserOptions>(
+    const res = await users.findOne<UserProfile>(
       {
         userID: userID
       },
       {
         projection: {
-          _id: false,
-          hashQueries: false
+          _id: false
         }
       }
     );
@@ -55,7 +60,7 @@ export const getUserByID = async (userID: string) => {
   }
 };
 
-export const getJobsPostsByTitle = async (name: string, hash: string, page = 1, limit = 20) => {
-  const jobsDocs = await getDocumentsByName<JobsPosts>(name, 'jobs', 'title', page, limit);
-  return jobsDocs;
-};
+// export const getJobsPostsByTitle = async (name: string, hash: string, page = 1, limit = 20) => {
+//   const jobsDocs = await getDocumentsByName<JobsPosts>(name, 'jobs', 'title', page, limit);
+//   return jobsDocs;
+// };
