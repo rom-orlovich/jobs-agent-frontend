@@ -3,12 +3,13 @@ import Toggle from '@/components/Toggle/Toggle';
 import { BoolKey } from '@/lib/types/types';
 import { classNameGenerator } from '@/lib/utils';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
-import HamburgerMenu from '../../Navabar/HamburgerMenu';
+import React from 'react';
+import HamburgerMenu from './HamburgerMenu';
 import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
 import SideNavItem from './SideNavItem';
-import { MdWork, MdOutlineLocationSearching, MdHistory } from 'react-icons/md';
+import { navLinks } from './SidebarLinks';
+
 const sideBarStyle = {
   nav: 'fixed top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
 
@@ -26,31 +27,6 @@ const sideBarStyle = {
   link: 'text-white w-full',
   icon: 'text-2xl'
 };
-interface NavLinkProps {
-  link: string;
-  isMargin?: boolean;
-  text: string;
-  icon?: ReactNode;
-}
-
-const navLinks: NavLinkProps[] = [
-  {
-    link: '/',
-    text: 'חיפוש',
-    icon: <MdOutlineLocationSearching className={sideBarStyle.icon} />
-  },
-  {
-    link: '/',
-    text: 'משרות',
-    icon: <MdWork className={sideBarStyle.icon} />
-  },
-  {
-    link: '/',
-    text: 'היסטוריה',
-    icon: <MdHistory className={sideBarStyle.icon} />
-  }
-];
-
 function Sidebar() {
   return (
     <Toggle>
@@ -65,7 +41,7 @@ function Sidebar() {
             {toggleProps.isON && <Profile />}
             <div className={sideBarStyle['links&button-container']}>
               <ul className={sideBarStyle.links}>
-                {navLinks.map((el, i) => {
+                {navLinks(sideBarStyle.icon).map((el, i) => {
                   return (
                     <li
                       className={classNameGenerator(sideBarStyle.li, sideBarStyle['hover-link'])}
