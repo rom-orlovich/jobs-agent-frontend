@@ -14,15 +14,15 @@ const sideBarStyle = {
 
   isOn: {
     nav: {
-      true: 'min-w-[10rem]',
+      true: 'min-w-[12rem]',
       false: 'min-w-[4rem]'
     }
   },
   'hover-link': 'hover:bg-nav-600',
   margin: 'mb-2',
-  'links&button-container': 'flex h-full flex-col justify-between py-4 w-[85%]',
-  links: 'mt-2 flex flex-col items-center gap-12 w-full',
-  li: 'w-full',
+  'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
+  links: 'mt-2 flex flex-col items-center gap-6 w-full',
+  li: 'w-full p-2 rounded-md',
   link: 'text-white w-full',
   icon: 'text-2xl'
 };
@@ -67,7 +67,10 @@ function Sidebar() {
               <ul className={sideBarStyle.links}>
                 {navLinks.map((el, i) => {
                   return (
-                    <li className={sideBarStyle.li} key={el.text + i}>
+                    <li
+                      className={classNameGenerator(sideBarStyle.li, sideBarStyle['hover-link'])}
+                      key={el.text + i}
+                    >
                       <Link className={sideBarStyle.link} href={el.link}>
                         <SideNavItem icon={el.icon} isOn={isON} text={el.text} />
                       </Link>

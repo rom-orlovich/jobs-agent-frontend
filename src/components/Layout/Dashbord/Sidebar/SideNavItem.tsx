@@ -7,10 +7,10 @@ export interface SideNavItemProps {
 }
 
 const sideNavItemStyle = {
-  isOnContent: 'flex justify-start gap-1 w-full',
+  isOnContent: 'group flex justify-start gap-3 w-full',
   isOffContentContainer: 'group relative flex justify-center',
   isOffContentItem:
-    'absolute top-[-2px] hidden translate-x-[0px] rounded-md bg-white px-1 text-lg text-black shadow-lg duration-100 group-hover:block group-hover:translate-x-[-55px] group-hover:transition'
+    'absolute top-[-2px] hidden translate-x-[0px] rounded-md bg-white px-1 text-lg text-black shadow-lg duration-100 group-hover:block group-hover:translate-x-[-63px] group-hover:transition'
 };
 /**
  * SideNavItem component create hover effect when the sidebar is close and regular display when its on.

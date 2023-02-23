@@ -4,7 +4,7 @@ import React from 'react';
 
 function HamburgerMenu(props: ToggleChildrenProps) {
   const hamburgerMenuStyle = {
-    container: 'mt-5 flex h-8 w-full flex-col items-center justify-center mb-4',
+    container: 'mt-5 flex h-8 w-full flex-col items-center justify-center',
     line: 'h-0.5 w-6 bg-white duration-500',
     x: {
       true: {
