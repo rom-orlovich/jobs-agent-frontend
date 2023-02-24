@@ -77,7 +77,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
       <Overflow
         active={overflowIsActive}
         outerElementClass="h-[14rem]"
-        innerElementClass="min-h-[15rem] max-h-[40rem] p-2"
+        innerElementClass="min-h-[15rem] max-h-[40rem] "
       >
         {inputs?.map((input, i) => {
           return (

@@ -1,10 +1,10 @@
 import React, { MouseEventHandler } from 'react';
 
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
-import { FormComponents } from '../../../hooks/useUserDetailsForm/useUserDetailsForm';
 import MinMaxInputs, { MinMaxInputsOption } from './MinMaxInputs';
 import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
 import ConfirmButton from '@/components/Buttons/ConfirmButton';
+import { FormComponents } from '@/hooks/useUserProfileForm/useUserProfileForm';
 function Requirements({ handleRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [
     {

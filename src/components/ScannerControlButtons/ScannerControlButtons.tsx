@@ -8,7 +8,7 @@ import { MdOutlineDataSaverOff, MdSave } from 'react-icons/md';
 import Spinner from '../Spinner/Spinner';
 import ConfirmButton from '../Buttons/ConfirmButton';
 const buttonsStyle = {
-  buttonsContainer: 'mt-3 flex justify-between',
+  buttonsContainer: 'mt-3 flex justify-between gap-2',
   load: 'button-custom flex items-center justify-between gap-2 bg-loading-500 hover:bg-loading-400 disabled:bg-loading-600  text-xl text-white',
   download:
     'button-custom bg-success-secondary flex items-center justify-between gap-2 disabled:bg-success-primary-600 bg-success-secondary-500 text-xl text-white hover:bg-success-secondary-400'

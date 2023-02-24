@@ -1,4 +1,4 @@
-import { MinMaxInputsOption } from '@/components/UserDetailsForm/Requirements/MinMaxInputs';
+import { MinMaxInputsOption } from '@/components/UserProfileForm/Requirements/MinMaxInputs';
 import { UserProfile, UserQuery } from '../../lib/types/api.types';
 import { OmitKey, PickKey } from '../../lib/types/types';
 type OmitKeyUserPosAndLoc = OmitKey<UserQuery, 'location' | 'position'>;

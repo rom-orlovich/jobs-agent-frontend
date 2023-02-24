@@ -1,4 +1,4 @@
-import UserDetailsForm from '@/components/UserDetailsForm/UserDetailsForm';
+import UserProfileForm from '@/components/UserProfileForm/UserProfileForm';
 
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
@@ -49,7 +49,7 @@ export default function Home(user: InferGetServerSidePropsType<typeof getServerS
     <>
       <PageHead title="Home" description="Welcome to Jobs agent!" />
       <div className="mr-[4vw] mt-[10vh] flex h-full flex-col items-center justify-center">
-        <UserDetailsForm user={user} />
+        <UserProfileForm user={user} />
       </div>
     </>
   );

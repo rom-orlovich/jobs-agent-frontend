@@ -3,7 +3,7 @@ import useForm from '@/hooks/useForm/useForm';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { toast } from 'react-toastify';
-import { MinMaxInputsOption } from '../../components/UserDetailsForm/Requirements/MinMaxInputs';
+import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
 import {
   transformDefaultFormValues,
   transformExcludedRequirements,
@@ -14,7 +14,7 @@ import {
  * Manage the user details form state.
  * @param {UserProfile} user The current login user.
  */
-function useUserDetailsForm(user: UserProfileWithOneUserQuery) {
+function useUserProfileForm(user: UserProfileWithOneUserQuery) {
   const formInitialValue: UserProfileWithOneUserQuery = user;
   // Initializes the form state and get the utils functions from useForm hook.
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
@@ -63,7 +63,7 @@ function useUserDetailsForm(user: UserProfileWithOneUserQuery) {
     };
 
   // Pass the callback that execute during the submit event and execute the submit event.
-  const handleUserDetailsFormSubmit = onSubmit(async (values) => {
+  const handleUserProfileFormSubmit = onSubmit(async (values) => {
     const result = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -80,7 +80,7 @@ function useUserDetailsForm(user: UserProfileWithOneUserQuery) {
   return {
     formValues: transformDefaultFormValues(formValues),
     handleOverallExperience,
-    handleUserDetailsFormSubmit,
+    handleUserProfileFormSubmit,
     handleRequirements,
     handleExcludedRequirements,
     handleSelectionInput,
@@ -88,6 +88,6 @@ function useUserDetailsForm(user: UserProfileWithOneUserQuery) {
   };
 }
 
-export default useUserDetailsForm;
+export default useUserProfileForm;
 
-export type FormComponents<T> = T & ReturnType<typeof useUserDetailsForm>;
+export type FormComponents<T> = T & ReturnType<typeof useUserProfileForm>;

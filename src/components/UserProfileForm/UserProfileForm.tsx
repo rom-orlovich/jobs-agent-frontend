@@ -2,7 +2,7 @@ import React from 'react';
 
 import UserQuery from './UserQuery/UserQuery';
 
-import useUserDetailsForm from '../../hooks/useUserDetailsForm/useUserDetailsForm';
+import useUserProfileForm from '../../hooks/useUserProfileForm/useUserProfileForm';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
@@ -11,8 +11,8 @@ import ToggleTopic from './ToggleTopic';
 // import ConfirmButton from '../Buttons/ConfirmButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
 // import { MdSave } from 'react-icons/md';
-const userDetailsFormStyle = {
-  form: 'max-w-[35rem] min-w-[24rem] flex flex-col gap-4 shadow-lg p-4 rounded-md bg-white ',
+const UserProfileFormStyle = {
+  form: 'max-w-[35rem] min-w-[15rem] flex flex-col gap-4 shadow-lg p-4 rounded-md bg-white ',
   heading: 'text-xl font-[500]',
   label: 'flex items-center text-center gap-1',
   text: '',
@@ -22,31 +22,31 @@ const userDetailsFormStyle = {
   icon: 'text-adding-primary'
 };
 
-function UserDetailsForm({ user }: { user: UserProfileWithOneUserQuery }) {
-  const userForm = useUserDetailsForm(user);
+function UserProfileForm({ user }: { user: UserProfileWithOneUserQuery }) {
+  const userForm = useUserProfileForm(user);
 
   return (
-    <form onSubmit={userForm.handleUserDetailsFormSubmit} className={userDetailsFormStyle.form}>
+    <form onSubmit={userForm.handleUserProfileFormSubmit} className={UserProfileFormStyle.form}>
       <ToggleTopic
         headingProps={{
-          className: userDetailsFormStyle.heading,
+          className: UserProfileFormStyle.heading,
           title: 'מה הניסיון הכללי שלך?'
         }}
       >
         <InputLabel
           labelProps={{
-            className: userDetailsFormStyle.label
+            className: UserProfileFormStyle.label
           }}
           textProps={{
-            className: userDetailsFormStyle.text
+            className: UserProfileFormStyle.text
           }}
           inputProps={{
             inputContainer: {
-              className: userDetailsFormStyle.inputContainer
+              className: UserProfileFormStyle.inputContainer
             },
             value: userForm.formValues.overallEx,
             id: 'overallEx',
-            className: userDetailsFormStyle.input,
+            className: UserProfileFormStyle.input,
             type: 'number',
             min: 0,
             onChange: userForm.handleOverallExperience
@@ -58,7 +58,7 @@ function UserDetailsForm({ user }: { user: UserProfileWithOneUserQuery }) {
 
       <ToggleTopic
         headingProps={{
-          className: userDetailsFormStyle.heading,
+          className: UserProfileFormStyle.heading,
           title: 'מה הדרישות שלך?'
         }}
       >
@@ -66,7 +66,7 @@ function UserDetailsForm({ user }: { user: UserProfileWithOneUserQuery }) {
       </ToggleTopic>
       <ToggleTopic
         headingProps={{
-          className: userDetailsFormStyle.heading,
+          className: UserProfileFormStyle.heading,
           title: 'מה אתה לא מחפש?'
         }}
       >
@@ -74,7 +74,7 @@ function UserDetailsForm({ user }: { user: UserProfileWithOneUserQuery }) {
       </ToggleTopic>
       <ToggleTopic
         headingProps={{
-          className: userDetailsFormStyle.heading,
+          className: UserProfileFormStyle.heading,
           title: 'מה אתה מחפש?'
         }}
       >
@@ -86,4 +86,4 @@ function UserDetailsForm({ user }: { user: UserProfileWithOneUserQuery }) {
   );
 }
 
-export default UserDetailsForm;
+export default UserProfileForm;
