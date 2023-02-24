@@ -1,27 +1,30 @@
 import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
+import { ResponseGetJobs } from '@/lib/jobsScanner.types';
 import { fetchData } from '@/lib/utils';
-
-import { JobsPosts } from 'mongoDB/lib/types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
-// import { redirect } from 'next/dist/server/api-utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-// import { useRouter } from 'next/router';
 
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { authOptions } from '../api/auth/[...nextauth]';
-export const getServerSideProps: GetServerSideProps<{ jobs: JobsPosts[] }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-  const data = await fetchData<JobsPosts[]>(
+  const data = await fetchData<ResponseGetJobs>(
     `${SERVER_URL}/${API_ENDPOINTS.GET_JOBS}/${session?.user.id}`
   );
 
-  return {
-    props: {
-      jobs: data || []
+  const defaultResponseJob: ResponseGetJobs = {
+    jobs: [],
+    pagination: {
+      total: 0
     }
+  };
+  console.log(data);
+
+  return {
+    props: data || defaultResponseJob
   };
 };
 function Jobs({ jobs }: InferGetServerSidePropsType<typeof getServerSideProps>) {

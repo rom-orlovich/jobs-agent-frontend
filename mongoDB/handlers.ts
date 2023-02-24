@@ -14,6 +14,8 @@ export const getPositions = async (name: string) => {
 export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
   const { userQuery, ...restUserData } = userData;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { hash, ...restUserQuery } = userQuery;
   try {
     const res = await users.updateOne(
       {
@@ -23,7 +25,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
         $set: restUserData,
         $addToSet: {
           userQueries: {
-            ...userQuery,
+            ...restUserQuery,
             createdAt: new Date()
           }
         }
