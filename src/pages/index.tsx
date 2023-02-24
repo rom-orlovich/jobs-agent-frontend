@@ -27,10 +27,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     }
   };
   let result: UserProfileWithOneUserQuery | undefined = undefined;
+
+  //Extract the last user's userQuery from userQueries in order to adjust the userQuery that will fit the UserProfile form.
   if (user) {
     const { userQueries, ...restUserProps } = user;
     const lengthUserQuery = userQueries.length;
-    console.log(userQueries[lengthUserQuery - 1]);
     result = {
       ...restUserProps,
       userQuery: {
@@ -40,10 +41,12 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     };
   }
 
+  //If the user, on exist Initial a new one.
   return {
     props: result || defaultUser
   };
 };
+
 export default function Home(user: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
