@@ -2,25 +2,41 @@ import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
 import { fetchData } from '@/lib/utils';
 
 import { JobsPosts } from 'mongoDB/lib/types';
-import { GetServerSidePropsContext, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
+// import { redirect } from 'next/dist/server/api-utils';
 import Link from 'next/link';
+// import { useRouter } from 'next/router';
 
 import React from 'react';
 import { authOptions } from '../api/auth/[...nextauth]';
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps<{ jobs: JobsPosts[] }> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const data = await fetchData<JobsPosts[]>(
     `${SERVER_URL}/${API_ENDPOINTS.GET_JOBS}/${session?.user.id}`
   );
-
+  if (!data?.length)
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/'
+      },
+      props: {
+        jobs: []
+      }
+    };
   return {
     props: {
       jobs: data || []
     }
   };
 };
-function Jobs({ jobs }: InferGetStaticPropsType<typeof getServerSideProps>) {
+function Jobs({ jobs }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  // const router = useRouter();
+  // useEffect(() => {
+  //   if (!jobs.length) router.push("/",)
+  // }, []);
+
   return (
     <ul dir="ltr" className="flex flex-wrap justify-center gap-2 p-8">
       {jobs?.map((el, i) => {
