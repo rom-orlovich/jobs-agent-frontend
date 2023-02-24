@@ -19,7 +19,7 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
         }}
       >
         <Layout>
-          <Component {...pageProps} />
+          <Component {...pageProps} />;
           <Toasts />
         </Layout>
       </SWRConfig>

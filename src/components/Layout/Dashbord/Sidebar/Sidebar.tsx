@@ -9,7 +9,7 @@ import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
 import SideNavItem from './SideNavItem';
 import { navLinks } from './SidebarLinks';
-
+import { useAuthContext } from '@/context/UserContext';
 const sideBarStyle = {
   nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
 
@@ -28,6 +28,7 @@ const sideBarStyle = {
   icon: 'text-2xl'
 };
 function Sidebar() {
+  const { userProfileData } = useAuthContext();
   return (
     <Toggle>
       {(toggleProps) => {
@@ -42,12 +43,13 @@ function Sidebar() {
             <div className={sideBarStyle['links&button-container']}>
               <ul className={sideBarStyle.links}>
                 {navLinks(sideBarStyle.icon).map((el, i) => {
+                  const hash = el.link === '/jobs' ? userProfileData.userQuery.hash : '';
                   return (
                     <li
                       className={classNameGenerator(sideBarStyle.li, sideBarStyle['hover-link'])}
                       key={el.text + i}
                     >
-                      <Link className={sideBarStyle.link} href={el.link}>
+                      <Link className={sideBarStyle.link} href={`${el.link}?hash=${hash}`}>
                         <SideNavItem icon={el.icon} isOn={isON} text={el.text} />
                       </Link>
                     </li>

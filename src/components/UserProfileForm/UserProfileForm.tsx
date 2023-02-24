@@ -3,13 +3,14 @@ import React from 'react';
 import UserQuery from './UserQuery/UserQuery';
 
 import useUserProfileForm from '../../hooks/useUserProfileForm/useUserProfileForm';
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 // import ConfirmButton from '../Buttons/ConfirmButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
+import { useAuthContext } from '@/context/UserContext';
 // import { MdSave } from 'react-icons/md';
 const UserProfileFormStyle = {
   form: 'max-w-[35rem] min-w-[15rem] flex flex-col gap-4 shadow-lg p-4 rounded-md bg-white ',
@@ -22,8 +23,9 @@ const UserProfileFormStyle = {
   icon: 'text-adding-primary'
 };
 
-function UserProfileForm({ user }: { user: UserProfileWithOneUserQuery }) {
-  const userForm = useUserProfileForm(user);
+function UserProfileForm() {
+  const { userProfileData } = useAuthContext();
+  const userForm = useUserProfileForm(userProfileData);
 
   return (
     <form onSubmit={userForm.handleUserProfileFormSubmit} className={UserProfileFormStyle.form}>
@@ -81,7 +83,7 @@ function UserProfileForm({ user }: { user: UserProfileWithOneUserQuery }) {
         <UserQuery {...userForm} />
       </ToggleTopic>
 
-      <ScannerControlButtons user={user} />
+      <ScannerControlButtons />
     </form>
   );
 }

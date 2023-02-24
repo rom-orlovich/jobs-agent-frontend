@@ -29,9 +29,8 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 };
 function Jobs({ jobs }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
-
   useEffect(() => {
-    if (!jobs.length) {
+    if (!jobs?.length) {
       toast('אף משרה לא נמצאה, בצע חיפוש נוסף.', {
         toastId: 'noJobsFound'
       });

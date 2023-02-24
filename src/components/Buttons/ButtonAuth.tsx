@@ -1,4 +1,5 @@
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/context/UserContext';
+
 import { BoolKey } from '@/lib/types/types';
 import { classNameGenerator } from '@/lib/utils';
 import { signIn, signOut } from 'next-auth/react';
@@ -8,7 +9,7 @@ import { ButtonProps } from '../HTML.types';
 export type ButtonAuth = ButtonProps & PropsWithChildren;
 function ButtonAuth(buttonProps: ButtonAuth) {
   const { children, ...restButtonProps } = buttonProps;
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuthContext();
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => signOut();
   const handleSignIn: MouseEventHandler<HTMLButtonElement> = () => signIn();
   const buttonOptions = {

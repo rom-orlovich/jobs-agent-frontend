@@ -1,22 +1,38 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 import Dashboard from './Dashbord/Dashboard';
-// import Navbar from './Navabar/Navbar';
-
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
   subsets: ['latin']
 });
 import { Roboto } from '@next/font/google';
-import useAuth from '@/hooks/useAuth';
+import useAuth, { ReturnTypeUseAuthProfileExist } from '@/hooks/useAuth';
+import Spinner from '../Spinner/Spinner';
+import AuthContext from '@/context/UserContext';
+export type ChildrenWithAuthData = { children: (props: ReturnTypeUseAuthProfileExist) => ReactNode };
 
-function Layout({ children }: PropsWithChildren) {
-  const { isAuthenticated } = useAuth();
+export function Layout(props: PropsWithChildren) {
+  const auth = useAuth();
+  const Main = ({ children }: PropsWithChildren) => (
+    <main className={roboto.className + ' ' + 'bg-background' + ' min-h-[100vh]'}>{children}</main>
+  );
+  const { isAuthenticated, userProfileData, isLoading } = auth;
+  if (!isAuthenticated) return <></>;
+  if (!userProfileData)
+    return (
+      <Main>
+        <Spinner isLoading={isLoading || !userProfileData} />;
+      </Main>
+    );
+  const authData = {
+    ...auth,
+    userProfileData
+  };
   return (
-    <main className={roboto.className + ' ' + 'bg-background'}>
-      {/* <Navbar isAuthenticated={isAuthenticated} /> */}
-
-      <Dashboard isAuthenticated={isAuthenticated}> {children} </Dashboard>
-    </main>
+    <Main>
+      <AuthContext authData={authData}>
+        <Dashboard>{props.children}</Dashboard>
+      </AuthContext>
+    </Main>
   );
 }
 

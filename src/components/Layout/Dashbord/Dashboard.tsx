@@ -3,9 +3,7 @@ import Sidebar from './Sidebar/Sidebar';
 const dashboardStyle = {
   mainContainer: 'min-h-[100vh]'
 };
-
-function Dashboard({ isAuthenticated, children }: { isAuthenticated: boolean } & PropsWithChildren) {
-  if (!isAuthenticated) return <></>;
+function Dashboard({ children }: PropsWithChildren) {
   return (
     <section className={dashboardStyle.mainContainer}>
       <Sidebar />

@@ -1,6 +1,4 @@
 import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
-
 import React, { MouseEventHandler } from 'react';
 import useSWRMutation from 'swr/mutation';
 
@@ -11,6 +9,7 @@ import { toast } from 'react-toastify';
 import { ResponseScanner } from '@/lib/jobsScanner.types';
 import { MESSAGES } from '@/lib/messages';
 import { useRouter } from 'next/router';
+import { useAuthContext } from '@/context/UserContext';
 const buttonsStyle = {
   buttonsContainer: 'mt-3 flex justify-between gap-2',
   load: 'button-custom flex items-center justify-between gap-2 bg-loading-500 hover:bg-loading-400 disabled:bg-loading-600  text-xl text-white',
@@ -19,14 +18,13 @@ const buttonsStyle = {
 
   //  seacrhButton: 'flex justify-end mt-2'
 };
-function ScannerControlButtons({ user }: { user: UserProfileWithOneUserQuery }) {
+function ScannerControlButtons() {
   // Let the user decide if he wants the current query result or all the results that the scanner scan until now base the user queries.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   // const [activeQuery, setActiveQuery] = useState(true);
-  console.log(user.userID);
-
-  const createScannerURL = (endpoint: string) => `${SERVER_URL}/${endpoint}/${user.userID}`;
+  const { userProfileData } = useAuthContext();
+  const createScannerURL = (endpoint: string) => `${SERVER_URL}/${endpoint}/${userProfileData.userID}`;
 
   //Initialize loading scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner>(
