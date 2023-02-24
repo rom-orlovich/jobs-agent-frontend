@@ -6,25 +6,18 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
 // import { redirect } from 'next/dist/server/api-utils';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 // import { useRouter } from 'next/router';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { authOptions } from '../api/auth/[...nextauth]';
 export const getServerSideProps: GetServerSideProps<{ jobs: JobsPosts[] }> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const data = await fetchData<JobsPosts[]>(
     `${SERVER_URL}/${API_ENDPOINTS.GET_JOBS}/${session?.user.id}`
   );
-  if (!data?.length)
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/'
-      },
-      props: {
-        jobs: []
-      }
-    };
+
   return {
     props: {
       jobs: data || []
@@ -32,10 +25,16 @@ export const getServerSideProps: GetServerSideProps<{ jobs: JobsPosts[] }> = asy
   };
 };
 function Jobs({ jobs }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // const router = useRouter();
-  // useEffect(() => {
-  //   if (!jobs.length) router.push("/",)
-  // }, []);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!jobs.length) {
+      toast('אף משרה לא נמצאה, בצע חיפוש נוסף.', {
+        toastId: 'noJobsFound'
+      });
+      router.push('/', '/');
+    }
+  }, []);
 
   return (
     <ul dir="ltr" className="flex flex-wrap justify-center gap-2 p-8">
@@ -48,7 +47,6 @@ function Jobs({ jobs }: InferGetServerSidePropsType<typeof getServerSideProps>) 
             <div>
               <Link href={el.link}> {el.title}</Link>{' '}
             </div>
-
             <div> {el.from} </div>
             <div> {el.reason || 'jobs is match'} </div>
           </li>
