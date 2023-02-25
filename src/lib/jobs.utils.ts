@@ -37,16 +37,24 @@ export const defaultResponseJobs: ResponseGetJobs = {
 };
 
 /**
- * The useSWRInfinite provide an array of the data we get from the api.
- * So in order to get the last update data, we need to lookup it from the array.
- * If there is not such a data use the defaultResponseJobs.
- * @param {ResponseGetJobs[]|undefined} data Data from the useSWRInfinite.
- * @returns {{curData:ResponseGetJobs[],lastData:ResponseGetJobs}} The last data in ResponseGetJobs array.
+ *
+ * @param {ResponseGetJobs | undefined} jobData The jobs data that may be undefined.
+ * @returns {ResponseGetJobs} If the data is undefined the the default data will be defaultResponseJobs. Otherwise the data will be jobData.
+ */
+export const getJobsExistData = (jobData?: ResponseGetJobs): ResponseGetJobs =>
+  jobData ? jobData : defaultResponseJobs;
+
+/**
+ * The useSWRInfinite provide an array of the jobData we get from the api.
+ * So in order to get the last update jobData, we need to lookup it from the array.
+ * If there is not such a jobData use the defaultResponseJobs.
+ * @param {ResponseGetJobs[]|undefined} jobData Data from the useSWRInfinite.
+ * @returns {{curData:ResponseGetJobs[],lastData:ResponseGetJobs}} The last jobData in ResponseGetJobs array.
  */
 export const getLastCurJobData = (
-  data: ResponseGetJobs[] | undefined
+  jobData: ResponseGetJobs[] | undefined
 ): { curData: ResponseGetJobs[]; lastData: ResponseGetJobs } => {
-  const curData: ResponseGetJobs[] = data ? data : [defaultResponseJobs];
+  const curData: ResponseGetJobs[] = jobData ? jobData : [defaultResponseJobs];
   const lengthCurData = curData.length;
   const lastData: ResponseGetJobs = curData[lengthCurData - 1];
   return {
