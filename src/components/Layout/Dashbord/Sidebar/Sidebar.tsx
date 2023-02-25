@@ -29,27 +29,28 @@ const sideBarStyle = {
 };
 function Sidebar() {
   const { userProfileData } = useAuthContext();
+  const hash = userProfileData.userQuery.hash;
   return (
     <Toggle>
       {(toggleProps) => {
         const { isON } = toggleProps;
         const bool = String(isON) as BoolKey;
         const navIsOn = sideBarStyle['isOn']['nav'][bool];
-
+        const navLinksEl = navLinks(sideBarStyle.icon);
+        navLinksEl[1].link = navLinksEl[1].link + '?hash=' + hash;
         return (
           <section className={classNameGenerator(sideBarStyle.nav, navIsOn, 'duration-500')}>
             <HamburgerMenu {...toggleProps} />
             {toggleProps.isON && <Profile />}
             <div className={sideBarStyle['links&button-container']}>
               <ul className={sideBarStyle.links}>
-                {navLinks(sideBarStyle.icon).map((el, i) => {
-                  const hash = el.link === '/jobs' ? userProfileData.userQuery.hash : '';
+                {navLinksEl.map((el, i) => {
                   return (
                     <li
                       className={classNameGenerator(sideBarStyle.li, sideBarStyle['hover-link'])}
                       key={el.text + i}
                     >
-                      <Link className={sideBarStyle.link} href={`${el.link}?hash=${hash}`}>
+                      <Link className={sideBarStyle.link} href={`${el.link}`}>
                         <SideNavItem icon={el.icon} isOn={isON} text={el.text} />
                       </Link>
                     </li>

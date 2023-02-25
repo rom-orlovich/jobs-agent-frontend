@@ -25,7 +25,7 @@ function useUserProfile(userID: string) {
   if (data?.data) {
     const { userQueries, ...restUserProps } = data?.data;
     const lengthUserQuery = userQueries.length;
-    // console.log(data?.data);
+
     userProfileData = {
       ...restUserProps,
       userQuery: {

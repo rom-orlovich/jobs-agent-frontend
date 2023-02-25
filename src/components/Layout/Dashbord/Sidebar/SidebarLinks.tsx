@@ -1,3 +1,4 @@
+import { GenericRecord } from '@/lib/types/types';
 import { ReactNode } from 'react';
 import { MdWork, MdOutlineLocationSearching, MdHistory } from 'react-icons/md';
 interface NavLinkProps {
@@ -5,6 +6,7 @@ interface NavLinkProps {
   isMargin?: boolean;
   text: string;
   icon?: ReactNode;
+  query?: GenericRecord<boolean>;
 }
 
 export const navLinks: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => [

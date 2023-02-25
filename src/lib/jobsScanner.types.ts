@@ -17,4 +17,7 @@ export interface Job {
   createdAt?: Date;
   text: string;
 }
-export type ResponseGetJobs = { jobs: Job[]; pagination: { total: number } };
+export type ResponseGetJobs = {
+  jobs: Job[];
+  pagination: { totalPages: number; totalDocs: number; hasMore: boolean };
+};
