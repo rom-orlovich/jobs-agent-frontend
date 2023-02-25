@@ -1,7 +1,7 @@
 import ButtonAuth from '@/components/Buttons/ButtonAuth';
 import Toggle from '@/components/Toggle/Toggle';
 import { BoolKey } from '@/lib/types/types';
-import { classNameGenerator } from '@/lib/utils';
+import { classNameGenerator, createURL } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 import HamburgerMenu from './HamburgerMenu';
@@ -37,7 +37,12 @@ function Sidebar() {
         const bool = String(isON) as BoolKey;
         const navIsOn = sideBarStyle['isOn']['nav'][bool];
         const navLinksEl = navLinks(sideBarStyle.icon);
-        navLinksEl[1].link = navLinksEl[1].link + '?hash=' + hash;
+        // navLinksEl[1].link = navLinksEl[1].link + '?hash=' + hash;
+        navLinksEl[1].link = createURL([navLinksEl[1].link], {
+          hash: hash,
+          page: 1
+        });
+
         return (
           <section className={classNameGenerator(sideBarStyle.nav, navIsOn, 'duration-500')}>
             <HamburgerMenu {...toggleProps} />

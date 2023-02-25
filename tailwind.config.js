@@ -9,6 +9,12 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
+    screens: {
+      xs: '480px',
+      sm: '640px',
+      md: '768px',
+      lg: '1200px'
+    },
     extend: {
       colors: {
         success: {
@@ -41,10 +47,15 @@ module.exports = {
           400: '#5eead4',
           500: '#2dd4bf'
         },
-        loading: {
+        search: {
           400: '#8153ec',
           500: '#8b5cf6',
           600: '#715e9e'
+        },
+        loading: {
+          400: '#2dd4bf',
+          500: '#14b8a6',
+          600: '#059669'
         },
         nav: {
           500: '#64748b',

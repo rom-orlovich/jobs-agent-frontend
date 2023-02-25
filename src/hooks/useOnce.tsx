@@ -1,5 +1,5 @@
 import { AnyFun } from '@/lib/types/types';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 /**
  * This hook is usefully for preventing a rerender of function in useEffect.
@@ -8,11 +8,24 @@ import { useRef } from 'react';
 function useOnce() {
   const flag = useRef(true);
 
-  return (cb: AnyFun) => {
+  const unlock = () => {
+    flag.current = true;
+  };
+  const lock = () => {
+    flag.current = false;
+  };
+  const trigger = useCallback((cb: AnyFun) => {
     if (flag.current) {
       cb();
-      flag.current = false;
+      lock();
     }
+  }, []);
+
+  return {
+    trigger,
+    unlock,
+    lock,
+    flag
   };
 }
 

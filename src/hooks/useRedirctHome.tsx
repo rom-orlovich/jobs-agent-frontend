@@ -11,11 +11,11 @@ import useOnce from './useOnce';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useRedirectHome(cb: (...args: any[]) => boolean) {
   const router = useRouter();
-  const triggerOnce = useOnce();
+  const { trigger } = useOnce();
   const cbMemo = useMemo(() => cb(), [cb]);
   useEffect(() => {
-    if (cbMemo) triggerOnce(() => delayFun(() => router.push('/', '/'), 1000));
-  }, [cbMemo, router, triggerOnce]);
+    if (cbMemo) trigger(() => delayFun(() => router.push('/', '/'), 1000));
+  }, [cbMemo, router, trigger]);
 }
 
 export default useRedirectHome;

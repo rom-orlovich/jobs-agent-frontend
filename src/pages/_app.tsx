@@ -8,18 +8,21 @@ import Layout from '@/components/Layout/Layout';
 // import { classNameGenerator } from '@/lib/utils';
 
 import Toasts from '@/components/Toasts/Toasts';
+import { GenericRecord } from '@/lib/types/types';
 
-type AppPropsWithSession = AppProps & { session: Session };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AppPropsWithSession = AppProps & { session: Session } & { fallback: GenericRecord<any> };
 export default function App({ Component, pageProps, session }: AppPropsWithSession) {
   return (
     <SessionProvider session={session}>
       <SWRConfig
         value={{
+          // fallback: fallback,
           fetcher: (resource, init) => fetch(resource, init).then((res) => res.json())
         }}
       >
         <Layout>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
           <Toasts />
         </Layout>
       </SWRConfig>

@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import { useAuthContext } from '@/context/UserContext';
 const buttonsStyle = {
   buttonsContainer: 'mt-3 flex justify-between gap-2',
-  load: 'button-custom flex items-center justify-between gap-2 bg-loading-500 hover:bg-loading-400 disabled:bg-loading-600  text-xl text-white',
+  load: 'button-custom flex items-center justify-between gap-2 bg-search-500 hover:bg-search-400 disabled:bg-search-600  text-xl text-white',
   download:
     'button-custom bg-success-secondary flex items-center justify-between gap-2 disabled:bg-success-primary-600 bg-success-secondary-500 text-xl text-white hover:bg-success-secondary-400'
 };
@@ -24,7 +24,7 @@ function ScannerControlButtons() {
   const { userProfileData } = useAuthContext();
   const createScannerURL = (endpoint: string) => `${SERVER_URL}/${endpoint}/${userProfileData.userID}`;
 
-  //Initialize loading scanner fetcher.
+  //Initialize search scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner>(
     createScannerURL(API_ENDPOINTS.SCANNER_START),
     (url: string) => fetch(url).then((res) => res.json())
