@@ -1,20 +1,23 @@
-import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
+import useRedirectHome from '@/hooks/useRedirctHome';
+
+import { jobsFetcher, noJobFoundCBwithToast } from '@/lib/jobs.utils';
 import { ResponseGetJobs } from '@/lib/jobsScanner.types';
-import { fetchData } from '@/lib/utils';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import React from 'react';
 
-import React, { useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { authOptions } from '../api/auth/[...nextauth]';
+// import useInfiniteSwr from "swr/infinite"
+
 export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-  const data = await fetchData<ResponseGetJobs>(
-    `${SERVER_URL}/${API_ENDPOINTS.GET_JOBS}/${session?.user.id}`
-  );
 
+  const hash = context.query.hash;
+
+  const data = await jobsFetcher(session?.user.id || '', {
+    hash
+  });
   const defaultResponseJob: ResponseGetJobs = {
     jobs: [],
     pagination: {
@@ -23,22 +26,13 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
       totalPages: 1
     }
   };
-  console.log(data);
 
   return {
     props: data || defaultResponseJob
   };
 };
 function Jobs({ jobs }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const router = useRouter();
-  useEffect(() => {
-    if (!jobs?.length) {
-      toast('אף משרה לא נמצאה, בצע חיפוש נוסף.', {
-        toastId: 'noJobsFound'
-      });
-      router.push('/', '/');
-    }
-  }, []);
+  useRedirectHome(() => noJobFoundCBwithToast(jobs));
 
   return (
     <ul dir="ltr" className="flex flex-wrap justify-center gap-2 p-8">
