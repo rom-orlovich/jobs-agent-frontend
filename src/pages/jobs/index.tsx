@@ -18,7 +18,9 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
   const defaultResponseJob: ResponseGetJobs = {
     jobs: [],
     pagination: {
-      total: 0
+      hasMore: false,
+      totalDocs: 0,
+      totalPages: 1
     }
   };
   console.log(data);
