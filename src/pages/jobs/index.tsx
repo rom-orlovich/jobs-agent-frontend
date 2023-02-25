@@ -1,7 +1,13 @@
 import useRedirectHome from '@/hooks/useRedirctHome';
 
-import { checkIsJobsFoundWithToast, createJobsURl, jobsFetcher } from '@/lib/jobs.utils';
-import { Job, ResponseGetJobs } from '@/lib/jobsScanner.types';
+import {
+  checkIsJobsFoundWithToast,
+  createJobsURl,
+  defaultResponseJobs,
+  getLastCurJobData,
+  jobsFetcher
+} from '@/lib/jobs.utils';
+import { ResponseGetJobs } from '@/lib/jobsScanner.types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
 
@@ -17,15 +23,8 @@ import Spinner from '@/components/Spinner/Spinner';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import LoadButton from '@/components/Buttons/LoadButton';
 import PageHead from '@/components/Layout/PageHead/PageHead';
-const defaultResponseJob: ResponseGetJobs = {
-  jobs: [] as Job[],
-  pagination: {
-    hasMore: false,
-    totalDocs: 0,
-    totalPages: 1
-  }
-};
-
+import JobsSearch from '@/components/Jobs/JobsSearch/JobsSearch';
+import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
 const handler: (
   userProfileData: UserProfileWithOneUserQuery
 ) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
@@ -47,7 +46,7 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
     page: page
   });
   return {
-    props: data || defaultResponseJob
+    props: data || defaultResponseJobs
   };
 };
 
@@ -67,16 +66,16 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       revalidateFirstPage: false
     }
   );
-
-  const curData: ResponseGetJobs[] = data ? data : [defaultResponseJob];
-  const lengthCurData = curData.length;
-  const lastData: ResponseGetJobs = curData[lengthCurData - 1];
+  const { curData, lastData } = getLastCurJobData(data);
   const jobsData = curData.map((response) => response.jobs).flat(1);
+  const filterJobsProps = useFilterJobs();
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />
+      <JobsSearch {...filterJobsProps} />
 
       <JobsFeed jobs={jobsData} />
+
       <div className="flex w-full items-center justify-center">
         <LoadButton
           disabled={!lastData.pagination.hasMore}

@@ -8,7 +8,7 @@ const autoCompleteStyle = {
   options:
     'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-hidden rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm',
   label: 'font-semibold',
-  input: 'input-custom'
+  input: 'input-custom relative'
 };
 
 export default function Autocomplete<V>({
@@ -19,6 +19,13 @@ export default function Autocomplete<V>({
   defaultValue,
   inputLabelProps
 }: AutocompleteProps<V>) {
+  const iconButton = inputLabelProps?.IconButtonProps ? (
+    <button {...inputLabelProps?.IconButtonProps.buttonProps}>
+      {inputLabelProps?.IconButtonProps.Icon}
+    </button>
+  ) : (
+    <></>
+  );
   const [selectedOption, setSelectedOption] = useState(defaultValue || options[0]);
   return (
     <Combobox
@@ -57,6 +64,7 @@ export default function Autocomplete<V>({
             ))}
           </Combobox.Options>
         </div>
+        {iconButton}
         <div />
       </div>
     </Combobox>

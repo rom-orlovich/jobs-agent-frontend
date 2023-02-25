@@ -27,3 +27,30 @@ export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
   }
   return false;
 };
+export const defaultResponseJobs: ResponseGetJobs = {
+  jobs: [] as Job[],
+  pagination: {
+    hasMore: false,
+    totalDocs: 0,
+    totalPages: 1
+  }
+};
+
+/**
+ * The useSWRInfinite provide an array of the data we get from the api.
+ * So in order to get the last update data, we need to lookup it from the array.
+ * If there is not such a data use the defaultResponseJobs.
+ * @param {ResponseGetJobs[]|undefined} data Data from the useSWRInfinite.
+ * @returns {{curData:ResponseGetJobs[],lastData:ResponseGetJobs}} The last data in ResponseGetJobs array.
+ */
+export const getLastCurJobData = (
+  data: ResponseGetJobs[] | undefined
+): { curData: ResponseGetJobs[]; lastData: ResponseGetJobs } => {
+  const curData: ResponseGetJobs[] = data ? data : [defaultResponseJobs];
+  const lengthCurData = curData.length;
+  const lastData: ResponseGetJobs = curData[lengthCurData - 1];
+  return {
+    curData,
+    lastData
+  };
+};
