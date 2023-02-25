@@ -61,7 +61,7 @@ export default function Autocomplete<V>({
         <Combobox.Input<'input', { value: V; title: string }[]>
           {...inputLabelProps?.inputProps}
           autoComplete={'off'}
-          value={defaultValue?.value as string}
+          value={(defaultValue?.value || selectedOption.value) as string}
           className={classNameGenerator(autoCompleteStyle.input, inputLabelProps?.inputProps?.className)}
           onChange={handleOnChange}
         />

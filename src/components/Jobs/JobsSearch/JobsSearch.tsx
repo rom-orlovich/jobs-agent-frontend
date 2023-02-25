@@ -13,7 +13,7 @@ import Autocomplete from '../../Inputs/Autocomplete/Autocomplete';
 function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
   const { handleSearchByTitle, formValues } = filterJobsProps;
   const { userProfileData } = useAuthContext();
-  console.log(formValues.title);
+
   const { data } = useSwrHook<ResponseGetJobs>(
     createJobsURl(userProfileData.userID || '', {
       title: formValues.title

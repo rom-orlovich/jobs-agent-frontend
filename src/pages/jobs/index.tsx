@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import useRedirectHome from '@/hooks/useRedirctHome';
 
 import {
@@ -25,14 +26,17 @@ import LoadButton from '@/components/Buttons/LoadButton';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import JobsSearch from '@/components/Jobs/JobsSearch/JobsSearch';
 import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
+import { GenericRecord } from '@/lib/types/types';
 const handler: (
-  userProfileData: UserProfileWithOneUserQuery
+  userProfileData: UserProfileWithOneUserQuery,
+  params?: GenericRecord<any>
 ) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
-  (userProfileData) => (prePage: number, preData) => {
+  (userProfileData, params) => (prePage: number, preData) => {
     if (preData?.pagination.hasMore === false) return null;
     return createJobsURl(userProfileData.userID || '', {
       page: prePage,
-      hash: userProfileData.userQuery.hash
+      hash: userProfileData.userQuery.hash,
+      ...params
     });
   };
 export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
@@ -52,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 
 function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
-
+  const filterJobsProps = useFilterJobs();
   //Redirect to home page if no jobs were found.
   useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
 
@@ -61,14 +65,16 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   //Use swr infinite.
   const { data, isLoading, setSize, size, isValidating } = useSWRInfinite<ResponseGetJobs>(
-    handler(userProfileData),
+    handler(userProfileData, {
+      title: filterJobsProps.formValues.title
+    }),
     {
       revalidateFirstPage: false
     }
   );
   const { curData, lastData } = getLastCurJobData(data);
   const jobsData = curData.map((response) => response.jobs).flat(1);
-  const filterJobsProps = useFilterJobs();
+
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />
@@ -76,15 +82,17 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
       <JobsFeed jobs={jobsData} />
 
-      <div className="flex w-full items-center justify-center">
-        <LoadButton
-          disabled={!lastData.pagination.hasMore}
-          className="items-center px-7 py-2 text-2xl"
-          onClick={() => setSize(size + 1)}
-        >
-          טען משרות
-        </LoadButton>
-      </div>
+      {jobsData.length && (
+        <div className="flex w-full items-center justify-center">
+          <LoadButton
+            disabled={!lastData.pagination.hasMore}
+            className="items-center px-7 py-2 text-2xl"
+            onClick={() => setSize(size + 1)}
+          >
+            טען משרות
+          </LoadButton>
+        </div>
+      )}
 
       <Spinner className="!top-[none] bottom-5" isLoading={isValidating || isLoading || !data} />
     </>
