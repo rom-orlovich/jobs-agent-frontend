@@ -8,7 +8,7 @@ function LoadButton(props: ButtonProps & PropsWithChildren) {
     <button
       disabled={props.disabled}
       className={classNameGenerator(
-        'button-custom flex items-center justify-between gap-2 bg-loading-500 text-xl text-white hover:bg-loading-400 disabled:bg-loading-600',
+        'button-custom flex items-center justify-between gap-2 bg-loading-500 text-xl text-white hover:bg-loading-400 disabled:cursor-not-allowed disabled:bg-loading-600',
         props.className
       )}
       onClick={props.onClick}

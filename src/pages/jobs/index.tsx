@@ -16,6 +16,7 @@ import JobsFeed from '@/components/Jobs/JobsFeed';
 import Spinner from '@/components/Spinner/Spinner';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import LoadButton from '@/components/Buttons/LoadButton';
+import PageHead from '@/components/Layout/PageHead/PageHead';
 const defaultResponseJob: ResponseGetJobs = {
   jobs: [] as Job[],
   pagination: {
@@ -49,6 +50,7 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
     props: data || defaultResponseJob
   };
 };
+
 function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
 
@@ -59,18 +61,25 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { userProfileData } = useAuthContext();
 
   //Use swr infinite.
-  const { data, isLoading, setSize, size } = useSWRInfinite<ResponseGetJobs>(handler(userProfileData), {
-    revalidateFirstPage: false
-  });
+  const { data, isLoading, setSize, size, isValidating } = useSWRInfinite<ResponseGetJobs>(
+    handler(userProfileData),
+    {
+      revalidateFirstPage: false
+    }
+  );
 
   const curData: ResponseGetJobs[] = data ? data : [defaultResponseJob];
+  const lengthCurData = curData.length;
+  const lastData: ResponseGetJobs = curData[lengthCurData - 1];
   const jobsData = curData.map((response) => response.jobs).flat(1);
   return (
     <>
+      <PageHead title="Jobs" description="Here is the place to find your next job." />
+
       <JobsFeed jobs={jobsData} />
       <div className="flex w-full items-center justify-center">
         <LoadButton
-          disabled={!props.pagination.hasMore}
+          disabled={!lastData.pagination.hasMore}
           className="items-center px-7 py-2 text-2xl"
           onClick={() => setSize(size + 1)}
         >
@@ -78,7 +87,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
         </LoadButton>
       </div>
 
-      <Spinner className="!top-[none] bottom-5" isLoading={isLoading || !data} />
+      <Spinner className="!top-[none] bottom-5" isLoading={isValidating || isLoading || !data} />
     </>
   );
 }
