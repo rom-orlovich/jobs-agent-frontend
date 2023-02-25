@@ -27,6 +27,7 @@ export default function Autocomplete<V>({
   ) : (
     <></>
   );
+
   const [selectedOption, setSelectedOption] = useState(defaultValue || options[0]);
 
   //Handle the select event.
@@ -58,10 +59,11 @@ export default function Autocomplete<V>({
         ) : (
           <></>
         )}
-        <Combobox.Input<'input', { value: V; title: string }[]>
+        <Combobox.Input<'input', { value: V; title: string }>
           {...inputLabelProps?.inputProps}
           autoComplete={'off'}
-          value={(defaultValue?.value || selectedOption.value) as string}
+          // value={selectedOption?.value as string}
+          displayValue={(selectedOption) => selectedOption.value as string}
           className={classNameGenerator(autoCompleteStyle.input, inputLabelProps?.inputProps?.className)}
           onChange={handleOnChange}
         />
