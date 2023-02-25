@@ -10,11 +10,11 @@ function JobItem(props: Job & { index: number }) {
       key={jobID + index}
     >
       <div> {props.jobID}</div>
-
       <div>
         <Link href={link}> {title}</Link>{' '}
       </div>
       <div> {props.company}</div>
+      <div>{props.location} </div>
       <div> {from} </div>
       <div> {reason === 'match' ? '!יש התאמה' : reason} </div>
     </li>
