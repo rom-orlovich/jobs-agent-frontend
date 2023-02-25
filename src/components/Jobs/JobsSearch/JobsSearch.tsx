@@ -26,9 +26,9 @@ function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
     value: job.title
   }));
   const jobsSearchStyle = {
-    jobSearchContainer: 'flex justify-start px-8',
-    autocompleteWrapper: 'flex flex-col max-w-[50%] relative',
-    icon: 'text-blue-300 absolute right-2 top-[25%] text-xl',
+    jobSearchContainer: 'flex justify-start',
+    autocompleteWrapper: 'flex flex-col relative w-fit',
+    icon: 'text-blue-300 absolute right-2 top-[22%] text-xl',
     input: 'py-1 min-w-[15rem]'
   };
   return (
@@ -41,6 +41,7 @@ function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
             buttonProps: {}
           },
           inputProps: {
+            defaultValue: formValues.title,
             className: jobsSearchStyle.input
           },
           wrapperInputLabel: {
