@@ -7,7 +7,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { Option } from '../SelectInput/selectInput.types';
 const autoCompleteStyle = {
   options:
-    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll rounded-md bg-white py-1 text-base shadow-md  ring-1 sm:text-sm',
+    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll rounded-md bg-white py-1 text-base shadow-md ring-1 sm:text-sm',
   label: 'font-semibold',
   input: 'input-custom relative'
 };
@@ -27,8 +27,13 @@ export default function Autocomplete<V>({
   ) : (
     <></>
   );
+  const defaultNoValue = {
+    title: '',
+    id: `${new Date().getTime()}`,
+    value: inputLabelProps?.inputProps?.value as V
+  };
 
-  const [selectedOption, setSelectedOption] = useState(defaultValue || options[0]);
+  const [selectedOption, setSelectedOption] = useState<Option<V>>(defaultValue || defaultNoValue);
 
   //Handle the select event.
   const handleOnSelect = useDebouncedCallback(
@@ -44,6 +49,9 @@ export default function Autocomplete<V>({
   const handleOnChange = useDebouncedCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setValue && setValue(event.target.value as V);
+      if (!event.target.value) {
+        setSelectedOption(defaultNoValue);
+      }
     },
 
     500
@@ -62,12 +70,12 @@ export default function Autocomplete<V>({
         <Combobox.Input<'input', { value: V; title: string }>
           {...inputLabelProps?.inputProps}
           autoComplete={'off'}
-          // value={selectedOption?.value as string}
+          value={inputLabelProps?.inputProps?.value}
           displayValue={(selectedOption) => selectedOption.value as string}
           className={classNameGenerator(autoCompleteStyle.input, inputLabelProps?.inputProps?.className)}
           onChange={handleOnChange}
         />
-        <div className="relative ">
+        <div className="relative">
           <Combobox.Options className={autoCompleteStyle.options}>
             {options.map((option) => (
               <Combobox.Option className={'px-2'} key={option.id} value={option}>

@@ -16,7 +16,7 @@ function JobItem(props: Job & { index: number }) {
       </div>
       <div> {props.company}</div>
       <div> {from} </div>
-      <div> {reason || 'jobs is match'} </div>
+      <div> {reason === 'match' ? '!יש התאמה' : reason} </div>
     </li>
   );
 }

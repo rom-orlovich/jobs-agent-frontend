@@ -1,27 +1,36 @@
 import useForm from '../useForm/useForm';
 interface FilterJobsField {
   title: string;
+  reason: string;
 }
 /**
  *
  * @returns The handles function and formState of useFilterJobs.
  */
 function useFilterJobs() {
-  const { formState, formValues, onChange, setFormValues } = useForm<FilterJobsField>({
-    title: ''
+  const { formState, formValues, setFormValues } = useForm<FilterJobsField>({
+    title: '',
+    reason: ''
   });
-  const handleSearchInput = onChange;
-
-  //Handle the set value of autocomplete input.
-  function handleSearchByTitle<V extends string>(value: V) {
-    setFormValues((pre) => ({
-      ...pre,
-      title: value
-    }));
+  //Handle the set value of autocomplete.
+  function handleSearchValue<V extends string>(id: keyof FilterJobsField) {
+    return (value: V) => {
+      console.log(value);
+      setFormValues((pre) => ({
+        ...pre,
+        [id]: value
+      }));
+    };
   }
+  // //Handle the set value of autocomplete input.
+  // function handleSearchByTitle<V extends string>(value: V) {
+  //   setFormValues((pre) => ({
+  //     ...pre,
+  //     title: value
+  //   }));
+  // }
   return {
-    handleSearchInput,
-    handleSearchByTitle,
+    handleSearchValue,
     formState,
     formValues
   };

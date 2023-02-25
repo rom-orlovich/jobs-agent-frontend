@@ -62,11 +62,13 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   //Get user profile data.
   const { userProfileData } = useAuthContext();
-
+  const title = filterJobsProps.formValues.title;
+  const reason = filterJobsProps.formValues.reason;
   //Use swr infinite.
   const { data, isLoading, setSize, size, isValidating } = useSWRInfinite<ResponseGetJobs>(
     handler(userProfileData, {
-      title: filterJobsProps.formValues.title
+      title: title,
+      reason: reason
     }),
     {
       revalidateFirstPage: false
@@ -75,11 +77,14 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { curData, lastData } = getLastCurJobData(data);
   const jobsData = curData.map((response) => response.jobs).flat(1);
 
+  const numJobs =
+    size === 1 || (!title && !reason) ? lastData.pagination.totalDocs : lastData.jobs.length;
+
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />
-      <div className="xm:flex-col flex justify-between px-8 pr-16  sm:flex-row">
-        <h1 className="text-3xl">כ- {lastData.pagination.totalDocs} משרות נמצאו:</h1>
+      <div className="flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col">
+        <h1 className="text-3xl">כ- {numJobs} משרות נמצאו:</h1>
         <JobsSearch {...filterJobsProps} />
       </div>
 
@@ -88,7 +93,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       {jobsData.length && (
         <div className="flex w-full items-center justify-center">
           <LoadButton
-            disabled={!lastData.pagination.hasMore}
+            disabled={!lastData.jobs.length || !lastData.pagination.hasMore}
             className="items-center px-7 py-2 text-2xl"
             onClick={() => setSize(size + 1)}
           >

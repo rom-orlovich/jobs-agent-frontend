@@ -8,40 +8,47 @@ import { ResponseGetJobs } from '@/lib/jobsScanner.types';
 
 import React from 'react';
 import { BiSearch } from 'react-icons/bi';
+
 import Autocomplete from '../../Inputs/Autocomplete/Autocomplete';
+import FiltersPopup from './FiltersPopup';
 
 function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
-  const { handleSearchByTitle, formValues } = filterJobsProps;
+  const { handleSearchValue, formValues } = filterJobsProps;
   const { userProfileData } = useAuthContext();
 
   const { data } = useSwrHook<ResponseGetJobs>(
     createJobsURl(userProfileData.userID || '', {
-      title: formValues.title
+      title: formValues.title,
+      reason: formValues.reason
     })
   );
+  const curData = getJobsExistData(data);
 
-  const options: Option<string>[] = getJobsExistData(data)?.jobs.map((job, i) => ({
+  const options: Option<string>[] = curData?.jobs.map((job, i) => ({
     id: job.jobID + i,
     title: job.title,
     value: job.title
   }));
   const jobsSearchStyle = {
     jobSearchContainer: 'flex justify-start',
-    autocompleteWrapper: 'flex flex-col relative w-fit',
-    icon: 'text-blue-300 absolute right-2 top-[22%] text-xl',
-    input: 'py-1 min-w-[15rem]'
+    autocompleteWrapper: 'relative w-fit items-center',
+    icon: 'text-blue-300 absolute right-2  text-xl top-[30%]',
+    input: 'py-1 min-w-[15rem]',
+    filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl'
+  };
+  const IconButtonProps = {
+    Icon: <BiSearch />,
+    buttonProps: {
+      className: jobsSearchStyle.icon
+    }
   };
   return (
     <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
       <Autocomplete
-        setValue={handleSearchByTitle}
+        setValue={handleSearchValue('title')}
         inputLabelProps={{
-          IconButtonProps: {
-            Icon: <BiSearch className={jobsSearchStyle.icon} />,
-            buttonProps: {}
-          },
+          IconButtonProps: IconButtonProps,
           inputProps: {
-            defaultValue: formValues.title,
             className: jobsSearchStyle.input
           },
           wrapperInputLabel: {
@@ -49,6 +56,12 @@ function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
           }
         }}
         options={options}
+      />
+
+      <FiltersPopup
+        jobs={curData.jobs}
+        iconButtonProps={IconButtonProps}
+        filterJobsProps={filterJobsProps}
       />
     </div>
   );
