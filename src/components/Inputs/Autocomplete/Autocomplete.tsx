@@ -28,9 +28,9 @@ export default function Autocomplete<V>({
     <></>
   );
   const defaultNoValue = {
-    title: '',
+    title: 'חפש לפי הכל',
     id: `${new Date().getTime()}`,
-    value: inputLabelProps?.inputProps?.value as V
+    value: (inputLabelProps?.inputProps?.value || '') as V
   };
 
   const [selectedOption, setSelectedOption] = useState<Option<V>>(defaultValue || defaultNoValue);

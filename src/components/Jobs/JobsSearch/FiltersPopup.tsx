@@ -45,6 +45,9 @@ function FiltersPopup({
             options={optionsReasons}
             inputLabelProps={{
               IconButtonProps: iconButtonProps
+              // inputProps: {
+              //   value: filterJobsProps.formValues.reason
+              // }
             }}
           />
         </div>

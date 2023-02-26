@@ -19,7 +19,8 @@ function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
   const { data } = useSwrHook<ResponseGetJobs>(
     createJobsURl(userProfileData.userID || '', {
       title: formValues.title,
-      reason: formValues.reason
+      reason: formValues.reason,
+      hash: userProfileData.userQuery.hash
     })
   );
   const curData = getJobsExistData(data);
@@ -43,26 +44,30 @@ function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
     }
   };
   return (
-    <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
-      <Autocomplete
-        setValue={handleSearchValue('title')}
-        inputLabelProps={{
-          IconButtonProps: IconButtonProps,
-          inputProps: {
-            className: jobsSearchStyle.input
-          },
-          wrapperInputLabel: {
-            className: jobsSearchStyle.autocompleteWrapper
-          }
-        }}
-        options={options}
-      />
+    <div className="flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col">
+      <h1 className="text-3xl">כ- {curData.jobs.length} משרות נמצאו:</h1>
+      <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
+        <Autocomplete
+          setValue={handleSearchValue('title')}
+          inputLabelProps={{
+            IconButtonProps: IconButtonProps,
+            inputProps: {
+              className: jobsSearchStyle.input
+              // value: formValues.title
+            },
+            wrapperInputLabel: {
+              className: jobsSearchStyle.autocompleteWrapper
+            }
+          }}
+          options={options}
+        />
 
-      <FiltersPopup
-        jobs={curData.jobs}
-        iconButtonProps={IconButtonProps}
-        filterJobsProps={filterJobsProps}
-      />
+        <FiltersPopup
+          jobs={curData.jobs}
+          iconButtonProps={IconButtonProps}
+          filterJobsProps={filterJobsProps}
+        />
+      </div>
     </div>
   );
 }

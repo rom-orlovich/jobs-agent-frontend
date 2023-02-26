@@ -2,6 +2,7 @@ import useForm from '../useForm/useForm';
 interface FilterJobsField {
   title: string;
   reason: string;
+  page: number;
 }
 /**
  *
@@ -10,14 +11,15 @@ interface FilterJobsField {
 function useFilterJobs() {
   const { formState, formValues, setFormValues } = useForm<FilterJobsField>({
     title: '',
-    reason: ''
+    reason: '',
+    page: 1
   });
   //Handle the set value of autocomplete.
   function handleSearchValue<V extends string>(id: keyof FilterJobsField) {
     return (value: V) => {
-      console.log(value);
       setFormValues((pre) => ({
         ...pre,
+        page: 1,
         [id]: value
       }));
     };

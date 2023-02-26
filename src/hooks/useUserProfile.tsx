@@ -7,24 +7,24 @@ function useUserProfile(userID: string) {
     `/api/users/${userID}`
   );
 
-  // const defaultUserProfile: UserProfileWithOneUserQuery = {
-  //   userID: userID,
-  //   overallEx: 0,
-  //   requirements: {},
-  //   excludedRequirements: {},
-  //   userQuery: {
-  //     distance: '',
-  //     experience: '',
-  //     jobType: '',
-  //     location: '',
-  //     position: '',
-  //     scope: ''
-  //   }
-  // };
-  let userProfileData: UserProfileWithOneUserQuery | undefined = undefined;
+  const defaultUserProfile: UserProfileWithOneUserQuery = {
+    userID: userID,
+    overallEx: 0,
+    requirements: {},
+    excludedRequirements: {},
+    userQuery: {
+      distance: '',
+      experience: '',
+      jobType: '',
+      location: '',
+      position: '',
+      scope: ''
+    }
+  };
+  let userProfileData: UserProfileWithOneUserQuery | undefined = defaultUserProfile;
   if (data?.data) {
     const { userQueries, ...restUserProps } = data?.data;
-    const lengthUserQuery = userQueries.length;
+    const lengthUserQuery = userQueries?.length;
 
     userProfileData = {
       ...restUserProps,
