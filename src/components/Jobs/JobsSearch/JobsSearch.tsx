@@ -39,6 +39,11 @@ function JobsSearch({
   return (
     <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
       <Autocomplete
+        defaultValue={{
+          id: 'default',
+          value: filterJobsProps.formValues.title,
+          title: filterJobsProps.formValues.title
+        }}
         setValue={handleSearchValue('title')}
         inputLabelProps={{
           IconButtonProps: IconButtonProps,

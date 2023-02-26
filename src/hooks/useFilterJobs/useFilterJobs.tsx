@@ -1,18 +1,19 @@
+// import { useRouter } from 'next/router';
 import useForm from '../useForm/useForm';
 interface FilterJobsField {
   title: string;
   reason: string;
-  page: number;
+  // page: number;
 }
 /**
  *
  * @returns The handles function and formState of useFilterJobs.
  */
 function useFilterJobs() {
+  // const router = useRouter();
   const { formState, formValues, setFormValues } = useForm<FilterJobsField>({
     title: '',
-    reason: '',
-    page: 1
+    reason: ''
   });
   //Handle the set value of autocomplete.
   function handleSearchValue<V extends string>(id: keyof FilterJobsField) {
@@ -24,6 +25,13 @@ function useFilterJobs() {
       }));
     };
   }
+  // function setPage(page: number) {
+  //   setFormValues((pre) => ({
+  //     ...pre
+  //     // page: page
+  //   }));
+  // }
+
   // //Handle the set value of autocomplete input.
   // function handleSearchByTitle<V extends string>(value: V) {
   //   setFormValues((pre) => ({
@@ -35,6 +43,7 @@ function useFilterJobs() {
     handleSearchValue,
     formState,
     formValues
+    // setPage
   };
 }
 

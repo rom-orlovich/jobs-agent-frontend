@@ -27,14 +27,16 @@ import PageHead from '@/components/Layout/PageHead/PageHead';
 import JobsSearch from '@/components/Jobs/JobsSearch/JobsSearch';
 import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
 import { GenericRecord } from '@/lib/types/types';
+
 const handler: (
   userProfileData: UserProfileWithOneUserQuery,
   params?: GenericRecord<any>
 ) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
   (userProfileData, params) => (prePage: number, preData) => {
     if (preData?.pagination.hasMore === false) return null;
+
     return createJobsURl(userProfileData.userID || '', {
-      page: prePage,
+      page: prePage + 1,
       hash: userProfileData.userQuery.hash,
       ...params
     });
@@ -64,6 +66,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { userProfileData } = useAuthContext();
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
+
   //Use swr infinite.
   const { data, isLoading, setSize, size, isValidating } = useSWRInfinite<ResponseGetJobs>(
     handler(userProfileData, {
@@ -72,9 +75,15 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     }),
     {
       revalidateFirstPage: false,
-      initialSize: filterJobsProps.formValues.page
+      revalidateOnFocus: false,
+
+      refreshWhenOffline: false,
+      revalidateAll: false,
+
+      fallbackData: [props]
     }
   );
+
   const { allResponseData, lastResponse } = getLastCurJobData(data);
   const jobsData = allResponseData.map((response) => response.jobs).flat(1);
 
@@ -93,7 +102,9 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
           <LoadButton
             disabled={!lastResponse.pagination.hasMore}
             className="items-center px-7 py-2 text-2xl"
-            onClick={() => setSize(size + 1)}
+            onClick={() => {
+              setSize(size + 2);
+            }}
           >
             טען משרות
           </LoadButton>

@@ -40,6 +40,11 @@ function FiltersPopup({
       <Popover.Panel className="absolute top-[2.4rem] left-[50%] z-10  min-h-[8rem] min-w-[16rem] translate-x-[-50%] rounded-lg bg-white p-4 shadow-lg">
         <div className="">
           <Autocomplete
+            defaultValue={{
+              id: 'default',
+              value: filterJobsProps.formValues.reason,
+              title: filterJobsProps.formValues.reason
+            }}
             label="חפש עפ התאמה"
             setValue={handleSearchValue('reason')}
             options={optionsReasons}

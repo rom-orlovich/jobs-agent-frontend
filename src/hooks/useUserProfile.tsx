@@ -4,7 +4,11 @@ import { useSwrHook } from './useSwr';
 
 function useUserProfile(userID: string) {
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
-    `/api/users/${userID}`
+    `/api/users/${userID}`,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false
+    }
   );
 
   const defaultUserProfile: UserProfileWithOneUserQuery = {
