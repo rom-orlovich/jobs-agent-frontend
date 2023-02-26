@@ -4,27 +4,27 @@ import { IoFilterCircleSharp } from 'react-icons/io5';
 
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
-import { Job } from '@/lib/jobsScanner.types';
+import { FacetFilterResults } from '@/lib/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs/useFilterJobs';
 function FiltersPopup({
-  jobs,
   iconButtonProps,
-  filterJobsProps
+  filterJobsProps,
+  jobsFilters
 }: {
-  jobs: Job[];
   iconButtonProps: IconButtonProps;
   filterJobsProps: ReturnUseFilterJobsProps;
+  jobsFilters: FacetFilterResults;
 }) {
   const { handleSearchValue } = filterJobsProps;
   // const checkMatchJob = (title?: string) => {
   //   if (title === 'match') return 'יש התאמה!';
   //   return title;
   // };
-  const optionsReasons: Option<string>[] = jobs.map((job, i) => ({
-    id: job.jobID + i,
-    title: job.reason || '',
-    value: job.reason || ''
+  const optionsReasons: Option<string>[] = jobsFilters.reasons.map((reason, i) => ({
+    id: reason + i,
+    title: reason,
+    value: reason
   }));
   const filterPopupStyle = {
     filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl'

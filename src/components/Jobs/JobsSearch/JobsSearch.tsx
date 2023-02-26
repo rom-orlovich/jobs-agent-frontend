@@ -1,10 +1,8 @@
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
-import { useAuthContext } from '@/context/UserContext';
-import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs/useFilterJobs';
-import { useSwrHook } from '@/hooks/useSwr';
 
-import { createJobsURl, getJobsExistData } from '@/lib/jobs.utils';
-import { ResponseGetJobs } from '@/lib/jobsScanner.types';
+import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs/useFilterJobs';
+
+import { FacetFilterResults } from '@/lib/jobsScanner.types';
 
 import React from 'react';
 import { BiSearch } from 'react-icons/bi';
@@ -12,23 +10,18 @@ import { BiSearch } from 'react-icons/bi';
 import Autocomplete from '../../Inputs/Autocomplete/Autocomplete';
 import FiltersPopup from './FiltersPopup';
 
-function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
-  const { handleSearchValue, formValues } = filterJobsProps;
-  const { userProfileData } = useAuthContext();
-
-  const { data } = useSwrHook<ResponseGetJobs>(
-    createJobsURl(userProfileData.userID || '', {
-      title: formValues.title,
-      reason: formValues.reason,
-      hash: userProfileData.userQuery.hash
-    })
-  );
-  const curData = getJobsExistData(data);
-
-  const options: Option<string>[] = curData?.jobs.map((job, i) => ({
-    id: job.jobID + i,
-    title: job.title,
-    value: job.title
+function JobsSearch({
+  filterJobsProps,
+  jobsFilters
+}: {
+  jobsFilters: FacetFilterResults;
+  filterJobsProps: ReturnUseFilterJobsProps;
+}) {
+  const { handleSearchValue } = filterJobsProps;
+  const titles: Option<string>[] = jobsFilters?.titles?.map((title, i) => ({
+    id: title + i,
+    title: title,
+    value: title
   }));
   const jobsSearchStyle = {
     jobSearchContainer: 'flex justify-start',
@@ -44,30 +37,27 @@ function JobsSearch(filterJobsProps: ReturnUseFilterJobsProps) {
     }
   };
   return (
-    <div className="flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col">
-      <h1 className="text-3xl">כ- {curData.jobs.length} משרות נמצאו:</h1>
-      <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
-        <Autocomplete
-          setValue={handleSearchValue('title')}
-          inputLabelProps={{
-            IconButtonProps: IconButtonProps,
-            inputProps: {
-              className: jobsSearchStyle.input
-              // value: formValues.title
-            },
-            wrapperInputLabel: {
-              className: jobsSearchStyle.autocompleteWrapper
-            }
-          }}
-          options={options}
-        />
+    <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
+      <Autocomplete
+        setValue={handleSearchValue('title')}
+        inputLabelProps={{
+          IconButtonProps: IconButtonProps,
+          inputProps: {
+            className: jobsSearchStyle.input
+            // value: formValues.title
+          },
+          wrapperInputLabel: {
+            className: jobsSearchStyle.autocompleteWrapper
+          }
+        }}
+        options={titles}
+      />
 
-        <FiltersPopup
-          jobs={curData.jobs}
-          iconButtonProps={IconButtonProps}
-          filterJobsProps={filterJobsProps}
-        />
-      </div>
+      <FiltersPopup
+        jobsFilters={jobsFilters}
+        iconButtonProps={IconButtonProps}
+        filterJobsProps={filterJobsProps}
+      />
     </div>
   );
 }

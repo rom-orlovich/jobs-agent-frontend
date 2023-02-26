@@ -75,25 +75,23 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       initialSize: filterJobsProps.formValues.page
     }
   );
-  const { curData, lastData } = getLastCurJobData(data);
-  const jobsData = curData.map((response) => response.jobs).flat(1);
-  // if (title || reason) setSize(1);
-
-  // const numJobs =
-  //   size === 1 || (!title && !reason) ? lastData.pagination.totalDocs : lastData.jobs.length;
+  const { allResponseData, lastResponse } = getLastCurJobData(data);
+  const jobsData = allResponseData.map((response) => response.jobs).flat(1);
 
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />
-
-      <JobsSearch {...filterJobsProps} />
+      <div className="flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col">
+        <h1 className="text-3xl">כ- {lastResponse.pagination.numResultsFound} משרות נמצאו:</h1>
+        <JobsSearch filterJobsProps={filterJobsProps} jobsFilters={lastResponse.filters} />
+      </div>
 
       <JobsFeed jobs={jobsData} />
 
       {jobsData.length && (
         <div className="flex w-full items-center justify-center">
           <LoadButton
-            disabled={!lastData.pagination.hasMore}
+            disabled={!lastResponse.pagination.hasMore}
             className="items-center px-7 py-2 text-2xl"
             onClick={() => setSize(size + 1)}
           >

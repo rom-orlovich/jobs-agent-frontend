@@ -32,7 +32,15 @@ export const defaultResponseJobs: ResponseGetJobs = {
   pagination: {
     hasMore: false,
     totalDocs: 0,
-    totalPages: 1
+    totalPages: 1,
+    numResultsFound: 0
+  },
+  filters: {
+    companies: [],
+    from: [],
+    locations: [],
+    reasons: [],
+    titles: []
   }
 };
 
@@ -49,16 +57,16 @@ export const getJobsExistData = (jobData?: ResponseGetJobs): ResponseGetJobs =>
  * So in order to get the last update jobData, we need to lookup it from the array.
  * If there is not such a jobData use the defaultResponseJobs.
  * @param {ResponseGetJobs[]|undefined} jobData Data from the useSWRInfinite.
- * @returns {{curData:ResponseGetJobs[],lastData:ResponseGetJobs}} The last jobData in ResponseGetJobs array.
+ * @returns {{curData:ResponseGetJobs[],lastResponse:ResponseGetJobs}} The last jobData in ResponseGetJobs array.
  */
 export const getLastCurJobData = (
   jobData: ResponseGetJobs[] | undefined
-): { curData: ResponseGetJobs[]; lastData: ResponseGetJobs } => {
-  const curData: ResponseGetJobs[] = jobData ? jobData : [defaultResponseJobs];
-  const lengthCurData = curData.length;
-  const lastData: ResponseGetJobs = curData[lengthCurData - 1];
+): { allResponseData: ResponseGetJobs[]; lastResponse: ResponseGetJobs } => {
+  const allResponseData: ResponseGetJobs[] = jobData ? jobData : [defaultResponseJobs];
+  const lengthCurData = allResponseData.length;
+  const lastResponse: ResponseGetJobs = allResponseData[lengthCurData - 1];
   return {
-    curData,
-    lastData
+    allResponseData,
+    lastResponse
   };
 };

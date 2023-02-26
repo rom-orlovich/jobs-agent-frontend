@@ -17,7 +17,16 @@ export interface Job {
   createdAt?: Date;
   text: string;
 }
+
+export interface FacetFilterResults {
+  titles: string[];
+  from: string[];
+  companies: string[];
+  locations: string[];
+  reasons: string[];
+}
 export type ResponseGetJobs = {
   jobs: Job[];
-  pagination: { totalPages: number; totalDocs: number; hasMore: boolean };
+  pagination: { totalPages: number; totalDocs: number; hasMore: boolean; numResultsFound: number };
+  filters: FacetFilterResults;
 };
