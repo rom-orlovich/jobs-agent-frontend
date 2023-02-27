@@ -37,7 +37,7 @@ const handler: (
 
     return createJobsURl(userProfileData.userID || '', {
       page: prePage + 1,
-      hash: userProfileData.userQuery.hash,
+      hash: userProfileData.activeHash,
       ...params
     });
   };
@@ -45,12 +45,14 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
   const session = await getServerSession(context.req, context.res, authOptions);
   //Get the query from the url.
   const hash = context.query.hash;
+
   const page = context.query.page;
 
   const data = await jobsFetcher(session?.user.id || '', {
     hash,
     page: page
   });
+
   return {
     props: data || defaultResponseJobs
   };
@@ -58,10 +60,11 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 
 function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
-  const filterJobsProps = useFilterJobs();
+
   //Redirect to home page if no jobs were found.
   useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
 
+  const filterJobsProps = useFilterJobs();
   //Get user profile data.
   const { userProfileData } = useAuthContext();
   const title = filterJobsProps.formValues.title;
@@ -83,6 +86,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   );
 
   const { allResponseData, lastResponse } = getLastCurJobData(data);
+
   const jobsData = allResponseData.map((response) => response.jobs).flat(1);
 
   return (

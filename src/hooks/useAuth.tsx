@@ -2,7 +2,7 @@ import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { OmitKey } from '@/lib/types/types';
 import { useSession } from 'next-auth/react';
 
-import userProfile from './useUserProfile';
+import useUserProfile from './useUserProfile';
 
 /**
  * @returns The data about the current login user
@@ -11,7 +11,7 @@ export default function useAuth() {
   const { data, status } = useSession({
     required: true
   });
-  const { userProfileData, isLoading, userHistoryQueries } = userProfile(data?.user.id || '');
+  const { userProfileData, isLoading, userHistoryQueries } = useUserProfile(data?.user.id || '');
   return {
     isAuthenticated: status === 'authenticated',
     ...data,

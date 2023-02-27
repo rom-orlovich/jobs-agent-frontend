@@ -26,6 +26,7 @@ export type Requirements = GenericRecord<MinMaxInputsValueWithoutTitle>;
 export type ExcludeTechsOptions = GenericRecord<boolean>;
 export interface UserProfile {
   userID?: string;
+  activeHash?: string;
   overallEx?: number;
   requirements: Requirements;
   excludedRequirements: ExcludeTechsOptions;

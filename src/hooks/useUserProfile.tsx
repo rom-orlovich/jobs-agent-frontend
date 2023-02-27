@@ -13,7 +13,7 @@ function useUserProfile(userID: string) {
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
     `/api/users/${userID}`,
     {
-      revalidateIfStale: false,
+      revalidateIfStale: true,
       revalidateOnFocus: false
     }
   );
@@ -35,15 +35,17 @@ function useUserProfile(userID: string) {
   };
   let userProfileData: UserProfileWithOneUserQuery | undefined = defaultUserProfile;
   let userHistoryQueries: UserQuery[] = [];
+
   if (data?.data) {
-    const { userQueries, ...restUserProps } = data?.data;
-    const lengthUserQuery = userQueries?.length;
+    const { userQueries, activeHash, ...restUserProps } = data?.data;
+    const lengthUserQuery = userQueries?.length - 1;
     userHistoryQueries = userQueries;
     userProfileData = {
       ...restUserProps,
+      activeHash,
       userQuery: {
-        ...userQueries[lengthUserQuery - 1],
-        createdAt: userQueries[lengthUserQuery - 1].createdAt
+        ...userQueries[lengthUserQuery],
+        createdAt: userQueries[lengthUserQuery].createdAt
       }
     };
   }

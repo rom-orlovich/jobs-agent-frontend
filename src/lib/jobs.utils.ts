@@ -64,6 +64,7 @@ export const getLastCurJobData = (
 ): { allResponseData: ResponseGetJobs[]; lastResponse: ResponseGetJobs } => {
   const allResponseData: ResponseGetJobs[] = jobData ? jobData : [defaultResponseJobs];
   const lengthCurData = allResponseData.length;
+
   const lastResponse: ResponseGetJobs = allResponseData[lengthCurData - 1];
   return {
     allResponseData,

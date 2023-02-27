@@ -2,7 +2,7 @@
 
 import { covertObjToString, createScannerURL } from '@/lib/utils';
 
-import { Key } from 'swr';
+import { Key, mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
@@ -11,10 +11,10 @@ import { useRouter } from 'next/router';
 import { MouseEventHandler } from 'react';
 import { MESSAGES } from '@/lib/messages';
 import { toast } from 'react-toastify';
+import { APP_ROUTES } from '@/lib/routes';
 function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
   const router = useRouter();
   const scannerURL = createScannerURL(API_ENDPOINTS.SCANNER_START, user?.id);
-  console.log(scannerURL);
 
   //Initialize search scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner, any, Key, { hash?: string }>(
@@ -32,13 +32,21 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
         await scanner.trigger({
           hash
         });
-
-        toast(MESSAGES[scanner?.data?.code || 100]);
+        await mutate(`/api/users/${user?.id}`);
+        toast(MESSAGES[scanner?.data?.code || 100], {
+          delay: 500,
+          rtl: true
+        });
       } catch (error) {
         toast(MESSAGES[scanner?.data?.code || 100]);
         console.log(error);
       } finally {
-        router.push('/jobs');
+        router.push({
+          pathname: `/${APP_ROUTES.JOBS_PAGE}`,
+          query: {
+            hash
+          }
+        });
       }
     };
   return {

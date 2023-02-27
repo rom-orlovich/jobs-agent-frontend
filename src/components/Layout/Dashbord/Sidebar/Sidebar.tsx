@@ -31,8 +31,7 @@ const sideBarStyle = {
 function Sidebar() {
   const { userProfileData } = useAuthContext();
   const router = useRouter();
-  const hash = userProfileData.userQuery.hash;
-
+  const hash = userProfileData.activeHash;
   return (
     <Toggle>
       {(toggleProps) => {
@@ -45,7 +44,6 @@ function Sidebar() {
           hash: hash,
           page: 1
         });
-        console.log(router);
 
         return (
           <section className={classNameGenerator(sideBarStyle.nav, navIsOn, 'duration-500')}>
@@ -55,10 +53,9 @@ function Sidebar() {
               <ul className={sideBarStyle.links}>
                 {navLinksEl.map((el, i) => {
                   const isActiveLink = router.pathname === el.link;
-                  console.log(el.link === router.pathname);
+
                   const activeStyle = isActiveLink ? sideBarStyle.active : '';
-                  console.log(activeStyle);
-                  console.log(isActiveLink, `${router.pathname}`, `${el.link}`);
+
                   return (
                     <li
                       className={classNameGenerator(

@@ -23,13 +23,10 @@ export function Layout(props: PropsWithChildren) {
         <Spinner isLoading={isLoading || !userProfileData} />;
       </Main>
     );
-  const authData = {
-    ...auth,
-    userProfileData
-  };
+
   return (
     <Main>
-      <AuthContext authData={authData}>
+      <AuthContext authData={auth}>
         <Dashboard>{props.children}</Dashboard>
       </AuthContext>
     </Main>

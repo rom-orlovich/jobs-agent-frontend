@@ -27,8 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const user = await getUserByID(req.query.userID);
 
     if (user)
-      return res.status(201).send({
-        message: ' :( לא הצלחנו למצוא את המשתמש',
+      return res.status(200).send({
+        message: 'המשתמש נמצא בהצלחה!',
         data: user
       });
 
