@@ -12,7 +12,7 @@ interface NavLinkProps {
 
 export const navLinks: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => [
   {
-    link: `/${APP_ROUTES.SEARCH_PAGE}`,
+    link: `/`,
     text: 'חיפוש',
     icon: <MdOutlineLocationSearching className={iconsStyle} />
   },
@@ -22,7 +22,7 @@ export const navLinks: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => 
     icon: <MdWork className={iconsStyle} />
   },
   {
-    link: `${APP_ROUTES.SEARCH_HISTORY_PAGE}`,
+    link: `/${APP_ROUTES.SEARCH_HISTORY_PAGE}`,
     text: 'היסטוריה',
     icon: <MdHistory className={iconsStyle} />
   }

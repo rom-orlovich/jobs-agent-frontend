@@ -23,21 +23,19 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
       fetch(`${url}?${covertObjToString(options.arg)}`).then((res) => res.json())
   );
 
-  //   const scannerURL = createURL([SERVER_URL, API_ENDPOINTS.SCANNER_START, userProfileData.userID || '']);
-  //   const scanner = useSWRMutation<ResponseScanner>(scannerURL, );
-
   // Handles the Load button click event.
   const handleLoadButton: (hash?: string) => MouseEventHandler<HTMLButtonElement> =
     (hash) => async (e) => {
       e.preventDefault();
       try {
+        toast(MESSAGES[5]);
         await scanner.trigger({
           hash
         });
 
-        toast(MESSAGES[scanner?.data?.code || 5]);
+        toast(MESSAGES[scanner?.data?.code || 100]);
       } catch (error) {
-        toast(MESSAGES[scanner?.data?.code || 5]);
+        toast(MESSAGES[scanner?.data?.code || 100]);
         console.log(error);
       } finally {
         router.push('/jobs');

@@ -10,26 +10,29 @@ import { BiLogOutCircle } from 'react-icons/bi';
 import SideNavItem from './SideNavItem';
 import { navLinks } from './SidebarLinks';
 import { useAuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/router';
 const sideBarStyle = {
   nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
-
   isOn: {
     nav: {
       true: 'min-w-[12rem]',
       false: 'min-w-[2rem]'
     }
   },
-  'hover-link': 'hover:bg-nav-600',
+  hoverLink: 'hover:bg-nav-600',
   margin: 'mb-2',
   'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
   links: 'mt-2 flex flex-col items-center gap-6 w-full',
   li: 'w-full p-2 rounded-md',
   link: 'text-white w-full',
-  icon: 'text-2xl'
+  icon: 'text-2xl',
+  active: 'bg-nav-600'
 };
 function Sidebar() {
   const { userProfileData } = useAuthContext();
+  const router = useRouter();
   const hash = userProfileData.userQuery.hash;
+
   return (
     <Toggle>
       {(toggleProps) => {
@@ -42,6 +45,7 @@ function Sidebar() {
           hash: hash,
           page: 1
         });
+        console.log(router);
 
         return (
           <section className={classNameGenerator(sideBarStyle.nav, navIsOn, 'duration-500')}>
@@ -50,9 +54,18 @@ function Sidebar() {
             <div className={sideBarStyle['links&button-container']}>
               <ul className={sideBarStyle.links}>
                 {navLinksEl.map((el, i) => {
+                  const isActiveLink = router.pathname === el.link;
+                  console.log(el.link === router.pathname);
+                  const activeStyle = isActiveLink ? sideBarStyle.active : '';
+                  console.log(activeStyle);
+                  console.log(isActiveLink, `${router.pathname}`, `${el.link}`);
                   return (
                     <li
-                      className={classNameGenerator(sideBarStyle.li, sideBarStyle['hover-link'])}
+                      className={classNameGenerator(
+                        sideBarStyle.li,
+                        sideBarStyle.hoverLink,
+                        activeStyle
+                      )}
                       key={el.text + i}
                     >
                       <Link className={sideBarStyle.link} href={`${el.link}`}>
@@ -62,7 +75,7 @@ function Sidebar() {
                   );
                 })}
               </ul>
-              <ButtonAuth className={classNameGenerator(sideBarStyle['hover-link'])}>
+              <ButtonAuth className={classNameGenerator(sideBarStyle['hoverLink'])}>
                 <SideNavItem
                   icon={<BiLogOutCircle className={sideBarStyle.icon} />}
                   isOn={isON}
