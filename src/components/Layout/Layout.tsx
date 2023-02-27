@@ -7,7 +7,7 @@ const roboto = Roboto({
 import { Roboto } from '@next/font/google';
 import useAuth, { ReturnTypeUseAuthProfileExist } from '@/hooks/useAuth';
 import Spinner from '../Spinner/Spinner';
-import AuthContext from '@/context/UserContext';
+import AuthContext from '@/context/AuthContext';
 export type ChildrenWithAuthData = { children: (props: ReturnTypeUseAuthProfileExist) => ReactNode };
 
 export function Layout(props: PropsWithChildren) {

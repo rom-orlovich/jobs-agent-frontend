@@ -15,7 +15,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
   const { userQuery, ...restUserData } = userData;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { ...restUserQuery } = userQuery;
+  const { hash, ...restUserQuery } = userQuery;
   try {
     const res = await users.updateOne(
       {

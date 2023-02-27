@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { ResponseScanner } from '@/lib/jobsScanner.types';
 import { MESSAGES } from '@/lib/messages';
 import { useRouter } from 'next/router';
-import { useAuthContext } from '@/context/UserContext';
+import { useAuthContext } from '@/context/AuthContext';
 const buttonsStyle = {
   buttonsContainer: 'mt-3 flex justify-between gap-2',
   load: 'button-custom flex items-center justify-between gap-2 bg-search-500 hover:bg-search-400 disabled:bg-search-600  text-xl text-white',
@@ -35,7 +35,6 @@ function ScannerControlButtons() {
     try {
       await scanner.trigger();
       toast(MESSAGES[scanner?.data?.code || 5]);
-      console.log(scanner.data);
     } catch (error) {
       toast(MESSAGES[scanner?.data?.code || 5]);
       console.log(error);

@@ -77,7 +77,7 @@ export default function Autocomplete<V>({
         />
         <div className="relative">
           <Combobox.Options className={autoCompleteStyle.options}>
-            {options.map((option) => (
+            {options?.map((option) => (
               <Combobox.Option className={'px-2'} key={option.id} value={option}>
                 {({ active }) => {
                   return <div className={isActiveStyle(active)}>{option.title} </div>;

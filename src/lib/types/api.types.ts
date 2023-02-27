@@ -18,7 +18,8 @@ export interface UserQuery {
   jobType: string;
   scope: string;
   hash?: string;
-  createdAt?: Date;
+  createdAt?: string;
+  numResultFound: number;
 }
 export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'field'>;
 export type Requirements = GenericRecord<MinMaxInputsValueWithoutTitle>;

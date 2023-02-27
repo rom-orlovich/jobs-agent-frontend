@@ -10,7 +10,7 @@ import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 // import ConfirmButton from '../Buttons/ConfirmButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
-import { useAuthContext } from '@/context/UserContext';
+import { useAuthContext } from '@/context/AuthContext';
 // import { MdSave } from 'react-icons/md';
 const UserProfileFormStyle = {
   form: 'max-w-[35rem] min-w-[15rem] flex flex-col gap-4 shadow-lg p-4 rounded-md bg-white ',

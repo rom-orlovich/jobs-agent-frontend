@@ -7,7 +7,7 @@ import {
   EXPERIENCE_OPTIONS,
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
-} from './userQueryOptions';
+} from '../../../lib/userQueryOptions';
 import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/selectInput.types';
 
 import PositionsAutocomplete from './PositionsAutocomplete';

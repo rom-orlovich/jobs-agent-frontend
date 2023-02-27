@@ -16,15 +16,15 @@ import React from 'react';
 
 import { authOptions } from '../api/auth/[...nextauth]';
 import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite';
-import { useAuthContext } from '@/context/UserContext';
+import { useAuthContext } from '@/context/AuthContext';
 
-import JobsFeed from '@/components/Jobs/JobsFeed';
+import JobsFeed from '@/components/JobsPage/JobsFeed';
 
 import Spinner from '@/components/Spinner/Spinner';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import LoadButton from '@/components/Buttons/LoadButton';
 import PageHead from '@/components/Layout/PageHead/PageHead';
-import JobsSearch from '@/components/Jobs/JobsSearch/JobsSearch';
+import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
 import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
 import { GenericRecord } from '@/lib/types/types';
 
@@ -76,10 +76,8 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     {
       revalidateFirstPage: false,
       revalidateOnFocus: false,
-
       refreshWhenOffline: false,
       revalidateAll: false,
-
       fallbackData: [props]
     }
   );

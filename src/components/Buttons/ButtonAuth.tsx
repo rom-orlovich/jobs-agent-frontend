@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/context/UserContext';
+import { useAuthContext } from '@/context/AuthContext';
 
 import { BoolKey } from '@/lib/types/types';
 import { classNameGenerator } from '@/lib/utils';

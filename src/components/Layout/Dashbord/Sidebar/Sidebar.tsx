@@ -9,7 +9,7 @@ import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
 import SideNavItem from './SideNavItem';
 import { navLinks } from './SidebarLinks';
-import { useAuthContext } from '@/context/UserContext';
+import { useAuthContext } from '@/context/AuthContext';
 const sideBarStyle = {
   nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
 

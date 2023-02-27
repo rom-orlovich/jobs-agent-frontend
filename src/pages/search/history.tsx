@@ -1,4 +1,6 @@
 import PageHead from '@/components/Layout/PageHead/PageHead';
+import SearchHistoryFeed from '@/components/SearchHistory/SearchHistoryFeed';
+
 import React from 'react';
 
 function History() {
@@ -8,7 +10,8 @@ function History() {
         title="Search Queries History"
         description="The page display the history search queries of current user."
       />
-      <div>history</div>;
+
+      <SearchHistoryFeed />
     </>
   );
 }
