@@ -50,3 +50,4 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
 }
 
 export default useScannerController;
+export type UseScannerHooksProps = ReturnType<typeof useScannerController>;

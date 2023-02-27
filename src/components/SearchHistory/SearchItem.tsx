@@ -1,4 +1,5 @@
 import { UseDownloadHooksProps } from '@/hooks/useDownloadController';
+import { UseScannerHooksProps } from '@/hooks/useScannerController';
 import { UserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
 import {
@@ -8,7 +9,10 @@ import {
   SCOPES_OPTIONS
 } from '@/lib/userQueryOptions';
 import React from 'react';
-import { FaCloudDownloadAlt } from 'react-icons/fa';
+
+import DownloadButton from '../Buttons/DownloadButton';
+
+import SearchButton from '../Buttons/SearchButton';
 import Field from '../Field/Field';
 import { Option } from '../Inputs/SelectInput/selectInput.types';
 
@@ -26,12 +30,12 @@ const handleConvertUserQueryToText = (value: string, options: Option<string>[]) 
   return realTextArr.join(', ');
 };
 const searchItemStyle = {
-  item: 'bg-white shadow-lg rounded-md flex flex-col border-none flex-[70%] p-[1.5rem] gap-2',
+  item: 'bg-white shadow-lg rounded-md flex flex-col border-none max-w-[80%] flex-[50%] p-[1.5rem] gap-3',
   fieldsContainer: 'flex gap-2 flex-row',
   fieldItemContainer: 'flex xs:flex-row flex-col gap-1',
   title: 'font-bold',
-  download:
-    'button-custom bg-success-secondary flex items-center justify-between gap-2 disabled:bg-success-primary-600 bg-success-secondary-500 text-xl text-white hover:bg-success-secondary-400'
+  download: '',
+  buttonsContainer: 'flex justify-end gap-8'
 };
 
 function SearchItem({
@@ -44,8 +48,11 @@ function SearchItem({
   createdAt,
   hash,
   downloadState,
+  // numResultFound,
+  scanner,
+  handleLoadButton,
   handleDownloadButton
-}: UserQuery & UseDownloadHooksProps) {
+}: UserQuery & UseDownloadHooksProps & UseScannerHooksProps) {
   const createdAtDate = new Date(createdAt || '');
   const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
     timeZone: 'Asia/Jerusalem'
@@ -109,14 +116,22 @@ function SearchItem({
           value={scopeText}
         />
       </div>
-      <div>
-        <button
+      <div className={searchItemStyle.buttonsContainer}>
+        <SearchButton
+          onClick={handleLoadButton(hash)}
+          disabled={scanner.isMutating}
+          className={searchItemStyle.download}
+        >
+          חפש מחדש
+        </SearchButton>
+
+        <DownloadButton
           disabled={downloadState.isMutating}
           className={searchItemStyle.download}
           onClick={handleDownloadButton(hash)}
         >
-          הורדה <FaCloudDownloadAlt />
-        </button>
+          הורדה
+        </DownloadButton>
       </div>
     </li>
   );

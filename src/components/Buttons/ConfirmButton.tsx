@@ -6,7 +6,7 @@ function ConfirmButton({ className, children, ...props }: ButtonProps & PropsWit
     <button
       {...props}
       className={classNameGenerator(
-        'button-custom bg-success-primary flex items-center gap-1 bg-success-primary-500 text-lg text-white hover:bg-success-primary-400',
+        'button-custom bg-success-primary flex items-center gap-1 bg-success-primary-500 text-white  hover:bg-success-primary-400 md:text-lg',
         className
       )}
     >
