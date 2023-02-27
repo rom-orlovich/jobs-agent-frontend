@@ -83,7 +83,7 @@ function UserProfileForm() {
         <UserQuery {...userForm} />
       </ToggleTopic>
 
-      <ScannerControlButtons />
+      <ScannerControlButtons {...userForm} />
     </form>
   );
 }

@@ -30,3 +30,4 @@ export type ResponseGetJobs = {
   pagination: { totalPages: number; totalDocs: number; hasMore: boolean; numResultsFound: number };
   filters: FacetFilterResults;
 };
+export type Args = Readonly<{ arg: { hash?: string } }>;

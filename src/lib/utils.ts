@@ -1,3 +1,4 @@
+import { SERVER_URL } from './endpoints';
 import { AnyFun, GenericRecord } from './types/types';
 
 /**
@@ -40,7 +41,7 @@ export const fetchData = async <D>(url: string) => {
  * @returns {string} The string form the objs.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const covertObjsToString = <T extends GenericRecord<any>>(
+export const covertObjToString = <T extends GenericRecord<any>>(
   obj: T,
   keyValueDelimiter = '=',
   objFieldDelimiter = '&'
@@ -78,7 +79,7 @@ export const createURL = <T extends GenericRecord<any>>(
 ) => {
   const resourcesURL = convertResourceToURL(resources);
   if (!params) return `${resourcesURL}`;
-  const paramsURL = covertObjsToString(params, keyValueDelimiter, objFieldDelimiter);
+  const paramsURL = covertObjToString(params, keyValueDelimiter, objFieldDelimiter);
   return `${resourcesURL}?${paramsURL}`;
 };
 
@@ -88,3 +89,7 @@ export const delayFun = (cb: AnyFun, delay: number) =>
       res(await cb());
     }, delay)
   );
+
+export const fetchSWR = (url: string) => fetch(url).then((res) => res.json());
+export const createScannerURL = (endpoint: string, userID?: string) =>
+  createURL([SERVER_URL, endpoint, userID || '']);
