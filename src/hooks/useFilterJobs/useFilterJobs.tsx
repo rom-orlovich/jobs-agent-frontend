@@ -1,16 +1,13 @@
-// import { useRouter } from 'next/router';
 import useForm from '../useForm/useForm';
 interface FilterJobsField {
   title: string;
   reason: string;
-  // page: number;
 }
 /**
  *
  * @returns The handles function and formState of useFilterJobs.
  */
 function useFilterJobs() {
-  // const router = useRouter();
   const { formState, formValues, setFormValues } = useForm<FilterJobsField>({
     title: '',
     reason: ''
