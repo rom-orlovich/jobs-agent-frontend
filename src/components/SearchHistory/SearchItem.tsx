@@ -59,7 +59,8 @@ function SearchItem({
   createdAt,
   hash,
   downloadState,
-  // numResultFound,
+  numResultFound,
+  numMatches,
   handleEditButton,
   scanner,
   handleLoadButton,
@@ -104,6 +105,10 @@ function SearchItem({
       </div>
       <div>
         <Field {...fieldProps} title={'היקף משרה:'} value={scopeText} />
+      </div>
+      <div className={searchItemStyle.fieldsContainer}>
+        <Field {...fieldProps} title={'משרות שנמצאו:'} value={String(numResultFound || 0)} />
+        <Field {...fieldProps} title={'משרות מתאימות:'} value={String(numMatches || 0)} />
       </div>
       <div className={searchItemStyle.buttonsContainer}>
         <SearchButton

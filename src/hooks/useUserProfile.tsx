@@ -14,15 +14,15 @@ function useUserProfile(userID: string) {
   const router = useRouter();
   //Initial the fetching of current login user's data.
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
-    `/api/users/${userID}`
-    // {
-    //   revalidateIfStale: true,
-    //   revalidateOnMount: true,
-    //   refreshWhenOffline: true,
-    //   revalidateOnReconnect: true,
+    `/api/users/${userID}`,
+    {
+      revalidateIfStale: true,
+      revalidateOnMount: true,
+      refreshWhenOffline: false,
+      revalidateOnReconnect: false,
 
-    //   revalidateOnFocus: false
-    // }
+      revalidateOnFocus: false
+    }
   );
   //Default values.
   const defaultUserProfile: UserProfileWithOneUserQuery = {
