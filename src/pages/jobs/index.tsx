@@ -83,7 +83,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       reason: reason
     }),
     {
-      revalidateIfStale: false,
+      revalidateIfStale: true,
       revalidateFirstPage: false,
       revalidateOnFocus: false,
       refreshWhenOffline: false,

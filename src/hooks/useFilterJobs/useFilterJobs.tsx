@@ -25,25 +25,11 @@ function useFilterJobs() {
       }));
     };
   }
-  // function setPage(page: number) {
-  //   setFormValues((pre) => ({
-  //     ...pre
-  //     // page: page
-  //   }));
-  // }
 
-  // //Handle the set value of autocomplete input.
-  // function handleSearchByTitle<V extends string>(value: V) {
-  //   setFormValues((pre) => ({
-  //     ...pre,
-  //     title: value
-  //   }));
-  // }
   return {
     handleSearchValue,
     formState,
     formValues
-    // setPage
   };
 }
 
