@@ -4,7 +4,7 @@ import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './jobsScanner.types';
 import { MESSAGES, MESSAGE_CODES } from './messages';
 import { GenericRecord } from './types/types';
-import { createURL, fetchData } from './utils';
+import { createURL, fetchUtil } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createJobsURl = (userID: string, params?: GenericRecord<any>) => {
   return createURL([SERVER_URL, API_ENDPOINTS.GET_JOBS, userID], params);
@@ -12,7 +12,7 @@ export const createJobsURl = (userID: string, params?: GenericRecord<any>) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const jobsFetcher = async (userID: string, params: GenericRecord<any>) => {
   const url = createJobsURl(userID, params);
-  const data = await fetchData<ResponseGetJobs>(url);
+  const data = await fetchUtil<undefined, ResponseGetJobs>(url);
   return data;
 };
 /**

@@ -1,5 +1,6 @@
 import { MinMaxInputsOption } from '@/components/UserProfileForm/Requirements/MinMaxInputs';
 import { Job } from '../jobsScanner.types';
+import { MESSAGES, MESSAGE_CODES } from '../messages';
 import { GenericRecord, OmitKey } from './types';
 
 export interface Location {
@@ -44,3 +45,12 @@ export interface UserProfile {
 }
 
 export type UserProfileWithOneUserQuery = OmitKey<UserProfile, 'userQueries'> & { userQuery: UserQuery };
+
+export type KeyCode = keyof typeof MESSAGE_CODES;
+export type Code = (typeof MESSAGE_CODES)[KeyCode];
+export type MessageRes = (typeof MESSAGES)[Code];
+
+export interface ResponseMessage {
+  message: MessageRes;
+  code: Code;
+}

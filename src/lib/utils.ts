@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { SERVER_URL } from './endpoints';
-import { AnyFun, GenericRecord } from './types/types';
+import { MESSAGES, MESSAGE_CODES } from './messages';
+import { ResponseMessage } from './types/api.types';
+import { AnyFun, GenericRecord, OmitKey } from './types/types';
 
 /**
  *
@@ -90,6 +94,54 @@ export const delayFun = (cb: AnyFun, delay: number) =>
     }, delay)
   );
 
+/**
+ *
+ * @param {string} url URL of the request.
+ * @param {OmitKey<RequestInit, 'body'> & { body?: Req } | undefined} request Request Object with generic body object
+ * @returns {Promise<Res | undefined>} Result data of the mutation fetch.
+ */
+export async function fetchUtil<
+  Req extends GenericRecord<any> | undefined,
+  Res extends GenericRecord<any>
+>(url: string, request?: OmitKey<RequestInit, 'body'> & { body?: Req }): Promise<Res | undefined> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { body, ...restRequest } = request as RequestInit;
+  const headerBody = request?.body
+    ? {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request.body)
+      }
+    : {};
+
+  try {
+    const data = await fetch(url, {
+      method: request?.method,
+      ...restRequest,
+      ...headerBody
+    });
+    return await data.json();
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+/**
+ *
+ * @param {KeyCode} keyCode The key of the name of the message.
+ * @returns {ResponseMessage} Object of response message.
+ */
+export const getResMessage = <KeyCode extends keyof typeof MESSAGE_CODES>(
+  keyCode: KeyCode
+): ResponseMessage => {
+  const code = MESSAGE_CODES[keyCode];
+  return {
+    message: MESSAGES[code],
+    code: code
+  };
+};
 export const fetchSWR = (url: string) => fetch(url).then((res) => res.json());
+
 export const createScannerURL = (endpoint: string, userID?: string) =>
   createURL([SERVER_URL, endpoint, userID || '']);
