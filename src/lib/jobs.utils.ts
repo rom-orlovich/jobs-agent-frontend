@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+
 import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './jobsScanner.types';
 import { MESSAGES, MESSAGE_CODES } from './messages';
@@ -27,6 +28,7 @@ export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
     });
     return true;
   }
+
   toast(MESSAGES[MESSAGE_CODES.SCANNER_SUCCESS], {
     rtl: true,
     toastId: 'jobFound'

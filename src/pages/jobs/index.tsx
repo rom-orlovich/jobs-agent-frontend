@@ -27,7 +27,6 @@ import PageHead from '@/components/Layout/PageHead/PageHead';
 import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
 import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
 import { GenericRecord } from '@/lib/types/types';
-
 const handler: (
   userProfileData: UserProfileWithOneUserQuery,
   params?: GenericRecord<any>
@@ -53,8 +52,6 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
     page: page
   });
 
-  console.log(data);
-
   return {
     props: data || defaultResponseJobs
   };
@@ -62,10 +59,8 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 
 function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
-
   //Redirect to home page if no jobs were found.
   useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
-
   const filterJobsProps = useFilterJobs();
   //Get user profile data.
   const { userProfileData } = useAuthContext();
@@ -83,6 +78,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       revalidateFirstPage: false,
       revalidateOnFocus: false,
       refreshWhenOffline: false,
+      revalidateOnMount: true,
       revalidateAll: false,
       fallbackData: [props]
     }
@@ -91,7 +87,6 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { allResponseData, lastResponse } = getLastCurJobData(data);
 
   const jobsData = allResponseData.map((response) => response.jobs).flat(1);
-
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />

@@ -31,6 +31,8 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
         $addToSet: {
           userQueries: {
             ...restUserQuery,
+            numMatches: 0,
+            numResultFound: 0,
             createdAt: new Date()
           }
         }

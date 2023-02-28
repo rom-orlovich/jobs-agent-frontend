@@ -14,11 +14,15 @@ function useUserProfile(userID: string) {
   const router = useRouter();
   //Initial the fetching of current login user's data.
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
-    `/api/users/${userID}`,
-    {
-      revalidateIfStale: true,
-      revalidateOnFocus: false
-    }
+    `/api/users/${userID}`
+    // {
+    //   revalidateIfStale: true,
+    //   revalidateOnMount: true,
+    //   refreshWhenOffline: true,
+    //   revalidateOnReconnect: true,
+
+    //   revalidateOnFocus: false
+    // }
   );
   //Default values.
   const defaultUserProfile: UserProfileWithOneUserQuery = {
@@ -49,6 +53,7 @@ function useUserProfile(userID: string) {
 
     const { userQueries, ...restUserProps } = data?.data;
     let curUserQuery;
+    console.log(userQueries);
 
     //If there is editQueryHash so find the query from the userQueries and use its data.
     if (curEditHashQuery) curUserQuery = userQueries.find((query) => query.hash === curEditHashQuery);

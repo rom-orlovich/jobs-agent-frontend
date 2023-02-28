@@ -18,9 +18,9 @@ function SearchHistoryFeed() {
 
   const { userHistoryQueries } = authContext;
   const getTime = (createdAt?: string) => new Date(createdAt || '').getTime();
-  const sortHistoryQueries = userHistoryQueries.sort(
-    (a, b) => getTime(b.createdAt) - getTime(a.createdAt)
-  );
+  const sortHistoryQueries = userHistoryQueries
+    .slice()
+    .sort((a, b) => getTime(b.createdAt) - getTime(a.createdAt));
 
   const handleEditButton: TriggerByHash = (hash) => (e) => {
     try {
