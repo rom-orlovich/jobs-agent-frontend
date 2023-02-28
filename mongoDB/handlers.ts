@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { Job } from '@/lib/jobsScanner.types';
+import { TrackInfo, UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 // import { JobsPosts } from './lib/types';
 import { getCollection, getDocumentsByName } from './lib/utils';
+import clientPromise from './mongoDB';
 export const getLocations = async (name: string) => {
   const locationsDocs = await getDocumentsByName(name, 'locations', 'locationName');
   return locationsDocs;
@@ -68,8 +70,60 @@ export const getUserByID = async (userID: string) => {
     return undefined;
   }
 };
+export const addJobTrack = async (userID: string, job: Job) => {
+  const { jobID, ...restJob } = job;
+  try {
+    const users = await getCollection('users');
+    const res = await users.updateOne(
+      {
+        userID
+      },
+      {
+        $addToSet: {
+          track: {
+            jobID: jobID,
+            jobInfo: restJob,
+            addedAt: new Date(),
+            sendCV: false,
+            stages: []
+          }
+        }
+      }
+    );
+    console.log(res);
+    return res;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
 
-// export const getJobsPostsByTitle = async (name: string, hash: string, page = 1, limit = 20) => {
-//   const jobsDocs = await getDocumentsByName<JobsPosts>(name, 'jobs', 'title', page, limit);
-//   return jobsDocs;
-// };
+export const updateJobTrack = async (userID: string, trackInfo: TrackInfo) => {
+  try {
+    const users = await getCollection('users');
+    const res = await users.updateOne(
+      {
+        userID
+      },
+      {
+        $set: {
+          'track.$[elem]': {
+            ...trackInfo
+          }
+        }
+      },
+      {
+        arrayFilters: [
+          {
+            'elem.jobID': trackInfo.jobID
+          }
+        ]
+      }
+    );
+    console.log(res);
+    return res;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};

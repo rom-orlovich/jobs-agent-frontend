@@ -16,6 +16,7 @@ export interface Job {
   from: string;
   createdAt?: Date;
   text: string;
+  hashQueries?: string[];
 }
 
 export interface FacetFilterResults {

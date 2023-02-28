@@ -74,11 +74,11 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       reason: reason
     }),
     {
-      revalidateIfStale: true,
+      revalidateIfStale: false,
       revalidateFirstPage: false,
       revalidateOnFocus: false,
       refreshWhenOffline: false,
-      revalidateOnMount: true,
+      revalidateOnMount: false,
       revalidateAll: false,
       fallbackData: [props]
     }
@@ -95,7 +95,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
         <JobsSearch filterJobsProps={filterJobsProps} jobsFilters={lastResponse.filters} />
       </div>
 
-      <JobsFeed jobs={jobsData} />
+      <JobsFeed jobs={jobsData} userProfileData={userProfileData} />
 
       {jobsData.length && (
         <div className="flex w-full items-center justify-center">

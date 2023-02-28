@@ -21,19 +21,23 @@ export const jobsFetcher = async (userID: string, params: GenericRecord<any>) =>
  * @returns True if there is no jobs otherwise false.
  */
 export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
-  console.log(jobs?.length);
-  if (!jobs?.length) {
-    toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND], {
-      toastId: 'noJobsFound'
-    });
-    return true;
-  }
+  try {
+    if (!jobs?.length) {
+      toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND], {
+        toastId: 'noJobsFound'
+      });
+      return true;
+    }
 
-  toast(MESSAGES[MESSAGE_CODES.SCANNER_SUCCESS], {
-    rtl: true,
-    toastId: 'jobFound'
-  });
-  return false;
+    toast(MESSAGES[MESSAGE_CODES.SCANNER_SUCCESS], {
+      rtl: true,
+      toastId: 'jobFound'
+    });
+    return false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 };
 export const defaultResponseJobs: ResponseGetJobs = {
   jobs: [] as Job[],

@@ -1,18 +1,22 @@
 import { Job } from '@/lib/jobsScanner.types';
 import Link from 'next/link';
-import React from 'react';
-import { MdBookmarkBorder } from 'react-icons/md';
+import React, { MouseEventHandler } from 'react';
+import { FaRegBookmark } from 'react-icons/fa';
+const jobItemStyle = {
+  item: 'flex-[100%] rounded-md bg-white p-4 shadow-md sm:flex-[45%] md:flex-[30%]',
+  bookmarkContainer: 'flex w-full justify-end',
+  bookmarkButton: 'text-xl'
+};
 
-function JobItem(props: Job & { index: number }) {
+function JobItem(
+  props: Job & { index: number; handleClickBookmark: MouseEventHandler<HTMLButtonElement> }
+) {
   const { link, title, from, reason, jobID, index } = props;
   return (
-    <li
-      className="flex-[100%] rounded-md bg-white p-4 shadow-md sm:flex-[45%] md:flex-[30%]"
-      key={jobID + index}
-    >
-      <div>
-        <button>
-          <MdBookmarkBorder />
+    <li className={jobItemStyle.item} key={jobID + index}>
+      <div className={jobItemStyle.bookmarkContainer}>
+        <button onClick={props.handleClickBookmark} className={jobItemStyle.bookmarkButton}>
+          <FaRegBookmark />
         </button>
       </div>
       <div> {props.jobID}</div>
