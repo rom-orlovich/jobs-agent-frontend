@@ -1,5 +1,6 @@
 import { Job } from '@/lib/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { createJobTrack } from '@/lib/user.utils';
 
 import React, { MouseEventHandler } from 'react';
 import JobItem from './JobItem';
@@ -7,13 +8,13 @@ interface JobsFeedProps {
   jobs: Job[];
   userProfileData: UserProfileWithOneUserQuery;
 }
+
 function JobsFeed({ jobs, userProfileData }: JobsFeedProps) {
-  const handleClickBookmark: (
-    userID: string,
-    jobID: string
-  ) => MouseEventHandler<HTMLButtonElement> = () => {
-    return (e) => {
+  const handleClickBookmark: (job: Job) => MouseEventHandler<HTMLButtonElement> = (job: Job) => {
+    return async (e) => {
       e.preventDefault();
+      const res = await createJobTrack(userProfileData.userID || '', job);
+      console.log(res);
       // mutate(`/api/users/${userProfileData?.userID}`,{track:[{jobID,sendCV:}]})
     };
   };
@@ -26,7 +27,7 @@ function JobsFeed({ jobs, userProfileData }: JobsFeedProps) {
             key={job.jobID + i}
             {...job}
             index={i}
-            handleClickBookmark={handleClickBookmark(userProfileData?.userID || '', job.jobID)}
+            handleClickBookmark={handleClickBookmark(job)}
           />
         );
       })}
