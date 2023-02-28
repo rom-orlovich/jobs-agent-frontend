@@ -8,10 +8,11 @@ import { API_ENDPOINTS } from '@/lib/endpoints';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
 import { Args, ResponseScanner } from '@/lib/jobsScanner.types';
 import { useRouter } from 'next/router';
-import { MouseEventHandler } from 'react';
+
 import { MESSAGES } from '@/lib/messages';
 import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
+import { TriggerByHash } from '@/components/Buttons/Button.types';
 function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
   const router = useRouter();
   const scannerURL = createScannerURL(API_ENDPOINTS.SCANNER_START, user?.id);
@@ -24,31 +25,30 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
   );
 
   // Handles the Load button click event.
-  const handleLoadButton: (hash?: string) => MouseEventHandler<HTMLButtonElement> =
-    (hash) => async (e) => {
-      e.preventDefault();
-      try {
-        toast(MESSAGES[5]);
-        await scanner.trigger({
+  const handleLoadButton: TriggerByHash = (hash) => async (e) => {
+    e.preventDefault();
+    try {
+      toast(MESSAGES[5]);
+      await scanner.trigger({
+        hash
+      });
+      await mutate(`/api/users/${user?.id}`);
+      toast(MESSAGES[scanner?.data?.code || 100], {
+        delay: 500,
+        rtl: true
+      });
+    } catch (error) {
+      toast(MESSAGES[scanner?.data?.code || 100]);
+      console.log(error);
+    } finally {
+      router.push({
+        pathname: `/${APP_ROUTES.JOBS_PAGE}`,
+        query: {
           hash
-        });
-        await mutate(`/api/users/${user?.id}`);
-        toast(MESSAGES[scanner?.data?.code || 100], {
-          delay: 500,
-          rtl: true
-        });
-      } catch (error) {
-        toast(MESSAGES[scanner?.data?.code || 100]);
-        console.log(error);
-      } finally {
-        router.push({
-          pathname: `/${APP_ROUTES.JOBS_PAGE}`,
-          query: {
-            hash
-          }
-        });
-      }
-    };
+        }
+      });
+    }
+  };
   return {
     handleLoadButton,
     scanner

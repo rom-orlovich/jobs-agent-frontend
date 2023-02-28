@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Args } from '@/lib/jobsScanner.types';
 
 import { createScannerURL } from '@/lib/utils';
-import { MouseEventHandler } from 'react';
+
 import { Key } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
@@ -26,15 +27,14 @@ function useDownloadController({ user }: ReturnTypeUseAuthProfileExist) {
   };
 
   // // Handles the download button click event.
-  const handleDownloadButton: (hash?: string) => MouseEventHandler<HTMLButtonElement> =
-    (hash) => async (e) => {
-      e.preventDefault();
-      const blob = await downloadState.trigger({
-        hash
-      });
-      if (!blob) return;
-      downloadFile(blob, user?.name);
-    };
+  const handleDownloadButton: TriggerByHash = (hash) => async (e) => {
+    e.preventDefault();
+    const blob = await downloadState.trigger({
+      hash
+    });
+    if (!blob) return;
+    downloadFile(blob, user?.name);
+  };
   return {
     downloadState,
     handleDownloadButton

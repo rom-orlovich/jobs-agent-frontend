@@ -9,6 +9,7 @@ import {
   SCOPES_OPTIONS
 } from '@/lib/userQueryOptions';
 import React from 'react';
+import { TriggerByHash } from '../Buttons/Button.types';
 
 import DownloadButton from '../Buttons/DownloadButton';
 
@@ -49,10 +50,11 @@ function SearchItem({
   hash,
   downloadState,
   // numResultFound,
+  handleEditButton,
   scanner,
   handleLoadButton,
   handleDownloadButton
-}: UserQuery & UseDownloadHooksProps & UseScannerHooksProps) {
+}: UserQuery & UseDownloadHooksProps & UseScannerHooksProps & { handleEditButton: TriggerByHash }) {
   const createdAtDate = new Date(createdAt || '');
   const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
     timeZone: 'Asia/Jerusalem'
@@ -61,60 +63,30 @@ function SearchItem({
   const distanceText = handleConvertUserQueryToText(distance, DISTANCE_OPTIONS);
   const jobTypeText = handleConvertUserQueryToText(jobType, JOB_TYPES_OPTIONS);
   const scopeText = handleConvertUserQueryToText(scope, SCOPES_OPTIONS);
+  const fieldProps = {
+    containerStyle: searchItemStyle.fieldItemContainer,
+    titleStyle: searchItemStyle.title
+  };
 
   return (
     <li className={searchItemStyle.item}>
+      <button onClick={handleEditButton(hash)}>edit</button>
       <div>
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'נוצר ב-'}
-          value={createLocalTimeDate}
-        />
+        <Field {...fieldProps} title={'נוצר ב-'} value={createLocalTimeDate} />
       </div>
       <div className={searchItemStyle.fieldsContainer}>
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'תפקיד:'}
-          value={position}
-        />
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'שנות ניסיון:'}
-          value={experienceText}
-        />
+        <Field {...fieldProps} title={'תפקיד:'} value={position} />
+        <Field {...fieldProps} title={'שנות ניסיון:'} value={experienceText} />
       </div>
       <div className={searchItemStyle.fieldsContainer}>
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'מיקום:'}
-          value={location}
-        />
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'מרחק:'}
-          value={distanceText}
-        />
+        <Field {...fieldProps} title={'מיקום:'} value={location} />
+        <Field {...fieldProps} title={'מרחק:'} value={distanceText} />
       </div>
       <div>
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'סוג העבודה:'}
-          value={jobTypeText}
-        />
+        <Field {...fieldProps} title={'סוג העבודה:'} value={jobTypeText} />
       </div>
       <div>
-        <Field
-          containerStyle={searchItemStyle.fieldItemContainer}
-          titleStyle={searchItemStyle.title}
-          title={'היקף משרה:'}
-          value={scopeText}
-        />
+        <Field {...fieldProps} title={'היקף משרה:'} value={scopeText} />
       </div>
       <div className={searchItemStyle.buttonsContainer}>
         <SearchButton
