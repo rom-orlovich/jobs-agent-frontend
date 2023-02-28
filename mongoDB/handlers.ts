@@ -3,7 +3,7 @@ import { Job } from '@/lib/jobsScanner.types';
 import { TrackInfo, UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 // import { JobsPosts } from './lib/types';
 import { getCollection, getDocumentsByName } from './lib/utils';
-import clientPromise from './mongoDB';
+
 export const getLocations = async (name: string) => {
   const locationsDocs = await getDocumentsByName(name, 'locations', 'locationName');
   return locationsDocs;
@@ -121,6 +121,28 @@ export const updateJobTrack = async (userID: string, trackInfo: TrackInfo) => {
       }
     );
     console.log(res);
+    return res;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};
+export const deleteJobTrack = async (userID: string, jobID: string) => {
+  const users = await getCollection('users');
+
+  try {
+    const res = await users.updateOne(
+      {
+        userID
+      },
+      {
+        $pull: {
+          track: {
+            jobID: jobID
+          }
+        }
+      }
+    );
     return res;
   } catch (error) {
     console.log(error);

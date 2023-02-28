@@ -105,7 +105,7 @@ export async function fetchUtil<
   Res extends GenericRecord<any>
 >(url: string, request?: OmitKey<RequestInit, 'body'> & { body?: Req }): Promise<Res | undefined> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { body, ...restRequest } = request as RequestInit;
+  const headers = request?.headers;
   const headerBody = request?.body
     ? {
         headers: {
@@ -118,7 +118,7 @@ export async function fetchUtil<
   try {
     const data = await fetch(url, {
       method: request?.method,
-      ...restRequest,
+      ...headers,
       ...headerBody
     });
     return await data.json();

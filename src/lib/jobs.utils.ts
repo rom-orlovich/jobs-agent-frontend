@@ -18,7 +18,7 @@ export const jobsFetcher = async (userID: string, params: GenericRecord<any>) =>
 /**
  *
  * @param {Job[]} jobs The jobs array.
- * @returns True if there is no jobs otherwise false.
+ * @returns {boolean} True if there is no jobs otherwise false.
  */
 export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
   try {

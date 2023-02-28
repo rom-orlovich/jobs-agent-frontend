@@ -12,21 +12,31 @@ interface JobsFeedProps {
   userProfileData: UserProfileWithOneUserQuery;
 }
 
+/**
+ * @param jobsTrack Array of the jobs track from user profile data.
+ * @returns {GenericRecord<TrackInfo>} A obj that the indexes are the jobID and the values are the jobsTrack object.
+ */
+const createJobsTrackMap = (jobsTrack: TrackInfo[]) => {
+  const JobTrackMap: GenericRecord<TrackInfo> = {};
+  jobsTrack?.forEach((jobTrack) => (JobTrackMap[`${jobTrack.jobID}`] = jobTrack));
+  return JobTrackMap;
+};
+
 function JobsFeed({ jobs, userProfileData }: JobsFeedProps) {
-  const objTrack: GenericRecord<TrackInfo> = {};
-  userProfileData.track?.forEach((el) => (objTrack[`${el.jobID}`] = el));
+  const jobsTrackMap = createJobsTrackMap(userProfileData.track || []);
+
   const handleClickBookmark: (job: Job) => MouseEventHandler<HTMLButtonElement> = (job: Job) => {
     return async (e) => {
       e.preventDefault();
-      if (!objTrack) {
-        const res = await createNewJobTrack(userProfileData.userID || '', job);
-        toast(res?.message);
-      } else {
-        const res = await deleteJobTrack(userProfileData.userID || '', job.jobID);
-        toast(res?.message);
-      }
-
+      let result;
+      //Check if the job exist in the jobsTrackMap. If it doesn't add it. Otherwise delete it.
+      if (!jobsTrackMap[job.jobID]) result = await createNewJobTrack(userProfileData.userID || '', job);
+      else result = await deleteJobTrack(userProfileData.userID || '', job.jobID);
+      //Update the user profile.
       await mutate(`/api/users/${userProfileData?.userID}`).then((el) => console.log(el));
+
+      //Fire a toast.
+      toast(result?.message);
     };
   };
   return (
@@ -34,7 +44,7 @@ function JobsFeed({ jobs, userProfileData }: JobsFeedProps) {
       {jobs?.map((job, i) => {
         return (
           <JobItem
-            mark={!!objTrack[job.jobID]}
+            mark={!!jobsTrackMap[job.jobID]}
             key={job.jobID + i}
             {...job}
             index={i}
