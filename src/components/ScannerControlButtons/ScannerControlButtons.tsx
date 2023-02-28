@@ -24,7 +24,11 @@ function ScannerControlButtons({ formState }: FormComponents<unknown>) {
         שמור חיפוש <MdSave />
       </ConfirmButton>
 
-      <SearchButton disabled={disableButtons} className={buttonsStyle.load} onClick={handleLoadButton()}>
+      <SearchButton
+        disabled={disableButtons}
+        className={buttonsStyle.load}
+        onClick={handleLoadButton(authContext.userProfileData.activeHash)}
+      >
         חפש משרות
       </SearchButton>
 

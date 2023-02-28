@@ -1,4 +1,5 @@
 import { UserProfile, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
+import { useRouter } from 'next/router';
 
 import { useSwrHook } from './useSwr';
 
@@ -10,6 +11,8 @@ import { useSwrHook } from './useSwr';
  * @returns The user data, and the state of the fetch request.
  */
 function useUserProfile(userID: string) {
+  const router = useRouter();
+  //Initial the fetching of current login user's data.
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
     `/api/users/${userID}`,
     {
@@ -17,7 +20,7 @@ function useUserProfile(userID: string) {
       revalidateOnFocus: false
     }
   );
-
+  //Default values.
   const defaultUserProfile: UserProfileWithOneUserQuery = {
     userID: userID,
     overallEx: 0,
@@ -33,20 +36,36 @@ function useUserProfile(userID: string) {
       numResultFound: 0
     }
   };
+
   let userProfileData: UserProfileWithOneUserQuery | undefined = defaultUserProfile;
   let userHistoryQueries: UserQuery[] = [];
 
+  //Check if the user exist and has profile data.
   if (data?.data) {
+    let curEditHashQuery = router.query.hash;
+
+    //Check it the hash is valid string.
+    curEditHashQuery = typeof curEditHashQuery === 'string' ? curEditHashQuery : '';
+
     const { userQueries, activeHash, ...restUserProps } = data?.data;
-    const lengthUserQuery = userQueries?.length - 1;
+    let curUserQuery;
+
+    //If there is editQueryHash so find the query from the userQueries and use its data.
+    if (curEditHashQuery) curUserQuery = userQueries.find((query) => query.hash === curEditHashQuery);
+
+    //If not use the default query - the last userQuery.
+    if (!curUserQuery) {
+      const lengthUserQuery = userQueries?.length - 1;
+      curUserQuery = userQueries[lengthUserQuery];
+    }
+    console.log(curEditHashQuery ? curEditHashQuery : activeHash);
+
     userHistoryQueries = userQueries;
+
     userProfileData = {
       ...restUserProps,
-      activeHash,
-      userQuery: {
-        ...userQueries[lengthUserQuery],
-        createdAt: userQueries[lengthUserQuery].createdAt
-      }
+      activeHash: curEditHashQuery ? curEditHashQuery : activeHash,
+      userQuery: curUserQuery
     };
   }
   return {
