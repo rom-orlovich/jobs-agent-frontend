@@ -9,6 +9,7 @@ import {
   SCOPES_OPTIONS
 } from '@/lib/userQueryOptions';
 import React from 'react';
+import { AiTwotoneEdit } from 'react-icons/ai';
 import { TriggerByHash } from '../Buttons/Button.types';
 
 import DownloadButton from '../Buttons/DownloadButton';
@@ -17,7 +18,13 @@ import SearchButton from '../Buttons/SearchButton';
 import Field from '../Field/Field';
 import { Option } from '../Inputs/SelectInput/selectInput.types';
 
-const handleConvertUserQueryToText = (value: string, options: Option<string>[]) => {
+/**
+ *
+ * @param {string} value Category's values of user's search query.
+ * @param {Option<string>[]} options List of the options for the specific category.
+ * @returns {string} The actual text of this category's value.
+ */
+const handleConvertUserQueryToText = (value: string, options: Option<string>[]): string => {
   const splitString = value.split(',');
   const valueObj: GenericRecord<string> = {};
   splitString.forEach((value) => (valueObj[value] = value));
@@ -32,11 +39,14 @@ const handleConvertUserQueryToText = (value: string, options: Option<string>[]) 
 };
 const searchItemStyle = {
   item: 'bg-white shadow-lg rounded-md flex flex-col border-none max-w-[80%] flex-[50%] p-[1.5rem] gap-3',
+  editButtonContainer: 'flex justify-end',
+  editButton: 'text-adding-400 text-2xl',
   fieldsContainer: 'flex gap-2 flex-row',
   fieldItemContainer: 'flex xs:flex-row flex-col gap-1',
   title: 'font-bold',
-  download: '',
-  buttonsContainer: 'flex justify-end gap-8'
+
+  buttonsContainer: 'flex xs:justify-end justify-between xs:gap-8',
+  download: ''
 };
 
 function SearchItem({
@@ -59,6 +69,8 @@ function SearchItem({
   const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
     timeZone: 'Asia/Jerusalem'
   });
+
+  //Handle the conversion of the userQuery value to the real text.
   const experienceText = handleConvertUserQueryToText(experience, EXPERIENCE_OPTIONS);
   const distanceText = handleConvertUserQueryToText(distance, DISTANCE_OPTIONS);
   const jobTypeText = handleConvertUserQueryToText(jobType, JOB_TYPES_OPTIONS);
@@ -70,7 +82,12 @@ function SearchItem({
 
   return (
     <li className={searchItemStyle.item}>
-      <button onClick={handleEditButton(hash)}>edit</button>
+      <div className={searchItemStyle.editButtonContainer}>
+        <button className={searchItemStyle.editButton} onClick={handleEditButton(hash)}>
+          <AiTwotoneEdit />
+        </button>
+      </div>
+
       <div>
         <Field {...fieldProps} title={'נוצר ב-'} value={createLocalTimeDate} />
       </div>
@@ -98,9 +115,9 @@ function SearchItem({
         </SearchButton>
 
         <DownloadButton
+          onClick={handleDownloadButton(hash)}
           disabled={downloadState.isMutating}
           className={searchItemStyle.download}
-          onClick={handleDownloadButton(hash)}
         >
           הורדה
         </DownloadButton>

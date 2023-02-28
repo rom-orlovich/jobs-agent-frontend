@@ -29,16 +29,12 @@ module.exports = {
           }
         },
         adding: {
-          primary: {
-            400: '#86efac',
-            500: '#4ade80'
-          }
+          400: '#86efac',
+          500: '#4ade80'
         },
         error: {
-          primary: {
-            400: '#f87171',
-            500: '#ef4444'
-          }
+          400: '#f87171',
+          500: '#ef4444'
         },
 
         warning: '#fb923c',

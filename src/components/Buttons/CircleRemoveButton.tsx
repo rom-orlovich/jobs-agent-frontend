@@ -9,7 +9,7 @@ function CircleRemoveButton({ className, iconsProps, ...props }: CircleButtonPro
     <button
       {...props}
       className={classNameGenerator(
-        'absolute left-0 top-[50%]  text-error-primary-500 hover:text-error-primary-400',
+        'absolute left-0 top-[50%]  text-error-500 hover:text-error-400',
         className
       )}
     >

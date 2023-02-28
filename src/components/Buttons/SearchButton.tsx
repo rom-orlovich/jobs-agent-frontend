@@ -8,7 +8,7 @@ function SearchButton(props: ButtonProps & PropsWithChildren) {
     <button
       {...props}
       className={classNameGenerator(
-        'button-custom flex items-center justify-between gap-2 bg-search-500 text-xl text-white  hover:bg-search-400 disabled:bg-search-600'
+        'button-custom flex items-center justify-between gap-2 bg-search-500 text-white  hover:bg-search-400 disabled:bg-search-600'
       )}
     >
       {props.children}

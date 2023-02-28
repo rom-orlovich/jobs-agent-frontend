@@ -2,7 +2,7 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 const contextClass = {
   success: 'bg-success-primary',
-  error: 'bg-error-primary',
+  error: 'bg-error-400',
   info: 'bg-info',
   warning: 'bg-warning',
   default: 'bg-success-primary-500',
