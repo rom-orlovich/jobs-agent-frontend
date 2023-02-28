@@ -1,16 +1,25 @@
-export const ERROR_CODES = {
-  SCANNER_SUCCESS: 1,
-  USER_NOT_FOUND: 2,
-  USER_ID_NOT_VALID: 3,
-  ENTER_VALID_QUERY: 4,
-  SOMETHING_WRONG: 100
+export const MESSAGE_CODES = {
+  SCANNER_SUCCESS: 1000,
+  ENTER_VALID_QUERY: 1001,
+  SEARCH_IS_IN_PROCESS: 1002,
+  NOT_JOB_IS_FOUND: 1003,
+  USER_IS_FOUND: 2000,
+  USER_NOT_FOUND: 2001,
+  USER_ID_NOT_VALID: 2002,
+  USER_ID_UPDATED: 2003,
+  FOUNDED: 8000,
+  SOMETHING_WRONG: 10000
 };
 
 export const MESSAGES = {
-  1: 'החיפוש בוצע בהצלחה',
-  2: 'המשתמש לא קיים!',
-  3: 'מזהה המשתמש אינו קיים!',
-  4: 'אנא הכנס ערכים חוקיים.',
-  5: 'החיפוש מתבצע אנא המתן לתוצאות...',
-  100: 'אוי לא, משהו התרחש, אנא נסה שנית מאוחר יותר.'
+  [MESSAGE_CODES.SCANNER_SUCCESS]: 'החיפוש בוצע בהצלחה',
+  [MESSAGE_CODES.ENTER_VALID_QUERY]: 'אנא הכנס ערכים חוקיים.',
+  [MESSAGE_CODES.SEARCH_IS_IN_PROCESS]: 'החיפוש מתבצע אנא המתן לתוצאות...',
+  [MESSAGE_CODES.NOT_JOB_IS_FOUND]: 'אף משרה לא נמצאה, אנא בצע חיפוש נוסף.',
+  [MESSAGE_CODES.USER_IS_FOUND]: 'המשתמש נמצא בהצלחה!',
+  [MESSAGE_CODES.USER_NOT_FOUND]: ':( לא הצלחנו למצוא את המשתמש',
+  [MESSAGE_CODES.USER_ID_UPDATED]: 'המשתמש עודכן בהצלחה!',
+  [MESSAGE_CODES.USER_ID_NOT_VALID]: 'מזהה המשתמש אינו קיים!',
+  [MESSAGE_CODES.FOUNDED]: 'נמצא!',
+  [MESSAGE_CODES.SOMETHING_WRONG]: '.השירות לא זמין כרגע. אנא נסה שנית מאוחר יותר.'
 };

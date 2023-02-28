@@ -3,6 +3,7 @@ import useForm from '@/hooks/useForm/useForm';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { toast } from 'react-toastify';
+import { mutate } from 'swr';
 import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
 import {
   transformDefaultFormValues,
@@ -73,6 +74,7 @@ function useUserProfileForm(user: UserProfileWithOneUserQuery) {
     });
 
     const data = await result.json();
+    await mutate(`/api/users/${user?.userID}`);
     toast(data.message);
     return data;
   });

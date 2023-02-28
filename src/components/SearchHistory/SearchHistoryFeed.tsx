@@ -5,12 +5,10 @@ import SearchItem from './SearchItem';
 import useDownloadController from '@/hooks/useDownloadController';
 import useScannerController from '@/hooks/useScannerController';
 import { useRouter } from 'next/router';
-
-import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '../Buttons/Button.types';
 
 const searchHistoryFeedStyle = {
-  feed: 'pr-12 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
+  feed: 'pr-16 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
 };
 function SearchHistoryFeed() {
   const router = useRouter();
@@ -24,13 +22,18 @@ function SearchHistoryFeed() {
     (a, b) => getTime(b.createdAt) - getTime(a.createdAt)
   );
 
-  const handleEditButton: TriggerByHash = (hash) => () => {
-    router.push({
-      pathname: `/${APP_ROUTES.SEARCH_PAGE}`,
-      query: {
-        hash
-      }
-    });
+  const handleEditButton: TriggerByHash = (hash) => (e) => {
+    try {
+      e.preventDefault();
+      router.push({
+        pathname: `/`,
+        query: {
+          hash
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <ul className={searchHistoryFeedStyle.feed}>

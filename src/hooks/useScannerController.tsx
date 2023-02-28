@@ -9,7 +9,7 @@ import { ReturnTypeUseAuthProfileExist } from './useAuth';
 import { Args, ResponseScanner } from '@/lib/jobsScanner.types';
 import { useRouter } from 'next/router';
 
-import { MESSAGES } from '@/lib/messages';
+import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';
 import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
@@ -28,19 +28,15 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
   const handleLoadButton: TriggerByHash = (hash) => async (e) => {
     e.preventDefault();
     try {
-      toast(MESSAGES[5]);
+      toast(MESSAGES[MESSAGE_CODES.SEARCH_IS_IN_PROCESS]);
       await scanner.trigger({
         hash
       });
-      await mutate(`/api/users/${user?.id}`);
-      toast(MESSAGES[scanner?.data?.code || 100], {
-        delay: 500,
-        rtl: true
-      });
     } catch (error) {
-      toast(MESSAGES[scanner?.data?.code || 100]);
+      toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND]);
       console.log(error);
     } finally {
+      await mutate(`/api/users/${user?.id}`);
       router.push({
         pathname: `/${APP_ROUTES.JOBS_PAGE}`,
         query: {

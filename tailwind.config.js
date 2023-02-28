@@ -30,7 +30,8 @@ module.exports = {
         },
         adding: {
           400: '#86efac',
-          500: '#4ade80'
+          500: '#4ade80',
+          600: '#16a34a'
         },
         error: {
           400: '#f87171',

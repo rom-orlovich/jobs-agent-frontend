@@ -47,7 +47,7 @@ function useUserProfile(userID: string) {
     //Check it the hash is valid string.
     curEditHashQuery = typeof curEditHashQuery === 'string' ? curEditHashQuery : '';
 
-    const { userQueries, activeHash, ...restUserProps } = data?.data;
+    const { userQueries, ...restUserProps } = data?.data;
     let curUserQuery;
 
     //If there is editQueryHash so find the query from the userQueries and use its data.
@@ -58,13 +58,12 @@ function useUserProfile(userID: string) {
       const lengthUserQuery = userQueries?.length - 1;
       curUserQuery = userQueries[lengthUserQuery];
     }
-    console.log(curEditHashQuery ? curEditHashQuery : activeHash);
 
     userHistoryQueries = userQueries;
 
     userProfileData = {
       ...restUserProps,
-      activeHash: curEditHashQuery ? curEditHashQuery : activeHash,
+      activeHash: curEditHashQuery ? curEditHashQuery : curUserQuery.hash,
       userQuery: curUserQuery
     };
   }

@@ -39,13 +39,13 @@ const handleConvertUserQueryToText = (value: string, options: Option<string>[]):
 };
 const searchItemStyle = {
   item: 'bg-white shadow-lg rounded-md flex flex-col border-none max-w-[80%] flex-[50%] p-[1.5rem] gap-3',
-  editButtonContainer: 'flex justify-end',
-  editButton: 'text-adding-400 text-2xl',
+  editButtonContainer: 'flex justify-end pl-2',
+  editButton: 'text-adding-500 hover:text-adding-600 text-3xl',
   fieldsContainer: 'flex gap-2 flex-row',
   fieldItemContainer: 'flex xs:flex-row flex-col gap-1',
   title: 'font-bold',
 
-  buttonsContainer: 'flex xs:justify-end justify-between xs:gap-8',
+  buttonsContainer: 'flex md:justify-end justify-between xs:gap-8',
   download: ''
 };
 

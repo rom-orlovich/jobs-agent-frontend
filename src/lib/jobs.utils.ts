@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './jobsScanner.types';
+import { MESSAGES, MESSAGE_CODES } from './messages';
 import { GenericRecord } from './types/types';
 import { createURL, fetchData } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,12 +20,17 @@ export const jobsFetcher = async (userID: string, params: GenericRecord<any>) =>
  * @returns True if there is no jobs otherwise false.
  */
 export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
+  console.log(jobs?.length);
   if (!jobs?.length) {
-    toast('אף משרה לא נמצאה, בצע חיפוש נוסף.', {
+    toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND], {
       toastId: 'noJobsFound'
     });
     return true;
   }
+  toast(MESSAGES[MESSAGE_CODES.SCANNER_SUCCESS], {
+    rtl: true,
+    toastId: 'jobFound'
+  });
   return false;
 };
 export const defaultResponseJobs: ResponseGetJobs = {

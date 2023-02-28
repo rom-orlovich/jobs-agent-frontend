@@ -53,6 +53,8 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
     page: page
   });
 
+  console.log(data);
+
   return {
     props: data || defaultResponseJobs
   };
@@ -77,6 +79,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
       reason: reason
     }),
     {
+      revalidateIfStale: true,
       revalidateFirstPage: false,
       revalidateOnFocus: false,
       refreshWhenOffline: false,

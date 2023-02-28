@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 // import { JobsPosts } from './lib/types';
 import { getCollection, getDocumentsByName } from './lib/utils';
@@ -13,16 +14,20 @@ export const getPositions = async (name: string) => {
 
 export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
-  const { userQuery, ...restUserData } = userData;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { hash, ...restUserQuery } = userQuery;
+  const { userQuery, activeHash, ...restUserData } = userData;
+
+  const { hash, numResultFound, numMatches, ...restUserQuery } = userQuery;
+
   try {
     const res = await users.updateOne(
       {
         userID: userData.userID
       },
       {
-        $set: restUserData,
+        $set: {
+          ...restUserData,
+          activeHash: null
+        },
         $addToSet: {
           userQueries: {
             ...restUserQuery,

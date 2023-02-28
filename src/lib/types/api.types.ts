@@ -19,7 +19,8 @@ export interface UserQuery {
   scope: string;
   hash?: string;
   createdAt?: string;
-  numResultFound: number;
+  numResultFound?: number;
+  numMatches?: number;
 }
 export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'field'>;
 export type Requirements = GenericRecord<MinMaxInputsValueWithoutTitle>;

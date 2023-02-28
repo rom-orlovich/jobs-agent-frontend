@@ -18,6 +18,8 @@ function ScannerControlButtons({ formState }: FormComponents<unknown>) {
   const authContext = useAuthContext();
   const { handleLoadButton, scanner } = useScannerController(authContext);
   const disableButtons = formState.isLoading || scanner.isMutating;
+
+  console.log(authContext.userProfileData.activeHash);
   return (
     <div className={buttonsStyle.buttonsContainer}>
       <ConfirmButton disabled={disableButtons} type="submit">
