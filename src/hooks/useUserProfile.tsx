@@ -53,23 +53,24 @@ function useUserProfile(userID: string) {
 
     const { userQueries, ...restUserProps } = data?.data;
     let curUserQuery;
-    console.log(userQueries);
 
-    //If there is editQueryHash so find the query from the userQueries and use its data.
-    if (curEditHashQuery) curUserQuery = userQueries.find((query) => query.hash === curEditHashQuery);
+    if (userQueries) {
+      //If there is editQueryHash so find the query from the userQueries and use its data.
+      if (curEditHashQuery) curUserQuery = userQueries.find((query) => query.hash === curEditHashQuery);
 
-    //If not use the default query - the last userQuery.
-    if (!curUserQuery) {
-      const lengthUserQuery = userQueries?.length - 1;
-      curUserQuery = userQueries[lengthUserQuery];
+      //If not use the default query - the last userQuery.
+      if (!curUserQuery) {
+        const lengthUserQuery = userQueries?.length - 1;
+        curUserQuery = userQueries[lengthUserQuery];
+      }
     }
 
     userHistoryQueries = userQueries;
 
     userProfileData = {
       ...restUserProps,
-      activeHash: curEditHashQuery ? curEditHashQuery : curUserQuery.hash,
-      userQuery: curUserQuery
+      activeHash: curEditHashQuery ? curEditHashQuery : curUserQuery?.hash,
+      userQuery: curUserQuery || defaultUserProfile.userQuery
     };
   }
   return {

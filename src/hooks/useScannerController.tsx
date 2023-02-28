@@ -2,7 +2,7 @@
 
 import { covertObjToString, createScannerURL } from '@/lib/utils';
 
-import { Key } from 'swr';
+import { Key, mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
@@ -32,7 +32,7 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
       await scanner.trigger({
         hash
       });
-      // await mutate(`/api/users/${user?.id}`);
+      await mutate(`/api/users/${user?.id}`);
     } catch (error) {
       toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND]);
       console.log(error);
