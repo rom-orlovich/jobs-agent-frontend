@@ -82,6 +82,7 @@ export const createURL = <T extends GenericRecord<any>>(
   objFieldDelimiter = '&'
 ) => {
   const resourcesURL = convertResourceToURL(resources);
+  console.log(resourcesURL);
   if (!params) return `${resourcesURL}`;
   const paramsURL = covertObjToString(params, keyValueDelimiter, objFieldDelimiter);
   return `${resourcesURL}?${paramsURL}`;

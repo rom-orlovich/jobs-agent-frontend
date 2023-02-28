@@ -131,6 +131,8 @@ export const updateJobTrack = async (userID: string, job: Job) => {
 export const deleteJobTrack = async (userID: string, jobID: string) => {
   const users = await getCollection('users');
 
+  console.log(userID);
+
   try {
     const res = await users.updateOne(
       {

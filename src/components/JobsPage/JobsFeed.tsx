@@ -19,13 +19,13 @@ const createJobsTrackMap = (jobsTrack: Job[]): GenericRecord<Job> => {
 };
 
 interface JobsFeedProps {
-  jobs: Job[];
+  jobs?: Job[];
   userProfileData: UserProfileWithOneUserQuery;
   isTrackFeed?: boolean;
 }
 
 const jobsFeedStyle = {
-  feed: 'flex h-full flex-wrap justify-center gap-2 py-4 xs:px-8 xs:pr-16'
+  feed: 'flex h-full flex-wrap justify-center gap-3 py-4 xs:px-8 xs:pr-16'
 };
 
 function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {

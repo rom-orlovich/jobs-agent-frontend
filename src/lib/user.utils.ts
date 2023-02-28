@@ -27,7 +27,7 @@ export const updateNewJobTrack = async (userID: string, job: Job) => {
 };
 export const deleteJobTrack = async (userID: string, jobID: string) => {
   const result = await fetchUtil<undefined, ResponseMessage>(
-    createURL([API_ENDPOINTS.USERS_JOB_TRACK(userID), jobID]),
+    createURL([`/${API_ENDPOINTS.USERS_JOB_TRACK(userID)}`, jobID]),
     {
       method: 'DELETE'
     }

@@ -62,6 +62,10 @@ module.exports = {
           400: '#14b8a6',
           500: '#0d9488'
         },
+        status: {
+          400: '#2dd4bf',
+          500: '#14b8a6'
+        },
         background: '#e2e8f0'
       }
     }

@@ -27,13 +27,17 @@ import PageHead from '@/components/Layout/PageHead/PageHead';
 import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
 import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
 import { GenericRecord } from '@/lib/types/types';
+
+//Swr infinite handler.
 const handler: (
   userProfileData: UserProfileWithOneUserQuery,
   params?: GenericRecord<any>
 ) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
   (userProfileData, params) => (prePage: number, preData) => {
+    //Check if there it is possible to page to the next results page.
     if (preData?.pagination.hasMore === false) return null;
 
+    //Create the jobs url with the cur URL parameters.
     return createJobsURl(userProfileData.userID || '', {
       page: prePage + 1,
       hash: userProfileData.activeHash,
@@ -41,12 +45,14 @@ const handler: (
     });
   };
 export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
+  //Get current session data.
   const session = await getServerSession(context.req, context.res, authOptions);
+
   //Get the query from the url.
   const hash = context.query.hash;
-
   const page = context.query.page;
 
+  //Fetch the the jobs.
   const data = await jobsFetcher(session?.user.id || '', {
     hash,
     page: page
@@ -61,11 +67,14 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
   //Redirect to home page if no jobs were found.
   useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
+
+  //Get filter Jobs query props.
   const filterJobsProps = useFilterJobs();
-  //Get user profile data.
-  const { userProfileData } = useAuthContext();
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
+
+  //Get user profile data.
+  const { userProfileData } = useAuthContext();
 
   //Use swr infinite.
   const { data, isLoading, setSize, size, isValidating } = useSWRInfinite<ResponseGetJobs>(
@@ -84,6 +93,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     }
   );
 
+  //Get last cur update data of SWR infinite
   const { allResponseData, lastResponse } = getLastCurJobData(data);
 
   const jobsData = allResponseData.map((response) => response.jobs).flat(1);
