@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Job } from '@/lib/jobsScanner.types';
-import { TrackInfo, UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { Job, TrackInfo } from '@/lib/jobsScanner.types';
+import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 // import { JobsPosts } from './lib/types';
 import { getCollection, getDocumentsByName } from './lib/utils';
 
@@ -71,7 +71,6 @@ export const getUserByID = async (userID: string) => {
   }
 };
 export const addJobTrack = async (userID: string, job: Job) => {
-  const { jobID, ...restJob } = job;
   try {
     const users = await getCollection('users');
     const res = await users.updateOne(
@@ -80,12 +79,16 @@ export const addJobTrack = async (userID: string, job: Job) => {
       },
       {
         $addToSet: {
-          track: {
-            jobID: jobID,
-            jobInfo: restJob,
-            addedAt: new Date(),
-            sendCV: false,
-            stages: []
+          jobsTrack: {
+            ...job,
+            track: {
+              createdAt: new Date(),
+              sendCV: {
+                date: new Date(),
+                status: false
+              },
+              stages: []
+            }
           }
         }
       }
@@ -98,7 +101,7 @@ export const addJobTrack = async (userID: string, job: Job) => {
   }
 };
 
-export const updateJobTrack = async (userID: string, trackInfo: TrackInfo) => {
+export const updateJobTrack = async (userID: string, job: Job) => {
   try {
     const users = await getCollection('users');
     const res = await users.updateOne(
@@ -107,15 +110,13 @@ export const updateJobTrack = async (userID: string, trackInfo: TrackInfo) => {
       },
       {
         $set: {
-          'track.$[elem]': {
-            ...trackInfo
-          }
+          'jobsTrack.$[elem].track': job.track
         }
       },
       {
         arrayFilters: [
           {
-            'elem.jobID': trackInfo.jobID
+            'jobsTrack.jobID': job.jobID
           }
         ]
       }
@@ -137,7 +138,7 @@ export const deleteJobTrack = async (userID: string, jobID: string) => {
       },
       {
         $pull: {
-          track: {
+          jobsTrack: {
             jobID: jobID
           }
         }

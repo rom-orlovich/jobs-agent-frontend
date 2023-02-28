@@ -1,4 +1,5 @@
 import { Job } from '@/lib/jobsScanner.types';
+
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa';

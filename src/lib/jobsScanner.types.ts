@@ -5,6 +5,11 @@ export interface ResponseScanner {
   success?: boolean;
   code: MessageKeys;
 }
+export interface TrackInfo {
+  createdAt: Date;
+  sendCV: { date: Date; status: boolean };
+  stages: { date: Date; name: string; status: boolean; note: string }[];
+}
 export interface Job {
   jobID: string;
   title: string;
@@ -17,6 +22,7 @@ export interface Job {
   createdAt?: Date;
   text: string;
   hashQueries?: string[];
+  track?: TrackInfo;
 }
 
 export interface FacetFilterResults {

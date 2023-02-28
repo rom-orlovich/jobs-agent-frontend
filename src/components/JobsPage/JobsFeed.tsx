@@ -1,5 +1,5 @@
 import { Job } from '@/lib/jobsScanner.types';
-import { TrackInfo, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
 import { createNewJobTrack, deleteJobTrack } from '@/lib/user.utils';
 
@@ -7,23 +7,29 @@ import React, { MouseEventHandler } from 'react';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
 import JobItem from './JobItem';
-interface JobsFeedProps {
-  jobs: Job[];
-  userProfileData: UserProfileWithOneUserQuery;
-}
 
 /**
  * @param jobsTrack Array of the jobs track from user profile data.
  * @returns {GenericRecord<TrackInfo>} A obj that the indexes are the jobID and the values are the jobsTrack object.
  */
-const createJobsTrackMap = (jobsTrack: TrackInfo[]) => {
-  const JobTrackMap: GenericRecord<TrackInfo> = {};
+const createJobsTrackMap = (jobsTrack: Job[]): GenericRecord<Job> => {
+  const JobTrackMap: GenericRecord<Job> = {};
   jobsTrack?.forEach((jobTrack) => (JobTrackMap[`${jobTrack.jobID}`] = jobTrack));
   return JobTrackMap;
 };
 
-function JobsFeed({ jobs, userProfileData }: JobsFeedProps) {
-  const jobsTrackMap = createJobsTrackMap(userProfileData.track || []);
+interface JobsFeedProps {
+  jobs: Job[];
+  userProfileData: UserProfileWithOneUserQuery;
+  isTrackFeed?: boolean;
+}
+
+const jobsFeedStyle = {
+  feed: 'flex h-full flex-wrap justify-center gap-2 py-4 xs:px-8 xs:pr-16'
+};
+
+function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
+  const jobsTrackMap = createJobsTrackMap(userProfileData.jobsTrack || []);
 
   const handleClickBookmark: (job: Job) => MouseEventHandler<HTMLButtonElement> = (job: Job) => {
     return async (e) => {
@@ -39,14 +45,18 @@ function JobsFeed({ jobs, userProfileData }: JobsFeedProps) {
       toast(result?.message);
     };
   };
+  let currentJobs;
+  if (isTrackFeed) currentJobs = userProfileData.jobsTrack;
+  else currentJobs = jobs;
+
   return (
-    <ul dir="ltr" className="flex h-full flex-wrap justify-center gap-2 py-4 xs:px-8 xs:pr-16">
-      {jobs?.map((job, i) => {
+    <ul dir="ltr" className={jobsFeedStyle.feed}>
+      {currentJobs?.map((job, i) => {
         return (
           <JobItem
+            {...job}
             mark={!!jobsTrackMap[job.jobID]}
             key={job.jobID + i}
-            {...job}
             index={i}
             handleClickBookmark={handleClickBookmark(job)}
           />
