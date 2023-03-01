@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
@@ -21,6 +23,7 @@ export type ButtonProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
+export type LinksProps = Parameters<typeof Link>;
 export type HeadingProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement

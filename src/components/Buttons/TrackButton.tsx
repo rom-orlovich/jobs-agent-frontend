@@ -1,11 +1,10 @@
 import { classNameGenerator } from '@/lib/utils';
+import Link, { LinkProps } from 'next/link';
 import React, { PropsWithChildren } from 'react';
 import { MdInsights } from 'react-icons/md';
-import { ButtonProps } from '../HTML.types';
-
-function StatusButton(props: ButtonProps & PropsWithChildren) {
+function TrackButton(props: LinkProps & PropsWithChildren & { className?: string }) {
   return (
-    <button
+    <Link
       {...props}
       dir={'rtl'}
       className={classNameGenerator(
@@ -14,8 +13,8 @@ function StatusButton(props: ButtonProps & PropsWithChildren) {
       )}
     >
       {props.children} <MdInsights />
-    </button>
+    </Link>
   );
 }
 
-export default StatusButton;
+export default TrackButton;
