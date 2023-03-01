@@ -6,11 +6,12 @@ interface FieldProps {
   titleStyle?: string;
   valueStyle?: string;
   containerStyle?: string;
+  dir?: 'rtl' | 'ltr';
 }
 
-function Field({ title, value, titleStyle, containerStyle, valueStyle }: FieldProps) {
+function Field({ title, value, titleStyle, containerStyle, valueStyle, dir }: FieldProps) {
   return (
-    <span className={containerStyle}>
+    <span dir={dir} className={containerStyle}>
       <span className={titleStyle}> {title} </span>
       <span className={valueStyle}> {value} </span>
     </span>

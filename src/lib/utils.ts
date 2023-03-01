@@ -169,3 +169,11 @@ export const fetchSWR = (url: string) => fetch(url).then((res) => res.json());
 
 export const createScannerURL = (endpoint: string, userID?: string) =>
   createURL([SERVER_URL, endpoint, userID || '']);
+
+export const createLocalDate = (date?: Date) => {
+  const createdAtDate = new Date(date || '');
+  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
+    timeZone: 'Asia/Jerusalem'
+  });
+  return createLocalTimeDate;
+};

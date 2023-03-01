@@ -29,6 +29,7 @@ import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
 import { GenericRecord } from '@/lib/types/types';
 import useFilterJobs from '@/hooks/useFilterJobs';
 // import useStateSession from '@/hooks/useStateSession';
+// import useStateSession from '@/hooks/useStateSession';
 
 //Swr infinite handler.
 const handler: (
@@ -75,7 +76,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const filterJobsProps = useFilterJobs();
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
-  // useStateSession<FilterJobsField>({
+  // const { saveSessionValues } = useStateSession<FilterJobsField>({
   //   id: 'filterJobsProps',
   //   values: {
   //     title,
@@ -116,7 +117,11 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
         <JobsSearch filterJobsProps={filterJobsProps} jobsFilters={lastResponse.filters} />
       </div>
 
-      <JobsFeed jobs={jobsData} userProfileData={userProfileData} />
+      <JobsFeed
+        jobs={jobsData}
+        userProfileData={userProfileData}
+        // saveSessionValues={saveSessionValues}
+      />
 
       {jobsData.length && (
         <div className="flex w-full items-center justify-center">

@@ -1,5 +1,4 @@
 import { Job } from '@/lib/jobsScanner.types';
-import { APP_ROUTES } from '@/lib/routes';
 
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
@@ -22,11 +21,9 @@ function JobItem(
   const { link, title, from, reason, jobID, index, mark } = props;
   const trackButtonDisplay = {
     true: {
-      href: APP_ROUTES.JOBS_TRACK_EDIT,
       text: 'ערוך'
     },
     false: {
-      href: APP_ROUTES.JOBS_TRACK_ADD,
       text: 'עקוב'
     }
   };
@@ -35,9 +32,10 @@ function JobItem(
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
         <div className={jobItemStyle.bookmarkContainer}>
-          <TrackButton mark={mark}> {trackButtonCur.text}</TrackButton>
+          <TrackButton onClick={props.handleClickBookmark} mark={mark}>
+            {trackButtonCur.text}
+          </TrackButton>
         </div>
-        <div> {props.jobID}</div>
         <div>
           <Link href={link}> {title}</Link>{' '}
         </div>
