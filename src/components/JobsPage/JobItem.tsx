@@ -34,11 +34,9 @@ function JobItem(
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
-        {/* <div className={jobItemStyle.bookmarkContainer}>
-          <button onClick={props.handleClickBookmark} className={jobItemStyle.bookmarkButton}>
-            {mark ? <FaBookmark /> : <FaRegBookmark />}
-          </button>
-        </div> */}
+        <div className={jobItemStyle.bookmarkContainer}>
+          <TrackButton mark={mark}> {trackButtonCur.text}</TrackButton>
+        </div>
         <div> {props.jobID}</div>
         <div>
           <Link href={link}> {title}</Link>{' '}
@@ -48,11 +46,7 @@ function JobItem(
         <div> {from} </div>
         <div> {reason === 'match' ? '!יש התאמה' : reason} </div>
       </div>
-      {
-        <div className={jobItemStyle.buttonStatusContainer}>
-          <TrackButton href={trackButtonCur.href}> {trackButtonCur.text}</TrackButton>
-        </div>
-      }
+      {<div className={jobItemStyle.buttonStatusContainer}></div>}
     </li>
   );
 }
