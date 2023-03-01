@@ -20,7 +20,15 @@ function ToggleTopic({
       {({ handleOnClick, isON }) => {
         return (
           <div>
-            <button className="flex items-center gap-2" onClick={handleOnClick}>
+            <button
+              onKeyUp={(e) => {
+                if (e.code === 'Space') {
+                  e.preventDefault();
+                }
+              }}
+              className="flex items-center gap-2"
+              onClick={handleOnClick}
+            >
               <div> {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}</div>
 
               {!as ? (

@@ -11,14 +11,16 @@ function Overflow({
   innerElementClass: string;
   active: boolean;
 }) {
-  const outerElementStyle = classNameGenerator(`overflow-x-hidden `, outerElementClass);
-  const innerElementStyle = classNameGenerator(innerElementClass);
+  // const outerElementStyle = (`overflow-x-hidden `, outerElementClass);
+  const innerElementStyle = innerElementClass;
   const isActive = (className: string) => {
     return `${active ? className : ''}`;
   };
   return (
-    <div className={isActive(outerElementStyle)}>
-      <div className={isActive(innerElementStyle)}>{children}</div>
+    <div className={classNameGenerator(isActive('h-[14rem]'), 'overflow-x-hidden', outerElementClass)}>
+      <div className={classNameGenerator(isActive('max-h-[40rem] min-h-[15rem]'), innerElementStyle)}>
+        {children}
+      </div>
     </div>
   );
 }

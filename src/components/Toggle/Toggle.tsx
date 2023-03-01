@@ -17,6 +17,7 @@ function Toggle({ children }: ToggleProps) {
   // Handle the onClick event in order to change the state of the toggle.
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+
     setIsOff((pre) => !pre);
   };
   return (

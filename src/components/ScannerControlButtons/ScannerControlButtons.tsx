@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Spinner from '../Spinner/Spinner';
-import ConfirmButton from '../Buttons/ConfirmButton';
+import SuccessButton from '../Buttons/SuccessButton';
 import { useAuthContext } from '@/context/AuthContext';
 
 import useScannerController from '@/hooks/useScannerController';
@@ -22,9 +22,9 @@ function ScannerControlButtons({ formState }: FormComponents<unknown>) {
   console.log(authContext.userProfileData.activeHash);
   return (
     <div className={buttonsStyle.buttonsContainer}>
-      <ConfirmButton disabled={disableButtons} type="submit">
+      <SuccessButton disabled={disableButtons} type="submit">
         שמור חיפוש <MdSave />
-      </ConfirmButton>
+      </SuccessButton>
 
       <SearchButton
         disabled={disableButtons}

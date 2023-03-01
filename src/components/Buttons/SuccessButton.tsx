@@ -1,12 +1,12 @@
 import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { ButtonProps } from '../HTML.types';
-function ConfirmButton({ className, children, ...props }: ButtonProps & PropsWithChildren) {
+function SuccessButton({ className, children, ...props }: ButtonProps & PropsWithChildren) {
   return (
     <button
       {...props}
       className={classNameGenerator(
-        'button-custom bg-success-primary flex items-center gap-1 bg-success-primary-500 text-white  hover:bg-success-primary-400 md:text-lg',
+        'button-custom flex items-center gap-1 bg-success-primary-500 text-white  hover:bg-success-primary-400 ',
         className
       )}
     >
@@ -15,4 +15,4 @@ function ConfirmButton({ className, children, ...props }: ButtonProps & PropsWit
   );
 }
 
-export default ConfirmButton;
+export default SuccessButton;

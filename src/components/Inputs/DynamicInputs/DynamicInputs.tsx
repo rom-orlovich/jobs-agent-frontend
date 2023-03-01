@@ -81,10 +81,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
       <Overflow
         active={overflowIsActive}
         outerElementClass={classNameGenerator('h-[14rem]', overflowProps?.outerDiv?.className)}
-        innerElementClass={classNameGenerator(
-          'min-h-[15rem] max-h-[40rem]',
-          overflowProps?.innerDiv?.className
-        )}
+        innerElementClass={classNameGenerator(overflowProps?.innerDiv?.className)}
       >
         <ul>
           {inputs?.map((input, i) => {

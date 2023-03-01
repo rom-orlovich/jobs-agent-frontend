@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 
 import InputBucket from '../Inputs/InputBucket/InputBucket';
 import { FormComponents } from '../../hooks/useUserProfileForm/useUserProfileForm';
-import ConfirmButton from '../Buttons/ConfirmButton';
+import SuccessButton from '../Buttons/SuccessButton';
 function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormComponents<unknown>) {
   const handleConfirmExcludedRequirements: (
     bucketValues: string[]
@@ -15,7 +15,7 @@ function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormCo
       {(bucketValues) => {
         return (
           <div className="flex w-full justify-end">
-            <ConfirmButton className="mt-2" onClick={handleConfirmExcludedRequirements(bucketValues)} />
+            <SuccessButton className="mt-2" onClick={handleConfirmExcludedRequirements(bucketValues)} />
           </div>
         );
       }}

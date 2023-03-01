@@ -3,7 +3,7 @@ import React, { MouseEventHandler } from 'react';
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import MinMaxInputs, { MinMaxInputsOption } from './MinMaxInputs';
 import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
-import ConfirmButton from '@/components/Buttons/ConfirmButton';
+import SuccessButton from '@/components/Buttons/SuccessButton';
 import { FormComponents } from '@/hooks/useUserProfileForm/useUserProfileForm';
 function Requirements({ handleRequirements, formValues }: FormComponents<unknown>) {
   const initialRequirement = [
@@ -44,7 +44,7 @@ function Requirements({ handleRequirements, formValues }: FormComponents<unknown
       {(values) => {
         return (
           <div className="mt-2 flex w-full justify-end">
-            <ConfirmButton onClick={handleConfirmRequirements(values)} />
+            <SuccessButton onClick={handleConfirmRequirements(values)} />
           </div>
         );
       }}

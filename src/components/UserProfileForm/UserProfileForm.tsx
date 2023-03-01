@@ -8,7 +8,7 @@ import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
-// import ConfirmButton from '../Buttons/ConfirmButton';
+// import SuccessButton from '../Buttons/SuccessButton';
 import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
 import { useAuthContext } from '@/context/AuthContext';
 // import { MdSave } from 'react-icons/md';
