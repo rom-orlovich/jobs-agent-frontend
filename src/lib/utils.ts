@@ -37,6 +37,29 @@ export const fetchData = async <D>(url: string) => {
     return undefined;
   }
 };
+
+/**
+ *
+ * @param {V} obj Object you want to extract the exist key value.
+ * @returns {{existKeysValues:Partial<V>,count:number}} The object that include the exist keysValues and count how many exist.
+ */
+export function getObjExistKeysValues<V extends GenericRecord<any>>(
+  obj: V
+): { existKeysValues: Partial<V>; count: number } {
+  const existKeysValues = {} as Partial<V>;
+  let count = 0;
+  console.log(obj);
+  Object.entries(obj).forEach(([key, value]) => {
+    if (key && value) {
+      (existKeysValues[key as keyof V] = value), count++;
+    }
+  });
+  return {
+    existKeysValues,
+    count
+  };
+}
+
 /**
  *
  * @param {T} obj The URL queries string.

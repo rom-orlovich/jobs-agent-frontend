@@ -23,12 +23,12 @@ export const jobsFetcher = async (userID: string, params: GenericRecord<any>) =>
 export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
   try {
     if (!jobs?.length) {
+      console.log(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND]);
       toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND], {
         toastId: 'noJobsFound'
       });
       return true;
     }
-
     toast(MESSAGES[MESSAGE_CODES.SCANNER_SUCCESS], {
       rtl: true,
       toastId: 'jobFound'

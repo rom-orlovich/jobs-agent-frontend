@@ -1,6 +1,6 @@
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 
-import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs/useFilterJobs';
+import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 
 import { FacetFilterResults } from '@/lib/jobsScanner.types';
 

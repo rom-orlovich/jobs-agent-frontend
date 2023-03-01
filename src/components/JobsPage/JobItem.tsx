@@ -3,14 +3,12 @@ import { APP_ROUTES } from '@/lib/routes';
 
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
-import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
-
 import TrackButton from '../Buttons/TrackButton';
 const jobItemStyle = {
   item: 'flex flex-[100%] flex-col justify-between rounded-md bg-white p-4 shadow-lg sm:flex-[45%] md:flex-[30%] ',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
-  bookmarkButton: 'text-xl',
+  bookmarkButton: 'text-base',
   buttonStatusContainer: 'flex justify-center mt-3'
 };
 
@@ -25,7 +23,7 @@ function JobItem(
   const trackButtonDisplay = {
     true: {
       href: APP_ROUTES.JOBS_TRACK_EDIT,
-      text: 'ערוך מעקב'
+      text: 'ערוך'
     },
     false: {
       href: APP_ROUTES.JOBS_TRACK_ADD,
@@ -36,11 +34,11 @@ function JobItem(
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
-        <div className={jobItemStyle.bookmarkContainer}>
+        {/* <div className={jobItemStyle.bookmarkContainer}>
           <button onClick={props.handleClickBookmark} className={jobItemStyle.bookmarkButton}>
             {mark ? <FaBookmark /> : <FaRegBookmark />}
           </button>
-        </div>
+        </div> */}
         <div> {props.jobID}</div>
         <div>
           <Link href={link}> {title}</Link>{' '}

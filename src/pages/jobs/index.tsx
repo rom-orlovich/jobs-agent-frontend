@@ -25,8 +25,10 @@ import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import LoadButton from '@/components/Buttons/LoadButton';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
-import useFilterJobs from '@/hooks/useFilterJobs/useFilterJobs';
+
 import { GenericRecord } from '@/lib/types/types';
+import useFilterJobs from '@/hooks/useFilterJobs';
+// import useStateSession from '@/hooks/useStateSession';
 
 //Swr infinite handler.
 const handler: (
@@ -65,6 +67,7 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 
 function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
+  console.log(jobs.length);
   //Redirect to home page if no jobs were found.
   useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
 
@@ -72,6 +75,14 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const filterJobsProps = useFilterJobs();
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
+  // useStateSession<FilterJobsField>({
+  //   id: 'filterJobsProps',
+  //   values: {
+  //     title,
+  //     reason
+  //   },
+  //   setState: filterJobsProps.setFormValues
+  // });
 
   //Get user profile data.
   const { userProfileData } = useAuthContext();

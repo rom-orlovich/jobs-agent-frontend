@@ -6,7 +6,8 @@ import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 import { FacetFilterResults } from '@/lib/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
-import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs/useFilterJobs';
+import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
+
 function FiltersPopup({
   iconButtonProps,
   filterJobsProps,

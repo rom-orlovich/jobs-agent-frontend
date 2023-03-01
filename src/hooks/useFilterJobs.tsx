@@ -1,5 +1,5 @@
-import useForm from '../useForm/useForm';
-interface FilterJobsField {
+import useForm from './useForm';
+export interface FilterJobsField {
   title: string;
   reason: string;
 }
@@ -24,9 +24,10 @@ function useFilterJobs() {
   }
 
   return {
-    handleSearchValue,
     formState,
-    formValues
+    formValues,
+    setFormValues,
+    handleSearchValue
   };
 }
 
