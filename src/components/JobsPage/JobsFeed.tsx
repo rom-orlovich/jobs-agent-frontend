@@ -1,5 +1,5 @@
-import { Job } from '@/lib/jobsScanner.types';
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { Job, TrackInfo } from '@/lib/jobsScanner.types';
+import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
 import { createNewJobTrack, deleteJobTrack } from '@/lib/user.utils';
 
@@ -27,6 +27,14 @@ interface JobsFeedProps {
 const jobsFeedStyle = {
   feed: 'flex h-full flex-wrap justify-center gap-3 py-4 xs:px-8 xs:pr-16'
 };
+const defaultJobTracks: TrackInfo = {
+  createdAt: new Date(),
+  sendCV: {
+    date: undefined,
+    status: false
+  },
+  stages: []
+};
 
 function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   const jobsTrackMap = createJobsTrackMap(userProfileData.jobsTrack || []);
@@ -36,11 +44,19 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
       e.preventDefault();
       let result;
       //Check if the job exist in the jobsTrackMap. If it doesn't add it. Otherwise delete it.
-      if (!jobsTrackMap[job.jobID]) result = await createNewJobTrack(userProfileData.userID || '', job);
-      else result = await deleteJobTrack(userProfileData.userID || '', job.jobID);
+      if (!jobsTrackMap[job.jobID]) {
+        result = await createNewJobTrack(userProfileData.userID || '', job);
+        await mutate(`/api/users/${userProfileData?.userID}`, undefined, {
+          optimisticData: (currentData: { data: UserProfile }) => {
+            currentData.data.jobsTrack?.push({
+              ...job,
+              track: defaultJobTracks
+            });
+            return currentData;
+          }
+        });
+      } else result = await deleteJobTrack(userProfileData.userID || '', job.jobID);
       //Update the user profile.
-      await mutate(`/api/users/${userProfileData?.userID}`).then((el) => console.log(el));
-
       //Fire a toast.
       toast(result?.message);
     };

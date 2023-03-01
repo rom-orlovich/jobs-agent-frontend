@@ -7,7 +7,7 @@ export interface ResponseScanner {
 }
 export interface TrackInfo {
   createdAt: Date;
-  sendCV: { date: Date; status: boolean };
+  sendCV: { date?: Date; status: boolean };
   stages: { date: Date; name: string; status: boolean; note: string }[];
 }
 export interface Job {
