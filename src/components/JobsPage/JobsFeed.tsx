@@ -64,7 +64,7 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed, saveSessionValues }: Job
       {currentJobs?.map((job, i) => {
         const jobItemProps = {
           ...job,
-          mark: !!jobsTrackMap[job.jobID],
+          mark: !!jobsTrackMap[job?.jobID],
           key: job.jobID + i,
           index: i,
           handleClickBookmark: handleClickBookmark(job)

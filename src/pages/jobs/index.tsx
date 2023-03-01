@@ -68,7 +68,7 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 
 function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
-  console.log(jobs.length);
+
   //Redirect to home page if no jobs were found.
   useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
 

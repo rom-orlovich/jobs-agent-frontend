@@ -1,13 +1,20 @@
 import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { AiOutlineArrowDown, AiOutlineArrowLeft } from 'react-icons/ai';
-import { HeadingProps } from '../HTML.types';
+import { DivProps, HeadingProps } from '../HTML.types';
 import Toggle from '../Toggle/Toggle';
 
 interface ToggleTopicProps {
-  headingProps: HeadingProps;
+  headingProps?: HeadingProps;
+  childrenWrapper?: DivProps;
+  as?: () => JSX.Element;
 }
-function ToggleTopic({ headingProps, children }: ToggleTopicProps & PropsWithChildren) {
+function ToggleTopic({
+  headingProps,
+  children,
+  childrenWrapper,
+  as
+}: ToggleTopicProps & PropsWithChildren) {
   return (
     <Toggle>
       {({ handleOnClick, isON }) => {
@@ -16,12 +23,16 @@ function ToggleTopic({ headingProps, children }: ToggleTopicProps & PropsWithChi
             <button className="flex items-center gap-2" onClick={handleOnClick}>
               <div> {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}</div>
 
-              <h3 {...headingProps} className={classNameGenerator(headingProps.className)}>
-                {headingProps.title}
-              </h3>
+              {!as ? (
+                <h3 {...headingProps} className={classNameGenerator(headingProps?.className)}>
+                  {headingProps?.title}
+                </h3>
+              ) : (
+                as()
+              )}
             </button>
 
-            <div> {isON && children} </div>
+            <div className={childrenWrapper?.className}> {isON && children} </div>
           </div>
         );
       }}

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
 import TrackButton from '../Buttons/TrackButton';
 const jobItemStyle = {
-  item: 'flex flex-[100%] flex-col justify-between rounded-md bg-white p-4 shadow-lg sm:flex-[45%] md:flex-[30%] ',
+  item: 'flex-[100%]  rounded-md bg-white p-4 shadow-lg sm:flex-[45%] md:flex-[30%] ',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
   bookmarkButton: 'text-base',
@@ -27,6 +27,7 @@ function JobItem(
       text: 'עקוב'
     }
   };
+
   const trackButtonCur = trackButtonDisplay[`${mark}`];
   return (
     <li className={jobItemStyle.item} key={jobID + index}>

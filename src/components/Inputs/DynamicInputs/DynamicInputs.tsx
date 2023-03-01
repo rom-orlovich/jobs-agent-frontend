@@ -4,6 +4,7 @@ import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dy
 import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
 import CircleAddButton from '@/components/Buttons/CircleAddButton';
 import Overflow from '@/components/Overflow/Overflow';
+import { classNameGenerator } from '@/lib/utils';
 /**
  * This component create dynamic array of inputs.
  * Each time the user execute the addMoreInput function which pass as props to the Render element,a new input is created.
@@ -12,7 +13,10 @@ import Overflow from '@/components/Overflow/Overflow';
 function DynamicInputs<T extends DynamicInputRenderProps>({
   defaultValues,
   Render,
-  children
+  children,
+  addButtonProps,
+  removeButtonProps,
+  overflowProps
 }: DynamicInputsProps<T>) {
   const defaultValuesWithID = defaultValues.map((el, i) => ({
     ...el,
@@ -59,7 +63,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   };
   const ref = useRef<null | HTMLDivElement>(null);
 
-  const overflowIsActive = inputs.length > 5;
+  const overflowIsActive = inputs.length >= (overflowProps?.minChild || 5);
   // The function that execute the adding of a new input in the array.
   const addMoreInput: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
@@ -76,19 +80,24 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
     <>
       <Overflow
         active={overflowIsActive}
-        outerElementClass="h-[14rem]"
-        innerElementClass="min-h-[15rem] max-h-[40rem] "
+        outerElementClass={classNameGenerator('h-[14rem]', overflowProps?.outerDiv?.className)}
+        innerElementClass={classNameGenerator(
+          'min-h-[15rem] max-h-[40rem]',
+          overflowProps?.innerDiv?.className
+        )}
       >
-        {inputs?.map((input, i) => {
-          return (
-            <span key={input?.id} className="relative">
-              <Render {...input} setValue={setValue(i)} />
-              <CircleRemoveButton onClick={removeExistInput(i)} />
-            </span>
-          );
-        })}
+        <ul>
+          {inputs?.map((input, i) => {
+            return (
+              <li key={input?.id} className="relative">
+                <Render {...input} setValue={setValue(i)} />
+                <CircleRemoveButton {...removeButtonProps} onClick={removeExistInput(i)} />
+              </li>
+            );
+          })}
+        </ul>
         <div ref={ref} className="mt-2 flex w-full justify-center">
-          <CircleAddButton onClick={addMoreInput} />
+          <CircleAddButton {...addButtonProps} onClick={addMoreInput} />
         </div>
       </Overflow>
       {children ? children(inputs) : <></>}

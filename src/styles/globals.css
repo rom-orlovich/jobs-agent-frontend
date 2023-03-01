@@ -9,6 +9,9 @@
   .button-custom {
     @apply rounded-lg py-[0.3rem] px-[0.6rem]  text-sm xs:py-[0.4rem] xs:px-[0.8rem]  xs:text-base sm:py-[0.6rem] sm:px-[1.2rem] sm:text-lg;
   }
+  .card {
+    @apply rounded-lg border-none bg-white shadow-lg;
+  }
 }
 .spin {
   animation: spin 1s linear infinite;
