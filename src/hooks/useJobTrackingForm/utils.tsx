@@ -1,4 +1,4 @@
-import { TrackInfo, TrackInfoFormFormat } from '@/lib/jobsScanner.types';
+import { TrackingInfo, TrackInfoFormFormat } from '@/lib/jobsScanner.types';
 import { convertDateToValidInputFormat } from '@/lib/utils';
 /**
  * @returns {TrackInfoFormFormat} The form's default values.
@@ -27,11 +27,11 @@ export function getJobTrackingFormDefaultValues(): TrackInfoFormFormat {
 }
 
 /**
- * @param {TrackInfo} initialValues The job info data from the DB.
+ * @param {TrackingInfo} initialValues The job info data from the DB.
  * @returns {TrackInfoFormFormat} Convert the job info data from the DB to form format.
  */
 
-export const handleConvertInitialValues: (initialValues?: TrackInfo) => TrackInfoFormFormat = (
+export const handleConvertInitialValues: (initialValues?: TrackingInfo) => TrackInfoFormFormat = (
   initialValues
 ) => {
   const defaultValues = getJobTrackingFormDefaultValues();
@@ -54,10 +54,10 @@ export const handleConvertInitialValues: (initialValues?: TrackInfo) => TrackInf
 /**
 
  * @param {TrackInfoFormFormat} formValues The job info data as form values.
- * @returns {TrackInfo} Convert the job info data as form values to the DB to format.
+ * @returns {TrackingInfo} Convert the job info data as form values to the DB to format.
  */
 
-export function handleConvertToFormResult(formValues: TrackInfoFormFormat): TrackInfo {
+export function handleConvertToFormResult(formValues: TrackInfoFormFormat): TrackingInfo {
   return {
     createdAt: new Date(formValues.createdAt),
     sendCV: {

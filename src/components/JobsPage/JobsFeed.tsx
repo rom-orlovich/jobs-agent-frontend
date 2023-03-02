@@ -18,7 +18,7 @@ export const jobItemStyle = {
 
 /**
  * @param tracking Array of the jobs info from user profile data.
- * @returns {GenericRecord<TrackInfo>} A obj that the indexes are the jobID and the values are the tracking object.
+ * @returns {GenericRecord<TrackingInfo>} A obj that the indexes are the jobID and the values are the tracking object.
  */
 const createJobsTrackMap = (tracking: Job[]): GenericRecord<Job> => {
   const JobTrackingMap: GenericRecord<Job> = {};

@@ -6,7 +6,7 @@ export interface ResponseScanner {
   success?: boolean;
   code: MessageKeys;
 }
-export interface TrackInfo {
+export interface TrackingInfo {
   createdAt: Date;
   sendCV?: { date?: Date; pass?: boolean };
   stages: { date?: Date; name: string; pass: boolean; feedback: string }[];
@@ -14,7 +14,7 @@ export interface TrackInfo {
 export type TrackInfoFormFormat = {
   createdAt: string;
   sendCV: { date: string; pass: boolean };
-  stages: ({ date: string } & OmitKey<TrackInfo['stages'][0], 'date'>)[];
+  stages: ({ date: string } & OmitKey<TrackingInfo['stages'][0], 'date'>)[];
 };
 export interface Job {
   jobID: string;
@@ -28,7 +28,7 @@ export interface Job {
   createdAt?: Date;
   text: string;
   hashQueries?: string[];
-  info?: TrackInfo;
+  info?: TrackingInfo;
 }
 
 export interface FacetFilterResults {

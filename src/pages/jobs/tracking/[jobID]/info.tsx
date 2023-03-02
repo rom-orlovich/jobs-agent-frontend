@@ -10,7 +10,7 @@ import { updateJobsTracking } from '@/lib/api/jobsTracking/handlers';
 
 import { checkIsJobFoundWithToast } from '@/lib/jobs.utils';
 
-import { Job, TrackInfo } from '@/lib/jobsScanner.types';
+import { Job, TrackingInfo } from '@/lib/jobsScanner.types';
 // import useForm from '@/hooks/useForm';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -35,7 +35,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as unknown as Date;
   };
   const curDate = convertDateToValidInputFormat(new Date());
-  const defaultValues: TrackInfo = {
+  const defaultValues: TrackingInfo = {
     createdAt: initialValues?.createdAt || new Date(),
     sendCV: {
       date: curDate,
@@ -50,7 +50,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       }
     ]
   };
-  const handleConvertInitialValue: (initialValues?: TrackInfo) => TrackInfo = (initialValues) => ({
+  const handleConvertInitialValue: (initialValues?: TrackingInfo) => TrackingInfo = (initialValues) => ({
     ...initialValues,
     createdAt: initialValues?.createdAt || new Date(),
     sendCV: {
@@ -64,7 +64,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
         }))
       : defaultValues.stages
   });
-  const handleConvertToFormResult: (formValues: TrackInfo) => TrackInfo = (formValues) => {
+  const handleConvertToFormResult: (formValues: TrackingInfo) => TrackingInfo = (formValues) => {
     return {
       createdAt: initialValues?.createdAt || new Date(),
       sendCV: {
@@ -81,7 +81,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     };
   };
 
-  const { formState, formValues, onSubmit, setFormValues } = useForm<TrackInfo>(
+  const { formState, formValues, onSubmit, setFormValues } = useForm<TrackingInfo>(
     handleConvertInitialValue(initialValues) || defaultValues
   );
 
@@ -94,7 +94,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       }
     }));
   };
-  const handleSetStagesValues = (values: TrackInfo['stages']) => {
+  const handleSetStagesValues = (values: TrackingInfo['stages']) => {
     console.log(values);
     setFormValues((pre) => ({
       ...pre,
@@ -102,7 +102,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     }));
   };
 
-  const handleSubmit = async (values: TrackInfo) => {
+  const handleSubmit = async (values: TrackingInfo) => {
     const formsValue = handleConvertToFormResult(values);
     const res = await updateJobsTracking(userID, {
       ...job,
