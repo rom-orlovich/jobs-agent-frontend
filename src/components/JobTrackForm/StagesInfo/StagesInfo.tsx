@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
-import React, { ChangeEventHandler } from 'react';
+import React from 'react';
 import SuccessButton from '../../Buttons/SuccessButton';
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
-import InputLabel from '../../Inputs/InputLabel/InputLabel';
+// import InputLabel from '../../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../../UserProfileForm/ToggleTopic';
 import { jobTrackingFormStyle } from '../JobTrackForm';
 
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
+import StageInputs from './StageInputs';
 
 function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormComponentsProps<unknown>) {
   const router = useRouter();
@@ -28,74 +29,78 @@ function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormCompon
           className: '!top-0'
         }}
         defaultValues={[formValues.stages[0]]}
-        Render={({ name, pass, feedback, date, setValue }) => {
-          const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
-            if (setValue) {
-              setValue({
-                name,
-                pass,
-                feedback,
-                date,
-                [e.target.id]: e.target.value === 'on' ? true : e.target.value
-              });
-            }
-          };
-          return (
-            <ToggleTopic
-              as={() => (
-                <InputLabel
-                  inputProps={{
-                    value: name || '',
-                    id: 'name',
-                    onChange: onChange
-                  }}
-                >
-                  שם שלב
-                </InputLabel>
-              )}
-            >
-              <div className="flex">
-                <InputLabel
-                  labelProps={{
-                    className: jobTrackingFormStyle.label
-                  }}
-                  inputProps={{
-                    type: 'date',
-                    value: (date || '') as unknown as string,
-                    className: jobTrackingFormStyle.dateInput,
-                    id: 'date',
-                    onChange: onChange
-                  }}
-                >
-                  תאריך?
-                </InputLabel>
+        Render={
+          //   (
+          //   { name, pass, feedback, date, setValue }) => {
+          //   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
+          //     if (setValue) {
+          //       setValue({
+          //         name,
+          //         pass,
+          //         feedback,
+          //         date,
+          //         [e.target.id]: e.target.value === 'on' ? true : e.target.value
+          //       });
+          //     }
+          //   };
+          //   return (
+          //     <ToggleTopic
+          //       as={() => (
+          //         <InputLabel
+          //           inputProps={{
+          //             value: name || '',
+          //             id: 'name',
+          //             onChange: onChange
+          //           }}
+          //         >
+          //           שם שלב
+          //         </InputLabel>
+          //       )}
+          //     >
+          //       <div className="flex">
+          //         <InputLabel
+          //           labelProps={{
+          //             className: jobTrackingFormStyle.label
+          //           }}
+          //           inputProps={{
+          //             type: 'date',
+          //             value: (date || '') as unknown as string,
+          //             className: jobTrackingFormStyle.dateInput,
+          //             id: 'date',
+          //             onChange: onChange
+          //           }}
+          //         >
+          //           תאריך?
+          //         </InputLabel>
 
-                <InputLabel
-                  labelProps={{
-                    className: jobTrackingFormStyle.label
-                  }}
-                  inputProps={{
-                    type: 'checkbox',
-                    checked: pass || false,
-                    id: 'pass',
-                    onChange: onChange
-                  }}
-                >
-                  עברתי?
-                </InputLabel>
-              </div>
-              <InputLabel
-                textAreaProps={{
-                  value: feedback || '',
-                  id: 'feedback',
-                  onChange: onChange
-                }}
-              >
-                פידבק
-              </InputLabel>
-            </ToggleTopic>
-          );
-        }}
+          //         <InputLabel
+          //           labelProps={{
+          //             className: jobTrackingFormStyle.label
+          //           }}
+          //           inputProps={{
+          //             type: 'checkbox',
+          //             checked: pass || false,
+          //             id: 'pass',
+          //             onChange: onChange
+          //           }}
+          //         >
+          //           עברתי?
+          //         </InputLabel>
+          //       </div>
+          //       <InputLabel
+          //         textAreaProps={{
+          //           value: feedback || '',
+          //           id: 'feedback',
+          //           onChange: onChange
+          //         }}
+          //       >
+          //         פידבק
+          //       </InputLabel>
+          //     </ToggleTopic>
+          //   );
+          // }
+          StageInputs
+        }
       >
         {(values) => {
           return (

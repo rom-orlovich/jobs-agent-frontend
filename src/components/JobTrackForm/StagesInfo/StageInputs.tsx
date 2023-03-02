@@ -1,7 +1,7 @@
 import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
 import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
-import { TrackingInfo } from '@/lib/jobsScanner.types';
+import { TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
 import React, { ChangeEventHandler } from 'react';
 import { jobTrackingFormStyle } from '../JobTrackForm';
 
@@ -11,7 +11,7 @@ function StageInputs({
   feedback,
   date,
   setValue
-}: RenderElement<TrackingInfo['stages'][0]>) {
+}: RenderElement<TrackingInfoFormFormat['stages'][0]>) {
   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
     if (setValue) {
       setValue({

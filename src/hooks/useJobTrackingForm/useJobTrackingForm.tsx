@@ -1,5 +1,5 @@
 import { updateJobsTracking } from '@/lib/api/jobsTracking/handlers';
-import { Job, TrackInfoFormFormat } from '@/lib/jobsScanner.types';
+import { Job, TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
 
 import { ChangeEventHandler } from 'react';
 import useForm from '../useForm';
@@ -8,7 +8,8 @@ import { handleConvertInitialValues, handleConvertToFormResult } from './utils';
 export const useJobTrackingForm = (job: Job, userID: string) => {
   const initialValues = handleConvertInitialValues(job.info);
 
-  const { formState, formValues, onSubmit, setFormValues } = useForm<TrackInfoFormFormat>(initialValues);
+  const { formState, formValues, onSubmit, setFormValues } =
+    useForm<TrackingInfoFormFormat>(initialValues);
 
   const handleOnChangeValue: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormValues((pre) => ({
@@ -19,7 +20,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       }
     }));
   };
-  const handleSetStagesValues = (values: TrackInfoFormFormat['stages']) => {
+  const handleSetStagesValues = (values: TrackingInfoFormFormat['stages']) => {
     console.log(values);
     setFormValues((pre) => ({
       ...pre,
@@ -27,7 +28,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     }));
   };
 
-  const handleSubmit = async (values: TrackInfoFormFormat) => {
+  const handleSubmit = async (values: TrackingInfoFormFormat) => {
     const formsValues = handleConvertToFormResult(values);
 
     try {
