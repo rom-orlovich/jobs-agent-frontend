@@ -2,9 +2,8 @@ import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.t
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
 import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
 import { TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
+import { jobTrackingFormStyle } from '@/pages/jobs/tracking/[jobID]/info';
 import React, { ChangeEventHandler } from 'react';
-import { jobTrackingFormStyle } from '../JobTrackingForm';
-
 function StageInputs({
   name,
   pass,

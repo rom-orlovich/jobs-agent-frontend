@@ -4,10 +4,9 @@ import SuccessButton from '../../Buttons/SuccessButton';
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 // import InputLabel from '../../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../../UserProfileForm/ToggleTopic';
-import { jobTrackingFormStyle } from '../JobTrackingForm';
-
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import StageInputs from './StageInputs';
+import { jobTrackingFormStyle } from '@/pages/jobs/tracking/[jobID]/info';
 
 function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormComponentsProps<unknown>) {
   const router = useRouter();

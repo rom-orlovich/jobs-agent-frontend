@@ -1,23 +1,12 @@
 import { useJobTrackingForm } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import { Job } from '@/lib/jobsScanner.types';
+import { jobTrackingFormStyle } from '@/pages/jobs/tracking/[jobID]/info';
 import React from 'react';
 
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../UserProfileForm/ToggleTopic';
 import StagesInfo from './StagesInfo/StagesInfo';
-export const jobTrackingFormStyle = {
-  formContainer: 'flex justify-center w-full h-full ',
-  card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
-  title: 'text-2xl underline',
-  company: 'text-xl underline mt-2',
-  form: 'flex flex-col mt-4   max-h-[30rem] min-h-[15rem] justify-between relative',
-  formContent: 'flex flex-col gap-8 ',
-  headingToggle: 'text-xl',
-  buttonsContainer: 'flex justify-between w-full ',
-  label: 'flex flex-col ',
-  dateInput: 'max-w-[8rem]',
-  toggleTopicWrapper: 'flex gap-1'
-};
+
 function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
   const jobTrackingForm = useJobTrackingForm(job, userID);
   const { formValues, handleOnChangeValue, onSubmit } = jobTrackingForm;
