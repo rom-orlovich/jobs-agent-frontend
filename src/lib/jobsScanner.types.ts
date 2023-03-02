@@ -1,4 +1,5 @@
 import { MESSAGES } from './messages';
+import { OmitKey } from './types/types';
 export type MessageKeys = keyof typeof MESSAGES;
 export interface ResponseScanner {
   message: string;
@@ -10,6 +11,11 @@ export interface TrackInfo {
   sendCV?: { date?: Date; pass?: boolean };
   stages: { date?: Date; name: string; pass: boolean; feedback: string }[];
 }
+export type TrackInfoFormFormat = {
+  createdAt: string;
+  sendCV: { date: string; pass: boolean };
+  stages: ({ date: string } & OmitKey<TrackInfo['stages'][0], 'date'>)[];
+};
 export interface Job {
   jobID: string;
   title: string;
@@ -22,7 +28,7 @@ export interface Job {
   createdAt?: Date;
   text: string;
   hashQueries?: string[];
-  track?: TrackInfo;
+  info?: TrackInfo;
 }
 
 export interface FacetFilterResults {

@@ -51,7 +51,7 @@ function useUserProfile(userID: string) {
     //Check it the hash is valid string.
     curEditHashQuery = typeof curEditHashQuery === 'string' ? curEditHashQuery : '';
 
-    const { userQueries, jobsTrack, ...restUserProps } = data?.data;
+    const { userQueries, tracking, ...restUserProps } = data?.data;
     let curUserQuery;
 
     if (userQueries) {
@@ -69,7 +69,7 @@ function useUserProfile(userID: string) {
 
     userProfileData = {
       ...restUserProps,
-      jobsTrack,
+      tracking,
       activeHash: curEditHashQuery ? curEditHashQuery : curUserQuery?.hash,
       userQuery: curUserQuery || defaultUserProfile.userQuery
     };

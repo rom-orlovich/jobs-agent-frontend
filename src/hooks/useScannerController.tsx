@@ -34,7 +34,7 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
       });
       await mutate(`/api/users/${user?.id}`);
     } catch (error) {
-      toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND]);
+      toast(MESSAGES[MESSAGE_CODES.JOB_ARE_NOT_FOUND]);
       console.log(error);
     } finally {
       router.push({

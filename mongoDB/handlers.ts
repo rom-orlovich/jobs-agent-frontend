@@ -81,7 +81,7 @@ export const addJobTracking = async (userID: string, job: Job) => {
         $addToSet: {
           tracking: {
             ...job,
-            trackInfo: {
+            info: {
               sendCV: {
                 date: new Date(),
                 status: false
@@ -109,7 +109,7 @@ export const updateJobTracking = async (userID: string, job: Job) => {
       },
       {
         $set: {
-          'tracking.$[jobs].trackInfo': job.track
+          'tracking.$[jobs].info': job.info
         }
       },
       {
