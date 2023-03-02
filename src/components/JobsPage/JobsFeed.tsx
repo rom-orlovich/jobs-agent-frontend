@@ -46,7 +46,7 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
       if (!jobsTrackMap[job.jobID])
         result = await createNewJobTracking(userProfileData.userID || '', job);
       else result = await deleteJobTracking(userProfileData.userID || '', job.jobID);
-      // saveSessionValues && saveSessionValues();
+
       //Update the user profile.
       await mutate(`/api/users/${userProfileData?.userID}`).then((el) => console.log(el));
       console.log(result);
