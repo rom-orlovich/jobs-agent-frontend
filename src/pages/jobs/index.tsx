@@ -71,40 +71,8 @@ function JobsPage(props: InferGetServerSidePropsType<typeof getServerSideProps>)
         useSwrInfiniteProps={useSwrInfiniteProps}
         userProfileData={userProfileData}
       />
-      {/* <div className="flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col">
-        <h1 className="text-3xl">כ- {lastResponse.pagination?.numResultsFound || 0} משרות נמצאו:</h1>
-        <JobsSearch filterJobsProps={filterJobsProps} jobsFilters={lastResponse.filters} />
-      </div>
-
-      <JobsFeed
-        jobs={jobsData}
-        userProfileData={userProfileData}
-        // saveSessionValues={saveSessionValues}
-      />
-
-      {jobsData.length && (
-        <div className="flex w-full items-center justify-center">
-          <LoadButton
-            disabled={!lastResponse.pagination.hasMore}
-            className="items-center px-7 py-2 text-2xl"
-            onClick={handleLoadButtonClick}
-          >
-            טען משרות
-          </LoadButton>
-        </div>
-      )}
-
-      <Spinner className="!top-[none] bottom-5" isLoading={isValidating || isLoading || !data} /> */}
     </>
   );
 }
 
 export default JobsPage;
-// const { saveSessionValues } = useStateSession<FilterJobsField>({
-//   id: 'filterJobsProps',
-//   values: {
-//     title,
-//     reason
-//   },
-//   setState: filterJobsProps.setFormValues
-// });
