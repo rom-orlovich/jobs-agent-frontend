@@ -11,7 +11,7 @@ export const getJobs = async <R>(userID: string, params: GenericRecord<unknown>)
       endpoints: [userID],
       params
     });
-    console.log(result.data);
+
     return result;
   } catch (error) {
     console.log(error);
