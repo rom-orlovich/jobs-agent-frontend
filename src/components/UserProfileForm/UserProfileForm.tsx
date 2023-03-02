@@ -2,15 +2,16 @@ import React from 'react';
 
 import UserQuery from './UserQuery/UserQuery';
 
-import useUserProfileForm from '../../hooks/useUserProfileForm/useUserProfileForm';
+import useProfileForm from '../../hooks/useProfileForm/useProfileForm';
 
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 // import SuccessButton from '../Buttons/SuccessButton';
-import ScannerControlButtons from '../ScannerControlButtons/ScannerControlButtons';
+
 import { useAuthContext } from '@/context/AuthContext';
+import ScannerControlButtons from './ScannerControlButtons/ScannerControlButtons';
 // import { MdSave } from 'react-icons/md';
 const UserProfileFormStyle = {
   form: 'max-w-[35rem] min-w-[15rem] flex flex-col gap-4 shadow-lg p-4 rounded-md bg-white ',
@@ -25,7 +26,7 @@ const UserProfileFormStyle = {
 
 function UserProfileForm() {
   const { userProfileData } = useAuthContext();
-  const userForm = useUserProfileForm(userProfileData);
+  const userForm = useProfileForm(userProfileData);
 
   return (
     <form onSubmit={userForm.handleUserProfileFormSubmit} className={UserProfileFormStyle.form}>

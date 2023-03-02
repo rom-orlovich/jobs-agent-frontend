@@ -14,7 +14,7 @@ import {
  * Manage the user details form state.
  * @param {UserProfile} user The current login user.
  */
-function useUserProfileForm(user: UserProfileWithOneUserQuery) {
+function useProfileForm(user: UserProfileWithOneUserQuery) {
   const formInitialValue: UserProfileWithOneUserQuery = user;
   // Initializes the form state and get the utils functions from useForm hook.
   const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
@@ -89,6 +89,6 @@ function useUserProfileForm(user: UserProfileWithOneUserQuery) {
   };
 }
 
-export default useUserProfileForm;
+export default useProfileForm;
 
-export type FormComponents<T> = T & ReturnType<typeof useUserProfileForm>;
+export type FormComponents<T> = T & ReturnType<typeof useProfileForm>;

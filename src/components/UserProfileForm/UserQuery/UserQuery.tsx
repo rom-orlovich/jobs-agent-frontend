@@ -1,7 +1,7 @@
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 import React from 'react';
-import { FormComponents } from '../../../hooks/useUserProfileForm/useUserProfileForm';
+import { FormComponents } from '../../../hooks/useProfileForm/useProfileForm';
 import {
   DISTANCE_OPTIONS,
   EXPERIENCE_OPTIONS,

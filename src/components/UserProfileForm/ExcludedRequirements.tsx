@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 
 import InputBucket from '../Inputs/InputBucket/InputBucket';
-import { FormComponents } from '../../hooks/useUserProfileForm/useUserProfileForm';
+import { FormComponents } from '../../hooks/useProfileForm/useProfileForm';
 import SuccessButton from '../Buttons/SuccessButton';
 function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormComponents<unknown>) {
   const handleConfirmExcludedRequirements: (
