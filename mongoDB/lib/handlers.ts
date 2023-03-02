@@ -82,6 +82,7 @@ export const addJobTracking = async (userID: string, job: Job) => {
           tracking: {
             ...job,
             info: {
+              createdAt: new Date(),
               sendCV: {
                 date: new Date(),
                 status: false
