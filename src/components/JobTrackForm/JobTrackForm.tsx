@@ -1,11 +1,10 @@
 import { useJobTrackingForm } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import { Job } from '@/lib/jobsScanner.types';
-import { useRouter } from 'next/router';
-import React, { ChangeEventHandler } from 'react';
-import SuccessButton from '../Buttons/SuccessButton';
-import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
+import React from 'react';
+
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../UserProfileForm/ToggleTopic';
+import StagesInfo from './StagesInfo/StagesInfo';
 export const jobTrackingFormStyle = {
   formContainer: 'flex justify-center w-full h-full ',
   card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
@@ -20,11 +19,8 @@ export const jobTrackingFormStyle = {
   toggleTopicWrapper: 'flex gap-1'
 };
 function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
-  const router = useRouter();
-  const { formValues, handleOnChangeValue, handleSetStagesValues, onSubmit } = useJobTrackingForm(
-    job,
-    userID
-  );
+  const jobTrackingForm = useJobTrackingForm(job, userID);
+  const { formValues, handleOnChangeValue, onSubmit } = jobTrackingForm;
   return (
     <form onSubmit={onSubmit} className={jobTrackingFormStyle.form}>
       <div className={jobTrackingFormStyle.formContent}>
@@ -66,7 +62,7 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
           </InputLabel>
         </ToggleTopic>
 
-        <ToggleTopic
+        {/* <ToggleTopic
           headingProps={{
             title: 'באיזה שלב אתה?',
             className: jobTrackingFormStyle.headingToggle
@@ -182,7 +178,8 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
               );
             }}
           </DynamicInputs>
-        </ToggleTopic>
+        </ToggleTopic> */}
+        <StagesInfo {...jobTrackingForm} />
       </div>
     </form>
   );
