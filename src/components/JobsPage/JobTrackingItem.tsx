@@ -27,25 +27,12 @@ function JobTrackingItem(
   }
 ) {
   const { link, title, jobID, index, mark, info } = props;
-  const trackButtonDisplay = {
-    true: {
-      text: 'ערוך'
-    },
-    false: {
-      text: 'עקוב'
-    }
-  };
-
-  const trackButtonCur = trackButtonDisplay[`${mark}`];
-  console.log(info);
   const localDateStr = createLocalDate(info?.createdAt);
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
         <div className={jobItemStyle.bookmarkContainer}>
-          <TrackButton onClick={props.handleClickBookmark} mark={mark}>
-            {trackButtonCur.text}
-          </TrackButton>
+          <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div dir="rtl" className={jobItemStyle.dateContainer}>
           <Field value={localDateStr} titleStyle={'font-bold'} title="נוצר ב-" />

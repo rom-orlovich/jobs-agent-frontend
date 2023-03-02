@@ -16,6 +16,13 @@ export const jobItemStyle = {
   buttonStatusContainer: 'flex justify-center mt-3'
 };
 
+interface JobsFeedProps {
+  jobs?: Job[];
+  userProfileData: UserProfileWithOneUserQuery;
+  isTrackFeed?: boolean;
+  saveSessionValues?: () => void;
+}
+
 /**
  * @param tracking Array of the jobs info from user profile data.
  * @returns {GenericRecord<TrackingInfo>} A obj that the indexes are the jobID and the values are the tracking object.
@@ -25,18 +32,9 @@ const createJobsTrackMap = (tracking: Job[]): GenericRecord<Job> => {
   tracking?.forEach((jobTracking) => (JobTrackingMap[`${jobTracking.jobID}`] = jobTracking));
   return JobTrackingMap;
 };
-
-interface JobsFeedProps {
-  jobs?: Job[];
-  userProfileData: UserProfileWithOneUserQuery;
-  isTrackFeed?: boolean;
-  saveSessionValues?: () => void;
-}
-
 const jobsFeedStyle = {
   feed: 'flex h-full flex-wrap justify-center gap-3 py-4 xs:px-8 xs:pr-16'
 };
-
 function JobsFeed({ jobs, userProfileData, isTrackFeed, saveSessionValues }: JobsFeedProps) {
   const jobsTrackMap = createJobsTrackMap(userProfileData.tracking || []);
 

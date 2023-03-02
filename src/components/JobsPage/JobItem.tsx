@@ -19,23 +19,12 @@ function JobItem(
   }
 ) {
   const { link, title, from, reason, jobID, index, mark } = props;
-  const trackButtonDisplay = {
-    true: {
-      text: 'ערוך'
-    },
-    false: {
-      text: 'עקוב'
-    }
-  };
 
-  const trackButtonCur = trackButtonDisplay[`${mark}`];
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
         <div className={jobItemStyle.bookmarkContainer}>
-          <TrackButton onClick={props.handleClickBookmark} mark={mark}>
-            {trackButtonCur.text}
-          </TrackButton>
+          <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div>
           <Link href={link}> {title}</Link>{' '}
