@@ -10,10 +10,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 /**
- *
- * @returns The
+ * The hooks find and return current user profile data and the requested job.
  */
-export const useGetJobsTrack = () => {
+export const useGetJobsTrackingInfo = () => {
   const router = useRouter();
   const { userProfileData } = useAuthContext();
   const jobID = String(router.query.jobID);
@@ -32,7 +31,7 @@ export const infoStyle = {
 };
 
 function JobTracking() {
-  const jobTrackingData = useGetJobsTrack();
+  const jobTrackingData = useGetJobsTrackingInfo();
   const jobTracking = jobTrackingData?.curJobTracking;
   const job = useRedirect(() => checkIsJobFoundWithToast(jobTracking));
 
