@@ -5,9 +5,10 @@ import { convertResourceToURL } from '@/lib/utils';
 import { ResponseMessage } from '../types/api.types';
 import { AxiosAPI } from './axios.api';
 
-const jobsTracks = new AxiosAPI(convertResourceToURL([CLIENT_URL, API_ENDPOINTS.USERS]));
+const jobsTracksAPI = new AxiosAPI(convertResourceToURL([CLIENT_URL, API_ENDPOINTS.USERS]));
+
 export const updateJobsTracking = async (userID: string, job: Job) => {
-  const result = await jobsTracks.put<ResponseMessage>(
+  const result = await jobsTracksAPI.put<ResponseMessage>(
     {
       endpoints: [API_ENDPOINTS.JOBS_TRACKINGS_INFO(userID)]
     },
@@ -16,7 +17,7 @@ export const updateJobsTracking = async (userID: string, job: Job) => {
   return result;
 };
 export const createNewJobTracking = async (userID: string, job: Job) => {
-  const result = await jobsTracks.post<ResponseMessage>(
+  const result = await jobsTracksAPI.post<ResponseMessage>(
     {
       endpoints: [API_ENDPOINTS.JOBS_TRACKINGS_INFO(userID)]
     },
@@ -27,7 +28,7 @@ export const createNewJobTracking = async (userID: string, job: Job) => {
 };
 
 export const deleteJobTracking = async (userID: string, jobID: string) => {
-  const result = await jobsTracks.delete<ResponseMessage>({
+  const result = await jobsTracksAPI.delete<ResponseMessage>({
     endpoints: [API_ENDPOINTS.JOBS_TRACKINGS_INFO(userID), jobID]
   });
 

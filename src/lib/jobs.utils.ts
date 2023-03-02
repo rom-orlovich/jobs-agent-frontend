@@ -1,20 +1,13 @@
 import { toast } from 'react-toastify';
+import { SWRInfiniteKeyLoader } from 'swr/infinite';
 
 import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './jobsScanner.types';
 import { MESSAGES, MESSAGE_CODES } from './messages';
+import { UserProfileWithOneUserQuery } from './types/api.types';
 import { GenericRecord } from './types/types';
-import { createURL, fetchUtil, getResMessage } from './utils';
+import { createURL, getResMessage } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createJobsURl = (userID: string, params?: GenericRecord<any>) => {
-  return createURL([SERVER_URL, API_ENDPOINTS.GET_JOBS, userID], params);
-};
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const jobsFetcher = async (userID: string, params: GenericRecord<any>) => {
-  const url = createJobsURl(userID, params);
-  const data = await fetchUtil<undefined, ResponseGetJobs>(url);
-  return data;
-};
 /**
  *
  * @param {Job[]} jobs The jobs array.
@@ -110,3 +103,24 @@ export const getLastCurJobData = (
     lastResponse
   };
 };
+
+export const createJobsURl = (userID: string, params?: GenericRecord<unknown>) => {
+  return createURL([SERVER_URL, API_ENDPOINTS.GET_JOBS, userID], params);
+};
+
+//Swr infinite handler.
+export const swrInfiniteHandler: (
+  userProfileData: UserProfileWithOneUserQuery,
+  params?: GenericRecord<unknown>
+) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
+  (userProfileData, params) => (prePage: number, preData) => {
+    //Check if there it is possible to page to the next results page.
+    if (preData?.pagination.hasMore === false) return null;
+
+    //Create the jobs url with the cur URL parameters.
+    return createJobsURl(userProfileData.userID || '', {
+      page: prePage + 1,
+      hash: userProfileData.activeHash,
+      ...params
+    });
+  };

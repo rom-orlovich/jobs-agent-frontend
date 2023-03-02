@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   checkIsJobsFoundWithToast,
-  createJobsURl,
   defaultResponseJobs,
   getLastCurJobData,
-  jobsFetcher
+  swrInfiniteHandler
 } from '@/lib/jobs.utils';
 import { ResponseGetJobs } from '@/lib/jobsScanner.types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -13,39 +12,20 @@ import { getServerSession } from 'next-auth';
 import React from 'react';
 
 import { authOptions } from '../api/auth/[...nextauth]';
-import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite';
+import useSWRInfinite from 'swr/infinite';
 import { useAuthContext } from '@/context/AuthContext';
 
 import JobsFeed from '@/components/JobsPage/JobsFeed';
 
 import Spinner from '@/components/Spinner/Spinner';
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+
 import LoadButton from '@/components/Buttons/LoadButton';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
-
-import { GenericRecord } from '@/lib/types/types';
 import useFilterJobs from '@/hooks/useFilterJobs';
 import useRedirect from '@/hooks/useRedirect';
-// import useStateSession from '@/hooks/useStateSession';
-// import useStateSession from '@/hooks/useStateSession';
+import { getJobs } from '@/lib/api/jobs.util';
 
-//Swr infinite handler.
-const handler: (
-  userProfileData: UserProfileWithOneUserQuery,
-  params?: GenericRecord<any>
-) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
-  (userProfileData, params) => (prePage: number, preData) => {
-    //Check if there it is possible to page to the next results page.
-    if (preData?.pagination.hasMore === false) return null;
-
-    //Create the jobs url with the cur URL parameters.
-    return createJobsURl(userProfileData.userID || '', {
-      page: prePage + 1,
-      hash: userProfileData.activeHash,
-      ...params
-    });
-  };
 export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
   //Get current session data.
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -55,13 +35,13 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
   const page = context.query.page;
 
   //Fetch the the jobs.
-  const data = await jobsFetcher(session?.user.id || '', {
+  const data = await getJobs<ResponseGetJobs>(session?.user.id || '', {
     hash,
     page: page
   });
 
   return {
-    props: data || defaultResponseJobs
+    props: data?.data || defaultResponseJobs
   };
 };
 
@@ -89,7 +69,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   //Use swr infinite.
   const { data, isLoading, setSize, size, isValidating } = useSWRInfinite<ResponseGetJobs>(
-    handler(userProfileData, {
+    swrInfiniteHandler(userProfileData, {
       title: title,
       reason: reason
     }),
