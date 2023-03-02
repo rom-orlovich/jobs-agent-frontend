@@ -6,7 +6,7 @@ import SuccessButton from '../Buttons/SuccessButton';
 import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../UserProfileForm/ToggleTopic';
-const jobTrackingFormStyle = {
+export const jobTrackingFormStyle = {
   formContainer: 'flex justify-center w-full h-full ',
   card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
   title: 'text-2xl underline',
