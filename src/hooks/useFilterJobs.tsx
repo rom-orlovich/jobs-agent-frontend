@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import useForm from './useForm';
 export interface FilterJobsField {
   title: string;
@@ -8,6 +10,7 @@ export interface FilterJobsField {
  * @returns The handles function and formState of useFilterJobs.
  */
 function useFilterJobs() {
+  const router = useRouter();
   const { formState, formValues, setFormValues } = useForm<FilterJobsField>({
     title: '',
     reason: ''
@@ -22,6 +25,24 @@ function useFilterJobs() {
       }));
     };
   }
+  useEffect(() => {
+    console.log(formValues.reason);
+    if (formValues.reason || formValues.title) {
+      router.push(
+        {
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            ...formValues
+          }
+        },
+        undefined,
+        {
+          shallow: true
+        }
+      );
+    }
+  }, [formValues, router]);
 
   return {
     formState,

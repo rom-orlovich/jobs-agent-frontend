@@ -1,9 +1,11 @@
-import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
-import { getLastCurJobData } from '@/lib/jobs.utils';
+import { useAuthContext } from '@/context/AuthContext';
+import useFilterJobs from '@/hooks/useFilterJobs';
+import { getLastCurJobData, swrInfiniteHandler } from '@/lib/jobs.utils';
 import { ResponseGetJobs } from '@/lib/jobsScanner.types';
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { useSWRInfiniteHook } from '@/lib/swr';
+
 import React, { MouseEventHandler } from 'react';
-import { SWRInfiniteResponse } from 'swr/infinite';
+
 import LoadButton from '../Buttons/LoadButton';
 import Spinner from '../Spinner/Spinner';
 import JobsFeed from './JobsFeed';
@@ -16,16 +18,30 @@ const JobsStyle = {
   spinner: '!top-[none] bottom-5'
 };
 
-function Jobs({
-  filterJobsProps,
-  userProfileData,
-  useSwrInfiniteProps
-}: {
-  filterJobsProps: ReturnUseFilterJobsProps;
-  userProfileData: UserProfileWithOneUserQuery;
-  useSwrInfiniteProps: SWRInfiniteResponse<ResponseGetJobs, unknown>;
-}) {
-  //
+function Jobs({ initialsProps }: { initialsProps: ResponseGetJobs }) {
+  //Get filter Jobs query props.
+  const filterJobsProps = useFilterJobs();
+  const title = filterJobsProps.formValues.title;
+  const reason = filterJobsProps.formValues.reason;
+  //Get user profile data.
+  const { userProfileData } = useAuthContext();
+
+  //Use swr infinite.
+  const useSwrInfiniteProps = useSWRInfiniteHook<ResponseGetJobs>(
+    swrInfiniteHandler(userProfileData, {
+      title: title,
+      reason: reason
+    }),
+    {
+      revalidateIfStale: true,
+      revalidateFirstPage: false,
+      revalidateOnFocus: false,
+      refreshWhenOffline: false,
+      revalidateOnMount: false,
+      revalidateAll: false,
+      fallbackData: [initialsProps]
+    }
+  );
   const { size, isLoading, isValidating, data, setSize } = useSwrInfiniteProps;
   //Get last cur update data of SWR infinite
   const { allResponseData, lastResponse } = getLastCurJobData(data);
