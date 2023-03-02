@@ -111,7 +111,7 @@ function StagesInfo({ formValues }: JobTrackingFormComponentsProps<unknown>) {
 
               <SuccessButton
                 onClick={() => {
-                  // handleSetStageValues(
+                  // handleSetStagesValues(
                   //   values.map(({ date, feedback, name, pass }) => ({
                   //     date,
                   //     feedback,

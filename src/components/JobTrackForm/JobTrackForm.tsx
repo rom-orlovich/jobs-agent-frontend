@@ -21,7 +21,7 @@ export const jobTrackingFormStyle = {
 };
 function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
   const router = useRouter();
-  const { formValues, handleOnChangeValue, handleSetStageValues, onSubmit } = useJobTrackingForm(
+  const { formValues, handleOnChangeValue, handleSetStagesValues, onSubmit } = useJobTrackingForm(
     job,
     userID
   );
@@ -166,7 +166,7 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
 
                   <SuccessButton
                     onClick={() => {
-                      handleSetStageValues(
+                      handleSetStagesValues(
                         values.map(({ date, feedback, name, pass }) => ({
                           date,
                           feedback,

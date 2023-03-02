@@ -19,7 +19,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       }
     }));
   };
-  const handleSetStageValues = (values: TrackInfoFormFormat['stages']) => {
+  const handleSetStagesValues = (values: TrackInfoFormFormat['stages']) => {
     console.log(values);
     setFormValues((pre) => ({
       ...pre,
@@ -47,7 +47,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     onSubmit: onSubmit(handleSubmit),
 
     handleOnChangeValue,
-    handleSetStageValues
+    handleSetStagesValues
   };
 };
 export type JobTrackingFormComponentsProps<T> = T & ReturnType<typeof useJobTrackingForm>;
