@@ -1,7 +1,7 @@
 const PREFIX = 'api';
 export const API_ENDPOINTS = {
   USERS: `${PREFIX}/users`,
-  USERS_JOB_TRACK: (userID: string) => `${userID}/jobsTrack`,
+  JOBS_TRACKING_INFO: (userID: string) => `${userID}/tracking`,
   LOCATIONS: `${PREFIX}/locations`,
   POSITIONS: `${PREFIX}/positions`,
   SCANNER_START: `${PREFIX}/jobs-agent/start`,
