@@ -289,7 +289,14 @@ function JobTrackForm() {
 
                       <SuccessButton
                         onClick={() => {
-                          handleSetStageValues(values);
+                          handleSetStageValues(
+                            values.map(({ date, feedback, name, pass }) => ({
+                              date,
+                              feedback,
+                              name,
+                              pass
+                            }))
+                          );
                         }}
                       >
                         שמור
