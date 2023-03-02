@@ -3,7 +3,7 @@ import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
 import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
 import { TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
 import React, { ChangeEventHandler } from 'react';
-import { jobTrackingFormStyle } from '../JobTrackForm';
+import { jobTrackingFormStyle } from '../JobTrackingForm';
 
 function StageInputs({
   name,

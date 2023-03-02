@@ -2,7 +2,8 @@
 // import DynamicInputs from '@/components/Inputs/DynamicInputs/DynamicInputs';
 // import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
 // import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
-import JobTrackingForm from '@/components/JobTrackForm/JobTrackForm';
+
+import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
 import { useAuthContext } from '@/context/AuthContext';
 import useForm from '@/hooks/useForm';
 import useRedirect from '@/hooks/useRedirct';
