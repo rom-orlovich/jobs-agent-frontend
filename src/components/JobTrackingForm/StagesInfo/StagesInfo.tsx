@@ -30,34 +30,7 @@ function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
         Render={StageInputs}
       >
         {(values) => {
-          return (
-            <JobTrackingFormButtons values={values} {...props} />
-            // <div className={jobTrackingFormStyle.buttonsContainer}>
-            //   <SuccessButton
-            //     onClick={(e) => {
-            //       e.preventDefault();
-            //       router.back();
-            //     }}
-            //   >
-            //     חזור
-            //   </SuccessButton>
-
-            //   <SuccessButton
-            //     onClick={() => {
-            //       handleSetStagesValues(
-            //         values.map(({ date, feedback, name, pass }) => ({
-            //           date,
-            //           feedback,
-            //           name,
-            //           pass
-            //         }))
-            //       );
-            //     }}
-            //   >
-            //     שמור
-            //   </SuccessButton>
-            // </div>
-          );
+          return <JobTrackingFormButtons values={values} {...props} />;
         }}
       </DynamicInputs>
     </ToggleTopic>
