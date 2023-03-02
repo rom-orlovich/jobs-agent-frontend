@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { GenericRecord, OmitKey } from '../types/types';
-
 import axios, { AxiosInstance } from 'axios';
-import { CLIENT_URL } from '../endpoints';
+
 import { GenericRecord } from '../types/types';
 import { convertResourceToURL } from '../utils';
 
-export class AxiosUtils {
+export class AxiosAPI {
   axios: AxiosInstance;
   constructor(baseURL: string) {
     this.axios = axios.create({
-      baseURL: convertResourceToURL([CLIENT_URL, baseURL])
+      baseURL: convertResourceToURL([baseURL])
     });
   }
 
@@ -23,18 +21,16 @@ export class AxiosUtils {
     URL: { endpoints: string[]; params?: GenericRecord<any> },
     body: GenericRecord<any>
   ): Promise<R> {
-    return await this.axios.post(convertResourceToURL(URL.endpoints), {
-      params: URL.params,
-      body
+    return await this.axios.post(convertResourceToURL(URL.endpoints), body, {
+      params: URL.params
     });
   }
   async put<R>(
     URL: { endpoints: string[]; params?: GenericRecord<any> },
     body: GenericRecord<any>
   ): Promise<R> {
-    return await this.axios.put(convertResourceToURL(URL.endpoints), {
-      params: URL.params,
-      body
+    return await this.axios.put(convertResourceToURL(URL.endpoints), body, {
+      params: URL.params
     });
   }
   async delete<R>(URL: { endpoints: string[]; params?: GenericRecord<any> }): Promise<R> {

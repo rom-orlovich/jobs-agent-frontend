@@ -113,7 +113,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />
       <div className="flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col">
-        <h1 className="text-3xl">כ- {lastResponse.pagination.numResultsFound} משרות נמצאו:</h1>
+        <h1 className="text-3xl">כ- {lastResponse.pagination?.numResultsFound || 0} משרות נמצאו:</h1>
         <JobsSearch filterJobsProps={filterJobsProps} jobsFilters={lastResponse.filters} />
       </div>
 

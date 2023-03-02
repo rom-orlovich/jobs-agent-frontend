@@ -110,7 +110,7 @@ export const updateJobTrack = async (userID: string, job: Job) => {
       },
       {
         $set: {
-          'jobsTrack.$[elem].track': job.track
+          'jobsTrack.$[jobsTrack].track': job.track
         }
       },
       {

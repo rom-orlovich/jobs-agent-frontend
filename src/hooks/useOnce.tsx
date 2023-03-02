@@ -7,7 +7,10 @@ import { useCallback, useRef } from 'react';
  */
 function useOnce() {
   const flag = useRef(true);
-
+  const saveLoadCB = useRef<AnyFun[]>([]);
+  const load = (cb: AnyFun) => {
+    saveLoadCB.current?.push(cb);
+  };
   const unlock = () => {
     flag.current = true;
   };
@@ -21,11 +24,22 @@ function useOnce() {
     }
   }, []);
 
+  const triggerLoad = async () => {
+    for (const cb of saveLoadCB.current) {
+      await new Promise<void>((res) => {
+        cb();
+        res();
+      });
+    }
+  };
+
   return {
     trigger,
     unlock,
     lock,
-    flag
+    flag,
+    load,
+    triggerLoad
   };
 }
 
