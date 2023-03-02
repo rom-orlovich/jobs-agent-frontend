@@ -1,4 +1,4 @@
-import { updateJobsTracking } from '@/lib/api/jobsTracking/handlers';
+import { updateJobsTracking } from '@/lib/api/jobsTracking.utils';
 import { Job, TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
 
 import { ChangeEventHandler } from 'react';

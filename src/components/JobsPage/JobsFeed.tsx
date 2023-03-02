@@ -1,8 +1,7 @@
+import { createNewJobTracking, deleteJobTracking } from '@/lib/api/jobsTracking.utils';
 import { Job } from '@/lib/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
-import { createNewJobTracking, deleteJobTracking } from '@/lib/user.utils';
-
 import React, { MouseEventHandler } from 'react';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
@@ -32,10 +31,11 @@ const createJobsTrackMap = (tracking: Job[]): GenericRecord<Job> => {
   tracking?.forEach((jobTracking) => (JobTrackingMap[`${jobTracking.jobID}`] = jobTracking));
   return JobTrackingMap;
 };
+
 const jobsFeedStyle = {
   feed: 'flex h-full flex-wrap justify-center gap-3 py-4 xs:px-8 xs:pr-16'
 };
-function JobsFeed({ jobs, userProfileData, isTrackFeed, saveSessionValues }: JobsFeedProps) {
+function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   const jobsTrackMap = createJobsTrackMap(userProfileData.tracking || []);
 
   const handleClickBookmark: (job: Job) => MouseEventHandler<HTMLButtonElement> = (job: Job) => {
@@ -46,7 +46,7 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed, saveSessionValues }: Job
       if (!jobsTrackMap[job.jobID])
         result = await createNewJobTracking(userProfileData.userID || '', job);
       else result = await deleteJobTracking(userProfileData.userID || '', job.jobID);
-      saveSessionValues && saveSessionValues();
+      // saveSessionValues && saveSessionValues();
       //Update the user profile.
       await mutate(`/api/users/${userProfileData?.userID}`).then((el) => console.log(el));
 
@@ -54,9 +54,11 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed, saveSessionValues }: Job
       toast(result?.message);
     };
   };
+
   let currentJobs;
   if (isTrackFeed) currentJobs = userProfileData.tracking;
   else currentJobs = jobs;
+
   return (
     <ul dir="ltr" className={jobsFeedStyle.feed}>
       {currentJobs?.map((job, i) => {
