@@ -49,9 +49,9 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
       // saveSessionValues && saveSessionValues();
       //Update the user profile.
       await mutate(`/api/users/${userProfileData?.userID}`).then((el) => console.log(el));
-
+      console.log(result);
       //Fire a toast.
-      toast(result?.message);
+      toast(result.data.message);
     };
   };
 
