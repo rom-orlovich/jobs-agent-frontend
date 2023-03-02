@@ -1,16 +1,13 @@
 import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
 import { useAuthContext } from '@/context/AuthContext';
-import useForm from '@/hooks/useForm';
+
 import useRedirect from '@/hooks/useRedirect';
-import { updateJobsTracking } from '@/lib/api/jobsTracking/handlers';
 
 import { checkIsJobFoundWithToast } from '@/lib/jobs.utils';
-
-import { Job, TrackingInfo } from '@/lib/jobsScanner.types';
 // import useForm from '@/hooks/useForm';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { ChangeEventHandler } from 'react';
+import React from 'react';
 
 export const useGetJobsTrack = () => {
   const router = useRouter();
@@ -24,98 +21,98 @@ export const useGetJobsTrack = () => {
     userProfileData
   };
 };
-export const useJobTrackingForm = (job: Job, userID: string) => {
-  const initialValues = job?.info;
+// export const useJobTrackingForm = (job: Job, userID: string) => {
+//   const initialValues = job?.info;
 
-  const convertDateToValidInputFormat = (date?: Date) => {
-    return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as unknown as Date;
-  };
-  const curDate = convertDateToValidInputFormat(new Date());
-  const defaultValues: TrackingInfo = {
-    createdAt: initialValues?.createdAt || new Date(),
-    sendCV: {
-      date: curDate,
-      pass: false
-    },
-    stages: [
-      {
-        feedback: '',
-        name: '',
-        pass: false,
-        date: curDate
-      }
-    ]
-  };
-  const handleConvertInitialValue: (initialValues?: TrackingInfo) => TrackingInfo = (initialValues) => ({
-    ...initialValues,
-    createdAt: initialValues?.createdAt || new Date(),
-    sendCV: {
-      pass: !!initialValues?.sendCV?.pass,
-      date: convertDateToValidInputFormat(initialValues?.sendCV?.date)
-    },
-    stages: initialValues?.stages?.length
-      ? initialValues?.stages.map((stage) => ({
-          ...stage,
-          date: convertDateToValidInputFormat(stage.date)
-        }))
-      : defaultValues.stages
-  });
-  const handleConvertToFormResult: (formValues: TrackingInfo) => TrackingInfo = (formValues) => {
-    return {
-      createdAt: initialValues?.createdAt || new Date(),
-      sendCV: {
-        pass: !!formValues?.sendCV?.pass,
+//   const convertDateToValidInputFormat = (date?: Date) => {
+//     return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as unknown as Date;
+//   };
+//   const curDate = convertDateToValidInputFormat(new Date());
+//   const defaultValues: TrackingInfo = {
+//     createdAt: initialValues?.createdAt || new Date(),
+//     sendCV: {
+//       date: curDate,
+//       pass: false
+//     },
+//     stages: [
+//       {
+//         feedback: '',
+//         name: '',
+//         pass: false,
+//         date: curDate
+//       }
+//     ]
+//   };
+//   const handleConvertInitialValue: (initialValues?: TrackingInfo) => TrackingInfo = (initialValues) => ({
+//     ...initialValues,
+//     createdAt: initialValues?.createdAt || new Date(),
+//     sendCV: {
+//       pass: !!initialValues?.sendCV?.pass,
+//       date: convertDateToValidInputFormat(initialValues?.sendCV?.date)
+//     },
+//     stages: initialValues?.stages?.length
+//       ? initialValues?.stages.map((stage) => ({
+//           ...stage,
+//           date: convertDateToValidInputFormat(stage.date)
+//         }))
+//       : defaultValues.stages
+//   });
+//   const handleConvertToFormResult: (formValues: TrackingInfo) => TrackingInfo = (formValues) => {
+//     return {
+//       createdAt: initialValues?.createdAt || new Date(),
+//       sendCV: {
+//         pass: !!formValues?.sendCV?.pass,
 
-        date: new Date(formValues.sendCV?.date || new Date())
-      },
-      stages: formValues?.stages?.length
-        ? formValues?.stages.map((stage) => ({
-            ...stage,
-            date: new Date(stage?.date || new Date())
-          }))
-        : defaultValues.stages
-    };
-  };
+//         date: new Date(formValues.sendCV?.date || new Date())
+//       },
+//       stages: formValues?.stages?.length
+//         ? formValues?.stages.map((stage) => ({
+//             ...stage,
+//             date: new Date(stage?.date || new Date())
+//           }))
+//         : defaultValues.stages
+//     };
+//   };
 
-  const { formState, formValues, onSubmit, setFormValues } = useForm<TrackingInfo>(
-    handleConvertInitialValue(initialValues) || defaultValues
-  );
+//   const { formState, formValues, onSubmit, setFormValues } = useForm<TrackingInfo>(
+//     handleConvertInitialValue(initialValues) || defaultValues
+//   );
 
-  const handleOnChangeValue: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setFormValues((pre) => ({
-      ...pre,
-      sendCV: {
-        ...pre.sendCV,
-        [e.target.id]: e.target.value
-      }
-    }));
-  };
-  const handleSetStagesValues = (values: TrackingInfo['stages']) => {
-    console.log(values);
-    setFormValues((pre) => ({
-      ...pre,
-      stages: values
-    }));
-  };
+//   const handleOnChangeValue: ChangeEventHandler<HTMLInputElement> = (e) => {
+//     setFormValues((pre) => ({
+//       ...pre,
+//       sendCV: {
+//         ...pre.sendCV,
+//         [e.target.id]: e.target.value
+//       }
+//     }));
+//   };
+//   const handleSetStagesValues = (values: TrackingInfo['stages']) => {
+//     console.log(values);
+//     setFormValues((pre) => ({
+//       ...pre,
+//       stages: values
+//     }));
+//   };
 
-  const handleSubmit = async (values: TrackingInfo) => {
-    const formsValue = handleConvertToFormResult(values);
-    const res = await updateJobsTracking(userID, {
-      ...job,
-      info: formValues
-    });
-    console.log(res, formsValue);
-  };
+//   const handleSubmit = async (values: TrackingInfo) => {
+//     const formsValue = handleConvertToFormResult(values);
+//     const res = await updateJobsTracking(userID, {
+//       ...job,
+//       info: formValues
+//     });
+//     console.log(res, formsValue);
+//   };
 
-  return {
-    formValues: handleConvertInitialValue(formValues),
-    formState,
-    onSubmit: onSubmit(handleSubmit),
+//   return {
+//     formValues: handleConvertInitialValue(formValues),
+//     formState,
+//     onSubmit: onSubmit(handleSubmit),
 
-    handleOnChangeValue,
-    handleSetStagesValues
-  };
-};
+//     handleOnChangeValue,
+//     handleSetStagesValues
+//   };
+// };
 
 const jobTrackingFormStyle = {
   formContainer: 'flex justify-center w-full h-full ',
