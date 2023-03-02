@@ -29,11 +29,9 @@ function JobTrackingItem(
   const { link, title, jobID, index, mark, info } = props;
   const trackButtonDisplay = {
     true: {
-      // href: APP_ROUTES.JOBS_TRACKING_INFO,
       text: 'ערוך'
     },
     false: {
-      // href: APP_ROUTES.JOBS_TRACK_ADD,
       text: 'עקוב'
     }
   };
@@ -56,27 +54,6 @@ function JobTrackingItem(
           <Link href={link}> {title}</Link>{' '}
         </div>
         {props.company && <div> {props.company}</div>}
-
-        {/* <div dir="rtl" className={jobItemStyle.sendCVContainer}>
-          <Field
-            containerStyle="gap-2"
-            title='שלחת קו"ח?'
-            value={info?.sendCV.status ? 'כן' : 'לא'}
-            valueStyle="font-semibold"
-          />
-        </div>
-        <ul>
-          {' '}
-          {info?.stages.map((stage, i) => {
-            return (
-              <li key={'stage' + i}>
-                <div>
-                  <Field title={'נוצר ב-'} value={createLocalDate(stage.date)} />
-                </div>
-              </li>
-            );
-          })}
-        </ul> */}
       </div>
       <div className={jobItemStyle.linkTrackDetailsContainer}>
         <Link

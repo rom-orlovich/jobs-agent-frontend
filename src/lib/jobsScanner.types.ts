@@ -16,6 +16,7 @@ export type TrackingInfoFormFormat = {
   sendCV: { date: string; pass: boolean };
   stages: ({ date: string } & OmitKey<TrackingInfo['stages'][0], 'date'>)[];
 };
+
 export interface Job {
   jobID: string;
   title: string;
