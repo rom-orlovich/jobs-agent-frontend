@@ -50,5 +50,4 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     handleSetStageValues
   };
 };
-
-// export type ReturnUseJobTrackingForm=Return
+export type JobTrackingFormComponentsProps<T> = T & ReturnType<typeof useJobTrackingForm>;
