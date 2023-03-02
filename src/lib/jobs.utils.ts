@@ -4,7 +4,7 @@ import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './jobsScanner.types';
 import { MESSAGES, MESSAGE_CODES } from './messages';
 import { GenericRecord } from './types/types';
-import { createURL, fetchUtil } from './utils';
+import { createURL, fetchUtil, getResMessage } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createJobsURl = (userID: string, params?: GenericRecord<any>) => {
   return createURL([SERVER_URL, API_ENDPOINTS.GET_JOBS, userID], params);
@@ -18,25 +18,52 @@ export const jobsFetcher = async (userID: string, params: GenericRecord<any>) =>
 /**
  *
  * @param {Job[]} jobs The jobs array.
- * @returns {boolean} True if there is no jobs otherwise false.
+ * @returns {Job[]| undefined } True if there is no jobs otherwise false.
  */
-export const checkIsJobsFoundWithToast = (jobs: Job[]) => {
+export const checkIsJobsFoundWithToast = (jobs: Job[]): Job[] | undefined => {
   try {
     if (!jobs?.length) {
-      console.log(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND]);
-      toast(MESSAGES[MESSAGE_CODES.NOT_JOB_IS_FOUND], {
+      console.log(MESSAGES[MESSAGE_CODES.JOB_ARE_NOT_FOUND]);
+      toast(getResMessage('JOB_ARE_NOT_FOUND').message, {
+        rtl: true,
         toastId: 'noJobsFound'
       });
-      return true;
+      return undefined;
     }
-    toast(MESSAGES[MESSAGE_CODES.SCANNER_SUCCESS], {
+    toast(getResMessage('SCANNER_SUCCESS').message, {
+      rtl: true,
+      toastId: 'jobsFound'
+    });
+    return jobs;
+  } catch (error) {
+    toast(getResMessage('SOMETHING_WRONG').message, {
+      rtl: true,
+      toastId: 'somethingWrong'
+    });
+    return undefined;
+  }
+};
+export const checkIsJobFoundWithToast = (job?: Job) => {
+  try {
+    if (!job) {
+      toast(getResMessage('JOB_IS_NOT_FOUND').message, {
+        toastId: 'jobIsNotFound',
+        rtl: true
+      });
+      return undefined;
+    }
+    toast(getResMessage('JOB_IS_FOUND').message, {
       rtl: true,
       toastId: 'jobFound'
     });
-    return false;
+    return job;
   } catch (error) {
     console.log(error);
-    return false;
+    toast(getResMessage('SOMETHING_WRONG').message, {
+      rtl: true,
+      toastId: 'somethingWrong'
+    });
+    return undefined;
   }
 };
 export const defaultResponseJobs: ResponseGetJobs = {

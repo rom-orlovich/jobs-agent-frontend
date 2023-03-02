@@ -177,3 +177,7 @@ export const createLocalDate = (date?: Date) => {
   });
   return createLocalTimeDate;
 };
+
+export const convertDateToValidInputFormat = (date?: Date) => {
+  return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as string;
+};
