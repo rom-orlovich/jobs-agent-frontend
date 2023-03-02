@@ -4,31 +4,34 @@ import { useAuthContext } from '@/context/AuthContext';
 import useRedirect from '@/hooks/useRedirect';
 
 import { checkIsJobFoundWithToast } from '@/lib/jobs.utils';
-// import useForm from '@/hooks/useForm';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+/**
+ *
+ * @returns The
+ */
 export const useGetJobsTrack = () => {
   const router = useRouter();
   const { userProfileData } = useAuthContext();
-
   const jobID = String(router.query.jobID);
-
   const curJobTracking = userProfileData.tracking?.find((jobTracking) => jobTracking.jobID === jobID);
   return {
     curJobTracking,
     userProfileData
   };
 };
+
 export const infoStyle = {
   formContainer: 'flex justify-center w-full h-full ',
   card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
   title: 'text-2xl underline',
   company: 'text-xl underline mt-2'
 };
+
 function JobTracking() {
-  // const router = useRouter();
   const jobTrackingData = useGetJobsTrack();
   const jobTracking = jobTrackingData?.curJobTracking;
   const job = useRedirect(() => checkIsJobFoundWithToast(jobTracking));
