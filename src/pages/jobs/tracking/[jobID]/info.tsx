@@ -1,4 +1,5 @@
 import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
+import PageHead from '@/components/Layout/PageHead/PageHead';
 import { useAuthContext } from '@/context/AuthContext';
 
 import useRedirect from '@/hooks/useRedirect';
@@ -39,17 +40,23 @@ function JobTracking() {
   const { curJobTracking } = jobTrackingData;
 
   return (
-    <div className={infoStyle.formContainer}>
-      <div className={infoStyle.card}>
-        <h1 dir={'ltr'} className={infoStyle.title}>
-          <Link href={curJobTracking?.link || ''}>{curJobTracking?.title} </Link>
-        </h1>
-        <h2 className={infoStyle.company} dir={'ltr'}>
-          {curJobTracking?.company}
-        </h2>
-        <JobTrackingForm job={job} userID={jobTrackingData.userProfileData.userID || ''} />
+    <>
+      <PageHead
+        title="Jobs Tracking Info"
+        description="Here is the place to fill details how you progress with the jobs you found."
+      />
+      <div className={infoStyle.formContainer}>
+        <div className={infoStyle.card}>
+          <h1 dir={'ltr'} className={infoStyle.title}>
+            <Link href={curJobTracking?.link || ''}>{curJobTracking?.title} </Link>
+          </h1>
+          <h2 className={infoStyle.company} dir={'ltr'}>
+            {curJobTracking?.company}
+          </h2>
+          <JobTrackingForm job={job} userID={jobTrackingData.userProfileData.userID || ''} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
