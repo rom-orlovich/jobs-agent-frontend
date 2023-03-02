@@ -4,7 +4,6 @@ import React from 'react';
 
 function Track() {
   //Get user profile data.
-
   const { userProfileData } = useAuthContext();
 
   return <JobsFeed userProfileData={userProfileData} isTrackFeed={true} />;
