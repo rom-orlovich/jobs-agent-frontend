@@ -70,7 +70,7 @@ export const getUserByID = async (userID: string) => {
     return undefined;
   }
 };
-export const addJobTrack = async (userID: string, job: Job) => {
+export const addJobTracking = async (userID: string, job: Job) => {
   try {
     const users = await getCollection('users');
     const res = await users.updateOne(
@@ -79,10 +79,9 @@ export const addJobTrack = async (userID: string, job: Job) => {
       },
       {
         $addToSet: {
-          jobsTrack: {
+          tracking: {
             ...job,
-            track: {
-              createdAt: new Date(),
+            trackInfo: {
               sendCV: {
                 date: new Date(),
                 status: false
@@ -101,7 +100,7 @@ export const addJobTrack = async (userID: string, job: Job) => {
   }
 };
 
-export const updateJobTrack = async (userID: string, job: Job) => {
+export const updateJobTracking = async (userID: string, job: Job) => {
   try {
     const users = await getCollection('users');
     const res = await users.updateOne(
@@ -110,13 +109,13 @@ export const updateJobTrack = async (userID: string, job: Job) => {
       },
       {
         $set: {
-          'jobsTrack.$[jobsTrack].track': job.track
+          'tracking.$[jobs].trackInfo': job.track
         }
       },
       {
         arrayFilters: [
           {
-            'jobsTrack.jobID': job.jobID
+            'jobs.jobID': job.jobID
           }
         ]
       }
@@ -128,7 +127,7 @@ export const updateJobTrack = async (userID: string, job: Job) => {
     return undefined;
   }
 };
-export const deleteJobTrack = async (userID: string, jobID: string) => {
+export const deleteJobTracking = async (userID: string, jobID: string) => {
   const users = await getCollection('users');
 
   console.log(userID);
@@ -140,7 +139,7 @@ export const deleteJobTrack = async (userID: string, jobID: string) => {
       },
       {
         $pull: {
-          jobsTrack: {
+          tracking: {
             jobID: jobID
           }
         }
