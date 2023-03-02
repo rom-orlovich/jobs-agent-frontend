@@ -1,10 +1,14 @@
-import SuccessButton from '@/components/Buttons/SuccessButton';
-import DynamicInputs from '@/components/Inputs/DynamicInputs/DynamicInputs';
-import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
-import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
+// import SuccessButton from '@/components/Buttons/SuccessButton';
+// import DynamicInputs from '@/components/Inputs/DynamicInputs/DynamicInputs';
+// import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
+// import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
+import JobTrackingForm from '@/components/JobTrackForm/JobTrackForm';
 import { useAuthContext } from '@/context/AuthContext';
 import useForm from '@/hooks/useForm';
-import { updateJobsTracks } from '@/lib/api/jobsTrack/handlers';
+import useRedirect from '@/hooks/useRedirct';
+import { updateJobsTracking } from '@/lib/api/jobsTracking/handlers';
+
+import { checkIsJobFoundWithToast } from '@/lib/jobs.utils';
 
 import { Job, TrackInfo } from '@/lib/jobsScanner.types';
 // import useForm from '@/hooks/useForm';
@@ -18,14 +22,14 @@ export const useGetJobsTrack = () => {
 
   const jobID = String(router.query.jobID);
 
-  const curJobTrack = userProfileData.jobsTrack?.find((jobTrack) => jobTrack.jobID === jobID);
+  const curJobTracking = userProfileData.tracking?.find((jobTracking) => jobTracking.jobID === jobID);
   return {
-    curJobTrack,
+    curJobTracking,
     userProfileData
   };
 };
-export const useJobTrackForm = (job: Job, userID: string) => {
-  const initialValues = job?.track;
+export const useJobTrackingForm = (job: Job, userID: string) => {
+  const initialValues = job?.info;
 
   const convertDateToValidInputFormat = (date?: Date) => {
     return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as unknown as Date;
@@ -100,9 +104,9 @@ export const useJobTrackForm = (job: Job, userID: string) => {
 
   const handleSubmit = async (values: TrackInfo) => {
     const formsValue = handleConvertToFormResult(values);
-    const res = await updateJobsTracks(userID, {
+    const res = await updateJobsTracking(userID, {
       ...job,
-      track: formValues
+      info: formValues
     });
     console.log(res, formsValue);
   };
@@ -117,7 +121,7 @@ export const useJobTrackForm = (job: Job, userID: string) => {
   };
 };
 
-const jobTrackFormStyle = {
+const jobTrackingFormStyle = {
   formContainer: 'flex justify-center w-full h-full ',
   card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
   title: 'text-2xl underline',
@@ -130,43 +134,47 @@ const jobTrackFormStyle = {
   dateInput: 'max-w-[8rem]',
   toggleTopicWrapper: 'flex gap-1'
 };
-function JobTrackForm() {
-  const router = useRouter();
-  const jobTrackData = useGetJobsTrack();
-  const jobTrack = jobTrackData?.curJobTrack;
-  const { handleOnChangeValue, handleSetStageValues, formValues, onSubmit } = useJobTrackForm(
-    jobTrack!,
-    jobTrackData?.userProfileData?.userID || ''
-  );
+function JobTracking() {
+  // const router = useRouter();
+  const jobTrackingData = useGetJobsTrack();
+  const jobTracking = jobTrackingData?.curJobTracking;
+  const job = useRedirect(() => checkIsJobFoundWithToast(jobTracking));
 
-  const { curJobTrack } = jobTrackData;
+  if (!job) return <></>;
+  // const { handleOnChangeValue, handleSetStageValues, formValues, onSubmit } = useJobTrackingForm(
+  //   jobTracking!,
+  //   jobTrackingData?.userProfileData?.userID || ''
+  // );
+
+  const { curJobTracking } = jobTrackingData;
   return (
-    <div className={jobTrackFormStyle.formContainer}>
-      <div className={jobTrackFormStyle.card}>
-        <h1 dir={'ltr'} className={jobTrackFormStyle.title}>
-          <Link href={curJobTrack?.link || ''}>{curJobTrack?.title} </Link>
+    <div className={jobTrackingFormStyle.formContainer}>
+      <div className={jobTrackingFormStyle.card}>
+        <h1 dir={'ltr'} className={jobTrackingFormStyle.title}>
+          <Link href={curJobTracking?.link || ''}>{curJobTracking?.title} </Link>
         </h1>
-        <h2 className={jobTrackFormStyle.company} dir={'ltr'}>
-          {curJobTrack?.company}
+        <h2 className={jobTrackingFormStyle.company} dir={'ltr'}>
+          {curJobTracking?.company}
         </h2>
-        <form onSubmit={onSubmit} className={jobTrackFormStyle.form}>
-          <div className={jobTrackFormStyle.formContent}>
+        <JobTrackingForm job={job} userID={jobTrackingData.userProfileData.userID || ''} />
+        {/* <form onSubmit={onSubmit} className={jobTrackingFormStyle.form}>
+          <div className={jobTrackingFormStyle.formContent}>
             <ToggleTopic
               childrenWrapper={{
-                className: jobTrackFormStyle.toggleTopicWrapper
+                className: jobTrackingFormStyle.toggleTopicWrapper
               }}
               headingProps={{
                 title: 'שלחת קו"ח?',
-                className: jobTrackFormStyle.headingToggle
+                className: jobTrackingFormStyle.headingToggle
               }}
             >
               <InputLabel
                 labelProps={{
-                  className: jobTrackFormStyle.label
+                  className: jobTrackingFormStyle.label
                 }}
                 inputProps={{
                   type: 'date',
-                  className: jobTrackFormStyle.dateInput,
+                  className: jobTrackingFormStyle.dateInput,
                   value: formValues.sendCV?.date as unknown as string,
                   id: 'date',
                   onChange: handleOnChangeValue
@@ -176,7 +184,7 @@ function JobTrackForm() {
               </InputLabel>
               <InputLabel
                 labelProps={{
-                  className: jobTrackFormStyle.label
+                  className: jobTrackingFormStyle.label
                 }}
                 inputProps={{
                   type: 'checkbox',
@@ -192,7 +200,7 @@ function JobTrackForm() {
             <ToggleTopic
               headingProps={{
                 title: 'באיזה שלב אתה?',
-                className: jobTrackFormStyle.headingToggle
+                className: jobTrackingFormStyle.headingToggle
               }}
             >
               <DynamicInputs
@@ -235,12 +243,12 @@ function JobTrackForm() {
                       <div className="flex">
                         <InputLabel
                           labelProps={{
-                            className: jobTrackFormStyle.label
+                            className: jobTrackingFormStyle.label
                           }}
                           inputProps={{
                             type: 'date',
                             value: (date || '') as unknown as string,
-                            className: jobTrackFormStyle.dateInput,
+                            className: jobTrackingFormStyle.dateInput,
                             id: 'date',
                             onChange: onChange
                           }}
@@ -250,7 +258,7 @@ function JobTrackForm() {
 
                         <InputLabel
                           labelProps={{
-                            className: jobTrackFormStyle.label
+                            className: jobTrackingFormStyle.label
                           }}
                           inputProps={{
                             type: 'checkbox',
@@ -277,7 +285,7 @@ function JobTrackForm() {
               >
                 {(values) => {
                   return (
-                    <div className={jobTrackFormStyle.buttonsContainer}>
+                    <div className={jobTrackingFormStyle.buttonsContainer}>
                       <SuccessButton
                         onClick={(e) => {
                           e.preventDefault();
@@ -307,10 +315,10 @@ function JobTrackForm() {
               </DynamicInputs>
             </ToggleTopic>
           </div>
-        </form>
+        </form> */}
       </div>
     </div>
   );
 }
 
-export default JobTrackForm;
+export default JobTracking;

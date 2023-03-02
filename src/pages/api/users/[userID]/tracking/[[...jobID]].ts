@@ -1,7 +1,7 @@
 import { Job } from '@/lib/jobsScanner.types';
 
 import { getResMessage } from '@/lib/utils';
-import { addJobTrack, deleteJobTrack, updateJobTrack } from 'mongoDB/handlers';
+import { addJobTracking, deleteJobTracking, updateJobTracking } from 'mongoDB/handlers';
 import { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const userID = String(req.query.userID);
@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   let result;
   if (req.method === 'POST') {
     const jobData = req.body as Job;
-    result = await addJobTrack(userID, jobData);
+    result = await addJobTracking(userID, jobData);
     if (result?.modifiedCount) return res.status(201).send(getResMessage('TRACK_JOB_CREATED'));
     else {
       return res.status(400).send(getResMessage('TRACK_JOB_NOT_CREATED'));
@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   if (req.method === 'PUT') {
     const jobData = req.body as Job;
-    result = await updateJobTrack(userID, jobData);
+    result = await updateJobTracking(userID, jobData);
     if (result?.modifiedCount) return res.status(201).send(getResMessage('TRACK_JOB_CREATED'));
     else {
       return res.status(400).send(getResMessage('TRACK_JOB_NOT_CREATED'));
@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'DELETE') {
     const jobID = Array.isArray(req.query.jobID) ? req.query.jobID[0] : String(req.query.jobID);
 
-    result = await deleteJobTrack(userID, jobID);
+    result = await deleteJobTracking(userID, jobID);
 
     if (result?.modifiedCount) return res.status(200).send(getResMessage('TRACK_JOB_DELETED'));
   }

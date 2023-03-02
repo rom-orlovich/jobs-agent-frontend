@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useRedirectHome from '@/hooks/useRedirctHome';
-
 import {
   checkIsJobsFoundWithToast,
   createJobsURl,
@@ -28,6 +26,7 @@ import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
 
 import { GenericRecord } from '@/lib/types/types';
 import useFilterJobs from '@/hooks/useFilterJobs';
+import useRedirect from '@/hooks/useRedirct';
 // import useStateSession from '@/hooks/useStateSession';
 // import useStateSession from '@/hooks/useStateSession';
 
@@ -70,7 +69,7 @@ function Jobs(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { jobs } = props;
 
   //Redirect to home page if no jobs were found.
-  useRedirectHome(() => checkIsJobsFoundWithToast(jobs));
+  useRedirect(() => checkIsJobsFoundWithToast(jobs));
 
   //Get filter Jobs query props.
   const filterJobsProps = useFilterJobs();
