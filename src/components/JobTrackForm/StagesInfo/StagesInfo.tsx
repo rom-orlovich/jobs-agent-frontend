@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 import React, { ChangeEventHandler } from 'react';
-import SuccessButton from '../Buttons/SuccessButton';
-import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
-import InputLabel from '../Inputs/InputLabel/InputLabel';
-import ToggleTopic from '../UserProfileForm/ToggleTopic';
-import { jobTrackingFormStyle } from './JobTrackForm';
+import SuccessButton from '../../Buttons/SuccessButton';
+import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
+import InputLabel from '../../Inputs/InputLabel/InputLabel';
+import ToggleTopic from '../../UserProfileForm/ToggleTopic';
+import { jobTrackingFormStyle } from '../JobTrackForm';
 
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 
-function StagesInfo({ formValues }: JobTrackingFormComponentsProps<unknown>) {
+function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormComponentsProps<unknown>) {
   const router = useRouter();
   return (
     <ToggleTopic
@@ -97,7 +97,7 @@ function StagesInfo({ formValues }: JobTrackingFormComponentsProps<unknown>) {
           );
         }}
       >
-        {() => {
+        {(values) => {
           return (
             <div className={jobTrackingFormStyle.buttonsContainer}>
               <SuccessButton
@@ -111,14 +111,14 @@ function StagesInfo({ formValues }: JobTrackingFormComponentsProps<unknown>) {
 
               <SuccessButton
                 onClick={() => {
-                  // handleSetStagesValues(
-                  //   values.map(({ date, feedback, name, pass }) => ({
-                  //     date,
-                  //     feedback,
-                  //     name,
-                  //     pass
-                  //   }))
-                  // );
+                  handleSetStagesValues(
+                    values.map(({ date, feedback, name, pass }) => ({
+                      date,
+                      feedback,
+                      name,
+                      pass
+                    }))
+                  );
                 }}
               >
                 שמור
