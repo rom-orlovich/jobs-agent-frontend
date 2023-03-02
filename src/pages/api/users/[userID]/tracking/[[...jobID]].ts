@@ -1,7 +1,7 @@
 import { Job } from '@/lib/jobsScanner.types';
 
 import { getResMessage } from '@/lib/utils';
-import { addJobTracking, deleteJobTracking, updateJobTracking } from 'mongoDB/handlers';
+import { addJobTracking, deleteJobTracking, updateJobTracking } from 'mongoDB/lib/handlers';
 import { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const userID = String(req.query.userID);

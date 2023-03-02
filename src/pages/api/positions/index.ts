@@ -1,5 +1,6 @@
 import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';
-import { getPositions } from 'mongoDB/handlers';
+import { getPositions } from 'mongoDB/lib/handlers';
+
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

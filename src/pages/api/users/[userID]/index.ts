@@ -1,5 +1,5 @@
 import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';
-import { updateUser, getUserByID } from 'mongoDB/handlers';
+import { updateUser, getUserByID } from 'mongoDB/lib/handlers';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
