@@ -26,7 +26,7 @@ import JobsSearch from '@/components/JobsPage/JobsSearch/JobsSearch';
 
 import { GenericRecord } from '@/lib/types/types';
 import useFilterJobs from '@/hooks/useFilterJobs';
-import useRedirect from '@/hooks/useRedirct';
+import useRedirect from '@/hooks/useRedirect';
 // import useStateSession from '@/hooks/useStateSession';
 // import useStateSession from '@/hooks/useStateSession';
 

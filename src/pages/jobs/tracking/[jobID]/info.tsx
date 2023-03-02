@@ -6,7 +6,7 @@
 import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
 import { useAuthContext } from '@/context/AuthContext';
 import useForm from '@/hooks/useForm';
-import useRedirect from '@/hooks/useRedirct';
+import useRedirect from '@/hooks/useRedirect';
 import { updateJobsTracking } from '@/lib/api/jobsTracking/handlers';
 
 import { checkIsJobFoundWithToast } from '@/lib/jobs.utils';
