@@ -4,8 +4,8 @@ import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import MinMaxInputs, { MinMaxInputsOption } from './MinMaxInputs';
 import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
 import SuccessButton from '@/components/Buttons/SuccessButton';
-import { FormComponents } from '@/hooks/useProfileForm/useProfileForm';
-function Requirements({ handleRequirements, formValues }: FormComponents<unknown>) {
+import { ProfileFormComponentsProps } from '@/hooks/useProfileForm/useProfileForm';
+function Requirements({ handleRequirements, formValues }: ProfileFormComponentsProps<unknown>) {
   const initialRequirement = [
     {
       min: 0,

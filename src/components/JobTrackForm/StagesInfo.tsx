@@ -110,14 +110,14 @@ function StagesInfo({ formValues }: { formValues: TrackInfoFormFormat }) {
 
               <SuccessButton
                 onClick={() => {
-                  //   handleSetStageValues(
-                  //     values.map(({ date, feedback, name, pass }) => ({
-                  //       date,
-                  //       feedback,
-                  //       name,
-                  //       pass
-                  //     }))
-                  //   );
+                  // handleSetStageValues(
+                  //   values.map(({ date, feedback, name, pass }) => ({
+                  //     date,
+                  //     feedback,
+                  //     name,
+                  //     pass
+                  //   }))
+                  // );
                 }}
               >
                 שמור

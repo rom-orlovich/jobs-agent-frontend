@@ -1,6 +1,6 @@
 import { InputLabelProps } from '@/components/Inputs/InputLabel/inputLabel.types';
-import { FormComponents } from '@/hooks/useProfileForm/useProfileForm';
+import { ProfileFormComponentsProps } from '@/hooks/useProfileForm/useProfileForm';
 
-export type AutocompletePropsUserQuery = FormComponents<unknown> & {
+export type AutocompletePropsUserQuery = ProfileFormComponentsProps<unknown> & {
   inputLabelProps?: InputLabelProps;
 };

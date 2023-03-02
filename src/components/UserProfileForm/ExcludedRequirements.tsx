@@ -1,9 +1,12 @@
 import React, { MouseEventHandler } from 'react';
 
 import InputBucket from '../Inputs/InputBucket/InputBucket';
-import { FormComponents } from '../../hooks/useProfileForm/useProfileForm';
+import { ProfileFormComponentsProps } from '../../hooks/useProfileForm/useProfileForm';
 import SuccessButton from '../Buttons/SuccessButton';
-function ExcludedRequirements({ handleExcludedRequirements, formValues }: FormComponents<unknown>) {
+function ExcludedRequirements({
+  handleExcludedRequirements,
+  formValues
+}: ProfileFormComponentsProps<unknown>) {
   const handleConfirmExcludedRequirements: (
     bucketValues: string[]
   ) => MouseEventHandler<HTMLButtonElement> = (bucketValues) => (e) => {

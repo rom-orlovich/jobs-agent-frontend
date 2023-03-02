@@ -91,4 +91,4 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
 
 export default useProfileForm;
 
-export type FormComponents<T> = T & ReturnType<typeof useProfileForm>;
+export type ProfileFormComponentsProps<T> = T & ReturnType<typeof useProfileForm>;

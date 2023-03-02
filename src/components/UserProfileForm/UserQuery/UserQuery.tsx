@@ -1,7 +1,7 @@
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 import React from 'react';
-import { FormComponents } from '../../../hooks/useProfileForm/useProfileForm';
+import { ProfileFormComponentsProps } from '../../../hooks/useProfileForm/useProfileForm';
 import {
   DISTANCE_OPTIONS,
   EXPERIENCE_OPTIONS,
@@ -20,7 +20,7 @@ const userQueryStyle = {
   selectInputWrapper: '',
   'input-label-wrapper': 'flex flex-col font-lg'
 };
-function UserQuery(formComponentsProps: FormComponents<unknown>) {
+function UserQuery(formComponentsProps: ProfileFormComponentsProps<unknown>) {
   const { handleSelectionInput, formValues } = formComponentsProps;
   const selectInputProps: (
     title: string,
