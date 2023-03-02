@@ -16,6 +16,7 @@ export const MESSAGE_CODES = {
   TRACK_JOB_DELETED: '3004',
   TRACK_JOB_NOT_DELETED: '3005',
   FOUNDED: '8000',
+  FOUNDED_BUT_NOT_MODIFIED: '8001',
   SOMETHING_WRONG: '10000'
 } as const;
 export const MESSAGES = {
@@ -40,5 +41,6 @@ export const MESSAGES = {
   [MESSAGE_CODES.TRACK_JOB_NOT_DELETED]: 'שגיאה בהסרת המעקב!',
   //GENERAL
   [MESSAGE_CODES.FOUNDED]: 'נמצא!',
+  [MESSAGE_CODES.FOUNDED_BUT_NOT_MODIFIED]: 'נמצא אך לא עודכן.',
   [MESSAGE_CODES.SOMETHING_WRONG]: '.השירות לא זמין כרגע. אנא נסה שנית מאוחר יותר.'
 } as const;
