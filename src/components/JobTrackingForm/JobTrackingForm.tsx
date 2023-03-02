@@ -52,7 +52,7 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
             }}
             inputProps={{
               type: 'checkbox',
-              // checked: !!formValues.sendCV?.pass,
+
               id: 'pass',
               onChange: handleOnChangeValue
             }}
