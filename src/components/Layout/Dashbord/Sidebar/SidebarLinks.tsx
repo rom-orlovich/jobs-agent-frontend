@@ -22,7 +22,7 @@ export const navLinks: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => 
     icon: <MdWork className={iconsStyle} />
   },
   {
-    link: `/${APP_ROUTES.JOBS_TRACKING}`,
+    link: `/${APP_ROUTES.JOBS_TRACKINGING}`,
     text: 'מעקב',
     icon: <MdTrackChanges className={iconsStyle} />
   },

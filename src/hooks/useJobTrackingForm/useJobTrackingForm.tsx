@@ -1,7 +1,9 @@
 import { updateJobsTracking } from '@/lib/api/jobsTracking.utils';
 import { Job, TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
+import { getResMessage } from '@/lib/utils';
 
 import { ChangeEventHandler } from 'react';
+import { toast } from 'react-toastify';
 import useForm from '../useForm';
 import { handleConvertInitialValues, handleConvertToFormResult } from './utils';
 
@@ -37,7 +39,9 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
         info: formsValues
       });
       console.log(results);
+      toast(getResMessage('TRACKING_JOB_UPDATED').message);
     } catch (error) {
+      toast(getResMessage('TRACKING_JOB_NOT_UPDATED').message);
       console.log(error);
     }
   };
