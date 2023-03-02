@@ -48,8 +48,3 @@ export interface ResponseMessage {
   message: MessageRes;
   code: Code;
 }
-
-export interface AxiosResponse<D> {
-  data: D;
-}
-// export type AxiosResponseAPI = AxiosResponse<ResponseMessage>;
