@@ -1,6 +1,6 @@
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 
-import { useSwrHook } from '@/hooks/useSwr';
+import { useSwrHook } from '@/lib/swr';
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Position } from '@/lib/types/api.types';

@@ -1,8 +1,7 @@
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 
-import { useSwrHook } from '@/hooks/useSwr';
-
 import { API_ENDPOINTS } from '@/lib/endpoints';
+import { useSwrHook } from '@/lib/swr';
 import { Location } from '@/lib/types/api.types';
 import React from 'react';
 import { AutocompletePropsUserQuery } from './userQuery.types';

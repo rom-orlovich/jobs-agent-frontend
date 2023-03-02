@@ -1,7 +1,7 @@
 import { UserProfile, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
 import { useRouter } from 'next/router';
 
-import { useSwrHook } from './useSwr';
+import { useSwrHook } from '../lib/swr';
 
 /**
  *This hook fetches the user data from the DB.
