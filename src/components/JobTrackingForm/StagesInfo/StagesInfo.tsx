@@ -6,8 +6,7 @@ import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 import ToggleTopic from '../../UserProfileForm/ToggleTopic';
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import StageInputs from './StageInputs';
-import { jobTrackingFormStyle } from '@/pages/jobs/tracking/[jobID]/info';
-
+import { jobTrackingFormStyle } from '../JobTrackingForm';
 function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormComponentsProps<unknown>) {
   const router = useRouter();
   return (

@@ -21,18 +21,11 @@ export const useGetJobsTrack = () => {
     userProfileData
   };
 };
-export const jobTrackingFormStyle = {
+export const infoStyle = {
   formContainer: 'flex justify-center w-full h-full ',
   card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
   title: 'text-2xl underline',
-  company: 'text-xl underline mt-2',
-  form: 'flex flex-col mt-4   max-h-[30rem] min-h-[15rem] justify-between relative',
-  formContent: 'flex flex-col gap-8 ',
-  headingToggle: 'text-xl',
-  buttonsContainer: 'flex justify-between w-full ',
-  label: 'flex flex-col ',
-  dateInput: 'max-w-[8rem]',
-  toggleTopicWrapper: 'flex gap-1'
+  company: 'text-xl underline mt-2'
 };
 function JobTracking() {
   // const router = useRouter();
@@ -42,13 +35,14 @@ function JobTracking() {
 
   if (!job) return <></>;
   const { curJobTracking } = jobTrackingData;
+
   return (
-    <div className={jobTrackingFormStyle.formContainer}>
-      <div className={jobTrackingFormStyle.card}>
-        <h1 dir={'ltr'} className={jobTrackingFormStyle.title}>
+    <div className={infoStyle.formContainer}>
+      <div className={infoStyle.card}>
+        <h1 dir={'ltr'} className={infoStyle.title}>
           <Link href={curJobTracking?.link || ''}>{curJobTracking?.title} </Link>
         </h1>
-        <h2 className={jobTrackingFormStyle.company} dir={'ltr'}>
+        <h2 className={infoStyle.company} dir={'ltr'}>
           {curJobTracking?.company}
         </h2>
         <JobTrackingForm job={job} userID={jobTrackingData.userProfileData.userID || ''} />
