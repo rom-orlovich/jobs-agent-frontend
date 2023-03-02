@@ -5,9 +5,10 @@ import DynamicInputs from '../Inputs/DynamicInputs/DynamicInputs';
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../UserProfileForm/ToggleTopic';
 import { jobTrackingFormStyle } from './JobTrackForm';
-import { TrackInfoFormFormat } from '../../lib/jobsScanner.types';
 
-function StagesInfo({ formValues }: { formValues: TrackInfoFormFormat }) {
+import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
+
+function StagesInfo({ formValues }: JobTrackingFormComponentsProps<unknown>) {
   const router = useRouter();
   return (
     <ToggleTopic
