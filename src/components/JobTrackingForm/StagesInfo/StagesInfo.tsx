@@ -1,14 +1,14 @@
-import { useRouter } from 'next/router';
 import React from 'react';
-import SuccessButton from '../../Buttons/SuccessButton';
+
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
-// import InputLabel from '../../Inputs/InputLabel/InputLabel';
+
 import ToggleTopic from '../../UserProfileForm/ToggleTopic';
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import StageInputs from './StageInputs';
 import { jobTrackingFormStyle } from '../JobTrackingForm';
-function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormComponentsProps<unknown>) {
-  const router = useRouter();
+import JobTrackingFormButtons from '../JobTrackingFormButtons';
+function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
+  const { formValues } = props;
   return (
     <ToggleTopic
       headingProps={{
@@ -31,31 +31,32 @@ function StagesInfo({ formValues, handleSetStagesValues }: JobTrackingFormCompon
       >
         {(values) => {
           return (
-            <div className={jobTrackingFormStyle.buttonsContainer}>
-              <SuccessButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.back();
-                }}
-              >
-                חזור
-              </SuccessButton>
+            <JobTrackingFormButtons values={values} {...props} />
+            // <div className={jobTrackingFormStyle.buttonsContainer}>
+            //   <SuccessButton
+            //     onClick={(e) => {
+            //       e.preventDefault();
+            //       router.back();
+            //     }}
+            //   >
+            //     חזור
+            //   </SuccessButton>
 
-              <SuccessButton
-                onClick={() => {
-                  handleSetStagesValues(
-                    values.map(({ date, feedback, name, pass }) => ({
-                      date,
-                      feedback,
-                      name,
-                      pass
-                    }))
-                  );
-                }}
-              >
-                שמור
-              </SuccessButton>
-            </div>
+            //   <SuccessButton
+            //     onClick={() => {
+            //       handleSetStagesValues(
+            //         values.map(({ date, feedback, name, pass }) => ({
+            //           date,
+            //           feedback,
+            //           name,
+            //           pass
+            //         }))
+            //       );
+            //     }}
+            //   >
+            //     שמור
+            //   </SuccessButton>
+            // </div>
           );
         }}
       </DynamicInputs>
