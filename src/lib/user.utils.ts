@@ -3,9 +3,9 @@ import { Job } from './jobsScanner.types';
 import { ResponseMessage } from './types/api.types';
 import { createURL, fetchUtil } from './utils';
 
-export const createNewJobTrack = async (userID: string, job: Job) => {
+export const createNewJobTracking = async (userID: string, job: Job) => {
   const result = await fetchUtil<Job, ResponseMessage>(
-    createURL([API_ENDPOINTS.USERS_JOB_TRACK(userID)]),
+    createURL([API_ENDPOINTS.JOBS_TRACKING_INFO(userID)]),
     {
       method: 'POST',
       body: job
@@ -14,9 +14,9 @@ export const createNewJobTrack = async (userID: string, job: Job) => {
   console.log(result);
   return result;
 };
-export const updateNewJobTrack = async (userID: string, job: Job) => {
+export const updateNewJobTracking = async (userID: string, job: Job) => {
   const result = await fetchUtil<Job, ResponseMessage>(
-    createURL([API_ENDPOINTS.USERS_JOB_TRACK(userID)]),
+    createURL([API_ENDPOINTS.JOBS_TRACKING_INFO(userID)]),
     {
       method: 'PATCH',
       body: job
@@ -25,9 +25,9 @@ export const updateNewJobTrack = async (userID: string, job: Job) => {
   console.log(result);
   return result;
 };
-export const deleteJobTrack = async (userID: string, jobID: string) => {
+export const deleteJobTracking = async (userID: string, jobID: string) => {
   const result = await fetchUtil<undefined, ResponseMessage>(
-    createURL([`/${API_ENDPOINTS.USERS_JOB_TRACK(userID)}`, jobID]),
+    createURL([`/${API_ENDPOINTS.JOBS_TRACKING_INFO(userID)}`, jobID]),
     {
       method: 'DELETE'
     }
