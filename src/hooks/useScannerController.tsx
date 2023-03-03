@@ -13,7 +13,8 @@ import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';
 import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
-function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
+import { UserProfile } from '@/lib/types/api.types';
+function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsActive?: boolean) {
   const router = useRouter();
   const scannerURL = createScannerURL(API_ENDPOINTS.SCANNER_START, user?.id);
 
@@ -30,19 +31,27 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist) {
     try {
       toast(MESSAGES[MESSAGE_CODES.SEARCH_IS_IN_PROCESS]);
       await scanner.trigger({
-        hash
+        hash: hashIsActive ? hash : undefined
       });
-      await mutate(`/api/users/${user?.id}`);
+      const res = await mutate<{ data: UserProfile }>(`/api/users/${user?.id}`);
+
+      router.push({
+        pathname: `/${APP_ROUTES.JOBS_PAGE}`,
+        query: {
+          hash: res?.data.activeHash
+        }
+      });
     } catch (error) {
       toast(MESSAGES[MESSAGE_CODES.JOB_ARE_NOT_FOUND]);
       console.log(error);
     } finally {
-      router.push({
-        pathname: `/${APP_ROUTES.JOBS_PAGE}`,
-        query: {
-          hash
-        }
-      });
+      // console.log('there');
+      // router.push({
+      //   pathname: `/${APP_ROUTES.JOBS_PAGE}`,
+      //   query: {
+      //     hash
+      //   }
+      // });
     }
   };
   return {

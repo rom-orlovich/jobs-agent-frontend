@@ -14,7 +14,7 @@ function SearchHistoryFeed() {
   const router = useRouter();
   const authContext = useAuthContext();
   const downloadController = useDownloadController(authContext);
-  const scannerController = useScannerController(authContext);
+  const scannerController = useScannerController(authContext, true);
 
   const { userHistoryQueries } = authContext;
   const getTime = (createdAt?: string) => new Date(createdAt || '').getTime();
