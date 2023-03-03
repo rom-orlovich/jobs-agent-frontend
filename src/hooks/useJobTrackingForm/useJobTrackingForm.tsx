@@ -38,11 +38,11 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
         ...job,
         info: formsValues
       });
-      console.log(results);
-      toast(getResMessage('TRACKING_JOB_UPDATED').message);
+      console.log(results.data.message);
+      toast(results.data.message);
     } catch (error) {
-      toast(getResMessage('TRACKING_JOB_NOT_UPDATED').message);
       console.log(error);
+      toast(getResMessage('TRACKING_JOB_NOT_UPDATED').message);
     }
   };
 
