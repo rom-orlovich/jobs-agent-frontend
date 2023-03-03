@@ -1,5 +1,7 @@
-import { API_ENDPOINTS } from '@/lib/endpoints';
+import { updateUser } from '@/lib/api/users.utils';
+
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
 import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
@@ -64,18 +66,10 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
 
   // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserProfileFormSubmit = onSubmit(async (values) => {
-    const result = await fetch(`/${API_ENDPOINTS.USERS}/${user?.userID}`, {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: {
-        'Content-type': 'application/json'
-      }
-    });
-
-    const data = await result.json();
+    const result = await updateUser(user?.userID || '', values);
     await mutate(`/api/users/${user?.userID}`);
-    toast(data.message);
-    return data;
+    toast(result.message);
+    return result;
   });
 
   return {

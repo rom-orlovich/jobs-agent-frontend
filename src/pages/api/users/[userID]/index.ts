@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const userID = req.query.userID;
+
     const result = await updateUser({
       userID,
       ...req.body

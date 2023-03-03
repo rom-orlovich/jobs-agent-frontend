@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Job } from '@/lib/jobsScanner.types';
 import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
-// import { JobsPosts } from './lib/types';
+
 import { getCollection, getDocumentsByName } from './utils';
 
 export const getLocations = async (name: string) => {
