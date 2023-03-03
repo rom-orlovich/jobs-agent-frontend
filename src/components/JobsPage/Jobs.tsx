@@ -29,8 +29,6 @@ function Jobs({
   const filterJobsProps = useFilterJobs(isMatchPage);
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
-  console.log(reason);
-
   //Get user profile data.
   const { userProfileData } = useAuthContext();
 
@@ -57,10 +55,14 @@ function Jobs({
 
   const handleLoadButtonClick: MouseEventHandler<HTMLButtonElement> = () => setSize(size + 2);
 
+  const textHeader = isMatchPage ? 'התאמות' : 'משרות';
+
   return (
     <>
       <div className={JobsStyle.jobsContainer}>
-        <h1 className="text-3xl">כ- {lastResponse.pagination?.numResultsFound || 0} משרות נמצאו:</h1>
+        <h1 className="text-3xl">
+          כ- {lastResponse.pagination?.numResultsFound || 0} {textHeader} נמצאו:
+        </h1>
         <JobsSearch
           filterJobsProps={filterJobsProps}
           jobsFilters={lastResponse.filters}
