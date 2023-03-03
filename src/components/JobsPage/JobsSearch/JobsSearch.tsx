@@ -12,11 +12,11 @@ import FiltersPopup from './FiltersPopup';
 function JobsSearch({
   filterJobsProps,
   jobsFilters,
-  includeReasonFilter
+  includeReasonFilters
 }: {
   jobsFilters: FacetFilterResults;
   filterJobsProps: ReturnUseFilterJobsProps;
-  includeReasonFilter: boolean;
+  includeReasonFilters: boolean;
 }) {
   const { handleSearchValue } = filterJobsProps;
   const titles: Option<string>[] = jobsFilters?.titles?.map((title, i) => ({
@@ -59,8 +59,9 @@ function JobsSearch({
         options={titles}
       />
 
-      {includeReasonFilter && (
+      {
         <FiltersPopup
+          includeReasonFilters={includeReasonFilters}
           jobsFilters={jobsFilters}
           iconButtonProps={{
             ...IconButtonProps,
@@ -70,7 +71,7 @@ function JobsSearch({
           }}
           filterJobsProps={filterJobsProps}
         />
-      )}
+      }
     </div>
   );
 }

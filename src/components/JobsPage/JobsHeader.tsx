@@ -22,7 +22,7 @@ function JobsHeader({ filterJobsProps, numResultsFound, isMatchPage, filters }: 
       <JobsSearch
         filterJobsProps={filterJobsProps}
         jobsFilters={filters}
-        includeReasonFilter={!isMatchPage}
+        includeReasonFilters={!isMatchPage}
       />
     </div>
   );

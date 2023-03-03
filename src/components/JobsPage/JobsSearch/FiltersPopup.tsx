@@ -11,14 +11,16 @@ import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 function FiltersPopup({
   iconButtonProps,
   filterJobsProps,
-  jobsFilters
+  jobsFilters,
+  includeReasonFilters
 }: {
   iconButtonProps: IconButtonProps;
   filterJobsProps: ReturnUseFilterJobsProps;
   jobsFilters: FacetFilterResults;
+  includeReasonFilters: boolean;
 }) {
   const { handleSearchValue } = filterJobsProps;
-
+  console.log(jobsFilters);
   const optionsReasons: Option<string>[] = jobsFilters.reasons.map((reason, i) => ({
     id: reason + i,
     title: reason,
@@ -40,19 +42,21 @@ function FiltersPopup({
       </Popover.Button>
       <Popover.Panel className={filterPopupStyle.panelContent}>
         <div dir="rtl" className="">
-          <Autocomplete
-            defaultValue={{
-              id: 'default',
-              value: filterJobsProps.formValues.reason,
-              title: filterJobsProps.formValues.reason
-            }}
-            label="חפש עפ התאמה"
-            setValue={handleSearchValue('reason')}
-            options={optionsReasons}
-            inputLabelProps={{
-              IconButtonProps: iconButtonProps
-            }}
-          />
+          {includeReasonFilters && (
+            <Autocomplete
+              defaultValue={{
+                id: 'default',
+                value: filterJobsProps.formValues.reason,
+                title: filterJobsProps.formValues.reason
+              }}
+              label="חפש עפ התאמה"
+              setValue={handleSearchValue('reason')}
+              options={optionsReasons}
+              inputLabelProps={{
+                IconButtonProps: iconButtonProps
+              }}
+            />
+          )}
         </div>
       </Popover.Panel>
     </Popover>

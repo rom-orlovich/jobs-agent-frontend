@@ -4,6 +4,7 @@ import useStateSession from './useStateSession';
 export interface FilterJobsField {
   title: string;
   reason: string;
+
   page?: number;
 }
 /**
@@ -16,6 +17,7 @@ function useFilterJobs(isMatchPage?: boolean) {
     values: {
       title: '',
       reason: '',
+
       ...isJobsMatchesPage(!!isMatchPage)
     }
   });
