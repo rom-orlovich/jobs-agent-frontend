@@ -7,6 +7,7 @@ import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
+import { createAutocompleteOptions } from './utils';
 
 function FiltersPopup({
   iconButtonProps,
@@ -21,11 +22,16 @@ function FiltersPopup({
 }) {
   const { handleSearchValue } = filterJobsProps;
   console.log(jobsFilters);
-  const optionsReasons: Option<string>[] = jobsFilters.reasons.map((reason, i) => ({
-    id: reason + i,
-    title: reason,
-    value: reason
-  }));
+  const reasonsOptions: Option<string>[] = createAutocompleteOptions(jobsFilters.reasons);
+  const fromOptions: Option<string>[] = createAutocompleteOptions(jobsFilters.from);
+  const companiesOptions: Option<string>[] = createAutocompleteOptions(jobsFilters.companies);
+  const locationOptions: Option<string>[] = createAutocompleteOptions(jobsFilters.locations);
+
+  // const optionsReasons: Option<string>[] = jobsFilters?.reasons?.map((reason, i) => ({
+  //   id: reason + i,
+  //   title: reason,
+  //   value: reason
+  // }));
   const filterPopupStyle = {
     popover: 'relative top-0 flex items-center',
     popoverButton: 'border-none focus:border-none focus:outline-none focus-visible:ring-white',
@@ -51,7 +57,52 @@ function FiltersPopup({
               }}
               label="חפש עפ התאמה"
               setValue={handleSearchValue('reason')}
-              options={optionsReasons}
+              options={reasonsOptions}
+              inputLabelProps={{
+                IconButtonProps: iconButtonProps
+              }}
+            />
+          )}
+          {includeReasonFilters && (
+            <Autocomplete
+              defaultValue={{
+                id: 'default',
+                value: filterJobsProps.formValues.from,
+                title: filterJobsProps.formValues.from
+              }}
+              label="חפש עפ אתר"
+              setValue={handleSearchValue('from')}
+              options={fromOptions}
+              inputLabelProps={{
+                IconButtonProps: iconButtonProps
+              }}
+            />
+          )}
+          {includeReasonFilters && (
+            <Autocomplete
+              defaultValue={{
+                id: 'default',
+                value: filterJobsProps.formValues.company,
+                title: filterJobsProps.formValues.company
+              }}
+              label="חפש עפ חברה"
+              setValue={handleSearchValue('company')}
+              options={companiesOptions}
+              inputLabelProps={{
+                IconButtonProps: iconButtonProps
+              }}
+            />
+          )}
+          {includeReasonFilters && (
+            <Autocomplete
+              defaultValue={{
+                id: 'default',
+                value: filterJobsProps.formValues.location,
+                title: filterJobsProps.formValues.location
+              }}
+              label="חפש עפ מיקום"
+              setValue={handleSearchValue('location')}
+              options={locationOptions}
               inputLabelProps={{
                 IconButtonProps: iconButtonProps
               }}

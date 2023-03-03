@@ -26,8 +26,9 @@ function Jobs({
 }) {
   //Get filter Jobs query props.
   const filterJobsProps = useFilterJobs(isMatchPage);
-  const title = filterJobsProps.formValues.title;
-  const reason = filterJobsProps.formValues.reason;
+  const { formValues } = filterJobsProps;
+  // const title = filterJobsProps.formValues.title;
+  // const reason = filterJobsProps.formValues.reason;
 
   //Get user profile data.
   const { userProfileData } = useAuthContext();
@@ -35,8 +36,9 @@ function Jobs({
   //Use swr infinite.
   const useSwrInfiniteProps = useSWRInfiniteHook<ResponseGetJobs>(
     swrInfiniteHandler(userProfileData, {
-      title: title,
-      reason: reason
+      // title: title,
+      // reason: reason
+      ...formValues
     }),
     {
       revalidateIfStale: true,
