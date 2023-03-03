@@ -13,3 +13,13 @@ export const updateUser = async (userID: string, userData: UserProfileWithOneUse
   );
   return data.data;
 };
+
+export const deleteUserQuery = async (userID: string, hash: string) => {
+  const data = await usersAPI.delete<ResponseMessage>({
+    endpoints: [userID],
+    params: {
+      hash
+    }
+  });
+  return data.data;
+};

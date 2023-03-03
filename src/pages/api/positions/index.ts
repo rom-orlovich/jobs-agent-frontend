@@ -1,4 +1,4 @@
-import { getPositions } from 'mongoDB/lib/handlers';
+import { getPositions } from 'mongoDB/lib/locationsPositions';
 import { getResMessage } from '@/lib/utils';
 import { NextApiRequest, NextApiResponse } from 'next';
 

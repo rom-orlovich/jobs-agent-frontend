@@ -10,6 +10,8 @@ import {
 } from '@/lib/userQueryOptions';
 import React from 'react';
 import { AiTwotoneEdit } from 'react-icons/ai';
+
+import { MdClear } from 'react-icons/md';
 import { TriggerByHash } from '../Buttons/Button.types';
 
 import DownloadButton from '../Buttons/DownloadButton';
@@ -39,8 +41,9 @@ const handleConvertUserQueryToText = (value: string, options: Option<string>[]):
 };
 const searchItemStyle = {
   item: 'bg-white shadow-lg rounded-md flex flex-col border-none max-w-[80%] flex-[50%] p-[1.5rem] gap-3',
-  editButtonContainer: 'flex justify-end pl-2',
-  editButton: 'text-adding-500 hover:text-adding-600 text-3xl',
+  editButtonContainer: 'flex justify-between pl-2',
+  editButton: 'text-adding-500 hover:text-adding-600 text-2xl',
+  delateButton: 'text-error-500 hover:text-error-600 text-2xl',
   fieldsContainer: 'flex gap-2 flex-row',
   fieldItemContainer: 'flex xs:flex-row flex-col gap-1',
   title: 'font-bold',
@@ -50,22 +53,28 @@ const searchItemStyle = {
 };
 
 function SearchItem({
-  distance,
-  experience,
-  jobType,
-  location,
-  position,
-  scope,
-  createdAt,
-  hash,
-  downloadState,
-  numResultFound,
-  numMatches,
+  handleDeleteButton,
   handleEditButton,
-  scanner,
   handleLoadButton,
-  handleDownloadButton
-}: UserQuery & UseDownloadHooksProps & UseScannerHooksProps & { handleEditButton: TriggerByHash }) {
+  handleDownloadButton,
+  ...props
+}: UserQuery &
+  UseDownloadHooksProps &
+  UseScannerHooksProps & { handleEditButton: TriggerByHash; handleDeleteButton: TriggerByHash }) {
+  const {
+    distance,
+    experience,
+    jobType,
+    location,
+    position,
+    scope,
+    createdAt,
+    hash,
+    downloadState,
+    numResultFound,
+    numMatches,
+    scanner
+  } = props;
   const createdAtDate = new Date(createdAt || '');
   const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
     timeZone: 'Asia/Jerusalem'
@@ -84,6 +93,9 @@ function SearchItem({
   return (
     <li className={searchItemStyle.item}>
       <div className={searchItemStyle.editButtonContainer}>
+        <button className={searchItemStyle.delateButton} onClick={handleDeleteButton(hash)}>
+          <MdClear />
+        </button>
         <button className={searchItemStyle.editButton} onClick={handleEditButton(hash)}>
           <AiTwotoneEdit />
         </button>

@@ -1,5 +1,6 @@
 import { getResMessage } from '@/lib/utils';
-import { getLocations } from 'mongoDB/lib/handlers';
+import { getLocations } from 'mongoDB/lib/locationsPositions';
+
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

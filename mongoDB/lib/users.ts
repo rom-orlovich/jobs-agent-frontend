@@ -1,19 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Job } from '@/lib/jobsScanner.types';
 import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { getCollection } from './utils';
+export const getUserByID = async (userID: string) => {
+  const users = await getCollection('users');
 
-import { getCollection, getDocumentsByName } from './utils';
-
-export const getLocations = async (name: string) => {
-  const locationsDocs = await getDocumentsByName(name, 'locations', 'locationName');
-  return locationsDocs;
+  try {
+    const res = await users.findOne<UserProfile>(
+      {
+        userID: userID
+      },
+      {
+        projection: {
+          _id: false
+        }
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
 };
 
-export const getPositions = async (name: string) => {
-  const positionsDocs = await getDocumentsByName(name, 'positions', 'positionName');
-  return positionsDocs;
-};
-
+// Update user profile and add new query to his userQueries data.
 export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
   const { userQuery, activeHash, ...restUserData } = userData;
@@ -30,6 +39,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
           ...restUserData,
           activeHash: null
         },
+        //Add new user's query.
         $addToSet: {
           userQueries: {
             ...restUserQuery,
@@ -50,21 +60,23 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   }
 };
 
-export const getUserByID = async (userID: string) => {
-  const users = await getCollection('users');
-
+export const deleteUserQuery = async (userID: string, hash: string) => {
   try {
-    const res = await users.findOne<UserProfile>(
+    const users = await getCollection('users');
+    const result = await users.updateOne(
       {
         userID: userID
       },
       {
-        projection: {
-          _id: false
+        $pull: {
+          userQueries: {
+            hash: hash
+          }
         }
       }
     );
-    return res;
+    console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
     return undefined;

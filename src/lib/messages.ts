@@ -8,7 +8,8 @@ export const MESSAGE_CODES = {
   USER_IS_FOUND: '2000',
   USER_NOT_FOUND: '2001',
   USER_ID_NOT_VALID: '2002',
-  USER_ID_UPDATED: '2003',
+  USER_IS_UPDATED: '2003',
+  USER_QUERY_DELETED: '2004',
   TRACKING_JOB_IS_FOUND: '3000',
   TRACKING_JOB_NOT_FOUND: '3001',
   TRACKING_JOB_CREATED: '3002',
@@ -32,7 +33,8 @@ export const MESSAGES = {
   //USERS
   [MESSAGE_CODES.USER_IS_FOUND]: 'המשתמש נמצא בהצלחה!',
   [MESSAGE_CODES.USER_NOT_FOUND]: ':( לא הצלחנו למצוא את המשתמש',
-  [MESSAGE_CODES.USER_ID_UPDATED]: 'המשתמש עודכן בהצלחה!',
+  [MESSAGE_CODES.USER_IS_UPDATED]: 'המשתמש עודכן בהצלחה!',
+  [MESSAGE_CODES.USER_QUERY_DELETED]: 'החיפוש נמחק בהצלחה!',
   [MESSAGE_CODES.USER_ID_NOT_VALID]: 'מזהה המשתמש אינו קיים!',
   //TRACKING JOBS
   [MESSAGE_CODES.TRACKING_JOB_IS_FOUND]: 'המשרה נמצאה!',
