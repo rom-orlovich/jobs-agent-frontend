@@ -12,7 +12,7 @@ const searchItemStyle = {
 
 function SearchItem({
   handleDeleteButton,
-
+  handleEditButton,
   handleLoadButton,
   handleDownloadButton,
   ...props
@@ -24,7 +24,7 @@ function SearchItem({
     <li className={searchItemStyle.item}>
       <SearchItemsHeaders
         handleDeleteButton={handleDeleteButton}
-        handleEditButton={handleDeleteButton}
+        handleEditButton={handleEditButton}
         hash={hash}
       />
       <SearchItemContent {...props} />

@@ -10,6 +10,7 @@ import { deleteUserQuery } from '@/lib/api/users.utils';
 import { mutate } from 'swr';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { sortUserHistoryQueries } from './utils';
+import { toast } from 'react-toastify';
 
 const searchHistoryFeedStyle = {
   feed: 'pr-16 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
@@ -48,10 +49,11 @@ function SearchHistoryFeed() {
     try {
       e.preventDefault();
       //Delete the current clicked user's search query.
-      const res = await deleteUserQuery(userProfileData.userID || '', hash || '');
+      const result = await deleteUserQuery(userProfileData.userID || '', hash || '');
       //Revalidate the user data.
-      await mutate(`${API_ENDPOINTS.USERS}/${userProfileData.userID}`);
-      console.log(res);
+      await mutate(`/${API_ENDPOINTS.USERS}/${userProfileData.userID}`);
+
+      toast(result.message);
     } catch (error) {
       console.log(error);
     }
