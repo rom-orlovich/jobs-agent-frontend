@@ -5,6 +5,7 @@ import { SERVER_URL } from './endpoints';
 import { MESSAGES, MESSAGE_CODES } from './messages';
 import { KeyCode, ResponseMessage } from './types/api.types';
 import { AnyFun, GenericRecord } from './types/types';
+export const classIsOn = (isON: boolean, className: string) => (isON ? className : '');
 
 /**
  *
@@ -76,6 +77,21 @@ export const createURL = <T extends GenericRecord<any>>(
   return `${resourcesURL}?${paramsURL}`;
 };
 
+export const createScannerURL = (endpoint: string, userID?: string) =>
+  createURL([SERVER_URL, endpoint, userID || '']);
+
+export const createLocalDate = (date?: Date) => {
+  const createdAtDate = new Date(date || '');
+  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
+    timeZone: 'Asia/Jerusalem'
+  });
+  return createLocalTimeDate;
+};
+
+export const convertDateToValidInputFormat = (date?: Date) => {
+  return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as string;
+};
+
 export const delayFun = (cb: AnyFun, delay: number) =>
   new Promise((res) =>
     setTimeout(async () => {
@@ -107,20 +123,4 @@ export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFu
     data
   };
 }
-
 export type ReturnCreateToastCBWithData<T> = ReturnType<typeof createToastCBWithData<T>>;
-export const createScannerURL = (endpoint: string, userID?: string) =>
-  createURL([SERVER_URL, endpoint, userID || '']);
-
-export const createLocalDate = (date?: Date) => {
-  const createdAtDate = new Date(date || '');
-  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
-    timeZone: 'Asia/Jerusalem'
-  });
-  return createLocalTimeDate;
-};
-
-export const convertDateToValidInputFormat = (date?: Date) => {
-  return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as string;
-};
-export const classIsOn = (isON: boolean, className: string) => (isON ? className : '');

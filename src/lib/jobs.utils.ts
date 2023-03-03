@@ -18,6 +18,7 @@ export const checkIsJobsFoundWithToast = (jobs: Job[]): { cb: AnyFun; data: Job[
     return createToastCBWithData(undefined, 'SOMETHING_WRONG');
   }
 };
+
 export const checkIsJobFoundWithToast = (job?: Job) => {
   try {
     if (!job) return createToastCBWithData(undefined, 'JOB_IS_NOT_FOUND');
