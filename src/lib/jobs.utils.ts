@@ -75,15 +75,6 @@ export const defaultResponseJobs: ResponseGetJobs = {
     titles: []
   }
 };
-
-/**
- *
- * @param {ResponseGetJobs | undefined} jobData The jobs data that may be undefined.
- * @returns {ResponseGetJobs} If the data is undefined the the default data will be defaultResponseJobs. Otherwise the data will be jobData.
- */
-export const getJobsExistData = (jobData?: ResponseGetJobs): ResponseGetJobs =>
-  jobData ? jobData : defaultResponseJobs;
-
 /**
  * The useSWRInfinite provide an array of the jobData we get from the api.
  * So in order to get the last update jobData, we need to lookup it from the array.
