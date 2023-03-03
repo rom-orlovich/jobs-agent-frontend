@@ -20,10 +20,10 @@ export interface MinMaxInputsProps {
  */
 function MinMaxInputs({ setValue, inputTitle, initialValues }: MinMaxInputsProps) {
   const minMaxInputsStyle = {
-    container: 'flex flex-row gap-0.5 ',
-    field: '[&_.input-custom]:py-[0.2rem] flex-[1.5]',
+    container: 'flex flex-row gap-0.5 w-[80%] ',
+    field: '[&_.input-custom]:py-[0.2rem] flex-[1]',
 
-    'label-range-num': 'flex-[0.75] min-w-[3rem]'
+    'label-range-num': 'flex-[0.5] min-w-[3rem]'
   };
   const [state, setState] = useState<MinMaxInputsOption>({
     min: Number(initialValues.min || 0),
