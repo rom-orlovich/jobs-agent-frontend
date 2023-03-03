@@ -3,7 +3,6 @@ import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
-
 import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 
@@ -30,7 +29,8 @@ function JobsSearch({
     autocompleteWrapper: 'relative w-fit items-center',
     input: 'py-1 sm:min-w-[15rem] min-w-[18rem]',
     icon: 'text-blue-300 absolute right-2  text-xl top-[30%]',
-    filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl'
+    filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl',
+    popupInputIcon: 'text-blue-300 absolute  text-xl top-[34%] right-5'
   };
   const IconButtonProps = {
     Icon: <BiSearch />,
@@ -62,7 +62,12 @@ function JobsSearch({
       {includeReasonFilter && (
         <FiltersPopup
           jobsFilters={jobsFilters}
-          iconButtonProps={IconButtonProps}
+          iconButtonProps={{
+            ...IconButtonProps,
+            buttonProps: {
+              className: jobsSearchStyle.popupInputIcon
+            }
+          }}
           filterJobsProps={filterJobsProps}
         />
       )}
