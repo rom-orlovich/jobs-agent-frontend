@@ -34,7 +34,7 @@ function FiltersPopup({
 }) {
   const { handleSearchValue } = filterJobsProps;
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
-
+  console.log(autocompletePropsArr);
   return (
     <Popover className={filterPopupStyle.popover}>
       <Popover.Button className={filterPopupStyle.popoverButton}>
@@ -45,9 +45,9 @@ function FiltersPopup({
           {autocompletePropsArr.map(({ key, label, options }, i) => {
             if (i === 0 && !includeReasonFilters) return <></>;
             const value = filterJobsProps.formValues[key];
-
+            console.log(i + key);
             return (
-              <li key={i + key}>
+              <li key={i + key + Date.now()}>
                 <Autocomplete
                   defaultValue={{
                     id: 'default',

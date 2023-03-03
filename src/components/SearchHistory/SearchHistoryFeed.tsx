@@ -9,8 +9,9 @@ import { TriggerByHash } from '../Buttons/Button.types';
 import { deleteUserQuery } from '@/lib/api/users.utils';
 import { mutate } from 'swr';
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { sortUserHistoryQueries } from './utils';
+import { checkIsUserQueryHistoryFoundWithToast, sortUserHistoryQueries } from './utils';
 import { toast } from 'react-toastify';
+import useRedirect from '@/hooks/useRedirect';
 
 const searchHistoryFeedStyle = {
   feed: 'sm:pr-16 pr-8 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
@@ -24,6 +25,9 @@ function SearchHistoryFeed() {
   const scannerController = useScannerController(authContext, true);
 
   const { userHistoryQueries, userProfileData } = authContext;
+
+  //Redirect to home page if no search history was found.
+  useRedirect(() => checkIsUserQueryHistoryFoundWithToast(userHistoryQueries));
 
   //Sort the user Queries by the date. The new one will be first.
   const sortHistoryQueries = sortUserHistoryQueries(userHistoryQueries);

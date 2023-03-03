@@ -8,7 +8,6 @@ import { GenericRecord } from './types/types';
 import { createURL, getResMessage } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 /**
- *
  * @param {Job[]} jobs The jobs array.
  * @returns {Job[]| undefined } True if there is no jobs otherwise false.
  */

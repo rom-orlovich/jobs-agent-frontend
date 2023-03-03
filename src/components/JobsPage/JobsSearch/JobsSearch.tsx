@@ -8,6 +8,7 @@ import { BiSearch } from 'react-icons/bi';
 
 import Autocomplete from '../../Inputs/Autocomplete/Autocomplete';
 import FiltersPopup from './FiltersPopup';
+import { createAutocompleteOptions } from './utils';
 
 function JobsSearch({
   filterJobsProps,
@@ -19,11 +20,7 @@ function JobsSearch({
   includeReasonFilters: boolean;
 }) {
   const { handleSearchValue } = filterJobsProps;
-  const titles: Option<string>[] = jobsFilters?.titles?.map((title, i) => ({
-    id: title + i,
-    title: title,
-    value: title
-  }));
+  const titles: Option<string>[] = createAutocompleteOptions(jobsFilters.titles);
   const jobsSearchStyle = {
     jobSearchContainer: 'flex xs:justify-start w-full',
     autocompleteWrapper: 'relative w-fit items-center',

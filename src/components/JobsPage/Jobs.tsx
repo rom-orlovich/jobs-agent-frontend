@@ -49,7 +49,10 @@ function Jobs({
   const { isLoading, isValidating, data, setSize } = useSwrInfiniteProps;
   //Get last cur update data of SWR infinite
   const { allResponseData, lastResponse } = getLastCurJobData(data);
-  const jobsData = allResponseData.map((response) => response.jobs).flat(1);
+  const jobsData = allResponseData
+    .map((response) => response.jobs)
+    .filter((el) => el)
+    .flat(1);
 
   return (
     <div className={JobsStyle.feedContainer}>
@@ -57,13 +60,13 @@ function Jobs({
         filterJobsProps={filterJobsProps}
         filters={lastResponse.filters}
         isMatchPage={!!isMatchPage}
-        numResultsFound={lastResponse.pagination?.numResultsFound}
+        numResultsFound={lastResponse?.pagination?.numResultsFound}
       />
 
       <JobsFeed jobs={jobsData} userProfileData={userProfileData} />
 
       {jobsData.length ? (
-        <LoadButtonContainer setSize={setSize} hasMore={lastResponse.pagination.hasMore} />
+        <LoadButtonContainer setSize={setSize} hasMore={lastResponse?.pagination?.hasMore} />
       ) : (
         <></>
       )}

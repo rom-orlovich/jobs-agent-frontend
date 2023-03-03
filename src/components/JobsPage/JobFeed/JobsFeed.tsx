@@ -28,14 +28,14 @@ const jobsFeedStyle = {
 };
 function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   //Create Jobs map
-  const jobsTrackMap = createJobsTrackingMap(userProfileData.tracking || []);
+  const jobsTrackMap = createJobsTrackingMap(userProfileData?.tracking || []);
   //Handle the click on track button.
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
 
   let currentJobs;
   if (isTrackFeed) currentJobs = userProfileData.tracking;
   else currentJobs = jobs;
-
+  console.log(currentJobs);
   return (
     <>
       <ul dir="ltr" className={jobsFeedStyle.feed}>
@@ -43,7 +43,7 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
           const jobItemProps = {
             ...job,
             mark: !!jobsTrackMap[job?.jobID],
-            key: job.jobID + i,
+            key: job?.jobID + i,
             index: i,
             handleClickBookmark: handleClickBookmarkFun(job)
           };

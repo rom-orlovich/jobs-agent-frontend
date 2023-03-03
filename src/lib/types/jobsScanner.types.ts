@@ -33,11 +33,11 @@ export interface Job {
 }
 
 export interface FacetFilterResults {
-  titles: string[];
-  from: string[];
-  companies: string[];
-  locations: string[];
-  reasons: string[];
+  titles?: string[];
+  from?: string[];
+  companies?: string[];
+  locations?: string[];
+  reasons?: string[];
 }
 export type ResponseGetJobs = {
   jobs: Job[];
