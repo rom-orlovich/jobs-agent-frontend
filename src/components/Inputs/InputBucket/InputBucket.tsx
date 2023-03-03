@@ -61,7 +61,7 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
           {...inputLabelProps}
           inputProps={{
             ref: inputRef,
-            className: 'w-[90%]'
+            className: '!w-[90%]'
           }}
         >
           {inputLabelProps?.labelProps?.title}

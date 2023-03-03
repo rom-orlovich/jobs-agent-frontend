@@ -7,8 +7,6 @@ export interface FilterJobsField {
   from: string;
   company: string;
   location: string;
-
-  // page?: number;
 }
 /**
  *
