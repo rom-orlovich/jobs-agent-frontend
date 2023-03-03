@@ -2,7 +2,7 @@ export const MESSAGE_CODES = {
   SCANNER_SUCCESS: '1000',
   ENTER_VALID_QUERY: '1001',
   SEARCH_IS_IN_PROCESS: '1002',
-  JOB_ARE_NOT_FOUND: '1003',
+  JOBS_ARE_NOT_FOUND: '1003',
   JOB_IS_FOUND: '1004',
   JOB_IS_NOT_FOUND: '1005',
   USER_IS_FOUND: '2000',
@@ -30,7 +30,7 @@ export const MESSAGES = {
   [MESSAGE_CODES.SCANNER_SUCCESS]: 'החיפוש בוצע בהצלחה',
   [MESSAGE_CODES.ENTER_VALID_QUERY]: 'אנא הכנס ערכים חוקיים.',
   [MESSAGE_CODES.SEARCH_IS_IN_PROCESS]: 'החיפוש מתבצע אנא המתן לתוצאות...',
-  [MESSAGE_CODES.JOB_ARE_NOT_FOUND]: 'אף משרה לא נמצאה, אנא בצע חיפוש נוסף.',
+  [MESSAGE_CODES.JOBS_ARE_NOT_FOUND]: 'אף משרה לא נמצאה, אנא בצע חיפוש נוסף.',
   [MESSAGE_CODES.JOB_IS_FOUND]: 'המשרה נמצאה בהצלחה!.',
   [MESSAGE_CODES.JOB_IS_NOT_FOUND]: 'המשרה לא קיימת יותר,אנא הוסף משרה חדשה.',
   //USERS

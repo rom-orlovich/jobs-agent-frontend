@@ -20,7 +20,7 @@ function JobsSearch({
   includeReasonFilters: boolean;
 }) {
   const { handleSearchValue } = filterJobsProps;
-  const titles: Option<string>[] = createAutocompleteOptions(jobsFilters.titles);
+  const titles: Option<string>[] = createAutocompleteOptions(jobsFilters?.titles);
   const jobsSearchStyle = {
     jobSearchContainer: 'flex xs:justify-start w-full',
     autocompleteWrapper: 'relative w-fit items-center',

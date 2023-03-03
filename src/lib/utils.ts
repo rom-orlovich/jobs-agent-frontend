@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { toast } from 'react-toastify';
 import { SERVER_URL } from './endpoints';
 import { MESSAGES, MESSAGE_CODES } from './messages';
-import { ResponseMessage } from './types/api.types';
+import { KeyCode, ResponseMessage } from './types/api.types';
 import { AnyFun, GenericRecord } from './types/types';
 
 /**
@@ -96,6 +97,16 @@ export const getResMessage = <KeyCode extends keyof typeof MESSAGE_CODES>(
   };
 };
 
+export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFun; data: T } {
+  return {
+    cb: () => {
+      toast(getResMessage(keyCode).message, {
+        toastId: Date.now()
+      });
+    },
+    data
+  };
+}
 export const createScannerURL = (endpoint: string, userID?: string) =>
   createURL([SERVER_URL, endpoint, userID || '']);
 

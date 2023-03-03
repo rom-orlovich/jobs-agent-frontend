@@ -1,56 +1,29 @@
-import { toast } from 'react-toastify';
 import { SWRInfiniteKeyLoader } from 'swr/infinite';
 
 import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './types/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from './types/api.types';
-import { GenericRecord } from './types/types';
-import { createURL, getResMessage } from './utils';
+import { AnyFun, GenericRecord } from './types/types';
+import { createToastCBWithData, createURL } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 /**
  * @param {Job[]} jobs The jobs array.
  * @returns {Job[]| undefined } True if there is no jobs otherwise false.
  */
-export const checkIsJobsFoundWithToast = (jobs: Job[]): Job[] | undefined => {
+export const checkIsJobsFoundWithToast = (jobs: Job[]): { cb: AnyFun; data: Job[] | undefined } => {
   try {
-    if (!jobs?.length) {
-      toast(getResMessage('JOB_ARE_NOT_FOUND').message, {
-        toastId: 'noJobsFound'
-      });
-      return undefined;
-    }
-    toast(getResMessage('SCANNER_SUCCESS').message, {
-      toastId: 'jobsFound'
-    });
-    return jobs;
+    if (!jobs?.length) return createToastCBWithData(undefined, 'JOBS_ARE_NOT_FOUND');
+    return createToastCBWithData(jobs, 'SCANNER_SUCCESS');
   } catch (error) {
-    toast(getResMessage('SOMETHING_WRONG').message, {
-      toastId: 'somethingWrong'
-    });
-    return undefined;
+    return createToastCBWithData(undefined, 'SOMETHING_WRONG');
   }
 };
 export const checkIsJobFoundWithToast = (job?: Job) => {
   try {
-    if (!job) {
-      toast(getResMessage('JOB_IS_NOT_FOUND').message, {
-        toastId: 'jobIsNotFound',
-        rtl: true
-      });
-      return undefined;
-    }
-    toast(getResMessage('JOB_IS_FOUND').message, {
-      rtl: true,
-      toastId: 'jobFound'
-    });
-    return job;
+    if (!job) return createToastCBWithData(undefined, 'JOB_IS_NOT_FOUND');
+    return createToastCBWithData(job, 'JOB_IS_FOUND');
   } catch (error) {
-    console.log(error);
-    toast(getResMessage('SOMETHING_WRONG').message, {
-      rtl: true,
-      toastId: 'somethingWrong'
-    });
-    return undefined;
+    return createToastCBWithData(undefined, 'SOMETHING_WRONG');
   }
 };
 

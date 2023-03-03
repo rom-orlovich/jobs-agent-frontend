@@ -44,7 +44,7 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
         }
       });
     } catch (error) {
-      toast(MESSAGES[MESSAGE_CODES.JOB_ARE_NOT_FOUND]);
+      toast(MESSAGES[MESSAGE_CODES.JOBS_ARE_NOT_FOUND]);
       console.log(error);
     } finally {
       // console.log('there');

@@ -15,7 +15,7 @@ import { createURL, getResMessage } from '../../lib/utils';
 export const checkIsJobsFoundWithToast = (jobs: Job[]): Job[] | undefined => {
   try {
     if (!jobs?.length) {
-      toast(getResMessage('JOB_ARE_NOT_FOUND').message, {
+      toast(getResMessage('JOBS_ARE_NOT_FOUND').message, {
         toastId: 'noJobsFound'
       });
       return undefined;
