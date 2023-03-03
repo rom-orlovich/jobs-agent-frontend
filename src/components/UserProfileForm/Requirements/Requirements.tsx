@@ -26,10 +26,9 @@ function Requirements({ handleRequirements, formValues }: ProfileFormComponentsP
     <div className="p-2">
       <DynamicInputs
         overflowProps={{
-          minChild: 3,
-          innerDiv: {
-            className: 'p-3 !h-[18rem]'
-          }
+          outerDiv: {},
+          minChild: 2,
+          innerDiv: {}
         }}
         defaultValues={formValues.requirements.length ? formValues.requirements : initialRequirement}
         Render={({ setValue, max, min, field }) => (
