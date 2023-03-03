@@ -26,10 +26,10 @@ function JobsSearch({
     value: title
   }));
   const jobsSearchStyle = {
-    jobSearchContainer: 'flex justify-start',
+    jobSearchContainer: 'flex xs:justify-start w-full',
     autocompleteWrapper: 'relative w-fit items-center',
+    input: 'py-1 sm:min-w-[15rem] min-w-[20rem]',
     icon: 'text-blue-300 absolute right-2  text-xl top-[30%]',
-    input: 'py-1 min-w-[15rem]',
     filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl'
   };
   const IconButtonProps = {
@@ -51,7 +51,6 @@ function JobsSearch({
           IconButtonProps: IconButtonProps,
           inputProps: {
             className: jobsSearchStyle.input
-            // value: formValues.title
           },
           wrapperInputLabel: {
             className: jobsSearchStyle.autocompleteWrapper
