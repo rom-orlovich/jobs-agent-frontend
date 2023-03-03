@@ -12,7 +12,7 @@ import JobsFeed from './JobsFeed';
 import JobsSearch from './JobsSearch/JobsSearch';
 
 const JobsStyle = {
-  jobsHeaderContainer: 'flex justify-between px-8 pr-16 xs:flex-col flex-col',
+  jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col',
   loadButtonContainer: 'flex w-full items-center justify-center',
   loadButton: 'items-center px-7 py-2 text-2xl',
   spinner: '!top-[none] bottom-5'
@@ -29,7 +29,7 @@ function Jobs({
   const filterJobsProps = useFilterJobs(isMatchPage);
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
-  console.log('reason', reason);
+
   //Get user profile data.
   const { userProfileData } = useAuthContext();
 
@@ -55,7 +55,7 @@ function Jobs({
   const textHeader = isMatchPage ? 'התאמות' : 'משרות';
 
   return (
-    <>
+    <div className="pr-10 xs:pr-16">
       <div className={JobsStyle.jobsHeaderContainer}>
         <h1 className="text-3xl">
           כ- {lastResponse.pagination?.numResultsFound || 0} {textHeader} נמצאו:
@@ -82,7 +82,7 @@ function Jobs({
       )}
 
       <Spinner className={JobsStyle.spinner} isLoading={isValidating || isLoading || !data} />
-    </>
+    </div>
   );
 }
 
