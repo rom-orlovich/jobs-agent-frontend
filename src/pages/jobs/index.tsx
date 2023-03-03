@@ -20,8 +20,6 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
   //Get the query from the url.
   const hash = context.query.hash;
   const page = context.query.page;
-  console.log(isJobsMatchesPage(context.resolvedUrl.includes(`/${APP_ROUTES.JOBS_MATCH}`)));
-
   //Fetch the the jobs.
   const data = await getJobs<ResponseGetJobs>(session?.user.id || '', {
     hash,
