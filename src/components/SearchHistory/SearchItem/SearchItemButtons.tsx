@@ -19,7 +19,7 @@ function SearchItemButtons({
     <div className={searchItemButtonsStyle.buttonsContainer}>
       <SearchButton
         onClick={handleLoadButton(hash)}
-        disabled={scanner.isMutating}
+        disabled={downloadState.isMutating || scanner.isMutating}
         className={searchItemButtonsStyle.download}
       >
         חפש מחדש
@@ -27,7 +27,7 @@ function SearchItemButtons({
 
       <DownloadButton
         onClick={handleDownloadButton(hash)}
-        disabled={downloadState.isMutating}
+        disabled={downloadState.isMutating || scanner.isMutating}
         className={searchItemButtonsStyle.download}
       >
         הורדה
