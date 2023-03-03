@@ -9,8 +9,9 @@ import React from 'react';
 // import LoadButton from '../Buttons/LoadButton';
 import Spinner from '../Spinner/Spinner';
 import JobsFeed from './Jobs/JobsFeed';
-import JobsSearch from './JobsSearch/JobsSearch';
+// import JobsSearch from './JobsSearch/JobsSearch';
 import LoadButtonContainer from './Jobs/LoadButtonContainer';
+import JobsHeader from './Jobs/JobsHeader';
 
 const JobsStyle = {
   feedContainer: 'pr-10 xs:pr-16',
@@ -54,11 +55,11 @@ function Jobs({
 
   // const handleLoadButtonClick: MouseEventHandler<HTMLButtonElement> = () => setSize(size + 2);
 
-  const textHeader = isMatchPage ? 'התאמות' : 'משרות';
+  // const textHeader = isMatchPage ? 'התאמות' : 'משרות';
 
   return (
     <div className={JobsStyle.feedContainer}>
-      <div className={JobsStyle.jobsHeaderContainer}>
+      {/* <div className={JobsStyle.jobsHeaderContainer}>
         <h1 className="text-3xl">
           כ- {lastResponse.pagination?.numResultsFound || 0} {textHeader} נמצאו:
         </h1>
@@ -67,7 +68,13 @@ function Jobs({
           jobsFilters={lastResponse.filters}
           includeReasonFilter={!isMatchPage}
         />
-      </div>
+      </div> */}
+      <JobsHeader
+        filterJobsProps={filterJobsProps}
+        filters={lastResponse.filters}
+        isMatchPage
+        numResultsFound={lastResponse.pagination?.numResultsFound}
+      />
 
       <JobsFeed jobs={jobsData} userProfileData={userProfileData} />
 

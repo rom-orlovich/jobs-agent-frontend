@@ -5,9 +5,9 @@ import { createLocalDate } from '@/lib/utils';
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
 import { MdTextSnippet } from 'react-icons/md';
-import TrackButton from '../Buttons/TrackButton';
-import Field from '../Field/Field';
-import { jobItemStyle } from './Jobs/JobsFeed';
+import TrackButton from '../../../Buttons/TrackButton';
+import Field from '../../../Field/Field';
+import { jobItemStyle } from '../JobsFeed';
 
 function JobTrackingItem(
   props: Job & {

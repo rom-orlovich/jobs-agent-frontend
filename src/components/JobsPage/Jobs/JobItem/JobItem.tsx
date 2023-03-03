@@ -2,8 +2,8 @@ import { Job } from '@/lib/types/jobsScanner.types';
 
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
-import TrackButton from '../Buttons/TrackButton';
-import { jobItemStyle } from './Jobs/JobsFeed';
+import TrackButton from '../../../Buttons/TrackButton';
+import { jobItemStyle } from '../JobsFeed';
 function JobItem(
   props: Job & {
     index: number;

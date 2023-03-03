@@ -7,7 +7,7 @@ import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 
-import Autocomplete from '../../Inputs/Autocomplete/Autocomplete';
+import Autocomplete from '../../../Inputs/Autocomplete/Autocomplete';
 import FiltersPopup from './FiltersPopup';
 
 function JobsSearch({
