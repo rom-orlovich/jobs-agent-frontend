@@ -1,5 +1,4 @@
 import { Job } from '@/lib/types/jobsScanner.types';
-
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
 import TrackButton from '../../../Buttons/TrackButton';
@@ -19,7 +18,7 @@ function JobItem(
         <div className={jobItemStyle.bookmarkContainer}>
           <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
-        <div>
+        <div className={jobItemStyle.title}>
           <Link href={link}> {title}</Link>{' '}
         </div>
         {props.company && <div> {props.company}</div>}

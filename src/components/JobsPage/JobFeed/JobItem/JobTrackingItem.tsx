@@ -39,7 +39,7 @@ function JobTrackingItem(
         <div dir="rtl" className={jobTrackingItemStyle.dateContainer}>
           <Field value={localDateStr} titleStyle={'font-bold'} title="נוצר ב-" />
         </div>
-        <div>
+        <div className={jobTrackingItemStyle.title}>
           <Link href={link}> {title}</Link>
         </div>
         {props.company && <div> {props.company}</div>}

@@ -9,11 +9,12 @@ import { createJobsTrackingMap, handleClickBookmark } from './utils';
 import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 
 export const jobItemStyle = {
-  item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[30%] ',
+  item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[30%]',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
   bookmarkButton: 'text-base',
-  reason: 'text-center'
+  title: 'font-semibold hover:opacity-70 ',
+  reason: 'text-center underline'
 };
 
 interface JobsFeedProps {
