@@ -7,12 +7,12 @@ import { toast } from 'react-toastify';
 import { mutate } from 'swr';
 import JobItem from './JobItem';
 import JobTrackingItem from './JobTrackingItem';
+
 export const jobItemStyle = {
-  item: 'flex flex-[100%] flex-col justify-between rounded-md bg-white p-4 shadow-lg sm:flex-[45%] md:flex-[30%] ',
+  item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[30%]',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
-  bookmarkButton: 'text-base',
-  buttonStatusContainer: 'flex justify-center mt-3'
+  bookmarkButton: 'text-base'
 };
 
 interface JobsFeedProps {

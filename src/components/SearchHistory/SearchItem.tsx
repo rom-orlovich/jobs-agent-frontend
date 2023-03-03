@@ -7,7 +7,7 @@ import SearchItemButtons from './SearchItem/SearchItemButtons';
 import SearchItemContent from './SearchItem/SearchItemContent';
 import SearchItemsHeaders from './SearchItem/SearchItemsHeaders';
 const searchItemStyle = {
-  item: 'bg-white shadow-lg rounded-md flex flex-col border-none max-w-[80%] flex-[50%] p-[1.5rem] gap-3'
+  item: 'bg-white shadow-lg rounded-md flex flex-col border-none sm:max-w-[80%] flex-[50%] p-[1.5rem] gap-3'
 };
 
 function SearchItem({

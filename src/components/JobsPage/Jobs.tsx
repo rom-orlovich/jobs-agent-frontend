@@ -12,6 +12,7 @@ import JobsFeed from './JobsFeed';
 import JobsSearch from './JobsSearch/JobsSearch';
 
 const JobsStyle = {
+  feedContainer: 'pr-10 xs:pr-16',
   jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col',
   loadButtonContainer: 'flex w-full items-center justify-center',
   loadButton: 'items-center px-7 py-2 text-2xl',
@@ -55,7 +56,7 @@ function Jobs({
   const textHeader = isMatchPage ? 'התאמות' : 'משרות';
 
   return (
-    <div className="pr-10 xs:pr-16">
+    <div className={JobsStyle.feedContainer}>
       <div className={JobsStyle.jobsHeaderContainer}>
         <h1 className="text-3xl">
           כ- {lastResponse.pagination?.numResultsFound || 0} {textHeader} נמצאו:

@@ -3,13 +3,7 @@ import { Job } from '@/lib/types/jobsScanner.types';
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
 import TrackButton from '../Buttons/TrackButton';
-const jobItemStyle = {
-  item: 'flex-[100%]  rounded-md bg-white p-4 shadow-lg sm:flex-[45%] md:flex-[30%] ',
-  content: 'flex gap-2 flex-col',
-  bookmarkContainer: 'flex w-full justify-end',
-  bookmarkButton: 'text-base'
-};
-
+import { jobItemStyle } from './JobsFeed';
 function JobItem(
   props: Job & {
     index: number;
