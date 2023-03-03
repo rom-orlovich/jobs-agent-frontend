@@ -29,6 +29,7 @@ function Jobs({
   const filterJobsProps = useFilterJobs(isMatchPage);
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
+  console.log(reason);
 
   //Get user profile data.
   const { userProfileData } = useAuthContext();
@@ -72,7 +73,7 @@ function Jobs({
       {jobsData.length && (
         <div className={JobsStyle.loadButtonContainer}>
           <LoadButton
-            disabled={!lastResponse.pagination.hasMore}
+            disabled={!lastResponse?.pagination?.hasMore}
             className={JobsStyle.loadButton}
             onClick={handleLoadButtonClick}
           >

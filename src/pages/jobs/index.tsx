@@ -11,6 +11,8 @@ import PageHead from '@/components/Layout/PageHead/PageHead';
 import useRedirect from '@/hooks/useRedirect';
 import { getJobs } from '@/lib/api/jobs.util';
 import Jobs from '@/components/JobsPage/Jobs';
+import { APP_ROUTES } from '@/lib/routes';
+import { isJobsMatchesPage } from '@/lib/jobs.utils';
 
 export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
   //Get current session data.
@@ -21,7 +23,8 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
   //Fetch the the jobs.
   const data = await getJobs<ResponseGetJobs>(session?.user.id || '', {
     hash,
-    page: page
+    page: page,
+    ...isJobsMatchesPage(context.resolvedUrl === `/${APP_ROUTES.JOBS_MATCH}`)
   });
   return {
     props: data?.data || defaultResponseJobs

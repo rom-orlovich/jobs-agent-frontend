@@ -124,3 +124,14 @@ export const swrInfiniteHandler: (
       ...params
     });
   };
+
+/**
+ * @param condition If to set reason as 'match' value.
+ * @returns The result of the condition. In order to display only the matches jobs.
+ */
+export const isJobsMatchesPage = (condition: boolean) =>
+  condition
+    ? {
+        reason: 'match'
+      }
+    : {};

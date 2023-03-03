@@ -22,7 +22,7 @@ const sideBarStyle = {
   hoverLink: 'hover:bg-nav-600',
   margin: 'mb-2',
   'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
-  links: 'mt-2 flex flex-col items-center gap-6 w-full',
+  links: 'mt-2 flex flex-col items-center gap-4 w-full',
   li: 'w-full p-2 rounded-md',
   link: 'text-white w-full',
   icon: 'text-2xl',

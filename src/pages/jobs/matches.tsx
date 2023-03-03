@@ -1,6 +1,6 @@
 import { getServerSideProps } from '.';
 
-getServerSideProps;
+export { getServerSideProps };
 
 import React from 'react';
 import Jobs from '@/components/JobsPage/Jobs';

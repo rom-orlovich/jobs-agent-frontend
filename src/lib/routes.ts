@@ -1,8 +1,9 @@
 export const APP_ROUTES = {
   SEARCH_PAGE: 'search',
   JOBS_PAGE: 'jobs',
-  JOBS_TRACKINGING: 'jobs/tracking',
+  JOBS_TRACKING: 'jobs/tracking',
+  JOBS_MATCH: 'jobs/matches',
 
-  JOBS_TRACKINGING_INFO: (jobID: string) => `jobs/tracking/${jobID}/info`,
+  JOBS_TRACKING_INFO: (jobID: string) => `jobs/tracking/${jobID}/info`,
   SEARCH_HISTORY_PAGE: 'search/history'
 };

@@ -1,3 +1,4 @@
+import { isJobsMatchesPage } from '@/lib/jobs.utils';
 import { useRouter } from 'next/router';
 import useStateSession from './useStateSession';
 export interface FilterJobsField {
@@ -14,7 +15,7 @@ function useFilterJobs(isMatchPage?: boolean) {
     id: useRouter().pathname,
     values: {
       title: '',
-      reason: isMatchPage ? 'match' : ''
+      reason: ''
     }
   });
   //Handle the set value of autocomplete.
@@ -23,7 +24,8 @@ function useFilterJobs(isMatchPage?: boolean) {
       setFormValues((pre) => ({
         ...pre,
         page: 1,
-        [id]: value
+        [id]: value,
+        ...isJobsMatchesPage(!!isMatchPage)
       }));
     };
   }

@@ -1,7 +1,13 @@
 import { APP_ROUTES } from '@/lib/routes';
 import { GenericRecord } from '@/lib/types/types';
 import { ReactNode } from 'react';
-import { MdWork, MdOutlineLocationSearching, MdHistory, MdTrackChanges } from 'react-icons/md';
+import {
+  MdWork,
+  MdOutlineLocationSearching,
+  MdHistory,
+  MdTrackChanges,
+  MdLocalFireDepartment
+} from 'react-icons/md';
 interface NavLinkProps {
   link: string;
   isMargin?: boolean;
@@ -22,7 +28,12 @@ export const navLinks: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => 
     icon: <MdWork className={iconsStyle} />
   },
   {
-    link: `/${APP_ROUTES.JOBS_TRACKINGING}`,
+    link: `/${APP_ROUTES.JOBS_MATCH}`,
+    text: 'התאמות',
+    icon: <MdLocalFireDepartment className={iconsStyle} />
+  },
+  {
+    link: `/${APP_ROUTES.JOBS_TRACKING}`,
     text: 'מעקב',
     icon: <MdTrackChanges className={iconsStyle} />
   },

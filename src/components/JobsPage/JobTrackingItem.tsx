@@ -45,7 +45,7 @@ function JobTrackingItem(
       <div className={jobItemStyle.linkTrackDetailsContainer}>
         <Link
           className={jobItemStyle.linkTrackDetails}
-          href={`/${APP_ROUTES.JOBS_TRACKINGING_INFO(jobID)}`}
+          href={`/${APP_ROUTES.JOBS_TRACKING_INFO(jobID)}`}
         >
           <MdTextSnippet /> הוסף פרטים
         </Link>
