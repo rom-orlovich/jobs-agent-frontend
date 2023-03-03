@@ -1,9 +1,9 @@
 import { API_ENDPOINTS, SERVER_URL } from '../endpoints';
 
 import { GenericRecord } from '../types/types';
-import { convertResourceToURL } from '../utils';
+import { createURLPath } from '../utils';
 import { AxiosAPI } from './axios.api';
-const jobsAPI = new AxiosAPI(convertResourceToURL([SERVER_URL, API_ENDPOINTS.GET_JOBS]));
+const jobsAPI = new AxiosAPI(createURLPath([SERVER_URL, API_ENDPOINTS.GET_JOBS]));
 
 export const getJobs = async <R>(userID: string, params: GenericRecord<unknown>) => {
   try {

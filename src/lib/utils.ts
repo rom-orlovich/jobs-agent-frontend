@@ -85,7 +85,7 @@ export const covertObjToString = <T extends GenericRecord<any>>(
  * @param {string[]} resources The given string array of the resources.
  * @returns {string} The URL recourses join by "/".
  */
-export const convertResourceToURL = (resources: string[]) => {
+export const createURLPath = (resources: string[]) => {
   return resources.join('/');
 };
 
@@ -104,7 +104,7 @@ export const createURL = <T extends GenericRecord<any>>(
   keyValueDelimiter = '=',
   objFieldDelimiter = '&'
 ) => {
-  const resourcesURL = convertResourceToURL(resources);
+  const resourcesURL = createURLPath(resources);
 
   if (!params) return `${resourcesURL}`;
   const paramsURL = covertObjToString(params, keyValueDelimiter, objFieldDelimiter);

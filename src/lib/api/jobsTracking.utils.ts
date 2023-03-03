@@ -1,11 +1,11 @@
 import { API_ENDPOINTS, CLIENT_URL } from '@/lib/endpoints';
 import { Job } from '@/lib/jobsScanner.types';
 
-import { convertResourceToURL } from '@/lib/utils';
+import { createURLPath } from '@/lib/utils';
 import { ResponseMessage } from '../types/api.types';
 import { AxiosAPI } from './axios.api';
 
-const jobsTracksAPI = new AxiosAPI(convertResourceToURL([CLIENT_URL, API_ENDPOINTS.USERS]));
+const jobsTracksAPI = new AxiosAPI(createURLPath([CLIENT_URL, API_ENDPOINTS.USERS]));
 
 export const updateJobsTracking = async (userID: string, job: Job) => {
   const result = await jobsTracksAPI.put<ResponseMessage>(
