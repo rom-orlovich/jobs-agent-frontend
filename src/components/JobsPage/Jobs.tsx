@@ -42,10 +42,6 @@ function Jobs({
     {
       revalidateIfStale: true,
       revalidateFirstPage: false,
-      // revalidateOnFocus: false,
-      // refreshWhenOffline: false,
-      // revalidateOnMount: false,
-      // revalidateAll: false,
       fallbackData: [initialsProps]
     }
   );
@@ -57,7 +53,7 @@ function Jobs({
   const handleLoadButtonClick: MouseEventHandler<HTMLButtonElement> = () => setSize(size + 2);
 
   const textHeader = isMatchPage ? 'התאמות' : 'משרות';
-
+  console.log(jobsData);
   return (
     <>
       <div className={JobsStyle.jobsContainer}>

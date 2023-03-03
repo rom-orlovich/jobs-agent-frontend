@@ -13,7 +13,6 @@ import { getJobs } from '@/lib/api/jobs.util';
 import Jobs from '@/components/JobsPage/Jobs';
 import { APP_ROUTES } from '@/lib/routes';
 import { isJobsMatchesPage } from '@/lib/jobs.utils';
-
 export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (context) => {
   //Get current session data.
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -36,7 +35,6 @@ function JobsPage(props: InferGetServerSidePropsType<typeof getServerSideProps>)
 
   //Redirect to home page if no jobs were found.
   useRedirect(() => checkIsJobsFoundWithToast(jobs));
-
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />

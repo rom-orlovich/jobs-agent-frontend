@@ -33,7 +33,9 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
       await scanner.trigger({
         hash: hashIsActive ? hash : undefined
       });
-      const res = await mutate<{ data: UserProfile }>(`/api/users/${user?.id}`);
+
+      const res = await mutate<{ data: UserProfile }>(`/${API_ENDPOINTS.USERS}/${user?.id}`);
+      console.log(res);
 
       router.push({
         pathname: `/${APP_ROUTES.JOBS_PAGE}`,
