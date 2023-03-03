@@ -1,22 +1,22 @@
-import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';
+import { getResMessage } from '@/lib/utils';
 import { getLocations } from 'mongoDB/lib/handlers';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // GET request /api/locations
   try {
     const locations = await getLocations(String(req.query.name));
-
+    //In case the locations are founded.
     return res.status(200).send({
       data: locations,
-      message: MESSAGES[MESSAGE_CODES.FOUNDED],
-      code: MESSAGE_CODES.FOUNDED
+      ...getResMessage('FOUNDED')
     });
   } catch (error) {
-    // Console.log(error);
+    //In case there is an error.
+    console.log(error);
     return res.status(500).send({
       data: undefined,
-      message: MESSAGES[MESSAGE_CODES.SOMETHING_WRONG],
-      code: MESSAGE_CODES.SOMETHING_WRONG
+      ...getResMessage('SOMETHING_WRONG')
     });
   }
 }

@@ -1,5 +1,7 @@
 import nextAuth, { AuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+
+//Next Auth options.
 export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
@@ -9,12 +11,14 @@ export const authOptions: AuthOptions = {
   ],
 
   callbacks: {
+    //Set the user data from the provider in the jwt token.
     jwt: ({ token, account, user }) => {
       if (account) {
         token.user = user;
       }
       return token;
     },
+    //Set the user data from the provider in the session.
     session: ({ session, token }) => {
       if (token.user) {
         session.user.id = token.user?.id;
