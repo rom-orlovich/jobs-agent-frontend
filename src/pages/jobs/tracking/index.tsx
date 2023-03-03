@@ -13,8 +13,8 @@ function Track() {
         title="Jobs Tracking"
         description="Here is the place to find all the jobs which are in your tracking."
       />
-      <div className="pr-10 xs:pr-16">
-        <JobsFeed userProfileData={userProfileData} isTrackFeed={true} />;
+      <div className="pl-4 pr-12 xs:pr-20">
+        <JobsFeed userProfileData={userProfileData} isTrackFeed={true} />
       </div>
     </>
   );
