@@ -15,10 +15,10 @@ import LocationsAutocomplete from './LocationsAutocomplete';
 import { UserQuery } from '@/lib/types/api.types';
 
 const userQueryStyle = {
-  selectInputsContainer: 'flex gap-2',
+  selectInputsContainer: 'flex gap-2 xs:flex-row flex-col',
   optionContainer: '',
   selectInputWrapper: '',
-  'input-label-wrapper': 'flex flex-col font-lg'
+  inputLabelWrapper: 'flex flex-col font-lg'
 };
 function UserQuery(formComponentsProps: ProfileFormComponentsProps<unknown>) {
   const { handleSelectionInput, formValues } = formComponentsProps;
@@ -53,7 +53,7 @@ function UserQuery(formComponentsProps: ProfileFormComponentsProps<unknown>) {
           {...formComponentsProps}
           inputLabelProps={{
             wrapperInputLabel: {
-              className: userQueryStyle['input-label-wrapper']
+              className: userQueryStyle.inputLabelWrapper
             }
           }}
         />
@@ -64,7 +64,7 @@ function UserQuery(formComponentsProps: ProfileFormComponentsProps<unknown>) {
         <LocationsAutocomplete
           inputLabelProps={{
             wrapperInputLabel: {
-              className: userQueryStyle['input-label-wrapper']
+              className: userQueryStyle.inputLabelWrapper
             }
           }}
           {...formComponentsProps}
