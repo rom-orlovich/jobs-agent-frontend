@@ -38,7 +38,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
         ...job,
         info: formsValues
       });
-      console.log(results.data.message);
+
       toast(results.data.message);
     } catch (error) {
       console.log(error);

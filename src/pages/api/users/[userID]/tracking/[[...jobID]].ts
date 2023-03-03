@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     //Update job tracking data.
     result = await updateJobTracking(userID, jobData);
-    console.log(getResMessage('TRACKING_JOB_UPDATED'));
+
     //In case when the job tracking data is updated.
     if (result?.modifiedCount) return res.status(201).send(getResMessage('TRACKING_JOB_UPDATED'));
 
