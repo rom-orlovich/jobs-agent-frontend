@@ -1,13 +1,11 @@
-// import { createNewJobTracking, deleteJobTracking } from '@/lib/api/jobsTracking.utils';
 import { Job } from '@/lib/types/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
-import { GenericRecord } from '@/lib/types/types';
+
 import React from 'react';
-// import { toast } from 'react-toastify';
-// import { mutate } from 'swr';
+
 import JobItem from './JobItem/JobItem';
 import JobTrackingItem from './JobItem/JobTrackingItem';
-import { handleClickBookmark } from './utils';
+import { createJobsTrackingMap, handleClickBookmark } from './utils';
 
 export const jobItemStyle = {
   item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[35%]',
@@ -22,41 +20,13 @@ interface JobsFeedProps {
   isTrackFeed?: boolean;
   saveSessionValues?: () => void;
 }
-
-/**
- * @param tracking Array of the jobs info from user profile data.
- * @returns {GenericRecord<TrackingInfo>} A obj that the indexes are the jobID and the values are the tracking object.
- */
-const createJobsTrackMap = (tracking: Job[]): GenericRecord<Job> => {
-  const JobTrackingMap: GenericRecord<Job> = {};
-  tracking?.forEach((jobTracking) => (JobTrackingMap[`${jobTracking.jobID}`] = jobTracking));
-  return JobTrackingMap;
-};
-
 const jobsFeedStyle = {
   feed: 'flex h-full flex-wrap justify-center gap-3 py-4'
 };
 function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
-  const jobsTrackMap = createJobsTrackMap(userProfileData.tracking || []);
-
-  // const handleClickBookmark: (job: Job, userID?: string) => MouseEventHandler<HTMLButtonElement> = (
-  //   job,
-  //   userID
-  // ) => {
-  //   return async (e) => {
-  //     e.preventDefault();
-  //     let result;
-  //     //Check if the job exist in the jobsTrackMap. If it doesn't add it. Otherwise delete it.
-  //     if (!jobsTrackMap[job.jobID]) result = await createNewJobTracking(userID || '', job);
-  //     else result = await deleteJobTracking(userID || '', job.jobID);
-
-  //     //Update the user profile.
-  //     await mutate(`/api/users/${userProfileData?.userID}`).then((el) => console.log(el));
-  //     console.log(result);
-  //     //Fire a toast.
-  //     toast(result.data.message);
-  //   };
-  // };
+  //Create Jobs map
+  const jobsTrackMap = createJobsTrackingMap(userProfileData.tracking || []);
+  //Handle the click on track button.
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
 
   let currentJobs;
