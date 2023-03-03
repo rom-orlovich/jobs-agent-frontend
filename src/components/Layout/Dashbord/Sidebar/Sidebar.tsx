@@ -11,6 +11,7 @@ import SideNavItem from './SideNavItem';
 import { navLinks } from './SidebarLinks';
 import { useAuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
+
 const sideBarStyle = {
   nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
   isOn: {
@@ -20,10 +21,10 @@ const sideBarStyle = {
     }
   },
   hoverLink: 'hover:bg-nav-600',
-  margin: 'mb-2',
+
   'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
   links: 'mt-2 flex flex-col items-center gap-4 w-full',
-  linksOffMode: 'h-[80%]  gap-8 justify-center',
+  linksOffMode: 'h-[70%]  gap-8 justify-center',
   li: 'w-full p-2 rounded-md',
   link: 'text-white w-full',
   icon: 'text-2xl',
