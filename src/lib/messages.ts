@@ -50,7 +50,7 @@ export const MESSAGES = {
   [MESSAGE_CODES.TRACKING_JOB_NOT_DELETED]: 'שגיאה בהסרת המעקב!',
   //SEARCH HISTORY
   [MESSAGE_CODES.SEARCH_HISTORY_FOUND]: 'היסטוריה החיפושים נמצאה!',
-  [MESSAGE_CODES.SEARCH_HISTORY_NOT_FOUND]: 'לא נמצאו חיפושים אחרונים',
+  [MESSAGE_CODES.SEARCH_HISTORY_NOT_FOUND]: 'לא נמצאו חיפושים אחרונים!',
   //GENERAL
   [MESSAGE_CODES.FOUNDED]: 'נמצא!',
   [MESSAGE_CODES.FOUNDED_BUT_NOT_MODIFIED]: 'המשאב נמצא אך לא עודכן.',

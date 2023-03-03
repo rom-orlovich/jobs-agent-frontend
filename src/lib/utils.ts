@@ -107,6 +107,8 @@ export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFu
     data
   };
 }
+
+export type ReturnCreateToastCBWithData<T> = ReturnType<typeof createToastCBWithData<T>>;
 export const createScannerURL = (endpoint: string, userID?: string) =>
   createURL([SERVER_URL, endpoint, userID || '']);
 

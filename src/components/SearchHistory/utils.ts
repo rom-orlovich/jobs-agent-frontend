@@ -1,7 +1,7 @@
 import { UserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
-import { getResMessage } from '@/lib/utils';
-import { toast } from 'react-toastify';
+import { createToastCBWithData, ReturnCreateToastCBWithData } from '@/lib/utils';
+
 import { Option } from '../Inputs/SelectInput/selectInput.types';
 
 /**
@@ -43,23 +43,12 @@ export const handleConvertUserQueryToText = (value: string, options: Option<stri
  */
 export const checkIsUserQueryHistoryFoundWithToast = (
   userQueries: UserQuery[]
-): UserQuery[] | undefined => {
+): ReturnCreateToastCBWithData<UserQuery[] | undefined> => {
   try {
-    if (!userQueries?.length) {
-      console.log(getResMessage('SEARCH_HISTORY_NOT_FOUND'));
-      toast(getResMessage('SEARCH_HISTORY_NOT_FOUND').message, {
-        toastId: 'noSearchFound'
-      });
-      return undefined;
-    }
-    toast(getResMessage('SEARCH_HISTORY_FOUND').message, {
-      toastId: 'searchHistoryFound'
-    });
-    return userQueries;
+    if (!userQueries?.length) return createToastCBWithData(undefined, 'SEARCH_HISTORY_NOT_FOUND');
+
+    return createToastCBWithData(userQueries, 'SEARCH_HISTORY_FOUND');
   } catch (error) {
-    toast(getResMessage('SOMETHING_WRONG').message, {
-      toastId: 'somethingWrong'
-    });
-    return undefined;
+    return createToastCBWithData(undefined, 'SOMETHING_WRONG');
   }
 };
