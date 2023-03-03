@@ -59,9 +59,18 @@ export default function Autocomplete<V>({
 
   return (
     <Combobox value={selectedOption} onChange={handleOnSelect}>
-      <div className={inputLabelProps?.wrapperInputLabel?.className}>
+      <div
+        dir={inputLabelProps?.wrapperInputLabel?.dir}
+        className={inputLabelProps?.wrapperInputLabel?.className}
+      >
         {label ? (
-          <Combobox.Label className={autoCompleteStyle.label} {...inputLabelProps?.labelProps}>
+          <Combobox.Label
+            {...inputLabelProps?.labelProps}
+            className={classNameGenerator(
+              autoCompleteStyle.label,
+              inputLabelProps?.labelProps?.className
+            )}
+          >
             {label}
           </Combobox.Label>
         ) : (
