@@ -7,7 +7,7 @@ import React, { MouseEventHandler } from 'react';
 import { MdTextSnippet } from 'react-icons/md';
 import TrackButton from '../Buttons/TrackButton';
 import Field from '../Field/Field';
-import { jobItemStyle } from './JobsFeed';
+import { jobItemStyle } from './Jobs/JobsFeed';
 
 function JobTrackingItem(
   props: Job & {

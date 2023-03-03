@@ -5,8 +5,8 @@ import { GenericRecord } from '@/lib/types/types';
 import React, { MouseEventHandler } from 'react';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
-import JobItem from './JobItem';
-import JobTrackingItem from './JobTrackingItem';
+import JobItem from '../JobItem';
+import JobTrackingItem from '../JobTrackingItem';
 
 export const jobItemStyle = {
   item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[30%]',
