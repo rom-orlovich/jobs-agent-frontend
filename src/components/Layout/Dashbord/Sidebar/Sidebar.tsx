@@ -1,7 +1,7 @@
 import ButtonAuth from '@/components/Buttons/ButtonAuth';
 import Toggle from '@/components/Toggle/Toggle';
 import { BoolKey } from '@/lib/types/types';
-import { classNameGenerator, createURL } from '@/lib/utils';
+import { classIsOn, classNameGenerator, createURL } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 import HamburgerMenu from './HamburgerMenu';
@@ -15,14 +15,15 @@ const sideBarStyle = {
   nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
   isOn: {
     nav: {
-      true: 'min-w-[12rem]',
+      true: 'min-w-[14rem]',
       false: 'min-w-[2rem]'
     }
   },
   hoverLink: 'hover:bg-nav-600',
   margin: 'mb-2',
   'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
-  links: 'mt-2 flex flex-col items-center gap-4 w-full',
+  links: 'mt-3 flex flex-col items-center gap-4 w-full',
+  linksOffMode: 'h-[80%]  gap-8 justify-center',
   li: 'w-full p-2 rounded-md',
   link: 'text-white w-full',
   icon: 'text-2xl',
@@ -32,6 +33,7 @@ function Sidebar() {
   const { userProfileData } = useAuthContext();
   const router = useRouter();
   const hash = userProfileData.activeHash;
+
   return (
     <Toggle>
       {(toggleProps) => {
@@ -48,9 +50,14 @@ function Sidebar() {
         return (
           <section className={classNameGenerator(sideBarStyle.nav, navIsOn, 'duration-500')}>
             <HamburgerMenu {...toggleProps} />
-            {toggleProps.isON && <Profile />}
+            {isON && <Profile />}
             <div className={sideBarStyle['links&button-container']}>
-              <ul className={sideBarStyle.links}>
+              <ul
+                className={classNameGenerator(
+                  sideBarStyle.links,
+                  classIsOn(!isON, sideBarStyle.linksOffMode)
+                )}
+              >
                 {navLinksEl.map((el, i) => {
                   const isActiveLink = router.pathname === el.link;
 
