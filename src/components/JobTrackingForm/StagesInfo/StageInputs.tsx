@@ -40,7 +40,7 @@ function StageInputs({
         </InputLabel>
       )}
     >
-      <div className="flex">
+      <div className="my-3 flex">
         <InputLabel
           labelProps={{
             className: jobTrackingFormStyle.label

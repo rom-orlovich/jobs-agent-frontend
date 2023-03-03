@@ -20,7 +20,7 @@ function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
         overflowProps={{
           minChild: 2,
           innerDiv: {
-            className: 'p-1 h-[5rem]'
+            className: 'p-3 h-[5rem]'
           },
           outerDiv: {
             className: 'p-1 h-[10rem]'

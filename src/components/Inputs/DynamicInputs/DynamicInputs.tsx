@@ -86,7 +86,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
         outerElementClass={classNameGenerator('h-[14rem]', overflowProps?.outerDiv?.className)}
         innerElementClass={classNameGenerator(overflowProps?.innerDiv?.className)}
       >
-        <ul>
+        <ul className="flex flex-col gap-2">
           {inputs?.map((input, i) => {
             return (
               <li key={input?.id} className="relative">
