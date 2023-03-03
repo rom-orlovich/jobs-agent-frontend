@@ -62,8 +62,9 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
     ];
   };
   const ref = useRef<null | HTMLDivElement>(null);
-
+  console.log(inputs.length, overflowProps?.minChild);
   const overflowIsActive = inputs.length >= (overflowProps?.minChild || 5);
+  console.log(overflowIsActive);
   // The function that execute the adding of a new input in the array.
   const addMoreInput: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { checkIsJobsFoundWithToast, defaultResponseJobs } from '@/lib/jobs.utils';
+import { defaultResponseJobs } from '@/lib/jobs.utils';
 import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
@@ -8,7 +8,7 @@ import React from 'react';
 
 import { authOptions } from '../api/auth/[...nextauth]';
 import PageHead from '@/components/Layout/PageHead/PageHead';
-import useRedirect from '@/hooks/useRedirect';
+
 import { getJobs } from '@/lib/api/jobs.util';
 import Jobs from '@/components/JobsPage/Jobs';
 import { APP_ROUTES } from '@/lib/routes';
@@ -31,10 +31,6 @@ export const getServerSideProps: GetServerSideProps<ResponseGetJobs> = async (co
 };
 
 function JobsPage(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { jobs } = props;
-
-  //Redirect to home page if no jobs were found.
-  useRedirect(() => checkIsJobsFoundWithToast(jobs));
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />

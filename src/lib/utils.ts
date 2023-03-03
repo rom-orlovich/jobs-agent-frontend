@@ -114,10 +114,11 @@ export const getResMessage = <KeyCode extends keyof typeof MESSAGE_CODES>(
 };
 
 export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFun; data: T } {
+  const messageObj = getResMessage(keyCode);
   return {
     cb: () => {
-      toast(getResMessage(keyCode).message, {
-        toastId: Date.now()
+      toast(messageObj.message, {
+        toastId: messageObj.code
       });
     },
     data

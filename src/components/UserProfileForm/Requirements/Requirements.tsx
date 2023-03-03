@@ -23,41 +23,40 @@ function Requirements({ handleRequirements, formValues }: ProfileFormComponentsP
   };
 
   return (
-    <DynamicInputs
-      overflowProps={{
-        outerDiv: {
-          className: 'p-2'
-        },
-        minChild: 2,
-        innerDiv: {
-          className: 'p-2'
-        }
-      }}
-      defaultValues={formValues.requirements.length ? formValues.requirements : initialRequirement}
-      Render={({ setValue, max, min, field }) => (
-        <MinMaxInputs
-          inputTitle={{
-            labelProps: {
-              title: 'דרישה'
-            }
-          }}
-          initialValues={{
-            min,
-            max,
-            field
-          }}
-          setValue={setValue}
-        />
-      )}
-    >
-      {(values) => {
-        return (
-          <div className="mt-2 flex w-full justify-end">
-            <SuccessButton onClick={handleConfirmRequirements(values)} />
-          </div>
-        );
-      }}
-    </DynamicInputs>
+    <div className="p-2">
+      <DynamicInputs
+        overflowProps={{
+          minChild: 3,
+          innerDiv: {
+            className: 'p-3 !h-[18rem]'
+          }
+        }}
+        defaultValues={formValues.requirements.length ? formValues.requirements : initialRequirement}
+        Render={({ setValue, max, min, field }) => (
+          <MinMaxInputs
+            inputTitle={{
+              labelProps: {
+                title: 'דרישה'
+              }
+            }}
+            initialValues={{
+              min,
+              max,
+              field
+            }}
+            setValue={setValue}
+          />
+        )}
+      >
+        {(values) => {
+          return (
+            <div className="mt-2 flex w-full justify-end">
+              <SuccessButton onClick={handleConfirmRequirements(values)} />
+            </div>
+          );
+        }}
+      </DynamicInputs>
+    </div>
   );
 }
 

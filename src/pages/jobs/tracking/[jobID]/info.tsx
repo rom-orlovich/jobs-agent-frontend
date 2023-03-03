@@ -1,10 +1,9 @@
+import { checkIsJobFoundWithToast } from '@/components/JobsPage/utils';
 import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import { useAuthContext } from '@/context/AuthContext';
 
 import useRedirect from '@/hooks/useRedirect';
-
-import { checkIsJobFoundWithToast } from '@/lib/jobs.utils';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';

@@ -10,6 +10,8 @@ import Spinner from '../Spinner/Spinner';
 import JobsHeader from './JobsHeader';
 import LoadButtonContainer from './LoadButtonContainer';
 import JobsFeed from './JobFeed/JobsFeed';
+import { checkIsJobsFoundWithToast } from './utils';
+import useRedirect from '@/hooks/useRedirect';
 
 const JobsStyle = {
   feedContainer: 'pr-10 xs:pr-16',
@@ -24,20 +26,18 @@ function Jobs({
   initialsProps: ResponseGetJobs;
   isMatchPage?: boolean;
 }) {
+  //Redirect to home page if no jobs were found.
+  useRedirect(() => checkIsJobsFoundWithToast(initialsProps.jobs));
+
   //Get filter Jobs query props.
   const filterJobsProps = useFilterJobs(isMatchPage);
   const { formValues } = filterJobsProps;
-  // const title = filterJobsProps.formValues.title;
-  // const reason = filterJobsProps.formValues.reason;
-
   //Get user profile data.
   const { userProfileData } = useAuthContext();
 
   //Use swr infinite.
   const useSwrInfiniteProps = useSWRInfiniteHook<ResponseGetJobs>(
     swrInfiniteHandler(userProfileData, {
-      // title: title,
-      // reason: reason
       ...formValues
     }),
     {

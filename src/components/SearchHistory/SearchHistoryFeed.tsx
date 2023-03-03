@@ -27,7 +27,7 @@ function SearchHistoryFeed() {
 
   const { userHistoryQueries, userProfileData } = authContext;
 
-  //Redirect to home page if no search history was found.
+  //Redirect to home page if no search history wasn't found.
   useRedirect(() => checkIsUserQueryHistoryFoundWithToast(userHistoryQueries));
 
   //Sort the user Queries by the date. The new one will be first.
