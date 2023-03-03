@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <PageHead title="Home" description="Welcome to Jobs agent!" />
-      <div className="mr-[4vw] mt-[10vh] flex h-full flex-col items-center justify-center">
+      <div className="mt-[10vh] flex h-full flex-col items-center justify-center pr-[3rem]">
         <UserProfileForm />
       </div>
     </>
