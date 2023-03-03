@@ -1,5 +1,5 @@
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
-import { TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
+import { TrackingInfoFormFormat } from '@/lib/types/jobsScanner.types';
 import { useRouter } from 'next/router';
 import React from 'react';
 import SuccessButton from '../Buttons/SuccessButton';

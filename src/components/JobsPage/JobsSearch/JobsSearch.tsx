@@ -2,7 +2,7 @@ import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 
 import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 
-import { FacetFilterResults } from '@/lib/jobsScanner.types';
+import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 
 import React from 'react';
 import { BiSearch } from 'react-icons/bi';

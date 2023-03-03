@@ -1,5 +1,5 @@
 import { MinMaxInputsOption } from '@/components/UserProfileForm/Requirements/MinMaxInputs';
-import { Job } from '../jobsScanner.types';
+import { Job } from './jobsScanner.types';
 
 import { MESSAGES, MESSAGE_CODES } from '../messages';
 import { GenericRecord, OmitKey } from './types';

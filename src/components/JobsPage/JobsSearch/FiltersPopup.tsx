@@ -4,7 +4,7 @@ import { IoFilterCircleSharp } from 'react-icons/io5';
 
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
-import { FacetFilterResults } from '@/lib/jobsScanner.types';
+import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 

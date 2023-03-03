@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { checkIsJobsFoundWithToast, defaultResponseJobs } from '@/lib/jobs.utils';
-import { ResponseGetJobs } from '@/lib/jobsScanner.types';
+import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getServerSession } from 'next-auth';
 

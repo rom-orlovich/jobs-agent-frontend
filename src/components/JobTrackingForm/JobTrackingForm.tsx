@@ -1,5 +1,5 @@
 import { useJobTrackingForm } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 
 import React from 'react';
 

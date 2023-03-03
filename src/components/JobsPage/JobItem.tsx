@@ -1,4 +1,4 @@
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';

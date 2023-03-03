@@ -1,4 +1,4 @@
-import { TrackingInfo, TrackingInfoFormFormat } from '@/lib/jobsScanner.types';
+import { TrackingInfo, TrackingInfoFormFormat } from '@/lib/types/jobsScanner.types';
 import { convertDateToValidInputFormat } from '@/lib/utils';
 /**
  * @returns {TrackingInfoFormFormat} The form's default values.

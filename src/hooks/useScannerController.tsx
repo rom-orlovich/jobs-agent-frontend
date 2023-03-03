@@ -6,7 +6,7 @@ import { Key, mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
-import { Args, ResponseScanner } from '@/lib/jobsScanner.types';
+import { Args, ResponseScanner } from '@/lib/types/jobsScanner.types';
 import { useRouter } from 'next/router';
 
 import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';

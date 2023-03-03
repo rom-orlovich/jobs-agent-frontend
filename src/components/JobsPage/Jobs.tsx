@@ -1,7 +1,7 @@
 import { useAuthContext } from '@/context/AuthContext';
 import useFilterJobs from '@/hooks/useFilterJobs';
 import { getLastCurJobData, swrInfiniteHandler } from '@/lib/jobs.utils';
-import { ResponseGetJobs } from '@/lib/jobsScanner.types';
+import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { useSWRInfiniteHook } from '@/lib/swr';
 
 import React, { MouseEventHandler } from 'react';

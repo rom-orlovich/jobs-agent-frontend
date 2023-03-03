@@ -1,4 +1,4 @@
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 import { APP_ROUTES } from '@/lib/routes';
 import { createLocalDate } from '@/lib/utils';
 

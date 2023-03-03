@@ -1,5 +1,5 @@
 import { createNewJobTracking, deleteJobTracking } from '@/lib/api/jobsTracking.utils';
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import { GenericRecord } from '@/lib/types/types';
 import React, { MouseEventHandler } from 'react';

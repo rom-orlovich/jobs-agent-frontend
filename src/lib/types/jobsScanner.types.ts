@@ -1,5 +1,5 @@
-import { MESSAGES } from './messages';
-import { OmitKey } from './types/types';
+import { MESSAGES } from '../messages';
+import { OmitKey } from './types';
 export type MessageKeys = keyof typeof MESSAGES;
 export interface ResponseScanner {
   message: string;

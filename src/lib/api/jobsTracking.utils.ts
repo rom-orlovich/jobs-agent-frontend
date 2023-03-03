@@ -1,5 +1,5 @@
 import { API_ENDPOINTS, CLIENT_URL } from '@/lib/endpoints';
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 
 import { createURLPath } from '@/lib/utils';
 import { ResponseMessage } from '../types/api.types';

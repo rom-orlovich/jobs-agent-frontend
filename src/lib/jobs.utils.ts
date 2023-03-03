@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { SWRInfiniteKeyLoader } from 'swr/infinite';
 
 import { API_ENDPOINTS, SERVER_URL } from './endpoints';
-import { Job, ResponseGetJobs } from './jobsScanner.types';
+import { Job, ResponseGetJobs } from './types/jobsScanner.types';
 import { MESSAGES, MESSAGE_CODES } from './messages';
 import { UserProfileWithOneUserQuery } from './types/api.types';
 import { GenericRecord } from './types/types';

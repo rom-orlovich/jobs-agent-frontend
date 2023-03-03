@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 
 import { getCollection, getDocumentsByName } from './utils';

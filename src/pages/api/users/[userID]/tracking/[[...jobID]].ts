@@ -1,4 +1,4 @@
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 
 import { getResMessage } from '@/lib/utils';
 import { addJobTracking, deleteJobTracking, updateJobTracking } from 'mongoDB/lib/jobTracking';

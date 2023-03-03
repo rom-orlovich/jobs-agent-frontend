@@ -2,7 +2,7 @@
 
 import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { Args } from '@/lib/jobsScanner.types';
+import { Args } from '@/lib/types/jobsScanner.types';
 
 import { createScannerURL } from '@/lib/utils';
 

@@ -1,4 +1,4 @@
-import { Job } from '@/lib/jobsScanner.types';
+import { Job } from '@/lib/types/jobsScanner.types';
 import { getCollection } from './utils';
 
 export const addJobTracking = async (userID: string, job: Job) => {
