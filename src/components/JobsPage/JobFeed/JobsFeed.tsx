@@ -6,9 +6,10 @@ import React from 'react';
 import JobItem from './JobItem/JobItem';
 import JobTrackingItem from './JobItem/JobTrackingItem';
 import { createJobsTrackingMap, handleClickBookmark } from './utils';
+import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 
 export const jobItemStyle = {
-  item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[35%]',
+  item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[30%]',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
   bookmarkButton: 'text-base'
@@ -34,19 +35,22 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   else currentJobs = jobs;
 
   return (
-    <ul dir="ltr" className={jobsFeedStyle.feed}>
-      {currentJobs?.map((job, i) => {
-        const jobItemProps = {
-          ...job,
-          mark: !!jobsTrackMap[job?.jobID],
-          key: job.jobID + i,
-          index: i,
-          handleClickBookmark: handleClickBookmarkFun(job)
-        };
+    <>
+      <ul dir="ltr" className={jobsFeedStyle.feed}>
+        {currentJobs?.map((job, i) => {
+          const jobItemProps = {
+            ...job,
+            mark: !!jobsTrackMap[job?.jobID],
+            key: job.jobID + i,
+            index: i,
+            handleClickBookmark: handleClickBookmarkFun(job)
+          };
 
-        return isTrackFeed ? <JobTrackingItem {...jobItemProps} /> : <JobItem {...jobItemProps} />;
-      })}
-    </ul>
+          return isTrackFeed ? <JobTrackingItem {...jobItemProps} /> : <JobItem {...jobItemProps} />;
+        })}
+      </ul>
+      <ScrollUpButton />
+    </>
   );
 }
 
