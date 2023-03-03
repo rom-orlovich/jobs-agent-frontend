@@ -21,7 +21,7 @@ function useUserProfile(userID: string) {
       refreshWhenOffline: false,
       revalidateOnReconnect: false,
 
-      revalidateOnFocus: false
+      revalidateOnFocus: true
     }
   );
   //Default values.

@@ -41,10 +41,10 @@ function Jobs({
     {
       revalidateIfStale: true,
       revalidateFirstPage: false,
-      revalidateOnFocus: false,
-      refreshWhenOffline: false,
-      revalidateOnMount: false,
-      revalidateAll: false,
+      // revalidateOnFocus: false,
+      // refreshWhenOffline: false,
+      // revalidateOnMount: false,
+      // revalidateAll: false,
       fallbackData: [initialsProps]
     }
   );
