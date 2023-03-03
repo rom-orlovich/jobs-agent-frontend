@@ -11,10 +11,10 @@ export interface InputBucketProps {
   defaultValues?: string[];
 }
 const inputBucketStyle = {
-  'add-button': 'absolute top-[12%] mr-1',
-  'tags-list': 'mt-2 flex flex-wrap gap-2',
-  tag: 'relative  flex h-8 flex-[25%] cursor-pointer items-center justify-center rounded-md bg-tag-500 text-center text-white hover:bg-tag-400',
-  'button-x': 'absolute right-0 top-0'
+  addButton: 'absolute top-[12%] mr-1',
+  tagsList: 'mt-4 flex flex-wrap gap-2',
+  tag: 'relative  flex xs:h-8 h-6 xs:flex-[25%] flex-[20%] xs:max-w-[30%] max-w-[20%] cursor-pointer items-center justify-center xs:text-base text-xs rounded-md bg-tag-500 text-center text-white hover:bg-tag-400',
+  buttonX: 'absolute right-0 top-0 xs:text-sm text-xs'
 };
 
 /**
@@ -61,21 +61,21 @@ function InputBucket({ inputLabelProps, children, defaultValues }: InputBucketPr
           {...inputLabelProps}
           inputProps={{
             ref: inputRef,
-            className: 'max-w-[20rem]'
+            className: 'w-[90%]'
           }}
         >
           {inputLabelProps?.labelProps?.title}
         </InputLabel>
 
-        <CircleAddButton className={inputBucketStyle['add-button']} onClick={handleAddValue} />
+        <CircleAddButton className={inputBucketStyle.addButton} onClick={handleAddValue} />
       </div>
 
-      <ul className={inputBucketStyle['tags-list']}>
+      <ul className={inputBucketStyle.tagsList}>
         {curBucketValuesArr.map((el, i) => {
           return (
             <li className={inputBucketStyle.tag} key={el + i}>
               {el}
-              <button onClick={handleRemoveValue(el)} className={inputBucketStyle['button-x']}>
+              <button onClick={handleRemoveValue(el)} className={inputBucketStyle.buttonX}>
                 <AiFillCloseCircle />
               </button>
             </li>

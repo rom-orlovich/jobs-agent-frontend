@@ -18,7 +18,7 @@ function ExcludedRequirements({
       {(bucketValues) => {
         return (
           <div className="flex w-full justify-end">
-            <SuccessButton className="mt-2" onClick={handleConfirmExcludedRequirements(bucketValues)} />
+            <SuccessButton className="mt-4" onClick={handleConfirmExcludedRequirements(bucketValues)} />
           </div>
         );
       }}
