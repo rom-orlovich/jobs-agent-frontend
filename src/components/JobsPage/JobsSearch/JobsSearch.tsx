@@ -28,9 +28,8 @@ function JobsSearch({
     jobSearchContainer: 'flex xs:justify-start w-full',
     autocompleteWrapper: 'relative w-fit items-center',
     input: 'py-1 sm:min-w-[15rem] min-w-[18rem]',
-    icon: 'text-blue-300 absolute right-2  text-xl top-[30%]',
-    filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl',
-    popupInputIcon: 'text-blue-300 absolute  text-xl top-[57%] right-0'
+    icon: 'text-blue-300 absolute right-2  text-xl top-[25%]',
+    filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl'
   };
   const IconButtonProps = {
     Icon: <BiSearch />,
@@ -64,10 +63,7 @@ function JobsSearch({
           includeReasonFilters={includeReasonFilters}
           jobsFilters={jobsFilters}
           iconButtonProps={{
-            ...IconButtonProps,
-            buttonProps: {
-              className: jobsSearchStyle.popupInputIcon
-            }
+            ...IconButtonProps
           }}
           filterJobsProps={filterJobsProps}
         />

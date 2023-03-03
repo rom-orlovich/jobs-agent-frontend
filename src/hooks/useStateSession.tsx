@@ -17,7 +17,6 @@ function useStateSession<V extends GenericRecord<any>>({ id, values }: { id: str
     return () => {
       window.sessionStorage.setItem(id, JSON.stringify(state));
     };
-    // }
   }, [state, id]);
 
   return [state, setState] as const;
