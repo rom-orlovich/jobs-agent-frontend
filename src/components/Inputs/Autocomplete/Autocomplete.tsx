@@ -15,7 +15,7 @@ const autoCompleteStyle = {
 export default function Autocomplete<V>({
   setValue,
   options,
-  // multiple,
+
   label,
   defaultValue,
   inputLabelProps

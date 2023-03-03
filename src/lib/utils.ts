@@ -48,7 +48,7 @@ export function getObjExistKeysValues<V extends GenericRecord<any>>(
 ): { existKeysValues: Partial<V>; count: number } {
   const existKeysValues = {} as Partial<V>;
   let count = 0;
-  console.log(obj);
+
   Object.entries(obj).forEach(([key, value]) => {
     if (key && value) {
       (existKeysValues[key as keyof V] = value), count++;
