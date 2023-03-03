@@ -12,7 +12,7 @@ import JobsFeed from './JobsFeed';
 import JobsSearch from './JobsSearch/JobsSearch';
 
 const JobsStyle = {
-  jobsContainer: 'flex justify-between px-8 pr-16 xs:flex-col  sm:flex-col',
+  jobsHeaderContainer: 'flex justify-between px-8 pr-16 xs:flex-col flex-col',
   loadButtonContainer: 'flex w-full items-center justify-center',
   loadButton: 'items-center px-7 py-2 text-2xl',
   spinner: '!top-[none] bottom-5'
@@ -53,10 +53,10 @@ function Jobs({
   const handleLoadButtonClick: MouseEventHandler<HTMLButtonElement> = () => setSize(size + 2);
 
   const textHeader = isMatchPage ? 'התאמות' : 'משרות';
-  console.log(jobsData);
+
   return (
     <>
-      <div className={JobsStyle.jobsContainer}>
+      <div className={JobsStyle.jobsHeaderContainer}>
         <h1 className="text-3xl">
           כ- {lastResponse.pagination?.numResultsFound || 0} {textHeader} נמצאו:
         </h1>

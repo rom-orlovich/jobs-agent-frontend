@@ -38,6 +38,7 @@ function JobsPage(props: InferGetServerSidePropsType<typeof getServerSideProps>)
   return (
     <>
       <PageHead title="Jobs" description="Here is the place to find your next job." />
+
       <Jobs initialsProps={props} />
     </>
   );

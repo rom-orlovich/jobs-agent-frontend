@@ -7,8 +7,7 @@ const jobItemStyle = {
   item: 'flex-[100%]  rounded-md bg-white p-4 shadow-lg sm:flex-[45%] md:flex-[30%] ',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
-  bookmarkButton: 'text-base',
-  buttonStatusContainer: 'flex justify-center mt-3'
+  bookmarkButton: 'text-base'
 };
 
 function JobItem(
@@ -34,7 +33,6 @@ function JobItem(
         <div> {from} </div>
         <div> {reason === 'match' ? '!יש התאמה' : reason} </div>
       </div>
-      {<div className={jobItemStyle.buttonStatusContainer}></div>}
     </li>
   );
 }
