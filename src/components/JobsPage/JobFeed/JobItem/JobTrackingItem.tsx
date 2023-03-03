@@ -21,7 +21,8 @@ function JobTrackingItem(
     itemTracking: 'flex flex-col justify-between gap-2',
     dateContainer: 'flex flex-end',
     sendCVContainer: 'flex flex-end',
-    linkTrackDetailsContainer: 'flex justify-center ',
+
+    linkTrackDetailsContainer: 'flex justify-center mt-2',
     linkTrackDetails: 'button-custom  bg-status-400 text-white text-sm  flex items-center gap-1'
   };
   const { link, title, jobID, index, mark, info } = props;
@@ -39,17 +40,23 @@ function JobTrackingItem(
           <Field value={localDateStr} titleStyle={'font-bold'} title="נוצר ב-" />
         </div>
         <div>
-          <Link href={link}> {title}</Link>{' '}
+          <Link href={link}> {title}</Link>
         </div>
         {props.company && <div> {props.company}</div>}
       </div>
-      <div className={jobTrackingItemStyle.linkTrackDetailsContainer}>
-        <Link
-          className={jobTrackingItemStyle.linkTrackDetails}
-          href={`/${APP_ROUTES.JOBS_TRACKING_INFO(jobID)}`}
-        >
-          <MdTextSnippet /> הוסף פרטים
-        </Link>
+      <div>
+        <div className={jobTrackingItemStyle.reason}>
+          {props.reason === 'match' ? '!יש התאמה' : props.reason}
+        </div>
+
+        <div className={jobTrackingItemStyle.linkTrackDetailsContainer}>
+          <Link
+            className={jobTrackingItemStyle.linkTrackDetails}
+            href={`/${APP_ROUTES.JOBS_TRACKING_INFO(jobID)}`}
+          >
+            <MdTextSnippet /> הוסף פרטים
+          </Link>
+        </div>
       </div>
     </li>
   );

@@ -25,7 +25,7 @@ function JobItem(
         {props.company && <div> {props.company}</div>}
         <div>{props.location} </div>
         <div> {from} </div>
-        <div> {reason === 'match' ? '!יש התאמה' : reason} </div>
+        <div className={jobItemStyle.reason}> {reason === 'match' ? '!יש התאמה' : reason} </div>
       </div>
     </li>
   );
