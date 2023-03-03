@@ -6,10 +6,10 @@ import { useSWRInfiniteHook } from '@/lib/swr';
 
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
-import JobsFeed from './Jobs/JobsFeed';
 
-import LoadButtonContainer from './Jobs/LoadButtonContainer';
-import JobsHeader from './Jobs/JobsHeader';
+import JobsHeader from './JobsHeader';
+import LoadButtonContainer from './LoadButtonContainer';
+import JobsFeed from './JobFeed/JobsFeed';
 
 const JobsStyle = {
   feedContainer: 'pr-10 xs:pr-16',

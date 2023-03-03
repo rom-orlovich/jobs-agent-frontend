@@ -1,4 +1,4 @@
-import JobsFeed from '@/components/JobsPage/Jobs/JobsFeed';
+import JobsFeed from '@/components/JobsPage/JobFeed/JobsFeed';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import { useAuthContext } from '@/context/AuthContext';
 import React from 'react';
