@@ -3,7 +3,6 @@ import { SWRInfiniteKeyLoader } from 'swr/infinite';
 
 import { API_ENDPOINTS, SERVER_URL } from './endpoints';
 import { Job, ResponseGetJobs } from './types/jobsScanner.types';
-import { MESSAGES, MESSAGE_CODES } from './messages';
 import { UserProfileWithOneUserQuery } from './types/api.types';
 import { GenericRecord } from './types/types';
 import { createURL, getResMessage } from './utils';
@@ -16,21 +15,17 @@ import { createURL, getResMessage } from './utils';
 export const checkIsJobsFoundWithToast = (jobs: Job[]): Job[] | undefined => {
   try {
     if (!jobs?.length) {
-      console.log(MESSAGES[MESSAGE_CODES.JOB_ARE_NOT_FOUND]);
       toast(getResMessage('JOB_ARE_NOT_FOUND').message, {
-        rtl: true,
         toastId: 'noJobsFound'
       });
       return undefined;
     }
     toast(getResMessage('SCANNER_SUCCESS').message, {
-      rtl: true,
       toastId: 'jobsFound'
     });
     return jobs;
   } catch (error) {
     toast(getResMessage('SOMETHING_WRONG').message, {
-      rtl: true,
       toastId: 'somethingWrong'
     });
     return undefined;
@@ -59,6 +54,7 @@ export const checkIsJobFoundWithToast = (job?: Job) => {
     return undefined;
   }
 };
+
 export const defaultResponseJobs: ResponseGetJobs = {
   jobs: [] as Job[],
   pagination: {

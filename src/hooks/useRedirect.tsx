@@ -14,7 +14,7 @@ function useRedirect<R>(cb: (...args: any[]) => R | undefined, url = '/'): R | u
   const { trigger } = useOnce();
   const cbMemo = useMemo(() => cb(), [cb]);
   useEffect(() => {
-    if (!cbMemo) trigger(() => delayFun(() => router.push(url, url), 1000));
+    if (!cbMemo) trigger(() => delayFun(() => router.push(url, url), 2000));
   }, [cbMemo, router, trigger, url]);
 
   return cbMemo;

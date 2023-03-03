@@ -60,8 +60,10 @@ function Jobs({
 
       <JobsFeed jobs={jobsData} userProfileData={userProfileData} />
 
-      {jobsData.length && (
+      {jobsData.length ? (
         <LoadButtonContainer setSize={setSize} hasMore={lastResponse.pagination.hasMore} />
+      ) : (
+        <></>
       )}
 
       <Spinner className={JobsStyle.spinner} isLoading={isValidating || isLoading || !data} />
