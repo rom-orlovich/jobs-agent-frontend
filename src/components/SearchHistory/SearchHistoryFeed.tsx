@@ -13,7 +13,7 @@ import { sortUserHistoryQueries } from './utils';
 import { toast } from 'react-toastify';
 
 const searchHistoryFeedStyle = {
-  feed: 'pr-16 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
+  feed: 'sm:pr-16 pr-8 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
 };
 function SearchHistoryFeed() {
   const router = useRouter();
