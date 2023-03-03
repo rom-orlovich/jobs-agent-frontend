@@ -7,10 +7,12 @@ import { useEffect, useState } from 'react';
  */
 function useStateSession<V extends GenericRecord<any>>({ id, values }: { id: string; values: V }) {
   const getSession = () => {
-    const session = JSON.parse(window.sessionStorage.getItem(id) || '{}');
+    const session = JSON.parse(window.sessionStorage.getItem(id) || JSON.stringify(values));
     return session;
   };
-  const [state, setState] = useState<V>(getSession() || values);
+
+  const [state, setState] = useState<V>(getSession());
+
   useEffect(() => {
     return () => {
       window.sessionStorage.setItem(id, JSON.stringify(state));

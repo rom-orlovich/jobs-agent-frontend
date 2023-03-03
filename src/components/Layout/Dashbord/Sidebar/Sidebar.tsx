@@ -41,8 +41,14 @@ function Sidebar() {
         const bool = String(isON) as BoolKey;
         const navIsOn = sideBarStyle['isOn']['nav'][bool];
         const navLinksEl = navLinks(sideBarStyle.icon);
-        // navLinksEl[1].link = navLinksEl[1].link + '?hash=' + hash;
+
+        //Set jobs page's and jobs matches page's link to be with user's current active hash
         navLinksEl[1].link = createURL([navLinksEl[1].link], {
+          hash: hash,
+          page: 1
+        });
+        navLinksEl[2].link = createURL([navLinksEl[2].link], {
+          reason: 'match',
           hash: hash,
           page: 1
         });

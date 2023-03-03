@@ -58,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     result = await deleteUserQuery(userID, hash);
 
     //In case the user query's is delete.
-    if (result?.acknowledged) return res.status(201).send(getResMessage('USER_IS_UPDATED'));
+    if (result?.acknowledged) return res.status(201).send(getResMessage('USER_QUERY_DELETED'));
 
     //In case the conditions above are false.
     return res.status(404).send(getResMessage('USER_NOT_FOUND'));

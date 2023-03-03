@@ -29,6 +29,7 @@ function Jobs({
   const filterJobsProps = useFilterJobs(isMatchPage);
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
+  console.log('reason', reason);
   //Get user profile data.
   const { userProfileData } = useAuthContext();
 

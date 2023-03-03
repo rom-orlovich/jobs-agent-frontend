@@ -15,7 +15,8 @@ function useFilterJobs(isMatchPage?: boolean) {
     id: useRouter().pathname,
     values: {
       title: '',
-      reason: ''
+      reason: '',
+      ...isJobsMatchesPage(!!isMatchPage)
     }
   });
   //Handle the set value of autocomplete.
