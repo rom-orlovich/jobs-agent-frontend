@@ -17,5 +17,7 @@ export interface DynamicInputsProps<T extends DynamicInputRenderProps> {
     outerDiv?: DivProps;
     innerDiv?: DivProps;
     minChild?: number;
+    activeClassInner?: string;
+    activeClassOuter?: string;
   };
 }

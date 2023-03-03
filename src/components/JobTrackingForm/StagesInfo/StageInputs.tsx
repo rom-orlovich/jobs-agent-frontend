@@ -27,6 +27,9 @@ function StageInputs({
     <ToggleTopic
       as={() => (
         <InputLabel
+          labelProps={{
+            className: 'gap-2 flex-col flex'
+          }}
           inputProps={{
             value: name || '',
             id: 'name',

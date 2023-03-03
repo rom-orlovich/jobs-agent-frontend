@@ -18,10 +18,15 @@ function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
     >
       <DynamicInputs
         overflowProps={{
-          minChild: 0,
+          minChild: 2,
           innerDiv: {
-            className: 'p-3 h-[18rem]'
-          }
+            className: 'p-1 h-[5rem]'
+          },
+          outerDiv: {
+            className: 'p-1 h-[10rem]'
+          },
+          activeClassOuter: 'min-h-[14rem]',
+          activeClassInner: 'min-h-[18rem]'
         }}
         removeButtonProps={{
           className: '!top-0'

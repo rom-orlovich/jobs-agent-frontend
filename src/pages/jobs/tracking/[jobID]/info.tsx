@@ -24,8 +24,8 @@ export const useGetJobsTrackingInfo = () => {
 };
 
 export const infoStyle = {
-  formContainer: 'flex justify-center w-full h-full ',
-  card: 'card min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
+  formContainer: 'flex justify-center w-full h-full pr-8',
+  card: 'card min-w-[20rem] sm:min-w-[23rem] max-w-[25rem] min-h-[28rem]  p-8',
   title: 'text-2xl underline',
   company: 'text-xl underline mt-2'
 };
