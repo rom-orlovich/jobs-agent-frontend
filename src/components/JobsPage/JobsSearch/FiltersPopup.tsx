@@ -18,10 +18,7 @@ function FiltersPopup({
   jobsFilters: FacetFilterResults;
 }) {
   const { handleSearchValue } = filterJobsProps;
-  // const checkMatchJob = (title?: string) => {
-  //   if (title === 'match') return 'יש התאמה!';
-  //   return title;
-  // };
+
   const optionsReasons: Option<string>[] = jobsFilters.reasons.map((reason, i) => ({
     id: reason + i,
     title: reason,
@@ -51,9 +48,6 @@ function FiltersPopup({
             options={optionsReasons}
             inputLabelProps={{
               IconButtonProps: iconButtonProps
-              // inputProps: {
-              //   value: filterJobsProps.formValues.reason
-              // }
             }}
           />
         </div>

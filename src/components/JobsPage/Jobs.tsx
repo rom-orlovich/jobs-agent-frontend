@@ -18,11 +18,18 @@ const JobsStyle = {
   spinner: '!top-[none] bottom-5'
 };
 
-function Jobs({ initialsProps }: { initialsProps: ResponseGetJobs }) {
+function Jobs({
+  initialsProps,
+  isMatchPage
+}: {
+  initialsProps: ResponseGetJobs;
+  isMatchPage?: boolean;
+}) {
   //Get filter Jobs query props.
-  const filterJobsProps = useFilterJobs();
+  const filterJobsProps = useFilterJobs(isMatchPage);
   const title = filterJobsProps.formValues.title;
   const reason = filterJobsProps.formValues.reason;
+
   //Get user profile data.
   const { userProfileData } = useAuthContext();
 
@@ -53,7 +60,11 @@ function Jobs({ initialsProps }: { initialsProps: ResponseGetJobs }) {
     <>
       <div className={JobsStyle.jobsContainer}>
         <h1 className="text-3xl">כ- {lastResponse.pagination?.numResultsFound || 0} משרות נמצאו:</h1>
-        <JobsSearch filterJobsProps={filterJobsProps} jobsFilters={lastResponse.filters} />
+        <JobsSearch
+          filterJobsProps={filterJobsProps}
+          jobsFilters={lastResponse.filters}
+          includeReasonFilter={!isMatchPage}
+        />
       </div>
 
       <JobsFeed jobs={jobsData} userProfileData={userProfileData} />

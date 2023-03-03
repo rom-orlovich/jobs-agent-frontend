@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import useStateSession from './useStateSession';
 export interface FilterJobsField {
   title: string;
@@ -8,12 +9,12 @@ export interface FilterJobsField {
  *
  * @returns The handles function and formState of useFilterJobs.
  */
-function useFilterJobs() {
+function useFilterJobs(isMatchPage?: boolean) {
   const [formValues, setFormValues] = useStateSession<FilterJobsField>({
-    id: 'formsValues',
+    id: useRouter().pathname,
     values: {
       title: '',
-      reason: ''
+      reason: isMatchPage ? 'match' : ''
     }
   });
   //Handle the set value of autocomplete.
