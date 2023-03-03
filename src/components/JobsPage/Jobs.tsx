@@ -54,7 +54,7 @@ function Jobs({
       <JobsHeader
         filterJobsProps={filterJobsProps}
         filters={lastResponse.filters}
-        isMatchPage
+        isMatchPage={!!isMatchPage}
         numResultsFound={lastResponse.pagination?.numResultsFound}
       />
 
