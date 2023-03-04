@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AnyFun } from '@/lib/types/types';
-import { delayFun } from '@/lib/utils';
+// import { delayFun } from '@/lib/utils';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 
@@ -16,7 +16,8 @@ function useRedirect<R>(cb: (...args: any[]) => { data: R; cb: AnyFun }, url = '
   const { trigger } = useOnce();
   const cbMemo = useMemo(() => cb(), [cb]);
   useEffect(() => {
-    if (!cbMemo.data) trigger(() => delayFun(() => router.push(url, url).then(() => cbMemo?.cb()), 0));
+    if (!cbMemo.data) cbMemo?.cb();
+    // trigger(() => delayFun(() => router.push(url, url).then(() => cbMemo?.cb()), 0));
   }, [cbMemo, router, trigger, url]);
   return cbMemo.data;
 }
