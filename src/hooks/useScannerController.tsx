@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { covertObjToString, createScannerURL } from '@/lib/utils';
+import { covertQueryParamsToString, createURLPath } from '@/lib/utils';
 
 import { Key, mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
@@ -16,13 +16,13 @@ import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
 function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsActive?: boolean) {
   const router = useRouter();
-  const scannerURL = createScannerURL(API_ENDPOINTS.SCANNER_START, user?.id);
+  const scannerURL = createURLPath([API_ENDPOINTS.SCANNER_START, user?.id]);
 
   //Initialize search scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner, any, Key, { hash?: string }>(
     scannerURL,
     (url: string, options: Args) =>
-      fetch(`${url}?${covertObjToString(options.arg)}`).then((res) => res.json())
+      fetch(`${url}?${covertQueryParamsToString(options.arg)}`).then((res) => res.json())
   );
 
   // Handles the Load button click event.
@@ -35,7 +35,6 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
       });
 
       const res = await mutate<{ data: UserProfile }>(`/${API_ENDPOINTS.USERS}/${user?.id}`);
-      console.log(res);
 
       router.push({
         pathname: `/${APP_ROUTES.JOBS_PAGE}`,

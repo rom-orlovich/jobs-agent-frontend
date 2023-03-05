@@ -11,7 +11,9 @@ import React from 'react';
 export const checkIsJobFoundWithToast = (jobs?: Job[]) => {
   try {
     console.log(jobs);
-    if (jobs?.length === 0) return createToastCBWithData(undefined, 'TRACKING_JOBS_ARE_NOT_FOUND');
+
+    if (!jobs || jobs?.length === 0)
+      return createToastCBWithData(undefined, 'TRACKING_JOBS_ARE_NOT_FOUND');
     return createToastCBWithData(jobs, 'TRACKING_JOBS_ARE_FOUND');
   } catch (error) {
     return createToastCBWithData(undefined, 'SOMETHING_WRONG');

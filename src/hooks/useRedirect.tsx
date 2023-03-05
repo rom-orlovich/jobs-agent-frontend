@@ -16,8 +16,13 @@ function useRedirect<R>(cb: (...args: any[]) => { data: R; cb: AnyFun }, url = '
   const { trigger } = useOnce();
   const cbMemo = useMemo(() => cb(), [cb]);
   useEffect(() => {
-    if (!cbMemo.data) cbMemo?.cb();
-    // trigger(() => delayFun(() => router.push(url, url).then(() => cbMemo?.cb()), 0));
+    if (!cbMemo.data) {
+      router.push(url, url);
+      // trigger(() => delayFun(() => router.push(url, url).then(() => cbMemo?.cb()), 0));
+    }
+    router.events.on('routeChangeComplete', () => {
+      trigger(() => cbMemo?.cb());
+    });
   }, [cbMemo, router, trigger, url]);
   return cbMemo.data;
 }

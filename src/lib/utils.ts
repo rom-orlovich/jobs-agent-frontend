@@ -1,10 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { toast } from 'react-toastify';
-import { SERVER_URL } from './endpoints';
+
 import { MESSAGES, MESSAGE_CODES } from './messages';
 import { KeyCode, ResponseMessage } from './types/api.types';
 import { AnyFun, GenericRecord } from './types/types';
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Dates utils.
+ */
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @param date A date value.
+ * @returns {string} convert the date to local string.
+ */
+export const createLocalDate = (date?: Date) => {
+  const createdAtDate = new Date(date || '');
+  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
+    timeZone: 'Asia/Jerusalem'
+  });
+  return createLocalTimeDate;
+};
+
+export const convertDateToValidInputFormat = (date?: Date) => {
+  return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as string;
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Classnames utils.
+ */
+//////////////////////////////////////////////////////////////////////////////////////////
+
 export const classIsOn = (isON: boolean, className: string) => (isON ? className : '');
 
 /**
@@ -16,18 +44,11 @@ export const classNameGenerator = (...classes: (string | undefined)[]) => {
   return `${classes.filter((el) => el).join(' ')}`;
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @param {string} words Words to capital their first letter.
- * @returns {string | undefined|null} Each words with capital first letter or undefined.
+ * URL utils function
  */
-export function capitalFirstLetter(words?: string | null): string | undefined | null {
-  return words
-    ? words
-        ?.split(' ')
-        .map((words) => words[0].toUpperCase() + words.slice(1))
-        .join(' ')
-    : words;
-}
+//////////////////////////////////////////////////////////////////////////////////////////
 /**
  * @param {T} obj The URL queries string.
  * @param {string} keyValueDelimiter The delimiter the connect between the  key and its value. default "=".
@@ -35,7 +56,7 @@ export function capitalFirstLetter(words?: string | null): string | undefined | 
  * @returns {string} The string form the objs.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const covertObjToString = <T extends GenericRecord<any>>(
+export const covertQueryParamsToString = <T extends GenericRecord<any>>(
   obj: T,
   keyValueDelimiter = '=',
   objFieldDelimiter = '&'
@@ -52,8 +73,8 @@ export const covertObjToString = <T extends GenericRecord<any>>(
  * @param {string[]} resources The given string array of the resources.
  * @returns {string} The URL recourses join by "/".
  */
-export const createURLPath = (resources: string[]) => {
-  return resources.join('/');
+export const createURLPath = (resources: (string | undefined)[]) => {
+  return resources.filter((el) => el).join('/');
 };
 
 /**
@@ -65,7 +86,7 @@ export const createURLPath = (resources: string[]) => {
  * @returns The value of the url.
  */
 export const createURL = <T extends GenericRecord<any>>(
-  resources: string[],
+  resources: (string | undefined)[],
   params?: T,
   keyValueDelimiter = '=',
   objFieldDelimiter = '&'
@@ -73,31 +94,16 @@ export const createURL = <T extends GenericRecord<any>>(
   const resourcesURL = createURLPath(resources);
 
   if (!params) return `${resourcesURL}`;
-  const paramsURL = covertObjToString(params, keyValueDelimiter, objFieldDelimiter);
+  const paramsURL = covertQueryParamsToString(params, keyValueDelimiter, objFieldDelimiter);
   return `${resourcesURL}?${paramsURL}`;
 };
 
-export const createScannerURL = (endpoint: string, userID?: string) =>
-  createURL([SERVER_URL, endpoint, userID || '']);
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Toast message utils.
+ */
+//////////////////////////////////////////////////////////////////////////////////////////
 
-export const createLocalDate = (date?: Date) => {
-  const createdAtDate = new Date(date || '');
-  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
-    timeZone: 'Asia/Jerusalem'
-  });
-  return createLocalTimeDate;
-};
-
-export const convertDateToValidInputFormat = (date?: Date) => {
-  return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as string;
-};
-
-export const delayFun = (cb: AnyFun, delay: number) =>
-  new Promise((res) =>
-    setTimeout(async () => {
-      res(await cb());
-    }, delay)
-  );
 /**
  *
  * @param {KeyCode} keyCode The key of the name of the message.
@@ -113,6 +119,11 @@ export const getResMessage = <KeyCode extends keyof typeof MESSAGE_CODES>(
   };
 };
 
+/**
+ * @param {T} data The data to check if it is exist. And if it does to return.
+ * @param {KeyCode} keyCode  Key of message.
+ * @returns An object that contain a toast callback to execute and the data itself.
+ */
 export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFun; data: T } {
   const messageObj = getResMessage(keyCode);
   return {
@@ -125,3 +136,50 @@ export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFu
   };
 }
 export type ReturnCreateToastCBWithData<T> = ReturnType<typeof createToastCBWithData<T>>;
+
+/**
+ * @param {string} messageOnSuccuss The message if the data is exist.
+ * @param {string}  messageOnError The message if the data is not exist
+ * @param {T} data The data itself.
+ * @returns An object that contain a toast callback to execute and the data itself.
+ */
+export function createToastsByDataIfExist<T>(
+  messageOnSuccuss: KeyCode,
+  messageOnError: KeyCode,
+  data?: T
+) {
+  if (!data) return createToastCBWithData(undefined, messageOnError);
+  if (Array.isArray(data) && !data?.length) return createToastCBWithData(undefined, messageOnError);
+
+  return createToastCBWithData(data, messageOnSuccuss);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *  Misc utils.
+ */
+//////////////////////////////////////////////////////////////////////////////////////////
+export const delayFun = (cb: AnyFun, delay: number) =>
+  new Promise((res) =>
+    setTimeout(async () => {
+      res(await cb());
+    }, delay)
+  );
+/**
+ * @param {string} words Words to capital their first letter.
+ * @returns {string | undefined|null} Each words with capital first letter or undefined.
+ */
+export function capitalFirstLetter(words?: string | null): string | undefined | null {
+  return words
+    ? words
+        ?.split(' ')
+        .map((words) => words[0].toUpperCase() + words.slice(1))
+        .join(' ')
+    : words;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *
+ */
+//////////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext';
 import useFilterJobs from '@/hooks/useFilterJobs';
-import { getLastCurJobData, swrInfiniteHandler } from '@/lib/jobs.utils';
+
 import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { useSWRInfiniteHook } from '@/lib/swr';
 
@@ -10,7 +10,7 @@ import Spinner from '../Spinner/Spinner';
 import JobsHeader from './JobsHeader';
 import LoadButtonContainer from './LoadButtonContainer';
 import JobsFeed from './JobFeed/JobsFeed';
-import { checkIsJobsFoundWithToast } from './utils';
+import { checkIsJobsFoundWithToast, getLastCurJobData, swrInfiniteHandler } from './utils';
 import useRedirect from '@/hooks/useRedirect';
 
 const JobsStyle = {

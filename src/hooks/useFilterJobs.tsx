@@ -1,4 +1,4 @@
-import { isJobsMatchesPage } from '@/lib/jobs.utils';
+import { isJobsMatchesPage } from '@/components/JobsPage/utils';
 import { useRouter } from 'next/router';
 import useStateSession from './useStateSession';
 export interface FilterJobsField {

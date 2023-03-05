@@ -69,7 +69,7 @@ export const getLastCurJobData = (
   };
 };
 
-export const createJobsURl = (userID: string, params?: GenericRecord<unknown>) => {
+export const createJobsURl = (userID?: string, params?: GenericRecord<unknown>) => {
   return createURL([SERVER_URL, API_ENDPOINTS.GET_JOBS, userID], params);
 };
 
@@ -83,7 +83,7 @@ export const swrInfiniteHandler: (
     if (preData?.pagination.hasMore === false) return null;
 
     //Create the jobs url with the cur URL parameters.
-    return createJobsURl(userProfileData.userID || '', {
+    return createJobsURl(userProfileData?.userID, {
       page: prePage + 1,
       hash: userProfileData.activeHash,
       ...params
@@ -91,7 +91,7 @@ export const swrInfiniteHandler: (
   };
 
 /**
- * @param condition If to set reason as 'match' value.
+ * @param condition If to set the value of reason  to 'match' value.
  * @returns The result of the condition. In order to display only the matches jobs.
  */
 export const isJobsMatchesPage = (condition: boolean) =>
