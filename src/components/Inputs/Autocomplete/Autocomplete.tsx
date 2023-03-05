@@ -9,7 +9,7 @@ const autoCompleteStyle = {
   options:
     'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll rounded-md bg-white py-1 text-base shadow-md ring-1 sm:text-sm',
   label: 'font-semibold',
-  input: 'input-custom relative'
+  input: 'input-custom relative w-full'
 };
 
 export default function Autocomplete<V>({
@@ -43,7 +43,7 @@ export default function Autocomplete<V>({
       setSelectedOption(value);
     },
 
-    500
+    1000
   );
   //Handle input onChange event.
   const handleOnChange = useDebouncedCallback(
@@ -54,7 +54,7 @@ export default function Autocomplete<V>({
       }
     },
 
-    500
+    1000
   );
 
   return (
@@ -76,14 +76,20 @@ export default function Autocomplete<V>({
         ) : (
           <></>
         )}
-        <Combobox.Input<'input', { value: V; title: string }>
-          {...inputLabelProps?.inputProps}
-          autoComplete={'off'}
-          value={inputLabelProps?.inputProps?.value}
-          displayValue={(selectedOption) => selectedOption.value as string}
-          className={classNameGenerator(autoCompleteStyle.input, inputLabelProps?.inputProps?.className)}
-          onChange={handleOnChange}
-        />
+        <Combobox.Button className={'w-fit'}>
+          <Combobox.Input<'input', { value: V; title: string }>
+            {...inputLabelProps?.inputProps}
+            autoComplete={'off'}
+            value={inputLabelProps?.inputProps?.value}
+            displayValue={(selectedOption) => selectedOption.value as string}
+            className={classNameGenerator(
+              autoCompleteStyle.input,
+              inputLabelProps?.inputProps?.className
+            )}
+            onChange={handleOnChange}
+          />
+          {iconButton}
+        </Combobox.Button>
         <div className="relative">
           <Combobox.Options className={autoCompleteStyle.options}>
             {options?.map((option) => (
@@ -95,7 +101,7 @@ export default function Autocomplete<V>({
             ))}
           </Combobox.Options>
         </div>
-        {iconButton}
+
         <div />
       </div>
     </Combobox>
