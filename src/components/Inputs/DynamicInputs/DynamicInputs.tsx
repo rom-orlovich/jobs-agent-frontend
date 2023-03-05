@@ -16,7 +16,8 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   children,
   addButtonProps,
   removeButtonProps,
-  overflowProps
+  overflowProps,
+  liProps
 }: DynamicInputsProps<T>) {
   const defaultValuesWithID = defaultValues.map((el, i) => ({
     ...el,
@@ -62,9 +63,9 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
     ];
   };
   const ref = useRef<null | HTMLDivElement>(null);
-  console.log(inputs.length, overflowProps?.minChild);
+
   const overflowIsActive = inputs.length >= (overflowProps?.minChild || 5);
-  console.log(overflowIsActive);
+
   // The function that execute the adding of a new input in the array.
   const addMoreInput: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
@@ -89,7 +90,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
         <ul className="flex flex-col gap-2">
           {inputs?.map((input, i) => {
             return (
-              <li key={input?.id} className="relative">
+              <li key={input?.id} className={classNameGenerator('relative', liProps?.className)}>
                 <Render {...input} setValue={setValue(i)} />
                 <CircleRemoveButton {...removeButtonProps} onClick={removeExistInput(i)} />
               </li>

@@ -16,6 +16,7 @@ export type TextAreaProps = React.DetailedHTMLProps<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   HTMLTextAreaElement
 >;
+
 export type DivProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 export type SpanProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 export type ButtonProps = React.DetailedHTMLProps<
@@ -24,7 +25,9 @@ export type ButtonProps = React.DetailedHTMLProps<
 >;
 
 export type LinksProps = Parameters<typeof Link>;
+
 export type HeadingProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
 >;
+export type ListProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLLIElement>, HTMLLIElement>;

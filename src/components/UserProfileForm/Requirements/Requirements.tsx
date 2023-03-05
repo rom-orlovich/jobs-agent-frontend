@@ -25,16 +25,22 @@ function Requirements({ handleRequirements, formValues }: ProfileFormComponentsP
   return (
     <div className="p-2">
       <DynamicInputs
+        liProps={{
+          className: ''
+        }}
+        removeButtonProps={{
+          className: '!left-[10%]'
+        }}
         overflowProps={{
           outerDiv: {
-            className: 'h-[5rem]'
+            className: 'h-fit'
           },
           minChild: 3,
           innerDiv: {
-            className: 'h-[5rem]'
+            className: 'h-fit'
           },
-          activeClassOuter: 'h-[10rem]',
-          activeClassInner: 'h-[18rem]'
+          activeClassOuter: '!h-[10rem]',
+          activeClassInner: '!min-h-[12rem]'
         }}
         defaultValues={formValues.requirements.length ? formValues.requirements : initialRequirement}
         Render={({ setValue, max, min, field }) => (

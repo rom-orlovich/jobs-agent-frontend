@@ -19,7 +19,6 @@ function ScannerControlButtons({ formState }: ProfileFormComponentsProps<unknown
   const { handleLoadButton, scanner } = useScannerController(authContext);
   const disableButtons = formState.isLoading || scanner.isMutating;
 
-  console.log(authContext.userProfileData.activeHash);
   return (
     <div className={buttonsStyle.buttonsContainer}>
       <SuccessButton disabled={disableButtons} type="submit">

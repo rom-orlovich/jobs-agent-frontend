@@ -10,7 +10,7 @@ import { useSwrHook } from '../lib/swr';
  * @param {string} userID The userID of the current login user.
  * @returns The user data, and the state of the fetch request.
  */
-function useUserProfile(userID: string) {
+function useUserProfile(userID?: string) {
   const router = useRouter();
   //Initial the fetching of current login user's data.
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
@@ -20,11 +20,10 @@ function useUserProfile(userID: string) {
       revalidateOnMount: true,
       refreshWhenOffline: false,
       revalidateOnReconnect: false,
-
       revalidateOnFocus: true
     }
   );
-  console.log(error);
+
   //Default values.
   const defaultUserProfile: UserProfileWithOneUserQuery = {
     userID: userID,

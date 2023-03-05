@@ -5,8 +5,6 @@ import { SWRConfig } from 'swr';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
 import Layout from '@/components/Layout/Layout';
-// import { classNameGenerator } from '@/lib/utils';
-
 import Toasts from '@/components/Toasts/Toasts';
 import { GenericRecord } from '@/lib/types/types';
 
@@ -17,7 +15,6 @@ export default function App({ Component, pageProps, session }: AppPropsWithSessi
     <SessionProvider session={session}>
       <SWRConfig
         value={{
-          // fallback: fallback,
           fetcher: (resource, init) => fetch(resource, init).then((res) => res.json())
         }}
       >
