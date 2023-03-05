@@ -129,7 +129,7 @@ export function createToastCBWithData<D>(data: D, keyCode: KeyCode): { cb: AnyFu
   return {
     cb: () => {
       toast(messageObj.message, {
-        toastId: messageObj.code
+        toastId: 'message'
       });
     },
     data
