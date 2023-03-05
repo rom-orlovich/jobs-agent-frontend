@@ -36,7 +36,7 @@ function FiltersPopup({
 }: FiltersPopupProps) {
   const { handleSearchValue } = filterJobsProps;
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
-  console.log(autocompletePropsArr);
+
   return (
     <Popover className={filterPopupStyle.popover}>
       <Popover.Button className={filterPopupStyle.popoverButton}>
@@ -45,8 +45,7 @@ function FiltersPopup({
       <Popover.Panel className={filterPopupStyle.panelContent}>
         <ul className={filterPopupStyle.autocompleteList}>
           {autocompletePropsArr.map(({ key, label, options }, i) => {
-            console.log(key + i);
-            if (i === 0 && !includeReasonFilters) return <></>;
+            if (i === 0 && !includeReasonFilters) return <li key={key + i}></li>;
             const value = filterJobsProps.formValues[key];
 
             return (
