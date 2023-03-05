@@ -21,17 +21,19 @@ const filterPopupStyle = {
   popupInputIcon: 'text-blue-300 absolute  text-xl top-[53%] right-1'
 };
 
+interface FiltersPopupProps {
+  iconButtonProps: IconButtonProps;
+  filterJobsProps: ReturnUseFilterJobsProps;
+  jobsFilters: FacetFilterResults;
+  includeReasonFilters: boolean;
+}
+
 function FiltersPopup({
   iconButtonProps,
   filterJobsProps,
   jobsFilters,
   includeReasonFilters
-}: {
-  iconButtonProps: IconButtonProps;
-  filterJobsProps: ReturnUseFilterJobsProps;
-  jobsFilters: FacetFilterResults;
-  includeReasonFilters: boolean;
-}) {
+}: FiltersPopupProps) {
   const { handleSearchValue } = filterJobsProps;
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
   console.log(autocompletePropsArr);
@@ -43,6 +45,7 @@ function FiltersPopup({
       <Popover.Panel className={filterPopupStyle.panelContent}>
         <ul className={filterPopupStyle.autocompleteList}>
           {autocompletePropsArr.map(({ key, label, options }, i) => {
+            console.log(key + i);
             if (i === 0 && !includeReasonFilters) return <></>;
             const value = filterJobsProps.formValues[key];
 
