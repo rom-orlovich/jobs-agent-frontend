@@ -76,7 +76,7 @@ export default function Autocomplete<V>({
         ) : (
           <></>
         )}
-        <Combobox.Button className={'w-fit'}>
+        <Combobox.Button>
           <Combobox.Input<'input', { value: V; title: string }>
             {...inputLabelProps?.inputProps}
             autoComplete={'off'}

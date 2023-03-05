@@ -14,7 +14,7 @@ export const jobItemStyle = {
   bookmarkContainer: 'flex w-full justify-end',
   bookmarkButton: 'text-base',
   title: 'font-semibold hover:opacity-70 ',
-  reason: 'text-center underline'
+  reason: 'text-center '
 };
 
 interface JobsFeedProps {
