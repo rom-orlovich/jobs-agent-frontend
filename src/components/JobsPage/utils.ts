@@ -3,35 +3,8 @@ import { SWRInfiniteKeyLoader } from 'swr/infinite';
 import { API_ENDPOINTS, SERVER_URL } from '../../lib/endpoints';
 import { Job, ResponseGetJobs } from '../../lib/types/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from '../../lib/types/api.types';
-import { AnyFun, GenericRecord } from '../../lib/types/types';
-import { createToastCBWithData, createURL } from '../../lib/utils';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-/**
- *
- * @param {Job[]} jobs The jobs array.
- * @returns {Job[]| undefined } True if there is no jobs otherwise false.
- */
-/**
- * @param {Job[]} jobs The jobs array.
- * @returns {Job[]| undefined } True if there is no jobs otherwise false.
- */
-export const checkIsJobsFoundWithToast = (jobs: Job[]): { cb: AnyFun; data: Job[] | undefined } => {
-  try {
-    if (!jobs?.length) return createToastCBWithData(undefined, 'JOBS_ARE_NOT_FOUND');
-    return createToastCBWithData(jobs, 'SCANNER_SUCCESS');
-  } catch (error) {
-    return createToastCBWithData(undefined, 'SOMETHING_WRONG');
-  }
-};
-
-export const checkIsJobFoundWithToast = (job?: Job) => {
-  try {
-    if (!job) return createToastCBWithData(undefined, 'JOB_IS_NOT_FOUND');
-    return createToastCBWithData(job, 'JOB_IS_FOUND');
-  } catch (error) {
-    return createToastCBWithData(undefined, 'SOMETHING_WRONG');
-  }
-};
+import { GenericRecord } from '../../lib/types/types';
+import { createURL } from '../../lib/utils';
 
 export const defaultResponseJobs: ResponseGetJobs = {
   jobs: [] as Job[],

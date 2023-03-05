@@ -1,30 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AnyFun } from '@/lib/types/types';
+
+import { ReturnCreateToastCBWithData } from '@/lib/utils';
 // import { delayFun } from '@/lib/utils';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 
 import useOnce from './useOnce';
 
 /**
- * If not jobs were found return to the home page (search page).
- * @param {AnyFun} cb A callback to call before the redirect.
+ * If the data is not found redirect to the provided url.
+ * @param {ReturnCreateToastCBWithData} ToastCBWithData object that contains a callback that trigger a toast execution and the data to be return.
+ * @returns {R} The data itself.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function useRedirect<R>(cb: (...args: any[]) => { data: R; cb: AnyFun }, url = '/'): R | undefined {
+//
+function useRedirect<D>({ data, cb }: ReturnCreateToastCBWithData<D>, url = '/'): D {
   const router = useRouter();
   const { trigger } = useOnce();
-  const cbMemo = useMemo(() => cb(), [cb]);
   useEffect(() => {
-    if (!cbMemo.data) {
-      router.push(url, url);
-      // trigger(() => delayFun(() => router.push(url, url).then(() => cbMemo?.cb()), 0));
-    }
+    if (!data) router.push(url, url);
     router.events.on('routeChangeComplete', () => {
-      trigger(() => cbMemo?.cb());
+      trigger(() => cb());
     });
-  }, [cbMemo, router, trigger, url]);
-  return cbMemo.data;
+  }, [router, trigger, url, data, cb]);
+  return data as D;
 }
 
 export default useRedirect;

@@ -21,9 +21,9 @@ export default function Autocomplete<V>({
   inputLabelProps
 }: AutocompleteProps<V>) {
   const iconButton = inputLabelProps?.IconButtonProps ? (
-    <button {...inputLabelProps?.IconButtonProps.buttonProps}>
+    <span {...inputLabelProps?.IconButtonProps.buttonProps}>
       {inputLabelProps?.IconButtonProps.Icon}
-    </button>
+    </span>
   ) : (
     <></>
   );

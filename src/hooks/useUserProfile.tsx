@@ -24,6 +24,7 @@ function useUserProfile(userID: string) {
       revalidateOnFocus: true
     }
   );
+  console.log(error);
   //Default values.
   const defaultUserProfile: UserProfileWithOneUserQuery = {
     userID: userID,

@@ -1,7 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext';
 import React from 'react';
 import SearchItem from './SearchItem';
-
 import useDownloadController from '@/hooks/useDownloadController';
 import useScannerController from '@/hooks/useScannerController';
 import { useRouter } from 'next/router';
@@ -9,10 +8,10 @@ import { TriggerByHash } from '../Buttons/Button.types';
 import { deleteUserQuery } from '@/lib/api/users.utils';
 import { mutate } from 'swr';
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { checkIsUserQueryHistoryFoundWithToast, sortUserHistoryQueries } from './utils';
+import { sortUserHistoryQueries } from './utils';
 import { toast } from 'react-toastify';
 import useRedirect from '@/hooks/useRedirect';
-// import useRedirect from '@/hooks/useRedirect';
+import { createToastsByDataIfExist } from '@/lib/utils';
 
 const searchHistoryFeedStyle = {
   feed: 'sm:pr-16 pr-8 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
@@ -27,8 +26,11 @@ function SearchHistoryFeed() {
 
   const { userHistoryQueries, userProfileData } = authContext;
 
-  //Redirect to home page if no search history wasn't found.
-  useRedirect(() => checkIsUserQueryHistoryFoundWithToast(userHistoryQueries));
+  //Check the status of the data and display proper message.
+  //If The data it not exist, redirect to the home page.
+  useRedirect(
+    createToastsByDataIfExist('SEARCH_HISTORY_FOUND', 'SEARCH_HISTORY_NOT_FOUND', userHistoryQueries)
+  );
 
   //Sort the user Queries by the date. The new one will be first.
   const sortHistoryQueries = sortUserHistoryQueries(userHistoryQueries);
@@ -55,9 +57,11 @@ function SearchHistoryFeed() {
       e.preventDefault();
       //Delete the current clicked user's search query.
       const result = await deleteUserQuery(userProfileData.userID || '', hash || '');
+
       //Revalidate the user data.
       await mutate(`/${API_ENDPOINTS.USERS}/${userProfileData.userID}`);
 
+      //Trigger toast with result message
       toast(result.message);
     } catch (error) {
       console.log(error);

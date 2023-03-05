@@ -10,12 +10,12 @@ import Spinner from '../Spinner/Spinner';
 import JobsHeader from './JobsHeader';
 import LoadButtonContainer from './LoadButtonContainer';
 import JobsFeed from './JobFeed/JobsFeed';
-import { checkIsJobsFoundWithToast, getLastCurJobData, swrInfiniteHandler } from './utils';
+import { getLastCurJobData, swrInfiniteHandler } from './utils';
 import useRedirect from '@/hooks/useRedirect';
+import { createToastsByDataIfExist } from '@/lib/utils';
 
 const JobsStyle = {
   feedContainer: 'pr-10 xs:pr-16',
-
   spinner: '!top-[none] bottom-5'
 };
 
@@ -26,8 +26,9 @@ function Jobs({
   initialsProps: ResponseGetJobs;
   isMatchPage?: boolean;
 }) {
-  //Redirect to home page if no jobs were found.
-  useRedirect(() => checkIsJobsFoundWithToast(initialsProps.jobs));
+  //Check the status of the data and display proper message.
+  //If The data it not exist, redirect to the home page.
+  useRedirect(createToastsByDataIfExist('SCANNER_SUCCESS', 'JOBS_ARE_NOT_FOUND', initialsProps?.jobs));
 
   //Get filter Jobs query props.
   const filterJobsProps = useFilterJobs(isMatchPage);

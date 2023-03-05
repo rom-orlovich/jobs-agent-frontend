@@ -45,7 +45,7 @@ function FiltersPopup({
           {autocompletePropsArr.map(({ key, label, options }, i) => {
             if (i === 0 && !includeReasonFilters) return <></>;
             const value = filterJobsProps.formValues[key];
-            console.log(i + key);
+
             return (
               <li key={i + key + Date.now()}>
                 <Autocomplete

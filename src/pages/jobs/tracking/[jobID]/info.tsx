@@ -1,9 +1,9 @@
-import { checkIsJobFoundWithToast } from '@/components/JobsPage/utils';
 import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import { useAuthContext } from '@/context/AuthContext';
 
 import useRedirect from '@/hooks/useRedirect';
+import { createToastsByDataIfExist } from '@/lib/utils';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -32,11 +32,13 @@ export const infoStyle = {
 
 function JobTracking() {
   const jobTrackingData = useGetJobsTrackingInfo();
-  const jobTracking = jobTrackingData?.curJobTracking;
-  const job = useRedirect(() => checkIsJobFoundWithToast(jobTracking));
-
-  if (!job) return <></>;
   const { curJobTracking } = jobTrackingData;
+
+  //Check the status of the data and display proper message.
+  //If The data it not exist, redirect to the home page.
+  const job = useRedirect(
+    createToastsByDataIfExist('TRACKING_JOB_IS_FOUND', 'TRACKING_JOB_NOT_FOUND', curJobTracking)
+  );
 
   return (
     <>

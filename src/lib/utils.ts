@@ -124,7 +124,7 @@ export const getResMessage = <KeyCode extends keyof typeof MESSAGE_CODES>(
  * @param {KeyCode} keyCode  Key of message.
  * @returns An object that contain a toast callback to execute and the data itself.
  */
-export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFun; data: T } {
+export function createToastCBWithData<D>(data: D, keyCode: KeyCode): { cb: AnyFun; data?: D } {
   const messageObj = getResMessage(keyCode);
   return {
     cb: () => {
@@ -135,6 +135,7 @@ export function createToastCBWithData<T>(data: T, keyCode: KeyCode): { cb: AnyFu
     data
   };
 }
+export type CreateToastCBWithDataFun = typeof createToastCBWithData;
 export type ReturnCreateToastCBWithData<T> = ReturnType<typeof createToastCBWithData<T>>;
 
 /**
@@ -143,10 +144,10 @@ export type ReturnCreateToastCBWithData<T> = ReturnType<typeof createToastCBWith
  * @param {T} data The data itself.
  * @returns An object that contain a toast callback to execute and the data itself.
  */
-export function createToastsByDataIfExist<T>(
+export function createToastsByDataIfExist<D>(
   messageOnSuccuss: KeyCode,
   messageOnError: KeyCode,
-  data?: T
+  data?: D
 ) {
   if (!data) return createToastCBWithData(undefined, messageOnError);
   if (Array.isArray(data) && !data?.length) return createToastCBWithData(undefined, messageOnError);
