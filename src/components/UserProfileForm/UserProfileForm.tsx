@@ -12,6 +12,7 @@ import ToggleTopic from './ToggleTopic';
 
 import { useAuthContext } from '@/context/AuthContext';
 import ScannerControlButtons from './ScannerControlButtons/ScannerControlButtons';
+import { classNameGenerator } from '@/lib/utils';
 // import { MdSave } from 'react-icons/md';
 const userProfileFormStyle = {
   form: 'sm:max-w-[32rem]  sm:min-w-[27rem] sm:min-h-[27rem] xs:min-w-[25rem] min-w-[18rem] min-h-[25rem]  max-h-fit flex flex-col justify-between p-6 card gap-4',
@@ -40,7 +41,7 @@ function UserProfileForm() {
         >
           <InputLabel
             labelProps={{
-              className: userProfileFormStyle.label
+              className: classNameGenerator(userProfileFormStyle.label, 'mt-2 gap-3')
             }}
             textProps={{
               className: userProfileFormStyle.text
