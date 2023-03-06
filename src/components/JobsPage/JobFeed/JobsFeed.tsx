@@ -11,8 +11,8 @@ import { capitalFirstLetter, classIsOn, classNameGenerator } from '@/lib/utils';
 
 export const jobItemStyle = {
   item: 'card flex-[100%] p-4 sm:max-w-[35%] sm:flex-[45%] md:flex-[30%] ',
-  content: 'flex gap-6 flex-col ',
-  bookmarkContainer: 'flex w-full justify-between',
+  content: 'flex flex-col h-full justify-between',
+  bookmarkContainer: 'mb-4 flex w-full justify-between',
   bookmarkButton: 'text-base',
   from: 'text-white card rounded-md p-[0.3rem] px-2 text-sm hover:opacity-80',
   title: 'font-bold hover:opacity-70 text-lg text-center',

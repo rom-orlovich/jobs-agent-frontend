@@ -11,11 +11,11 @@ import { JobItemProps, jobItemStyle } from '../JobsFeed';
 function JobTrackingItem(props: JobItemProps) {
   const jobTrackingItemStyle = {
     ...jobItemStyle,
-    itemTracking: 'flex flex-col justify-between gap-8',
-    content: `${jobItemStyle.content} gap-[1rem]`,
+    itemTracking: 'flex flex-col justify-between gap-4',
+    content: `${jobItemStyle.content} gap-[0.5rem]`,
     dateContainer: 'flex flex-end',
     sendCVContainer: 'flex flex-end',
-    linkTrackDetailsContainer: 'flex justify-center mt-2',
+    linkTrackDetailsContainer: 'flex justify-center mt-4',
     linkTrackDetails:
       'button-custom  bg-[#20b2aa] hover:opacity-75 text-white text-sm  flex items-center gap-1'
   };
