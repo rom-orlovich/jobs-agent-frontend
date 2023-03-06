@@ -170,15 +170,15 @@ export const delayFun = (cb: AnyFun, delay: number) =>
   );
 /**
  * @param {string} words Words to capital their first letter.
- * @returns {string | undefined|null} Each words with capital first letter or undefined.
+ * @returns {string} Each words with capital first letter or undefined.
  */
-export function capitalFirstLetter(words?: string | null): string | undefined | null {
+export function capitalFirstLetter(words?: string | null): string {
   return words
     ? words
         ?.split(' ')
         .map((words) => words[0].toUpperCase() + words.slice(1))
         .join(' ')
-    : words;
+    : words || '';
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
