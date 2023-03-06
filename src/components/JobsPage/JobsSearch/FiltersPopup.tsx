@@ -14,7 +14,7 @@ const filterPopupStyle = {
   popoverButton: 'border-none focus:border-none focus:outline-none focus-visible:ring-white',
   filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl',
   panelContent:
-    'absolute top-[2.4rem] xs:left-[50%] z-10 min-h-[8rem] xs:min-w-[17rem]  min-w-[19rem]  rounded-lg bg-white p-4 shadow-lg translate-x-[-95%]',
+    'absolute top-[2.4rem] left-[50%] z-10 min-h-[8rem] xs:min-w-[17rem]  min-w-[18rem]  rounded-lg bg-white p-4 shadow-lg translate-x-[-95%]',
   autocompleteList: 'flex flex-col gap-2',
   autocompleteWrapper: 'relative flex flex-col gap-1',
   autocompleteLabel: 'self-end',
