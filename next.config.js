@@ -4,6 +4,14 @@ const nextConfig = {
 
   images: {
     domains: ['lh3.googleusercontent.com']
+  },
+  rewrites: async () => {
+    return [
+      {
+        source: '/api/:proxy*',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/*`
+      }
+    ];
   }
 };
 
