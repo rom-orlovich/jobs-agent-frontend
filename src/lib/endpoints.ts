@@ -10,4 +10,6 @@ export const API_ENDPOINTS = {
 };
 export const CLIENT_URL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_CLIENT_URL;
+console.log(CLIENT_URL);
 export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+console.log(SERVER_URL);
