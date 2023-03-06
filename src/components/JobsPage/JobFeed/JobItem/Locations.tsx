@@ -3,7 +3,7 @@ import React from 'react';
 const locationsStyle = {
   locationsWrapper: 'flex flex-col flex-wrap ',
   toggle: 'flex flex-col justify-start',
-  location: 'flex-[30%]'
+  location: 'flex-[30%] text-center'
 };
 
 function Locations({ locations }: { locations?: string }) {
