@@ -14,7 +14,7 @@ import { useAuthContext } from '@/context/AuthContext';
 import ScannerControlButtons from './ScannerControlButtons/ScannerControlButtons';
 // import { MdSave } from 'react-icons/md';
 const userProfileFormStyle = {
-  form: 'sm:max-w-[32rem]  sm:min-w-[27rem] sm:min-h-[27rem] xs:min-w-[25rem] min-w-[20rem] min-h-[25rem]  max-h-fit flex flex-col justify-between p-6 card gap-4',
+  form: 'sm:max-w-[32rem]  sm:min-w-[27rem] sm:min-h-[27rem] xs:min-w-[25rem] min-w-[18rem] min-h-[25rem]  max-h-fit flex flex-col justify-between p-6 card gap-4',
   inputsContainer: 'flex flex-col gap-5',
   heading: 'text-xl font-[500]',
   label: 'flex items-center text-center gap-1',
