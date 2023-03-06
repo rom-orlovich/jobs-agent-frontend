@@ -33,7 +33,8 @@ export const convertDateToValidInputFormat = (date?: Date) => {
  */
 //////////////////////////////////////////////////////////////////////////////////////////
 
-export const classIsOn = (isON: boolean, className: string) => (isON ? className : '');
+export const classIsOn = (isON: boolean, className: string, classNameElse = '') =>
+  isON ? className : classNameElse;
 
 /**
  *

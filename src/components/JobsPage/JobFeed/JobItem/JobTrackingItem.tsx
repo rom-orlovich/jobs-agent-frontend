@@ -1,21 +1,14 @@
-import { Job } from '@/lib/types/jobsScanner.types';
 import { APP_ROUTES } from '@/lib/routes';
 import { classNameGenerator, createLocalDate } from '@/lib/utils';
 
 import Link from 'next/link';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import { MdTextSnippet } from 'react-icons/md';
 import TrackButton from '../../../Buttons/TrackButton';
 import Field from '../../../Field/Field';
-import { jobItemStyle } from '../JobsFeed';
+import { JobItemProps, jobItemStyle } from '../JobsFeed';
 
-function JobTrackingItem(
-  props: Job & {
-    index: number;
-    handleClickBookmark: MouseEventHandler<HTMLButtonElement>;
-    mark: boolean;
-  }
-) {
+function JobTrackingItem(props: JobItemProps) {
   const jobTrackingItemStyle = {
     ...jobItemStyle,
     itemTracking: 'flex flex-col justify-between gap-2',
@@ -25,7 +18,7 @@ function JobTrackingItem(
     linkTrackDetailsContainer: 'flex justify-center mt-2',
     linkTrackDetails: 'button-custom  bg-status-400 text-white text-sm  flex items-center gap-1'
   };
-  const { link, title, jobID, index, mark, info } = props;
+  const { link, title, jobID, index, mark, info, reason, isMatch, reasonStyle } = props;
   const localDateStr = createLocalDate(info?.createdAt);
   return (
     <li
@@ -45,8 +38,8 @@ function JobTrackingItem(
         {props.company && <div> {props.company}</div>}
       </div>
       <div>
-        <div className={jobTrackingItemStyle.reason}>
-          {props.reason === 'match' ? '!יש התאמה' : props.reason}
+        <div className={classNameGenerator(jobItemStyle.reason, reasonStyle)}>
+          {isMatch ? '!יש התאמה' : reason}
         </div>
 
         <div className={jobTrackingItemStyle.linkTrackDetailsContainer}>

@@ -1,17 +1,12 @@
-import { Job } from '@/lib/types/jobsScanner.types';
+import { classNameGenerator } from '@/lib/utils';
 import Link from 'next/link';
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import TrackButton from '../../../Buttons/TrackButton';
-import { jobItemStyle } from '../JobsFeed';
+import { JobItemProps, jobItemStyle } from '../JobsFeed';
 import Locations from './Locations';
-function JobItem(
-  props: Job & {
-    index: number;
-    handleClickBookmark: MouseEventHandler<HTMLButtonElement>;
-    mark: boolean;
-  }
-) {
-  const { link, title, from, reason, jobID, index, mark, location } = props;
+function JobItem(props: JobItemProps) {
+  const { link, title, from, reason, jobID, index, mark, location, isMatch, reasonStyle } = props;
+
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
@@ -19,12 +14,14 @@ function JobItem(
           <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div className={jobItemStyle.title}>
-          <Link href={link}> {title}</Link>{' '}
+          <Link href={link}> {title}</Link>
         </div>
         {props.company && <div> {props.company}</div>}
         <Locations locations={location} />
         <div> {from} </div>
-        <div className={jobItemStyle.reason}> {reason === 'match' ? '!יש התאמה' : reason} </div>
+        <div className={classNameGenerator(jobItemStyle.reason, reasonStyle)}>
+          {isMatch ? '!יש התאמה' : reason}
+        </div>
       </div>
     </li>
   );
