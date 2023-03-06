@@ -16,7 +16,7 @@ function JobsHeader({ filterJobsProps, numResultsFound, isMatchPage, filters }: 
   const textHeader = isMatchPage ? 'התאמות' : 'משרות';
   return (
     <div className={JobsHeaderStyle.jobsHeaderContainer}>
-      <h1 className="text-3xl">
+      <h1 className="w-full text-3xl sm:text-3xl">
         כ- {numResultsFound || 0} {textHeader} נמצאו:
       </h1>
       <JobsSearch
