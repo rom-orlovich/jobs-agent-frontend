@@ -4,7 +4,7 @@ import { covertQueryParamsToString, createURLPath } from '@/lib/utils';
 
 import { Key, mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { API_ENDPOINTS, SERVER_URL } from '@/lib/endpoints';
+import { API_ENDPOINTS } from '@/lib/endpoints';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
 import { Args, ResponseScanner } from '@/lib/types/jobsScanner.types';
 import { useRouter } from 'next/router';
@@ -16,7 +16,7 @@ import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
 function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsActive?: boolean) {
   const router = useRouter();
-  const scannerURL = createURLPath([SERVER_URL, API_ENDPOINTS.SCANNER_START, user?.id]);
+  const scannerURL = createURLPath([API_ENDPOINTS.SCANNER_START, user?.id]);
 
   //Initialize search scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner, any, Key, { hash?: string }>(

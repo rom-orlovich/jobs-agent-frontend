@@ -8,8 +8,8 @@ const nextConfig = {
   rewrites: async () => {
     return [
       {
-        source: '/api/:proxy*',
-        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/*`
+        source: '/api/jobs-agent/:proxy*',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/jobs-agent/:proxy*`
       }
     ];
   }

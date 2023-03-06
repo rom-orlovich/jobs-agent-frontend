@@ -1,6 +1,6 @@
 import { SWRInfiniteKeyLoader } from 'swr/infinite';
 
-import { API_ENDPOINTS, SERVER_URL } from '../../lib/endpoints';
+import { API_ENDPOINTS } from '../../lib/endpoints';
 import { Job, ResponseGetJobs } from '../../lib/types/jobsScanner.types';
 import { UserProfileWithOneUserQuery } from '../../lib/types/api.types';
 import { GenericRecord } from '../../lib/types/types';
@@ -43,7 +43,7 @@ export const getLastCurJobData = (
 };
 
 export const createJobsURl = (userID?: string, params?: GenericRecord<unknown>) => {
-  return createURL([SERVER_URL, API_ENDPOINTS.GET_JOBS, userID], params);
+  return createURL([API_ENDPOINTS.GET_JOBS, userID], params);
 };
 
 //Swr infinite handler.
