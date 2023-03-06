@@ -1,9 +1,9 @@
-import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
 import { Job } from '@/lib/types/jobsScanner.types';
 import Link from 'next/link';
 import React, { MouseEventHandler } from 'react';
 import TrackButton from '../../../Buttons/TrackButton';
 import { jobItemStyle } from '../JobsFeed';
+import Locations from './Locations';
 function JobItem(
   props: Job & {
     index: number;
@@ -12,32 +12,6 @@ function JobItem(
   }
 ) {
   const { link, title, from, reason, jobID, index, mark, location } = props;
-  const Locations = () => {
-    return (
-      <ul className="flex flex-col flex-wrap ">
-        <ToggleTopic
-          buttonProps={{
-            dir: 'rtl',
-            className: 'justify-start'
-          }}
-          toggleWrapper={{
-            className: 'flex flex-col justify-start'
-          }}
-          headingProps={{
-            dir: 'rtl',
-            title: 'מיקום'
-          }}
-        >
-          {location.split(',').map((location, i) => (
-            <li className="flex-[30%]" key={location + i}>
-              {location}
-            </li>
-          ))}
-        </ToggleTopic>
-      </ul>
-    );
-  };
-
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
       <div className={jobItemStyle.content}>
@@ -48,7 +22,7 @@ function JobItem(
           <Link href={link}> {title}</Link>{' '}
         </div>
         {props.company && <div> {props.company}</div>}
-        <Locations />
+        <Locations locations={location} />
         <div> {from} </div>
         <div className={jobItemStyle.reason}> {reason === 'match' ? '!יש התאמה' : reason} </div>
       </div>
