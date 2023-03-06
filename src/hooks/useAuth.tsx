@@ -11,13 +11,11 @@ export default function useAuth() {
   const { data, status } = useSession({
     required: true
   });
-  const { userProfileData, isLoading, userHistoryQueries } = useUserProfile(data?.user.id || '');
+  const userProfileData = useUserProfile(data?.user.id || '');
   return {
     isAuthenticated: status === 'authenticated',
     ...data,
-    userProfileData,
-    isLoading,
-    userHistoryQueries
+    ...userProfileData
   };
 }
 

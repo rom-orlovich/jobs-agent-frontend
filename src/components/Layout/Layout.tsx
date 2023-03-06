@@ -15,12 +15,12 @@ export function Layout(props: PropsWithChildren) {
   const Main = ({ children }: PropsWithChildren) => (
     <main className={roboto.className + ' ' + 'bg-background' + ' min-h-[100vh]'}>{children}</main>
   );
-  const { isAuthenticated, userProfileData, isLoading } = auth;
+  const { isAuthenticated, isLoading, isValidating } = auth;
   if (!isAuthenticated) return <></>;
-  if (!userProfileData)
+  if (isLoading || isValidating)
     return (
       <Main>
-        <Spinner isLoading={isLoading || !userProfileData} />;
+        <Spinner isLoading={isLoading || isValidating} />;
       </Main>
     );
 

@@ -44,8 +44,8 @@ export const MESSAGES = {
   //TRACKING JOBS
   [MESSAGE_CODES.TRACKING_JOB_IS_FOUND]: 'המעקב נמצא!',
   [MESSAGE_CODES.TRACKING_JOB_NOT_FOUND]: 'המעקב לא נמצא!',
-  [MESSAGE_CODES.TRACKING_JOBS_ARE_NOT_FOUND]: 'לא מצאנו אף משרה למעקב!',
   [MESSAGE_CODES.TRACKING_JOBS_ARE_FOUND]: 'המשרות למעקב נמצאו בהצלחה!',
+  [MESSAGE_CODES.TRACKING_JOBS_ARE_NOT_FOUND]: 'לא מצאנו אף משרה למעקב!',
   [MESSAGE_CODES.TRACKING_JOB_CREATED]: 'המשרה נוספה למעקב!',
   [MESSAGE_CODES.TRACKING_JOB_NOT_CREATED]: 'שגיאה ביצירת מעקב המשרה!',
   [MESSAGE_CODES.TRACKING_JOB_UPDATED]: 'מעקב המשרה עודכן בהצלחה!',

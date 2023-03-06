@@ -15,7 +15,7 @@ function Track() {
   //Check if the the exist and redirect to home page and display proper message.
   useRedirect(
     createToastsByDataIfExist(
-      'TRACKING_JOB_IS_FOUND',
+      'TRACKING_JOBS_ARE_FOUND',
       'TRACKING_JOBS_ARE_NOT_FOUND',
       userProfileData?.tracking
     )
