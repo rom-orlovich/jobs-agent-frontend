@@ -61,7 +61,7 @@ function Requirements({ handleRequirements, formValues }: ProfileFormComponentsP
       >
         {(values) => {
           return (
-            <div className="mt-2 flex w-full justify-end">
+            <div className="mt-4 flex w-full justify-end">
               <SuccessButton onClick={handleConfirmRequirements(values)} />
             </div>
           );
