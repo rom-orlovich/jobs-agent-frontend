@@ -12,7 +12,7 @@ export const jobTrackingFormStyle = {
   formContent: 'flex flex-col gap-8 ',
   headingToggle: 'text-xl',
   buttonsContainer: 'flex justify-between w-full ',
-  label: 'flex flex-col gap-2',
+  label: 'flex flex-col gap-2 mt-2',
   dateInput: 'max-w-[8rem]',
   toggleTopicWrapper: 'flex gap-1'
 };

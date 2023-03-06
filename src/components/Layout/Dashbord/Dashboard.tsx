@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 const dashboardStyle = {
-  mainContainer: 'min-h-[100vh]'
+  mainContainer: 'min-h-[100vh] overflow-x-hidden'
 };
 function Dashboard({ children }: PropsWithChildren) {
   return (
