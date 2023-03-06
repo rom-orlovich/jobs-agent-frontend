@@ -7,7 +7,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { Option } from '../SelectInput/selectInput.types';
 const autoCompleteStyle = {
   options:
-    'absolute z-20 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll rounded-md bg-white py-1 text-base shadow-md ring-1 sm:text-sm',
+    'absolute z-50 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll  py-1 text-base card ring-1 sm:text-sm',
   label: 'font-semibold',
   input: 'input-custom relative w-full'
 };
@@ -93,7 +93,7 @@ export default function Autocomplete<V>({
         <div className="relative">
           <Combobox.Options className={autoCompleteStyle.options}>
             {options?.map((option) => (
-              <Combobox.Option className={'px-2'} key={option.id} value={option}>
+              <Combobox.Option key={option.id} value={option}>
                 {({ active }) => {
                   return <div className={isActiveStyle(active)}>{option.title} </div>;
                 }}

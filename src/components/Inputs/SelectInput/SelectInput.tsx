@@ -16,7 +16,7 @@ const selectOptionsStyle = {
   label: 'font-semibold cursor-pointer ',
   button: 'input-custom px-2 shadow-sm min-w-[8rem]',
   options:
-    'absolute z-20 mt-1 max-h-75 w-full max-w-xs overflow-auto rounded-md bg-text-secondary py-1 text-base shadow-md  ring-1 sm:text-sm',
+    'absolute z-50 mt-1 max-h-75 w-full max-w-xs overflow-auto bg-text-secondary py-1 text-base   ring-1 sm:text-sm card',
   option: 'flex flex-row items-center justify-between'
 };
 
