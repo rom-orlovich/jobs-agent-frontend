@@ -18,7 +18,7 @@ function JobItem(props: JobItemProps) {
         <div className={jobItemStyle.title}>
           <Link href={link}> {title}</Link>
         </div>
-        {props.company && <div> {props.company}</div>}
+        {props.company && <div className="text-center"> {props.company}</div>}
 
         <Locations locations={location} />
         <div className={classNameGenerator(jobItemStyle.reason, reasonStyle)}>

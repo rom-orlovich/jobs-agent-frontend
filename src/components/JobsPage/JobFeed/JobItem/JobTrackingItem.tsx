@@ -11,14 +11,14 @@ import { JobItemProps, jobItemStyle } from '../JobsFeed';
 function JobTrackingItem(props: JobItemProps) {
   const jobTrackingItemStyle = {
     ...jobItemStyle,
-    itemTracking: 'flex flex-col justify-between gap-2',
+    itemTracking: 'flex flex-col justify-between gap-6',
+    content: `${jobItemStyle.content} gap-[0.5rem]`,
     dateContainer: 'flex flex-end',
     sendCVContainer: 'flex flex-end',
-
     linkTrackDetailsContainer: 'flex justify-center mt-2',
     linkTrackDetails: 'button-custom  bg-status-400 text-white text-sm  flex items-center gap-1'
   };
-  const { link, title, jobID, index, mark, info, reason, isMatch, reasonStyle } = props;
+  const { link, title, jobID, fromClass, from, index, mark, info, reason, isMatch, reasonStyle } = props;
   const localDateStr = createLocalDate(info?.createdAt);
   return (
     <li
@@ -27,6 +27,7 @@ function JobTrackingItem(props: JobItemProps) {
     >
       <div className={jobTrackingItemStyle.content}>
         <div className={jobTrackingItemStyle.bookmarkContainer}>
+          <div className={fromClass}> {from} </div>
           <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div dir="rtl" className={jobTrackingItemStyle.dateContainer}>
@@ -35,7 +36,7 @@ function JobTrackingItem(props: JobItemProps) {
         <div className={jobTrackingItemStyle.title}>
           <Link href={link}> {title}</Link>
         </div>
-        {props.company && <div> {props.company}</div>}
+        {props.company && <div className="text-center"> {props.company}</div>}
       </div>
       <div>
         <div className={classNameGenerator(jobItemStyle.reason, reasonStyle)}>
