@@ -13,7 +13,7 @@ import { useAuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
 
 const sideBarStyle = {
-  nav: 'fixed z-50 top-0 flex h-full  flex-col items-center bg-nav-500 shadow-lg',
+  nav: 'fixed z-50 top-0 flex h-full flex-col items-center bg-nav-500 shadow-lg',
   isOn: {
     nav: {
       true: 'min-w-[14rem]',

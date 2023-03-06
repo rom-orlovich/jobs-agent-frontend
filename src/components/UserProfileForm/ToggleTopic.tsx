@@ -1,32 +1,37 @@
 import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { AiOutlineArrowDown, AiOutlineArrowLeft } from 'react-icons/ai';
-import { DivProps, HeadingProps } from '../HTML.types';
+import { ButtonProps, DivProps, HeadingProps } from '../HTML.types';
 import Toggle from '../Toggle/Toggle';
 
 interface ToggleTopicProps {
   headingProps?: HeadingProps;
   childrenWrapper?: DivProps;
   as?: () => JSX.Element;
+  toggleWrapper?: DivProps;
+  buttonProps?: ButtonProps;
 }
 function ToggleTopic({
   headingProps,
   children,
   childrenWrapper,
-  as
+  as,
+  toggleWrapper,
+  buttonProps
 }: ToggleTopicProps & PropsWithChildren) {
   return (
     <Toggle>
       {({ handleOnClick, isON }) => {
         return (
-          <div>
+          <div {...toggleWrapper}>
             <button
+              {...buttonProps}
               onKeyUp={(e) => {
                 if (e.code === 'Space') {
                   e.preventDefault();
                 }
               }}
-              className="flex items-center gap-2"
+              className={classNameGenerator('flex items-center gap-2', buttonProps?.className)}
               onClick={handleOnClick}
             >
               <div> {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}</div>

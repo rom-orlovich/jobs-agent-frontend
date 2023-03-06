@@ -9,12 +9,15 @@ import { createJobsTrackingMap, handleClickBookmark } from './utils';
 import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 
 export const jobItemStyle = {
-  item: 'card flex-[70%] p-4 sm:flex-[45%] md:flex-[30%]',
+  item: 'card flex-[100%] p-4 sm:max-w-[35%] sm:flex-[45%] md:flex-[30%] ',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
   bookmarkButton: 'text-base',
   title: 'font-semibold hover:opacity-70 ',
   reason: 'text-center '
+};
+const jobsFeedStyle = {
+  feed: 'flex h-full flex-wrap justify-center gap-3 py-4'
 };
 
 interface JobsFeedProps {
@@ -23,9 +26,7 @@ interface JobsFeedProps {
   isTrackFeed?: boolean;
   saveSessionValues?: () => void;
 }
-const jobsFeedStyle = {
-  feed: 'flex h-full flex-wrap justify-center gap-3 py-4'
-};
+
 function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   //Create Jobs map
   const jobsTrackMap = createJobsTrackingMap(userProfileData?.tracking || []);
