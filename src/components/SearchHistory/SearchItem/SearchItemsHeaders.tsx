@@ -17,7 +17,6 @@ function SearchItemsHeaders({
   handleEditButton: TriggerByHash;
   handleDeleteButton: TriggerByHash;
 }) {
-  console.log(hash);
   return (
     <div className={searchItemHeadersStyle.editButtonContainer}>
       <button className={searchItemHeadersStyle.delateButton} onClick={handleDeleteButton(hash)}>

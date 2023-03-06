@@ -10,7 +10,18 @@ function JobItem(
     mark: boolean;
   }
 ) {
-  const { link, title, from, reason, jobID, index, mark } = props;
+  const { link, title, from, reason, jobID, index, mark, location } = props;
+  const Locations = () => {
+    return (
+      <ul className="flex flex-wrap">
+        {location.split(',').map((location, i) => (
+          <li className="flex-[30%]" key={location + i}>
+            {location}
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
@@ -22,7 +33,7 @@ function JobItem(
           <Link href={link}> {title}</Link>{' '}
         </div>
         {props.company && <div> {props.company}</div>}
-        <div>{props.location} </div>
+        <Locations />
         <div> {from} </div>
         <div className={jobItemStyle.reason}> {reason === 'match' ? '!יש התאמה' : reason} </div>
       </div>

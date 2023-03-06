@@ -9,7 +9,7 @@ import { createJobsTrackingMap, handleClickBookmark } from './utils';
 import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 
 export const jobItemStyle = {
-  item: 'card flex-[100%] p-4 sm:flex-[45%] md:flex-[30%]',
+  item: 'card flex-[70%] p-4 sm:flex-[45%] md:flex-[30%]',
   content: 'flex gap-2 flex-col',
   bookmarkContainer: 'flex w-full justify-end',
   bookmarkButton: 'text-base',
@@ -35,7 +35,7 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   let currentJobs;
   if (isTrackFeed) currentJobs = userProfileData.tracking;
   else currentJobs = jobs;
-  console.log(currentJobs);
+
   return (
     <>
       <ul dir="ltr" className={jobsFeedStyle.feed}>
