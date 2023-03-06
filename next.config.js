@@ -6,6 +6,7 @@ const nextConfig = {
     domains: ['lh3.googleusercontent.com']
   },
   rewrites: async () => {
+    console.log(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/jobs-agent/:proxy*`);
     return [
       {
         source: '/api/jobs-agent/:proxy*',

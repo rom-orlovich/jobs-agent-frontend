@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { TriggerByHash } from '@/components/Buttons/Button.types';
-import { API_ENDPOINTS } from '@/lib/endpoints';
+import { API_ENDPOINTS, CLIENT_URL } from '@/lib/endpoints';
 import { Args } from '@/lib/types/jobsScanner.types';
 
 import { createURLPath } from '@/lib/utils';
@@ -10,7 +10,7 @@ import { Key } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { ReturnTypeUseAuthProfileExist } from './useAuth';
 function useDownloadController({ user }: ReturnTypeUseAuthProfileExist) {
-  const downloadURL = createURLPath([API_ENDPOINTS.SCANNER_DOWNLOAD, user?.id]);
+  const downloadURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_DOWNLOAD, user?.id]);
 
   const downloadState = useSWRMutation<Blob, any, Key, { hash?: string }>(
     downloadURL,
