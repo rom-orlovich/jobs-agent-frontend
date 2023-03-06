@@ -17,7 +17,7 @@ export const jobItemStyle = {
   from: 'text-white card rounded-md p-[0.3rem] px-2 text-sm hover:opacity-80',
   title: 'font-bold hover:opacity-70 text-lg text-center',
   reason: 'text-center text-lg hover:opacity-70 cursor-pointer ',
-  matchColor: 'text-status-400',
+  matchColor: 'text-[#48e76a]',
   noMatchColor: 'text-[#6188c7]'
 };
 const jobsFeedStyle = {

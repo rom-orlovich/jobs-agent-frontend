@@ -11,12 +11,13 @@ import { JobItemProps, jobItemStyle } from '../JobsFeed';
 function JobTrackingItem(props: JobItemProps) {
   const jobTrackingItemStyle = {
     ...jobItemStyle,
-    itemTracking: 'flex flex-col justify-between gap-6',
-    content: `${jobItemStyle.content} gap-[0.5rem]`,
+    itemTracking: 'flex flex-col justify-between gap-8',
+    content: `${jobItemStyle.content} gap-[1rem]`,
     dateContainer: 'flex flex-end',
     sendCVContainer: 'flex flex-end',
     linkTrackDetailsContainer: 'flex justify-center mt-2',
-    linkTrackDetails: 'button-custom  bg-status-400 text-white text-sm  flex items-center gap-1'
+    linkTrackDetails:
+      'button-custom  bg-[#20b2aa] hover:opacity-75 text-white text-sm  flex items-center gap-1'
   };
   const { link, title, jobID, fromClass, from, index, mark, info, reason, isMatch, reasonStyle } = props;
   const localDateStr = createLocalDate(info?.createdAt);
