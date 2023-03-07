@@ -26,10 +26,7 @@ const sideBarStyle = {
   'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
   links: 'mt-2 flex flex-col items-center gap-4 w-full',
   linksOffMode: 'h-[70%]  gap-8 justify-center',
-  // li: 'w-full p-2 rounded-md cursor-pointer',
-  // link: 'text-white w-full',
   icon: 'text-2xl'
-  // active: 'bg-nav-600 '
 };
 
 function Sidebar() {
@@ -64,13 +61,6 @@ function Sidebar() {
           }
         };
 
-        //For disabling the links that relate to the scanner state mutation.
-        // const mutatedProps = {
-        //   onClick: disableByMutateHandler,
-        //   className: classNameGenerator(classIsOn(scanner.isMutating, sideBarStyle.active)),
-        //   linkStyle: classIsOn(scanner.isMutating, 'pointer-events-none')
-        // };
-
         return (
           <section className={classNameGenerator(sideBarStyle.nav, navIsOn, 'duration-500')}>
             <HamburgerMenu {...toggleProps} />
@@ -83,17 +73,6 @@ function Sidebar() {
                 )}
               >
                 {LINKSEl.map((el, i) => {
-                  // const liMutateProps =
-                  //   i === 1 || i === 2
-                  //     ? mutatedProps
-                  //     : {
-                  //         className: '',
-                  //         linkStyle: ''
-                  //       };
-
-                  // const isActiveLink = router.pathname === el.link;
-                  // const activeStyle = isActiveLink ? sideBarStyle.active : '';
-
                   return (
                     <SidebarItem
                       isMutate={(i === 1 || i === 2) && scanner.isMutating}
@@ -103,23 +82,6 @@ function Sidebar() {
                       key={el.link + i}
                       {...el}
                     />
-                    // <li
-                    //   {...liMutateProps}
-                    //   className={classNameGenerator(
-                    //     sideBarStyle.li,
-                    //     sideBarStyle.hoverLink,
-                    //     liMutateProps.className,
-                    //     activeStyle
-                    //   )}
-                    //   key={el.text + i}
-                    // >
-                    //   <Link
-                    //     className={classNameGenerator(sideBarStyle.link, liMutateProps.linkStyle)}
-                    //     href={`${el.link}`}
-                    //   >
-                    //     <SidebarItemContent icon={el.icon} isOn={isON} text={el.text} />
-                    //   </Link>
-                    // </li>
                   );
                 })}
               </ul>
