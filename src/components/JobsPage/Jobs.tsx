@@ -61,7 +61,7 @@ function Jobs({
         filterJobsProps={filterJobsProps}
         filters={lastResponse.filters}
         isMatchPage={!!isMatchPage}
-        numResultsFound={lastResponse?.pagination.numResultsAfterFilter}
+        numResultsFound={lastResponse?.pagination?.numResultsAfterFilter}
       />
 
       <JobsFeed jobs={jobsData} userProfileData={userProfileData} />

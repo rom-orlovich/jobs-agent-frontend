@@ -41,7 +41,12 @@ export interface FacetFilterResults {
 }
 export type ResponseGetJobs = {
   jobs: Job[];
-  pagination: { totalPages: number; totalDocs: number; hasMore: boolean; numResultsAfterFilter: number };
+  pagination: {
+    totalPages: number;
+    totalDocs: number;
+    hasMore: boolean;
+    numResultsAfterFilter?: number;
+  };
   filters: FacetFilterResults;
 };
 export type Args = Readonly<{ arg: { hash?: string } }>;
