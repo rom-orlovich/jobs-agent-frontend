@@ -12,7 +12,7 @@ export const defaultResponseJobs: ResponseGetJobs = {
     hasMore: false,
     totalDocs: 0,
     totalPages: 1,
-    numResultsFound: 0
+    numResultsAfterFilter: 0
   },
   filters: {
     companies: [],
