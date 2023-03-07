@@ -150,7 +150,6 @@ export function createToastsByDataIfExist<D>(
   messageOnError: KeyCode,
   data?: D
 ) {
-  console.log(data);
   if (!data) return createToastCBWithData(undefined, messageOnError);
   if (Array.isArray(data) && !data?.length) return createToastCBWithData(undefined, messageOnError);
 

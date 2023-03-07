@@ -31,7 +31,7 @@ export const handleClickBookmark: (
 
     //Update the user profile.
     await mutate(`/${API_ENDPOINTS.USERS}/${curUserID}`).then((el) => console.log(el));
-    console.log(result);
+
     //Fire a toast.
     toast(result.data.message);
   };

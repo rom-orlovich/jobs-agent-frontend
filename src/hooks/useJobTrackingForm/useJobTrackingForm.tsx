@@ -23,7 +23,6 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     }));
   };
   const handleSetStagesValues = (values: TrackingInfoFormFormat['stages']) => {
-    console.log(values);
     setFormValues((pre) => ({
       ...pre,
       stages: values
