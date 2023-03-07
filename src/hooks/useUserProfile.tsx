@@ -20,7 +20,7 @@ function useUserProfile(userID?: string) {
       revalidateOnMount: true,
       refreshWhenOffline: false,
       revalidateOnReconnect: false,
-      revalidateOnFocus: false
+      revalidateOnFocus: true
     }
   );
 
