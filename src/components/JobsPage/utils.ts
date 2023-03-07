@@ -57,9 +57,9 @@ export const swrInfiniteHandler: (
 
     //Create the jobs url with the cur URL parameters.
     return createJobsURl(userProfileData?.userID, {
+      ...params,
       page: prePage + 1,
-      hash: userProfileData.activeHash,
-      ...params
+      hash: userProfileData.activeHash
     });
   };
 

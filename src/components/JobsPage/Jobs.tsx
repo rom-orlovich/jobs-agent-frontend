@@ -35,7 +35,6 @@ function Jobs({
   const { formValues } = filterJobsProps;
   //Get user profile data.
   const { userProfileData } = useAuthContext();
-
   //Use swr infinite.
   const useSwrInfiniteProps = useSWRInfiniteHook<ResponseGetJobs>(
     swrInfiniteHandler(userProfileData, {
