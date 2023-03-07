@@ -49,7 +49,11 @@ function SearchItemContent(props: UserQuery) {
         <Field {...fieldProps} title={'היקף משרה:'} value={scopeText} />
       </div>
       <div className={searchItemContentStyle.fieldsContainer}>
-        <Field {...fieldProps} title={'משרות שנמצאו:'} value={String(props.numResultsFound || 0)} />
+        <Field
+          {...fieldProps}
+          title={'משרות חדשות שנמצאו:'}
+          value={String(props.numResultsFound || 0)}
+        />
         <Field {...fieldProps} title={'משרות מתאימות:'} value={String(props.numMatches || 0)} />
       </div>
     </>

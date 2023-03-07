@@ -28,7 +28,7 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
             className: jobTrackingFormStyle.toggleTopicWrapper
           }}
           headingProps={{
-            title: 'שלחת קו"ח?',
+            title: 'שלחת קורות חיים?',
             className: jobTrackingFormStyle.headingToggle
           }}
         >
