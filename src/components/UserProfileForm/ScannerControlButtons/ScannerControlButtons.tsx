@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-// import { useAuthContext } from '@/context/AuthContext';
+import React from 'react';
 
-// import useScannerController from '@/hooks/useScannerController';
 import { ProfileFormComponentsProps } from '@/hooks/useProfileForm/useProfileForm';
 
 import { MdSave } from 'react-icons/md';
@@ -16,13 +14,7 @@ const buttonsStyle = {
     'button-custom bg-success-secondary flex items-center justify-between gap-2 disabled:bg-success-primary-600 bg-success-secondary-500 text-xl text-white hover:bg-success-secondary-400'
 };
 function ScannerControlButtons({ formState }: ProfileFormComponentsProps<unknown>) {
-  // const authContext = useAuthContext();
   const { handleLoadButton, scanner } = useScannerContext();
-  // const { handleLoadButton, scanner } = useScannerController(authContext.user?.id || '');
-
-  useEffect(() => {
-    console.log(' ScannerControlButtons button scanner.isMutating', scanner.isMutating);
-  }, [scanner.isMutating]);
 
   const disableButtons = formState.isLoading || scanner.isMutating;
 
