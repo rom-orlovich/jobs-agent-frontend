@@ -27,7 +27,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
   const { userQuery, activeHash, ...restUserData } = userData;
 
-  const { hash, numResultFound, numMatches, ...restUserQuery } = userQuery;
+  const { hash, numResultsFound, numMatches, ...restUserQuery } = userQuery;
 
   try {
     const res = await users.updateOne(
@@ -44,7 +44,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
           userQueries: {
             ...restUserQuery,
             numMatches: 0,
-            numResultFound: 0,
+            numResultsFound: 0,
             createdAt: new Date()
           }
         }

@@ -37,7 +37,7 @@ function useUserProfile(userID?: string) {
       location: '',
       position: '',
       scope: '',
-      numResultFound: 0
+      numResultsFound: 0
     }
   };
 

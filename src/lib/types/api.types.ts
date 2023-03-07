@@ -22,7 +22,7 @@ export interface UserQuery {
   scope: string;
   hash?: string;
   createdAt?: string;
-  numResultFound?: number;
+  numResultsFound?: number;
   numMatches?: number;
 }
 export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'field'>;
