@@ -1,5 +1,5 @@
 import { useAuthContext } from '@/context/AuthContext';
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchItem from './SearchItem';
 import useDownloadController from '@/hooks/useDownloadController';
 
@@ -24,13 +24,6 @@ function SearchHistoryFeed() {
   //Initialize the button hooks.
   const downloadController = useDownloadController(authContext);
   const scannerController = useScannerContext();
-  useEffect(() => {
-    console.log(
-      'SearchHistoryFeed ScannerControlButtons button scanner.isMutating',
-      scannerController.scanner.isMutating
-    );
-  }, [scannerController.scanner.isMutating]);
-
   const { userHistoryQueries, userProfileData } = authContext;
 
   //Check the status of the data and display proper message.

@@ -3,7 +3,7 @@ import Toggle from '@/components/Toggle/Toggle';
 import { BoolKey } from '@/lib/types/types';
 import { classIsOn, classNameGenerator, createURL, getResMessage } from '@/lib/utils';
 import Link from 'next/link';
-import React, { MouseEvent, useEffect } from 'react';
+import React, { MouseEvent } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
@@ -36,9 +36,7 @@ function Sidebar() {
   const { scanner } = useScannerContext();
   const router = useRouter();
   const hash = userProfileData.activeHash;
-  useEffect(() => {
-    console.log(' Sidebar button scanner.isMutating', scanner.isMutating);
-  }, [scanner.isMutating]);
+
   return (
     <Toggle>
       {(toggleProps) => {
@@ -51,8 +49,6 @@ function Sidebar() {
           hash: hash,
           page: 1
         };
-        console.log(classIsOn(scanner.isMutating, sideBarStyle.active));
-
         //Set jobs page's and jobs matches page's link to be with user's current active hash
         navLinksEl[1].link = createURL([navLinksEl[1].link], sharedQueriesParams);
         navLinksEl[2].link = createURL([navLinksEl[2].link], {

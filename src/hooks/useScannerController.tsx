@@ -14,8 +14,6 @@ import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
-// import { useEffect } from 'react';
-
 function useScannerController(userID: string) {
   const router = useRouter();
   const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
