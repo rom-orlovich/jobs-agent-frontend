@@ -1,8 +1,8 @@
 import { useAuthContext } from '@/context/AuthContext';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchItem from './SearchItem';
 import useDownloadController from '@/hooks/useDownloadController';
-import useScannerController from '@/hooks/useScannerController';
+
 import { useRouter } from 'next/router';
 import { TriggerByHash } from '../Buttons/Button.types';
 import { deleteUserQuery } from '@/lib/api/users.utils';
@@ -12,6 +12,7 @@ import { sortUserHistoryQueries } from './utils';
 import { toast } from 'react-toastify';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
+import { useScannerContext } from '@/context/ScannerContext';
 // import { useScannerContext } from '@/context/ScannerContext';
 
 const searchHistoryFeedStyle = {
@@ -20,10 +21,15 @@ const searchHistoryFeedStyle = {
 function SearchHistoryFeed() {
   const router = useRouter();
   const authContext = useAuthContext();
-
   //Initialize the button hooks.
   const downloadController = useDownloadController(authContext);
-  const scannerController = useScannerController(authContext.user?.id || '', true);
+  const scannerController = useScannerContext();
+  useEffect(() => {
+    console.log(
+      'SearchHistoryFeed ScannerControlButtons button scanner.isMutating',
+      scannerController.scanner.isMutating
+    );
+  }, [scannerController.scanner.isMutating]);
 
   const { userHistoryQueries, userProfileData } = authContext;
 

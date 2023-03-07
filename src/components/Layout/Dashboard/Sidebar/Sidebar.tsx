@@ -1,9 +1,9 @@
 import ButtonAuth from '@/components/Buttons/ButtonAuth';
 import Toggle from '@/components/Toggle/Toggle';
 import { BoolKey } from '@/lib/types/types';
-import { classIsOn, classNameGenerator, createURL } from '@/lib/utils';
+import { classIsOn, classNameGenerator, createURL, getResMessage } from '@/lib/utils';
 import Link from 'next/link';
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
@@ -22,21 +22,23 @@ const sideBarStyle = {
     }
   },
   hoverLink: 'hover:bg-nav-600',
-
   'links&button-container': 'flex h-full flex-col justify-between py-4 w-[100%]',
   links: 'mt-2 flex flex-col items-center gap-4 w-full',
   linksOffMode: 'h-[70%]  gap-8 justify-center',
-  li: 'w-full p-2 rounded-md',
+  li: 'w-full p-2 rounded-md cursor-pointer',
   link: 'text-white w-full',
   icon: 'text-2xl',
-  active: 'bg-nav-600'
+  active: 'bg-nav-600 '
 };
+
 function Sidebar() {
   const { userProfileData } = useAuthContext();
   const { scanner } = useScannerContext();
   const router = useRouter();
   const hash = userProfileData.activeHash;
-
+  useEffect(() => {
+    console.log(' Sidebar button scanner.isMutating', scanner.isMutating);
+  }, [scanner.isMutating]);
   return (
     <Toggle>
       {(toggleProps) => {
@@ -49,6 +51,7 @@ function Sidebar() {
           hash: hash,
           page: 1
         };
+        console.log(classIsOn(scanner.isMutating, sideBarStyle.active));
 
         //Set jobs page's and jobs matches page's link to be with user's current active hash
         navLinksEl[1].link = createURL([navLinksEl[1].link], sharedQueriesParams);
@@ -58,12 +61,15 @@ function Sidebar() {
         });
 
         //For disabling the links that relate to the scanner state mutation.
-        const mutatedLinkProps = {
+        const mutatedProps = {
           onClick: (e: MouseEvent) => {
-            scanner.isMutating && e.preventDefault();
-            toast('no');
+            if (scanner.isMutating) {
+              e.preventDefault();
+              toast(getResMessage('SEARCH_IS_IN_PROCESS').message);
+            }
           },
-          className: classNameGenerator(sideBarStyle.link, '')
+          className: classNameGenerator(classIsOn(scanner.isMutating, sideBarStyle.active)),
+          linkStyle: classIsOn(scanner.isMutating, 'pointer-events-none')
         };
 
         return (
@@ -78,20 +84,32 @@ function Sidebar() {
                 )}
               >
                 {navLinksEl.map((el, i) => {
-                  const linkProps = i === 1 || i === 2 ? mutatedLinkProps : {};
+                  const liMutateProps =
+                    i === 1 || i === 2
+                      ? mutatedProps
+                      : {
+                          className: '',
+                          linkStyle: ''
+                        };
+
                   const isActiveLink = router.pathname === el.link;
                   const activeStyle = isActiveLink ? sideBarStyle.active : '';
 
                   return (
                     <li
+                      {...liMutateProps}
                       className={classNameGenerator(
                         sideBarStyle.li,
                         sideBarStyle.hoverLink,
+                        liMutateProps.className,
                         activeStyle
                       )}
                       key={el.text + i}
                     >
-                      <Link className={sideBarStyle.link} {...linkProps} href={`${el.link}`}>
+                      <Link
+                        className={classNameGenerator(sideBarStyle.link, liMutateProps.linkStyle)}
+                        href={`${el.link}`}
+                      >
                         <SideNavItem icon={el.icon} isOn={isON} text={el.text} />
                       </Link>
                     </li>

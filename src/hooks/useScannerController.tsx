@@ -14,9 +14,9 @@ import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
-function useScannerController(userID: string, hashIsActive?: boolean) {
+function useScannerController(userID: string) {
   const router = useRouter();
   const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
 
@@ -26,9 +26,7 @@ function useScannerController(userID: string, hashIsActive?: boolean) {
     (url: string, options: Args) =>
       fetch(`${url}?${covertQueryParamsToString(options.arg)}`).then((res) => res.json())
   );
-  useEffect(() => {
-    console.log('button scanner.isMutating', scanner.isMutating);
-  }, [scanner.isMutating]);
+
   // Handles the Load button click event.
   const handleLoadButton: TriggerByHash = (hash) => async (e) => {
     e.preventDefault();
@@ -36,7 +34,7 @@ function useScannerController(userID: string, hashIsActive?: boolean) {
       toast(MESSAGES[MESSAGE_CODES.SEARCH_IS_IN_PROCESS]);
       await scanner.trigger({
         // hash: hashIsActive ? hash : undefined
-        hash: hashIsActive ? hash : undefined
+        hash: hash
       });
 
       const res = await mutate<{ data: UserProfile }>(`/${API_ENDPOINTS.USERS}/${userID}`);
