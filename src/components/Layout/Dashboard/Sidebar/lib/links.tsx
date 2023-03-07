@@ -8,7 +8,7 @@ import {
   MdTrackChanges,
   MdLocalFireDepartment
 } from 'react-icons/md';
-interface NavLinkProps {
+export interface NavLinkProps {
   link: string;
   isMargin?: boolean;
   text: string;

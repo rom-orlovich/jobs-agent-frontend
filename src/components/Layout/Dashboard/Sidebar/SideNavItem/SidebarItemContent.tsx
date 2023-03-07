@@ -1,31 +1,31 @@
 import React, { ReactNode } from 'react';
 
-export interface SideNavItemContentProps {
+export interface SidebarItemContentProps {
   icon: ReactNode;
   text: string;
   isOn: boolean;
 }
 
-const SideNavItemContentStyle = {
+const SidebarItemContentStyle = {
   isOnContent: 'group flex justify-start gap-3 w-full',
   isOffContentContainer: 'group relative flex justify-center',
   isOffContentItem:
     'absolute top-[-2px] hidden translate-x-[0px] rounded-md bg-white px-1 text-lg text-black shadow-lg duration-100 group-hover:block group-hover:translate-x-[-63px] group-hover:transition'
 };
 /**
- * SideNavItemContent component create hover effect when the sidebar is close and regular display when its on.
+ * SidebarItemContent component create hover effect when the sidebar is close and regular display when its on.
  */
-function SideNavItemContent({ icon, text, isOn }: SideNavItemContentProps) {
+function SidebarItemContent({ icon, text, isOn }: SidebarItemContentProps) {
   const isOnContent = (
-    <div className={SideNavItemContentStyle.isOnContent}>
+    <div className={SidebarItemContentStyle.isOnContent}>
       {icon && icon}
       {text}
     </div>
   );
   const isOffContent = icon ? (
-    <div className={SideNavItemContentStyle.isOffContentContainer}>
+    <div className={SidebarItemContentStyle.isOffContentContainer}>
       {icon}
-      <span className={SideNavItemContentStyle.isOffContentItem}>{text}</span>
+      <span className={SidebarItemContentStyle.isOffContentItem}>{text}</span>
     </div>
   ) : (
     <>{text} </>
@@ -35,4 +35,4 @@ function SideNavItemContent({ icon, text, isOn }: SideNavItemContentProps) {
   return curContent;
 }
 
-export default SideNavItemContent;
+export default SidebarItemContent;
