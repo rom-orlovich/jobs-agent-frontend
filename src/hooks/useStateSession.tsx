@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GenericRecord } from '@/lib/types/types';
 
@@ -15,7 +16,14 @@ function useStateSession<V extends GenericRecord<any>>({ id, values }: { id: str
 
   useEffect(() => {
     return () => {
-      window.sessionStorage.setItem(id, JSON.stringify(state));
+      let newState;
+      if (state['page']) {
+        const { page, ...rest } = state;
+        newState = {
+          ...rest
+        };
+      }
+      window.sessionStorage.setItem(id, JSON.stringify(newState || state));
     };
   }, [state, id]);
 
