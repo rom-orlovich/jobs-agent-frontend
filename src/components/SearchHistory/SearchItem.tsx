@@ -1,5 +1,5 @@
 import { UseDownloadHooksProps } from '@/hooks/useDownloadController';
-import { UseScannerHooksProps } from '@/hooks/useScannerController';
+import { ReturnTypeUseScannerHooksProps } from '@/hooks/useScannerController';
 import { UserQuery } from '@/lib/types/api.types';
 import { TriggerByHash } from '../Buttons/Button.types';
 import SearchItemButtons from './SearchItem/SearchItemButtons';
@@ -18,7 +18,10 @@ function SearchItem({
   ...props
 }: UserQuery &
   UseDownloadHooksProps &
-  UseScannerHooksProps & { handleEditButton: TriggerByHash; handleDeleteButton: TriggerByHash }) {
+  ReturnTypeUseScannerHooksProps & {
+    handleEditButton: TriggerByHash;
+    handleDeleteButton: TriggerByHash;
+  }) {
   const { hash, downloadState, scanner } = props;
   return (
     <li className={searchItemStyle.item}>

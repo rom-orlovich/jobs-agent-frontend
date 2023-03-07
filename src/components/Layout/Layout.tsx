@@ -16,6 +16,7 @@ export function Layout(props: PropsWithChildren) {
     <main className={roboto.className + ' ' + 'bg-background' + ' min-h-[100vh]'}>{children}</main>
   );
   const { isAuthenticated, isLoading, isValidating } = auth;
+
   if (!isAuthenticated) return <></>;
   if (isLoading || isValidating)
     return (

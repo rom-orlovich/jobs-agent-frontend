@@ -1,7 +1,7 @@
 import DownloadButton from '@/components/Buttons/DownloadButton';
 import SearchButton from '@/components/Buttons/SearchButton';
 import { UseDownloadHooksProps } from '@/hooks/useDownloadController';
-import { UseScannerHooksProps } from '@/hooks/useScannerController';
+import { ReturnTypeUseScannerHooksProps } from '@/hooks/useScannerController';
 import React from 'react';
 
 const searchItemButtonsStyle = {
@@ -14,7 +14,7 @@ function SearchItemButtons({
   handleLoadButton,
   scanner,
   hash
-}: UseDownloadHooksProps & UseScannerHooksProps & { hash?: string }) {
+}: UseDownloadHooksProps & ReturnTypeUseScannerHooksProps & { hash?: string }) {
   return (
     <div className={searchItemButtonsStyle.buttonsContainer}>
       <SearchButton

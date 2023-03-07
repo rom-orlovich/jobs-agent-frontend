@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
+import { useEffect } from 'react';
 function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsActive?: boolean) {
   const router = useRouter();
   const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, user?.id]);
@@ -24,6 +25,9 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
     (url: string, options: Args) =>
       fetch(`${url}?${covertQueryParamsToString(options.arg)}`).then((res) => res.json())
   );
+  useEffect(() => {
+    console.log('scanner.isMutating', scanner.isMutating);
+  }, [scanner.isMutating]);
 
   // Handles the Load button click event.
   const handleLoadButton: TriggerByHash = (hash) => async (e) => {
@@ -45,14 +49,6 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
     } catch (error) {
       toast(MESSAGES[MESSAGE_CODES.JOBS_ARE_NOT_FOUND]);
       console.log(error);
-    } finally {
-      // console.log('there');
-      // router.push({
-      //   pathname: `/${APP_ROUTES.JOBS_PAGE}`,
-      //   query: {
-      //     hash
-      //   }
-      // });
     }
   };
   return {
@@ -62,4 +58,4 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
 }
 
 export default useScannerController;
-export type UseScannerHooksProps = ReturnType<typeof useScannerController>;
+export type ReturnTypeUseScannerHooksProps = ReturnType<typeof useScannerController>;
