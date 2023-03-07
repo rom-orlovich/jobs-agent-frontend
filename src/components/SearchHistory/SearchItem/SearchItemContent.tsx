@@ -54,7 +54,7 @@ function SearchItemContent(props: UserQuery) {
           title={'משרות חדשות שנמצאו:'}
           value={String(props.numResultsFound || 0)}
         />
-        <Field {...fieldProps} title={'משרות מתאימות:'} value={String(props.numMatches || 0)} />
+        <Field {...fieldProps} title={'מספר התאמות חדשות:'} value={String(props.numMatches || 0)} />
       </div>
     </>
   );

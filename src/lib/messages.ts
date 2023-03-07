@@ -31,7 +31,7 @@ export const MESSAGES = {
   //SCANNER
   [MESSAGE_CODES.SCANNER_SUCCESS]: 'החיפוש בוצע בהצלחה',
   [MESSAGE_CODES.ENTER_VALID_QUERY]: 'אנא הכנס ערכים חוקיים.',
-  [MESSAGE_CODES.SEARCH_IS_IN_PROCESS]: 'החיפוש מתבצע אנא המתן לתוצאות...',
+  [MESSAGE_CODES.SEARCH_IS_IN_PROCESS]: 'החיפוש מתבצע נא המתן לתוצאות...',
   [MESSAGE_CODES.JOBS_ARE_NOT_FOUND]: 'אף משרה לא נמצאה, אנא בצע חיפוש נוסף.',
   [MESSAGE_CODES.JOB_IS_FOUND]: 'המשרה נמצאה בהצלחה!.',
   [MESSAGE_CODES.JOB_IS_NOT_FOUND]: 'המשרה לא קיימת יותר,אנא הוסף משרה חדשה.',
