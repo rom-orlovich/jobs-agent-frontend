@@ -1,10 +1,13 @@
-import { ReturnTypeUseScannerHooksProps } from '@/hooks/useScannerController';
+import useScannerController, { ReturnTypeUseScannerHooksProps } from '@/hooks/useScannerController';
 import React, { createContext, PropsWithChildren, useContext } from 'react';
+import { useAuthContext } from './AuthContext';
 
 export const context = createContext({} as ReturnTypeUseScannerHooksProps);
 //
-function ScannerContext(props: { authData: ReturnTypeUseScannerHooksProps } & PropsWithChildren) {
-  return <context.Provider value={props.authData}>{props.children}</context.Provider>;
+function ScannerContext(props: PropsWithChildren) {
+  const { user } = useAuthContext();
+  const scannerController = useScannerController(user?.id || '');
+  return <context.Provider value={scannerController}>{props.children}</context.Provider>;
 }
 
 /**

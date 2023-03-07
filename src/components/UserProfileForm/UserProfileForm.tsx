@@ -11,7 +11,6 @@ import ToggleTopic from './ToggleTopic';
 import { useAuthContext } from '@/context/AuthContext';
 import ScannerControlButtons from './ScannerControlButtons/ScannerControlButtons';
 import { classNameGenerator } from '@/lib/utils';
-
 const userProfileFormStyle = {
   form: 'sm:max-w-[32rem]  sm:min-w-[27rem] sm:min-h-[27rem] xs:min-w-[25rem] min-w-[18rem] min-h-[25rem]  max-h-fit flex flex-col justify-between p-6 card gap-4',
   inputsContainer: 'flex flex-col gap-5 sm:max-w-[23rem]',
@@ -85,6 +84,7 @@ function UserProfileForm() {
           <UserQuery {...userForm} />
         </ToggleTopic>
       </div>
+
       <ScannerControlButtons {...userForm} />
     </form>
   );

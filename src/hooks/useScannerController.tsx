@@ -5,7 +5,7 @@ import { covertQueryParamsToString, createURLPath } from '@/lib/utils';
 import { Key, mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS, CLIENT_URL } from '@/lib/endpoints';
-import { ReturnTypeUseAuthProfileExist } from './useAuth';
+// import { ReturnTypeUseAuthProfileExist } from './useAuth';
 import { Args, ResponseScanner } from '@/lib/types/jobsScanner.types';
 import { useRouter } from 'next/router';
 
@@ -15,9 +15,10 @@ import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
 import { useEffect } from 'react';
-function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsActive?: boolean) {
+
+function useScannerController(userID: string, hashIsActive?: boolean) {
   const router = useRouter();
-  const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, user?.id]);
+  const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
 
   //Initialize search scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner, any, Key, { hash?: string }>(
@@ -26,19 +27,19 @@ function useScannerController({ user }: ReturnTypeUseAuthProfileExist, hashIsAct
       fetch(`${url}?${covertQueryParamsToString(options.arg)}`).then((res) => res.json())
   );
   useEffect(() => {
-    console.log('scanner.isMutating', scanner.isMutating);
+    console.log('button scanner.isMutating', scanner.isMutating);
   }, [scanner.isMutating]);
-
   // Handles the Load button click event.
   const handleLoadButton: TriggerByHash = (hash) => async (e) => {
     e.preventDefault();
     try {
       toast(MESSAGES[MESSAGE_CODES.SEARCH_IS_IN_PROCESS]);
       await scanner.trigger({
+        // hash: hashIsActive ? hash : undefined
         hash: hashIsActive ? hash : undefined
       });
 
-      const res = await mutate<{ data: UserProfile }>(`/${API_ENDPOINTS.USERS}/${user?.id}`);
+      const res = await mutate<{ data: UserProfile }>(`/${API_ENDPOINTS.USERS}/${userID}`);
 
       router.push({
         pathname: `/${APP_ROUTES.JOBS_PAGE}`,

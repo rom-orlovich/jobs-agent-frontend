@@ -12,6 +12,7 @@ import { sortUserHistoryQueries } from './utils';
 import { toast } from 'react-toastify';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
+// import { useScannerContext } from '@/context/ScannerContext';
 
 const searchHistoryFeedStyle = {
   feed: 'sm:pr-16 pr-8 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
@@ -22,7 +23,7 @@ function SearchHistoryFeed() {
 
   //Initialize the button hooks.
   const downloadController = useDownloadController(authContext);
-  const scannerController = useScannerController(authContext, true);
+  const scannerController = useScannerController(authContext.user?.id || '', true);
 
   const { userHistoryQueries, userProfileData } = authContext;
 

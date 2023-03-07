@@ -5,6 +5,7 @@ import { ReturnTypeUseAuthProfileExist } from '@/hooks/useAuth';
 
 import AuthContext from '@/context/AuthContext';
 import Main from './Main/Main';
+import ScannerContext from '@/context/ScannerContext';
 
 export type ChildrenWithAuthData = { children: (props: ReturnTypeUseAuthProfileExist) => ReactNode };
 
@@ -12,7 +13,9 @@ export function Layout(props: PropsWithChildren) {
   return (
     <Main>
       <AuthContext>
-        <Dashboard>{props.children}</Dashboard>
+        <ScannerContext>
+          <Dashboard>{props.children}</Dashboard>
+        </ScannerContext>
       </AuthContext>
     </Main>
   );

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useAuthContext } from '@/context/AuthContext';
 
-import useScannerController from '@/hooks/useScannerController';
+// import useScannerController from '@/hooks/useScannerController';
 import { ProfileFormComponentsProps } from '@/hooks/useProfileForm/useProfileForm';
 
 import { MdSave } from 'react-icons/md';
 import SearchButton from '@/components/Buttons/SearchButton';
 import Spinner from '@/components/Spinner/Spinner';
 import SuccessButton from '@/components/Buttons/SuccessButton';
+import { useScannerContext } from '@/context/ScannerContext';
 const buttonsStyle = {
   buttonsContainer: 'mt-3 flex justify-between gap-2',
   load: '',
@@ -16,7 +17,9 @@ const buttonsStyle = {
 };
 function ScannerControlButtons({ formState }: ProfileFormComponentsProps<unknown>) {
   const authContext = useAuthContext();
-  const { handleLoadButton, scanner } = useScannerController(authContext);
+  const { handleLoadButton, scanner } = useScannerContext();
+  // const { handleLoadButton, scanner } = useScannerController(authContext.user?.id || '');
+
   const disableButtons = formState.isLoading || scanner.isMutating;
 
   return (
