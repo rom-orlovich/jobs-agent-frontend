@@ -7,8 +7,8 @@ import React, { MouseEvent } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import Profile from './Profile';
 import { BiLogOutCircle } from 'react-icons/bi';
-import SideNavItem from './SideNavItem';
-import { navLinks } from './SidebarLinks';
+import SideNavItemContent from './SideNavItem/SideNavItemContent';
+import { LINKS } from './lib/links';
 import { useAuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
 import { useScannerContext } from '@/context/ScannerContext';
@@ -43,15 +43,15 @@ function Sidebar() {
         const { isON } = toggleProps;
         const bool = String(isON) as BoolKey;
         const navIsOn = sideBarStyle['isOn']['nav'][bool];
-        const navLinksEl = navLinks(sideBarStyle.icon);
+        const LINKSEl = LINKS(sideBarStyle.icon);
 
         const sharedQueriesParams = {
           hash: hash,
           page: 1
         };
         //Set jobs page's and jobs matches page's link to be with user's current active hash
-        navLinksEl[1].link = createURL([navLinksEl[1].link], sharedQueriesParams);
-        navLinksEl[2].link = createURL([navLinksEl[2].link], {
+        LINKSEl[1].link = createURL([LINKSEl[1].link], sharedQueriesParams);
+        LINKSEl[2].link = createURL([LINKSEl[2].link], {
           ...sharedQueriesParams,
           reason: 'match'
         });
@@ -79,7 +79,7 @@ function Sidebar() {
                   classIsOn(!isON, sideBarStyle.linksOffMode)
                 )}
               >
-                {navLinksEl.map((el, i) => {
+                {LINKSEl.map((el, i) => {
                   const liMutateProps =
                     i === 1 || i === 2
                       ? mutatedProps
@@ -106,14 +106,14 @@ function Sidebar() {
                         className={classNameGenerator(sideBarStyle.link, liMutateProps.linkStyle)}
                         href={`${el.link}`}
                       >
-                        <SideNavItem icon={el.icon} isOn={isON} text={el.text} />
+                        <SideNavItemContent icon={el.icon} isOn={isON} text={el.text} />
                       </Link>
                     </li>
                   );
                 })}
               </ul>
               <ButtonAuth className={classNameGenerator(sideBarStyle.hoverLink)}>
-                <SideNavItem
+                <SideNavItemContent
                   icon={<BiLogOutCircle className={sideBarStyle.icon} />}
                   isOn={isON}
                   text={'התנתק'}

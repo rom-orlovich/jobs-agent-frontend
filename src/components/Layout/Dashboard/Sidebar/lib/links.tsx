@@ -16,7 +16,7 @@ interface NavLinkProps {
   query?: GenericRecord<boolean>;
 }
 
-export const navLinks: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => [
+export const LINKS: (iconsStyle: string) => NavLinkProps[] = (iconsStyle) => [
   {
     link: `/`,
     text: 'חיפוש',
