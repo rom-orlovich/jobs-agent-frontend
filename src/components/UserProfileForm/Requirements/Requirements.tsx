@@ -29,7 +29,7 @@ function Requirements({ handleRequirements, formValues }: ProfileFormComponentsP
           className: ''
         }}
         removeButtonProps={{
-          className: '!left-[10%]'
+          className: '!left-[0%]'
         }}
         overflowProps={{
           outerDiv: {
