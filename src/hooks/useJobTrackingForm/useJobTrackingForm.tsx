@@ -4,6 +4,7 @@ import { getResMessage } from '@/lib/utils';
 
 import { ChangeEventHandler } from 'react';
 import { toast } from 'react-toastify';
+import { mutate } from 'swr';
 import useForm from '../useForm';
 import { handleConvertInitialValues, handleConvertToFormResult } from './utils';
 
@@ -37,7 +38,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
         ...job,
         info: formsValues
       });
-
+      await mutate(`/api/users/${userID}`);
       toast(results.data.message);
     } catch (error) {
       console.log(error);
