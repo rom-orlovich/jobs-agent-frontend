@@ -14,6 +14,20 @@ This repository contains the frontend part of the Jobs Agent project.
 The frontend part is responsible for displaying the UI of job data, improving the search and filter process for a more user-friendly experience, and enabling users to track their job search process in the jobs they send their CV.
 
 
+# Table of contents
+
+  - [**Main Features**](#main-features)
+  - [**Technologies**](#technologies)
+  - [**Packages**](#packages)
+  - [**How It Works?**](#how-it-works)
+    - [User Profile Creation](#user-profile-creation)
+    - [Getting the Results](#getting-the-results)
+    - [Tracking Jobs](#tracking-jobs)
+    - [Search History](#search-history)
+  - [**Installation**](#installation)
+  - [**What's next?**](#whats-next)
+  - [**Images**](#images)
+   
 ## Main Features:
 
 - **Users System** :
@@ -56,7 +70,7 @@ The frontend part is responsible for displaying the UI of job data, improving th
   - [Husky](https://www.npmjs.com/package/husky) - For git hooks manager that runs scripts before git commands.
   - [Lint-staged](https://www.npmjs.com/package/lint-staged) - For running linters against staged git files, used for maintaining code quality.
  
- ## How It Works:
+ ## How It Works?:
 
 ### User Profile Creation:
  - The user logs in with their Google account and fills out their overall years of experience, job requirements, and excluded requirements.
