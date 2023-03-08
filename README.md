@@ -82,13 +82,13 @@ The frontend part is responsible for displaying the UI of job data, improving th
 
 ### Getting the Results:
 
-- After clicking the "Load Scanner" button, the backend scanner scans various job listing sites for jobs matching the user's search criteria.
-- The results are displayed on the "Jobs" page, where the user can filter the jobs further or go to the "Matching" page to see jobs that match their profile.
+- After clicking the load scanner button, the backend scanner scans various job listing sites for jobs matching the user's search criteria.
+- The results are displayed on the "Jobs" page, where the user can filter the jobs further or go to the Matching page to see jobs that match their profile.
 
 ### Tracking Jobs:
 
-- If the user finds a job they've already applied for, they can track it by clicking the "Track" button on the job posting.
-- In the "Tracking" page, users can add additional information on the job application process and see their tracked job postings.
+- If the user finds a job they've already applied for, they can track it by clicking the red track icon button on the job posting.
+- In the Tracking page, users can add additional information on the job application process and see their tracked job postings.
 
 ### Search History:
 
