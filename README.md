@@ -1,5 +1,6 @@
 # Jobs Agent Frontend:
 
+[Jobs Agent App](https://github.com/rom-orlovich/jobs-agent-backend) :point_left:
 [Jobs Agent Backend](https://github.com/rom-orlovich/jobs-agent-backend) :point_left:
 
 ## About My Project:
@@ -128,23 +129,23 @@ The frontend part is responsible for displaying the UI of job data, improving th
 
 ### User Profile
 
-<img alt="User Profile" src="./readme-images/user-profile.png" width="700" hight="700">
-<img alt="User Profile Query" src="./readme-images/user-profile-query.png" width="700" hight="700">
+   <img alt="User Profile" src="./readme-images/user-profile.png" width="700" hight="700">
+   <img alt="User Profile Query" src="./readme-images/user-profile-query.png" width="700" hight="700">
 
 ### Jobs Page
 
-<img alt="Jobs Page" src="./readme-images/jobs-page.png" width="700" hight="700">
-<img alt="Jobs Page Filters" src="./readme-images/jobs-page-filters.png" width="700" hight="700">
-
+   <img alt="Jobs Page" src="./readme-images/jobs-page.png" width="700" hight="700">
+   <img alt="Jobs Page Filters" src="./readme-images/jobs-page-filters.png" width="700" hight="700">
+   
 ### Jobs Match Page
-
-<img alt="Jobs Match Page" src="./readme-images/jobs-match-page.png" width="700" hight="700">
-
+   
+   <img alt="Jobs Match Page" src="./readme-images/jobs-match-page.png" width="700" hight="700">
+   
 ### Jobs Tracking Page
-
-<img alt="Jobs Tracking Page" src="./readme-images/jobs-tracking.png" width="700" hight="700">
-<img alt="Job Tracking Info" src="./readme-images/job-tracking-info.png" width="700" hight="700">
-
+   
+   <img alt="Jobs Tracking Page" src="./readme-images/jobs-tracking.png" width="700" hight="700">
+   <img alt="Job Tracking Info" src="./readme-images/job-tracking-info.png" width="700" hight="700">
+   
 ### Search History Page
-
-<img alt="Search History Page" src="./readme-images/search-history.png" width="700" hight="700">
+   
+   <img alt="Search History Page" src="./readme-images/search-history.png" width="700" hight="700">

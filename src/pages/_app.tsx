@@ -7,7 +7,6 @@ import { Session } from 'next-auth';
 import Layout from '@/components/Layout/Layout';
 import Toasts from '@/components/Toasts/Toasts';
 import { GenericRecord } from '@/lib/types/types';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AppPropsWithSession = AppProps & { session: Session } & { fallback: GenericRecord<any> };
 export default function App({ Component, pageProps, session }: AppPropsWithSession) {
