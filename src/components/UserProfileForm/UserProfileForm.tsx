@@ -51,7 +51,7 @@ function UserProfileForm() {
               id: 'overallEx',
               className: userProfileFormStyle.input,
               type: 'number',
-              min: 0,
+              min: 1,
               onChange: userForm.handleOverallExperience
             }}
           >

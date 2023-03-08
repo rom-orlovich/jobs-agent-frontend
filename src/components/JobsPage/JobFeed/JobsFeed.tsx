@@ -55,7 +55,10 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
 
   let currentJobs;
-  if (isTrackFeed) currentJobs = userProfileData.tracking;
+  if (isTrackFeed)
+    currentJobs = userProfileData.tracking?.sort(
+      (a, b) => new Date(b.info?.createdAt || '').getTime() - new Date(a.info?.createdAt || '').getTime()
+    );
   else currentJobs = jobs;
 
   return (
