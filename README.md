@@ -98,9 +98,12 @@ The frontend part is responsible for displaying the UI of job data, improving th
    npm run ci
    ```
    
-3. **Create .env.local and your mongoDB URI into it**
+3. **Create .env.local with the following variables**
    ```
    MONGO_DB_URI= <Your URI>
+   GOOGLE_CLIENT_ID =  <Your GOOGLE_CLIENT_ID>
+   GOOGLE_CLIENT_SECRET = <Your GOOGLE_CLIENT_SECRET>
+   NEXTAUTH_URL = <Your NEXTAUTH_URL>
    ```
    
 4. **Run Client**
