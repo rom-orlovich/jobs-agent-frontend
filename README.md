@@ -100,7 +100,7 @@ The frontend part is responsible for displaying the UI of job data, improving th
    
 3. **Create .env.local with the following variables**
    ```
-   MONGO_DB_URI= <Your URI>
+   MONGO_DB_URI= <Your MONGO_DB_URI>
    GOOGLE_CLIENT_ID =  <Your GOOGLE_CLIENT_ID>
    GOOGLE_CLIENT_SECRET = <Your GOOGLE_CLIENT_SECRET>
    NEXTAUTH_URL = <Your NEXTAUTH_URL>
