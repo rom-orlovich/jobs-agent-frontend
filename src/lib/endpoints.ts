@@ -8,7 +8,9 @@ export const API_ENDPOINTS = {
   SCANNER_DOWNLOAD: `${PREFIX}/jobs-agent/download`,
   GET_JOBS: `${PREFIX}/jobs-agent/jobs`
 };
+
 export const CLIENT_URL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_CLIENT_URL;
 
-export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+export const SERVER_URL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : process.env.NEXT_PUBLIC_SERVER_URL;
