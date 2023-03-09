@@ -53,8 +53,8 @@ The frontend part is responsible for displaying the UI of job data, improving th
 - Users can log in with their Google account and create their private user account.
 - The user can create a profile that contains the user's job preferences, which the backend algorithm uses to identify which jobs fit the user's profile.
 - The user can create search queries with criteria for searching jobs in the jobs listing sites.
-- **Job Display** - The application displays the founded jobs, and the user can scroll down to load more jobs.
-- **Filtering** - The application enables the filtering of the displayed jobs according to job title, location, the site of the jobs, company, and suitability level.
+- **Jobs Display** - The application displays the list of the jobs it found and the user can scroll down to load more jobs.
+- **Filtering** - The application enables the filtering of the search results according to job title, location, the site of the jobs, company, and suitability level.
 - **Matching Page** - The page only displays jobs matching the user's profile.
 - **Tracking Page** :
   - Each job post has a track button that the user can click to save the job post in their profile.
