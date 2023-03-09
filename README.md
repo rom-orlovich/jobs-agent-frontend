@@ -17,8 +17,8 @@ This repository contains the frontend part of the Jobs Agent project.
 The frontend part is responsible for displaying the UI of job data, improving the search and filter process for a more user-friendly experience, and enabling users to track their job search process in the jobs they send their CV.
 
 
-[<p align="center">
-<img style='margin:0 50%;' alt="How to use?" src="./readme-images/mobile.gif"  height="800" width="400"></p>](https://drive.google.com/file/d/1H6pV3lnnpqHT1Szd8eSQT_KZcr7ehqsM/view?usp=sharing "How to use? click me!")
+<p align="center">
+<img style='margin:0 50%;' alt="How to use?" src="./readme-images/mobile.gif"  height="800" width="400"></p>
 
 
 
@@ -42,7 +42,8 @@ The frontend part is responsible for displaying the UI of job data, improving th
 ## How To Use? 
 
 
-[<p align="center"><img alt="How to use?" src="./readme-images/thumbnail-video.png"  height="500" width="800"></p>](https://drive.google.com/file/d/1H6pV3lnnpqHT1Szd8eSQT_KZcr7ehqsM/view?usp=sharing "How to use?")
+[<img alt="How to use?" src="./readme-images/thumbnail-video.png"  height="500" width="800">](https://drive.google.com/file/d/1H6pV3lnnpqHT1Szd8eSQT_KZcr7ehqsM/view?usp=sharing "How to use? click me!") 
+
 
 
 ## Main Features:
