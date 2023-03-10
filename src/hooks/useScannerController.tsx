@@ -16,7 +16,8 @@ import { TriggerByHash } from '@/components/Buttons/Button.types';
 import { UserProfile } from '@/lib/types/api.types';
 function useScannerController(userID: string) {
   const router = useRouter();
-  const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
+  const scannerURL = createURLPath([CLIENT_URL, 'api/jobs-agent/test', userID]);
+  // const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
 
   //Initialize search scanner fetcher.
   const scanner = useSWRMutation<ResponseScanner, any, Key, { hash?: string }>(
