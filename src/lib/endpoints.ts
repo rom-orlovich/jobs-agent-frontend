@@ -6,7 +6,8 @@ export const API_ENDPOINTS = {
   POSITIONS: `${PREFIX}/positions`,
   SCANNER_START: `${PREFIX}/jobs-agent/start`,
   SCANNER_DOWNLOAD: `${PREFIX}/jobs-agent/download`,
-  GET_JOBS: `${PREFIX}/jobs-agent/jobs`
+  GET_JOBS: `${PREFIX}/jobs-agent/jobs`,
+  SCANNER_STATUS: `${PREFIX}/jobs-agent/scanning/checkStatus`
 };
 
 export const CLIENT_URL =

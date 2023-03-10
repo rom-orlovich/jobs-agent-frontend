@@ -14,7 +14,7 @@ function useUserProfile(userID?: string) {
   const router = useRouter();
   //Initial the fetching of current login user's data.
   const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
-    `/api/users/${userID}`,
+    userID ? `/api/users/${userID}` : null,
     {
       revalidateIfStale: true,
       revalidateOnMount: true,
