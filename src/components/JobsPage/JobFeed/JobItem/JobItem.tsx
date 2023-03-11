@@ -16,7 +16,9 @@ function JobItem(props: JobItemProps) {
           <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div className={jobItemStyle.title}>
-          <Link href={link}> {title}</Link>
+          <Link target="_blank" href={link}>
+            {title}
+          </Link>
         </div>
         {props.company && <div className="text-center"> {props.company}</div>}
 

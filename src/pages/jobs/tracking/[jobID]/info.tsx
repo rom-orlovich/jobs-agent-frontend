@@ -49,7 +49,9 @@ function JobTracking() {
       <div className={infoStyle.formContainer}>
         <div className={infoStyle.card}>
           <h1 dir={'ltr'} className={infoStyle.title}>
-            <Link href={curJobTracking?.link || ''}>{curJobTracking?.title} </Link>
+            <Link target="_blank" href={curJobTracking?.link || ''}>
+              {curJobTracking?.title}
+            </Link>
           </h1>
           <h2 className={infoStyle.company} dir={'ltr'}>
             {curJobTracking?.company}

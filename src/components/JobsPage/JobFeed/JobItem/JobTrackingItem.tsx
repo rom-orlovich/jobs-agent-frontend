@@ -35,7 +35,9 @@ function JobTrackingItem(props: JobItemProps) {
           <Field value={localDateStr} titleStyle={'font-bold'} title="נוצר ב-" />
         </div>
         <div className={jobTrackingItemStyle.title}>
-          <Link href={link}> {title}</Link>
+          <Link target="_blank" href={link}>
+            {title}
+          </Link>
         </div>
         {props.company && <div className="text-center"> {props.company}</div>}
       </div>
