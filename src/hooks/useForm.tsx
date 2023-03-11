@@ -1,5 +1,6 @@
 import { GenericRecord } from '@/lib/types/types';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 // import { useDebounce, useDebouncedCallback } from 'use-debounce';
 
 interface FormState<D> {
@@ -70,7 +71,7 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
 
   return {
     setFormValues,
-    onChange,
+    onChange: useDebouncedCallback(onChange, 500),
     onSubmit,
     formValues,
     formState

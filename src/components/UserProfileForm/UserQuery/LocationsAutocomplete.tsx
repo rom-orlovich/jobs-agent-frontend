@@ -17,7 +17,6 @@ function LocationsAutocomplete({
   const { data: locationData } = useSwrHook<{ data: Location[] }>(
     `/${API_ENDPOINTS.LOCATIONS}?name=${locationValue.location}`
   );
-
   return (
     <Autocomplete
       defaultValue={{
