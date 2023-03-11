@@ -17,7 +17,7 @@ function SideLinksItems({ isON }: { isON: boolean }) {
   const { userProfileData } = useAuthContext();
   const { scanner } = useScannerContext();
   const router = useRouter();
-
+  console.log(scanner.isMutating);
   const hash = userProfileData.activeHash;
 
   const sharedQueriesParams = {
