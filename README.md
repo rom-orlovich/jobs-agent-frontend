@@ -61,10 +61,10 @@ The frontend part is responsible for displaying the UI of job data, improving th
   - The tracking job posts display on the Tracking page.
   - In the Tracking page, the user can click on the "Add Info" button to add information on how the job search process is progressing after the user sends their CV to the job.
 - **Search History** :
-- The Search History page displays the user's search history.
-- The user can quickly get the results from his history searches.
-- The user can edit these queries and create a new query based on them.
-- The user can also delete old queries and download the data of those old queries if the data exists.
+   - The Search History page displays the user's search history.
+   - The user can quickly get the results from his history searches.
+   - The user can edit these queries and create a new query based on them.
+   - The user can also delete old queries and download the data of those old queries if the data exists.
 
 ## Technologies:
 
