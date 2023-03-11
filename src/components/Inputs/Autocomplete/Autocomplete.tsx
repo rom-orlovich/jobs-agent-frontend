@@ -36,15 +36,11 @@ export default function Autocomplete<V>({
   const [selectedOption, setSelectedOption] = useState<Option<V>>(defaultValue || defaultNoValue);
 
   //Handle the select event.
-  const handleOnSelect = useDebouncedCallback(
-    (value: Option<V>) => {
-      setValue && setValue(value.value);
+  const handleOnSelect = (value: Option<V>) => {
+    setValue && setValue(value.value);
 
-      setSelectedOption(value);
-    },
-
-    1000
-  );
+    setSelectedOption(value);
+  };
   //Handle input onChange event.
   const handleOnChange = useDebouncedCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +82,11 @@ export default function Autocomplete<V>({
               autoCompleteStyle.input,
               inputLabelProps?.inputProps?.className
             )}
-            onChange={handleOnChange}
+            onChange={
+              inputLabelProps?.inputProps?.onChange
+                ? inputLabelProps?.inputProps?.onChange
+                : handleOnChange
+            }
           />
           {iconButton}
         </Combobox.Button>
