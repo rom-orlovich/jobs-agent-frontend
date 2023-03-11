@@ -35,11 +35,7 @@ function useScannerController(userID: string) {
       axios(`${url}?${covertQueryParamsToString(options.arg)}`).then((res) => res.data)
   );
   const [scannerState, setScannerState] = useState<ScannerStatus | undefined>(undefined);
-  console.log('scannerState', scannerState);
-
   const isRefreshActive = scannerState && scannerState.status === 100;
-
-  console.log(scannerState?.status === 100);
   //Initialize status scanner fetcher.
   useSwrHook<ScannerStatus>(
     scannerState ? createURLPath([scannerStatusURL, scannerState?.id]) : null,
@@ -51,7 +47,6 @@ function useScannerController(userID: string) {
       //Check if the scanner is done.
       async onSuccess(data) {
         if (data.status === 200) {
-          console.log('success');
           setScannerState(data);
 
           const res = await userMutate<{ data: UserProfile }>(`/${API_ENDPOINTS.USERS}/${userID}`);
