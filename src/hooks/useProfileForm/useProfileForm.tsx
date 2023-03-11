@@ -1,6 +1,7 @@
 import { updateUser } from '@/lib/api/users.utils';
 
 import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { ChangeEventHandler } from 'react';
 
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
@@ -19,13 +20,20 @@ import {
 function useProfileForm(user: UserProfileWithOneUserQuery) {
   const formInitialValue: UserProfileWithOneUserQuery = user;
   // Initializes the form state and get the utils functions from useForm hook.
-  const { formValues, onChange, onSubmit, setFormValues, formState } = useForm<
+  const { formValues, onSubmit, setFormValues, formState } = useForm<
     UserProfileWithOneUserQuery,
     { message: string }
   >(formInitialValue);
 
   // Handles the overallExperience on change event.
-  const handleOverallExperience = onChange;
+  const handleOverallExperience: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFormValues((pre) => {
+      return {
+        ...pre,
+        [e.target.id]: e.target.value
+      };
+    });
+  };
 
   // Handles the transform of requirements values to be valid before form's submitting.
   const handleRequirements = (minMaxValues: MinMaxInputsOption[]) => {

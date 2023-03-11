@@ -22,10 +22,6 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
     data: undefined,
     isSent: false
   });
-  // const [formValuesDebounce] = useDebouncedCallback((newState)=>{
-
-  // }, 200);
-
   // On change handler by input's id.
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormValues((pre) => {
@@ -71,6 +67,7 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
 
   return {
     setFormValues,
+
     onChange: useDebouncedCallback(onChange, 500),
     onSubmit,
     formValues,
