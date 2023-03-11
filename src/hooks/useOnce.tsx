@@ -11,9 +11,7 @@ function useOnce() {
   const load = (cb: AnyFun) => {
     saveLoadCB.current?.push(cb);
   };
-  const unlock = () => {
-    flag.current = true;
-  };
+
   const lock = () => {
     flag.current = false;
   };
@@ -24,22 +22,11 @@ function useOnce() {
     }
   }, []);
 
-  const triggerLoad = async () => {
-    for (const cb of saveLoadCB.current) {
-      await new Promise<void>((res) => {
-        cb();
-        res();
-      });
-    }
-  };
-
   return {
     trigger,
-    unlock,
     lock,
     flag,
-    load,
-    triggerLoad
+    load
   };
 }
 
