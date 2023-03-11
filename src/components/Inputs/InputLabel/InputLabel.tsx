@@ -27,11 +27,13 @@ function InputLabel({
 
   const Input = textAreaProps ? (
     <textarea
+      autoComplete="off"
       {...textAreaProps}
       className={classNameGenerator(inputLabelStyle.textArea, textAreaProps?.className)}
     />
   ) : (
     <input
+      autoComplete="off"
       {...inputProps}
       className={classNameGenerator(inputLabelStyle.input, inputProps?.className)}
     />
