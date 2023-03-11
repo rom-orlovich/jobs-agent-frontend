@@ -6,13 +6,17 @@ import { API_ENDPOINTS } from '@/lib/endpoints';
 import { Position } from '@/lib/types/api.types';
 import React from 'react';
 import { AutocompletePropsUserQuery } from './userQuery.types';
+import useForm from '@/hooks/useForm';
 function PositionsAutocomplete({
   formValues,
   handleSelectionInput,
   inputLabelProps
 }: AutocompletePropsUserQuery) {
+  const { formValues: positionValue, onChange } = useForm({
+    position: ''
+  });
   const { data: positionData } = useSwrHook<{ data: Position[] }>(
-    `/${API_ENDPOINTS.POSITIONS}?name=${formValues.userQuery.position}`
+    `/${API_ENDPOINTS.POSITIONS}?name=${positionValue.position}`
   );
   return (
     <Autocomplete
@@ -28,7 +32,13 @@ function PositionsAutocomplete({
         title: el.positionName,
         value: el.positionName
       }))}
-      inputLabelProps={inputLabelProps}
+      inputLabelProps={{
+        ...inputLabelProps,
+        inputProps: {
+          id: 'position',
+          onChange
+        }
+      }}
     />
   );
 }

@@ -1,4 +1,5 @@
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
+import useForm from '@/hooks/useForm';
 
 import { API_ENDPOINTS } from '@/lib/endpoints';
 import { useSwrHook } from '@/lib/swr';
@@ -10,8 +11,11 @@ function LocationsAutocomplete({
   handleSelectionInput,
   inputLabelProps
 }: AutocompletePropsUserQuery) {
+  const { formValues: locationValue, onChange } = useForm({
+    location: ''
+  });
   const { data: locationData } = useSwrHook<{ data: Location[] }>(
-    `/${API_ENDPOINTS.LOCATIONS}?name=${formValues.userQuery.location}`
+    `/${API_ENDPOINTS.LOCATIONS}?name=${locationValue.location}`
   );
 
   return (
@@ -28,7 +32,13 @@ function LocationsAutocomplete({
         title: el.locationName,
         value: el.locationName
       }))}
-      inputLabelProps={inputLabelProps}
+      inputLabelProps={{
+        ...inputLabelProps,
+        inputProps: {
+          id: 'location',
+          onChange
+        }
+      }}
     />
   );
 }
