@@ -6,7 +6,7 @@ function Spinner({ isLoading, className }: { isLoading: boolean; className?: str
   return isLoading ? (
     <MdOutlineDataSaverOff
       className={classNameGenerator(
-        'spin absolute left-[45%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] text-6xl text-cyan-400',
+        'spin fixed left-[45%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] text-6xl text-cyan-400',
         className
       )}
     />
