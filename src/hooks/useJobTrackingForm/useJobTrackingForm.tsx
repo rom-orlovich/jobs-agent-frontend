@@ -19,7 +19,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       ...pre,
       sendCV: {
         ...pre.sendCV,
-        [e.target.id]: e.target.value
+        [e.target.id]: e.target.id === 'pass' ? e.target.checked : e.target.value
       }
     }));
   };
