@@ -13,8 +13,6 @@ import { toast } from 'react-toastify';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
 import { useScannerContext } from '@/context/ScannerContext';
-// import { useScannerContext } from '@/context/ScannerContext';
-
 const searchHistoryFeedStyle = {
   feed: 'sm:pr-16 pr-8 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
 };
@@ -32,8 +30,11 @@ function SearchHistoryFeed() {
     createToastsByDataIfExist('SEARCH_HISTORY_FOUND', 'SEARCH_HISTORY_NOT_FOUND', userHistoryQueries)
   );
 
+  //Display only the user Queries that are already been scanned and have hash field.
+  const filterHistoryQueries = userHistoryQueries.filter((userQuery) => userQuery.hash);
+
   //Sort the user Queries by the date. The new one will be first.
-  const sortHistoryQueries = sortUserHistoryQueries(userHistoryQueries);
+  const sortHistoryQueries = sortUserHistoryQueries(filterHistoryQueries);
 
   //Handle the edit button click.
   const handleEditButton: TriggerByHash = (hash) => (e) => {
