@@ -64,7 +64,7 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
         </ToggleTopic>
         <StagesInfo {...jobTrackingForm} />
       </div>
-      <JobTrackingFormButtons {...jobTrackingForm} />
+      <JobTrackingFormButtons />
     </form>
   );
 }
