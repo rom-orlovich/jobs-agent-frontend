@@ -8,8 +8,8 @@ export interface FilterJobsField {
   company: string;
   location: string;
 }
+
 /**
- *
  * @returns The handles function and formState of useFilterJobs.
  */
 function useFilterJobs(isMatchPage?: boolean) {
@@ -25,22 +25,21 @@ function useFilterJobs(isMatchPage?: boolean) {
       ...isJobsMatchesPage(!!isMatchPage)
     }
   });
+
   //Handle the set value of autocomplete.
   function handleSearchValue<V extends string>(id: keyof FilterJobsField) {
     return (value: V) => {
       setFormValues((pre) => ({
         ...pre,
-        page: 1,
         [id]: value,
+        page: 1,
         ...isJobsMatchesPage(!!isMatchPage)
       }));
     };
   }
 
   return {
-    // formState,
     formValues,
-    // setFormValues,
     handleSearchValue
   };
 }
