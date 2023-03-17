@@ -1,7 +1,4 @@
 import React from 'react';
-// import { Popover } from '@headlessui/react';
-// import { IoFilterCircleSharp } from 'react-icons/io5';
-
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
@@ -11,11 +8,6 @@ import { createAutocompletePropsArr } from './utils';
 import FiltersPopup from '@/components/FiltersPopup/FiltersPopup';
 
 const JobsSearchFiltersStyle = {
-  // popover: 'relative top-0 flex items-center',
-  // popoverButton: 'border-none focus:border-none focus:outline-none focus-visible:ring-white',
-  // filterIcon: 'text-filter-400 hover:text-filter-500 ml-1 text-2xl',
-  // panelContent:
-  //   'absolute top-[2.4rem] left-[50%] z-10 min-h-[8rem] xs:min-w-[17rem]  min-w-[18rem]  rounded-lg bg-white p-4 shadow-lg translate-x-[-95%]',
   autocompleteList: 'flex flex-col gap-2',
   autocompleteWrapper: 'relative flex flex-col gap-1',
   autocompleteLabel: 'self-end',
@@ -39,11 +31,6 @@ function JobsSearchFilters({
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
 
   return (
-    // <Popover className={filterPopupStyle.popover}>
-    //   <Popover.Button className={filterPopupStyle.popoverButton}>
-    //     <IoFilterCircleSharp className={filterPopupStyle.filterIcon} />
-    //   </Popover.Button>
-    //   <Popover.Panel className={filterPopupStyle.panelContent}>
     <FiltersPopup>
       <ul className={JobsSearchFiltersStyle.autocompleteList}>
         {autocompletePropsArr.map(({ key, label, options }, i) => {
@@ -81,8 +68,6 @@ function JobsSearchFilters({
         })}
       </ul>
     </FiltersPopup>
-    //   </Popover.Panel>
-    // </Popover>
   );
 }
 
