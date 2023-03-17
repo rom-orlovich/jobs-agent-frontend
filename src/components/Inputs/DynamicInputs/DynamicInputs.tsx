@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useRef, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
 import { DynamicInputRenderProps, DynamicInputsProps, RenderElement } from './dynamicInputs.types';
 import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
@@ -17,7 +17,9 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   addButtonProps,
   removeButtonProps,
   overflowProps,
-  liProps
+  liProps,
+
+  setDynamicInputState
 }: DynamicInputsProps<T>) {
   const defaultValuesWithID = defaultValues.map((el, i) => ({
     ...el,
@@ -25,6 +27,10 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   }));
 
   const [inputs, setInputState] = useState<RenderElement<T>[]>(defaultValuesWithID);
+  useEffect(() => {
+    setDynamicInputState && setDynamicInputState(inputs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputs, setDynamicInputState]);
 
   // Set a new value in the input that placed in the provided index.
   // Slice until the index, add the value, slice until the length of the inputs and concat the arrays.
@@ -38,7 +44,8 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
         ...curInput,
         ...value
       });
-      return firstPart.concat(secPart);
+      const concatResult = firstPart.concat(secPart);
+      return concatResult;
     };
   };
   const removeInputValue = (index: number) => {
@@ -69,7 +76,6 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   // The function that execute the adding of a new input in the array.
   const addMoreInput: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-
     setInputState(addNewInput);
   };
 

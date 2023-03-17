@@ -5,6 +5,7 @@ import React from 'react';
 
 import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ToggleTopic from '../UserProfileForm/ToggleTopic';
+import JobTrackingFormButtons from './JobTrackingFormButtons';
 import StagesInfo from './StagesInfo/StagesInfo';
 
 export const jobTrackingFormStyle = {
@@ -20,6 +21,7 @@ export const jobTrackingFormStyle = {
 function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
   const jobTrackingForm = useJobTrackingForm(job, userID);
   const { formValues, handleOnChangeValue, onSubmit } = jobTrackingForm;
+
   return (
     <form onSubmit={onSubmit} className={jobTrackingFormStyle.form}>
       <div className={jobTrackingFormStyle.formContent}>
@@ -62,6 +64,7 @@ function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
         </ToggleTopic>
         <StagesInfo {...jobTrackingForm} />
       </div>
+      <JobTrackingFormButtons {...jobTrackingForm} />
     </form>
   );
 }

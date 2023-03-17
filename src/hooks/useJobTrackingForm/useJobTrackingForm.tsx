@@ -1,3 +1,4 @@
+import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
 import { updateJobsTracking } from '@/lib/api/jobsTracking.utils';
 import { Job, TrackingInfoFormFormat } from '@/lib/types/jobsScanner.types';
 import { getResMessage } from '@/lib/utils';
@@ -23,10 +24,24 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       }
     }));
   };
-  const handleSetStagesValues = (values: TrackingInfoFormFormat['stages']) => {
+  // const handleSetStagesValues = (values: TrackingInfoFormFormat['stages']) => {
+  //   setFormValues((pre) => ({
+  //     ...pre,
+  //     stages: values
+  //   }));
+  // };
+  // const [stagesState, setStages] = useState<RenderElement<TrackingInfoFormFormat['stages'][0]>[]>([]);
+
+  const handleSetStagesValues = (values: RenderElement<TrackingInfoFormFormat['stages'][0]>[]) => {
+    const stagesValuesMap = values.map(({ date, feedback, name, pass }) => ({
+      date,
+      feedback,
+      name,
+      pass
+    }));
     setFormValues((pre) => ({
       ...pre,
-      stages: values
+      stages: stagesValuesMap
     }));
   };
 

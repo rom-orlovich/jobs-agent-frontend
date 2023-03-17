@@ -1,3 +1,4 @@
+// import { SetState } from '@/hooks/hooks.types';
 import { GenericRecord } from '@/lib/types/types';
 import { ButtonProps, DivProps, InputProps, ListProps } from '../../HTML.types';
 
@@ -21,4 +22,5 @@ export interface DynamicInputsProps<T extends DynamicInputRenderProps> {
     activeClassOuter?: string;
   };
   liProps?: ListProps;
+  setDynamicInputState?: (values: RenderElement<T>[]) => void;
 }

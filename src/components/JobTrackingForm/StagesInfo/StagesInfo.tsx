@@ -6,9 +6,13 @@ import ToggleTopic from '../../UserProfileForm/ToggleTopic';
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import StageInputs from './StageInputs';
 import { jobTrackingFormStyle } from '../JobTrackingForm';
-import JobTrackingFormButtons from '../JobTrackingFormButtons';
+// import JobTrackingFormButtons from '../JobTrackingFormButtons';
+// import { TrackingInfoFormFormat } from '@/lib/types/jobsScanner.types';
+// import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
+// import { SetState } from '@/hooks/hooks.types';
 function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
   const { formValues } = props;
+
   return (
     <ToggleTopic
       headingProps={{
@@ -17,6 +21,7 @@ function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
       }}
     >
       <DynamicInputs
+        setDynamicInputState={props.handleSetStagesValues}
         overflowProps={{
           minChild: 2,
           innerDiv: {
@@ -33,11 +38,10 @@ function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
         }}
         defaultValues={[formValues.stages[0]]}
         Render={StageInputs}
-      >
-        {(values) => {
+      />
+      {/* {(values) => {
           return <JobTrackingFormButtons values={values} {...props} />;
-        }}
-      </DynamicInputs>
+        }} */}
     </ToggleTopic>
   );
 }
