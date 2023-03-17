@@ -20,22 +20,22 @@ export const jobItemStyle = {
   matchColor: 'text-[#48e76a]',
   noMatchColor: 'text-[#6188c7]'
 };
-const jobsFeedStyle = {
+export const jobsFeedStyle = {
   feed: 'flex h-full flex-wrap justify-center gap-3 py-4'
 };
 
-const tagColorStyle = {
+export const tagColorStyle = {
   allJobs: 'bg-orange-400 hover:opacity-80',
   gotFriends: 'bg-green-400',
   linkedin: 'bg-blue-400',
   drushim: 'bg-orange-400'
 };
 
-interface JobsFeedProps {
+export interface JobsFeedProps {
   jobs?: Job[];
   userProfileData: UserProfileWithOneUserQuery;
-  isTrackFeed?: boolean;
-  saveSessionValues?: () => void;
+  isTrackingFeed?: boolean;
+  // saveSessionValues?: () => void;
 }
 
 export type JobItemProps = Job & {
@@ -48,14 +48,18 @@ export type JobItemProps = Job & {
   fromClass: string;
 };
 
-function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
-  //Create Jobs map
+function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
+  //Create Jobs map.
   const jobsTrackMap = createJobsTrackingMap(userProfileData?.tracking || []);
+
   //Handle the click on track button.
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
 
   let currentJobs;
-  if (isTrackFeed)
+
+  //Check the current display of the jobs posts.
+  //If it is tracking feed, use the jobs tracking data in the user profile. Otherwise use the current jobs results.
+  if (isTrackingFeed)
     currentJobs = userProfileData.tracking?.sort(
       (a, b) => new Date(b.info?.createdAt || '').getTime() - new Date(a.info?.createdAt || '').getTime()
     );
@@ -79,7 +83,7 @@ function JobsFeed({ jobs, userProfileData, isTrackFeed }: JobsFeedProps) {
             fromClass: classNameGenerator(jobItemStyle.from, tagColorStyle[from])
           };
 
-          return isTrackFeed ? <JobTrackingItem {...jobItemProps} /> : <JobItem {...jobItemProps} />;
+          return isTrackingFeed ? <JobTrackingItem {...jobItemProps} /> : <JobItem {...jobItemProps} />;
         })}
       </ul>
       <ScrollUpButton />
