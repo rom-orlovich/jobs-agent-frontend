@@ -16,8 +16,8 @@ import { AnyFun, GenericRecord } from './types/types';
  * @returns {string} convert the date to local string.
  */
 export const createLocalDate = (date?: Date) => {
-  const createdAtDate = new Date(date || '');
-  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
+  const curDate = new Date(date || '');
+  const createLocalTimeDate = curDate.toLocaleString('he-IL', {
     timeZone: 'Asia/Jerusalem',
     dateStyle: 'long',
     timeStyle: 'short'

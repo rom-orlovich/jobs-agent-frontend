@@ -1,24 +1,24 @@
 import useFilters, { ReturnUseFiltersProps } from './useFilters';
 
-export interface FilterTrackingJobsField {
+export interface JobsTrackingFilterFields {
   title: string;
-  CVwasSent?: boolean;
+  CVwasSent: boolean;
   afterUpdateDate: string;
-  currentStage: string;
+  currentStageName: string;
 }
 
 /**
  * @returns The handles function and formState of useFilterJobs.
  */
 function useFilterTrackingJobs() {
-  const useFiltersReturnValues = useFilters<FilterTrackingJobsField>({
+  const useFiltersReturnValues = useFilters<JobsTrackingFilterFields>({
     title: '',
-    CVwasSent: undefined,
+    CVwasSent: false,
     afterUpdateDate: '',
-    currentStage: ''
+    currentStageName: ''
   });
   return useFiltersReturnValues;
 }
 
-export type ReturnUseFilterTrackingJobsProps = ReturnUseFiltersProps<FilterTrackingJobsField>;
+export type ReturnUseFilterTrackingJobsProps = ReturnUseFiltersProps<JobsTrackingFilterFields>;
 export default useFilterTrackingJobs;

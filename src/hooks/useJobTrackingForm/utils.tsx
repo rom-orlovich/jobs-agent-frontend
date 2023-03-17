@@ -61,8 +61,6 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
  */
 
 export function handleConvertToFormResult(formValues: TrackingInfoFormFormat): TrackingInfo {
-  console.log(formValues.createdAt);
-  console.log(new Date(formValues.createdAt));
   return {
     createdAt: new Date(formValues.createdAt),
     statusCV: {
