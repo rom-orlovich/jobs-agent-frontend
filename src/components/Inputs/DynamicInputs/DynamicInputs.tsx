@@ -29,6 +29,7 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
 
   const [inputs, setInputState] = useState<RenderElement<T>[]>(defaultValuesWithID);
 
+  //Update the state of the dynamic inputs in parent component.
   useEffect(() => {
     setDynamicInputState && setDynamicInputState(inputs);
     // eslint-disable-next-line react-hooks/exhaustive-deps

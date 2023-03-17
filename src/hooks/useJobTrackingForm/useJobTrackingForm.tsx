@@ -6,6 +6,7 @@ import { getResMessage } from '@/lib/utils';
 import { ChangeEventHandler } from 'react';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
+import { useDebouncedCallback } from 'use-debounce';
 import useForm from '../useForm';
 import { handleConvertInitialValues, handleConvertToFormResult } from './utils';
 
@@ -32,6 +33,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       name,
       pass
     }));
+
     setFormValues((pre) => {
       return {
         ...pre,
@@ -62,7 +64,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     onSubmit: onSubmit(handleSubmit),
 
     handleOnChangeValue,
-    handleSetStagesValues
+    handleSetStagesValues: useDebouncedCallback(handleSetStagesValues, 500)
   };
 };
 export type JobTrackingFormComponentsProps<T> = T & ReturnType<typeof useJobTrackingForm>;
