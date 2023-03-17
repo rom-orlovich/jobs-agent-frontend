@@ -55,20 +55,10 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
   //Handle the click on track button.
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
 
-  let currentJobs;
-
-  //Check the current display of the jobs posts.
-  //If it is tracking feed, use the jobs tracking data in the user profile. Otherwise use the current jobs results.
-  if (isTrackingFeed)
-    currentJobs = userProfileData.tracking?.sort(
-      (a, b) => new Date(b.info?.createdAt || '').getTime() - new Date(a.info?.createdAt || '').getTime()
-    );
-  else currentJobs = jobs;
-
   return (
     <>
       <ul dir="ltr" className={jobsFeedStyle.feed}>
-        {currentJobs?.map((job, i) => {
+        {jobs?.map((job, i) => {
           const isMatch = job.reason === 'match';
           const from = job.from as keyof typeof tagColorStyle;
           const jobItemProps: JobItemProps = {

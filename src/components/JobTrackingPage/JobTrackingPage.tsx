@@ -1,4 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext';
+// import useFilterJobs from '@/hooks/useFilterJobs';
+// import useFilterTrackingJobs from '@/hooks/useFiltersTrackingJobs';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
 import React from 'react';
@@ -16,9 +18,15 @@ function JobTrackingPage() {
       userProfileData?.tracking
     )
   );
+  // const {}=useFilterTrackingJobs()
+
+  const jobs = userProfileData.tracking?.sort(
+    (a, b) => new Date(b.info?.createdAt || '').getTime() - new Date(a.info?.createdAt || '').getTime()
+  );
+
   return (
     <div className="pl-4 pr-12 xs:pr-20">
-      <JobsFeed userProfileData={userProfileData} isTrackingFeed={true} />
+      <JobsFeed jobs={jobs} userProfileData={userProfileData} isTrackingFeed={true} />
     </div>
   );
 }

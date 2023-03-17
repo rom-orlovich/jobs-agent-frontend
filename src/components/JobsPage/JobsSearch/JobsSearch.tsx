@@ -38,9 +38,7 @@ function JobsSearch({
       <JobsSearchFilters
         includeReasonFilters={includeReasonFilters}
         jobsFilters={jobsFilters}
-        iconButtonProps={{
-          ...IconButtonProps
-        }}
+        iconButtonProps={IconButtonProps}
         filterJobsProps={filterJobsProps}
       />
     </SearchInput>
