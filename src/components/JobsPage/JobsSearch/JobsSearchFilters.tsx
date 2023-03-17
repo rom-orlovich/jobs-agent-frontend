@@ -27,14 +27,16 @@ function JobsSearchFilters({
   jobsFilters,
   includeReasonFilters
 }: JobsSearchFiltersProps) {
-  const { handleSearchValue } = filterJobsProps;
+  const { handleOnChangeFilterValue } = filterJobsProps;
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
 
   return (
     <FiltersPopup>
       <ul className={JobsSearchFiltersStyle.autocompleteList}>
         {autocompletePropsArr.map(({ key, label, options }, i) => {
+          //If it is match page, the reason filter will be empty.
           if (i === 0 && !includeReasonFilters) return <li key={key + i}></li>;
+
           const value = filterJobsProps.formValues[key];
 
           return (
@@ -46,7 +48,7 @@ function JobsSearchFilters({
                   title: value
                 }}
                 label={label}
-                setValue={handleSearchValue(key)}
+                setValue={handleOnChangeFilterValue(key)}
                 options={options}
                 inputLabelProps={{
                   wrapperInputLabel: {

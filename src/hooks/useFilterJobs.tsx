@@ -19,7 +19,7 @@ function useFilterJobs(isMatchPage?: boolean) {
     page: 1,
     ...isJobsMatchesFilter
   };
-  const { formValues, handleSearchValue } = useFilters<FilterJobsField>(
+  const useFiltersReturnValues = useFilters<FilterJobsField>(
     {
       title: '',
       reason: '',
@@ -31,10 +31,7 @@ function useFilterJobs(isMatchPage?: boolean) {
     },
     defaultValues
   );
-  return {
-    formValues,
-    handleSearchValue
-  };
+  return useFiltersReturnValues;
 }
 
 export type ReturnUseFilterJobsProps = ReturnUseFiltersProps<FilterJobsField>;

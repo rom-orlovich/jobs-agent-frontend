@@ -35,18 +35,17 @@ function SearchInput<FV extends GenericRecord<any>>({
   filtersJobsHookReturn,
   children
 }: {
-  // filtersValue: FV;
   mainSearchInputProps: MainSearchInputProps<FV>;
   filtersJobsHookReturn: ReturnUseFiltersProps<FV>;
 } & PropsWithChildren) {
   const { key, defaultValue, options } = mainSearchInputProps;
-  const { handleSearchValue } = filtersJobsHookReturn;
+  const { handleOnChangeFilterValue } = filtersJobsHookReturn;
 
   return (
     <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
       <Autocomplete
         defaultValue={defaultValue}
-        setValue={handleSearchValue(key)}
+        setValue={handleOnChangeFilterValue(key)}
         inputLabelProps={{
           IconButtonProps: IconButtonProps,
           inputProps: {
@@ -59,14 +58,6 @@ function SearchInput<FV extends GenericRecord<any>>({
         options={options}
       />
       {children}
-      {/* <JobsSearchFilters
-        includeReasonFilters={includeReasonFilters}
-        jobsFilters={jobsFilters}
-        iconButtonProps={{
-          ...IconButtonProps
-        }}
-        filterJobsProps={filterJobsProps}
-      /> */}
     </div>
   );
 }
