@@ -7,7 +7,8 @@ import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 
 import Autocomplete from '../../Inputs/Autocomplete/Autocomplete';
-import FiltersPopup from './FiltersPopup';
+import JobsSearchFilters from './JobsSearchFilters';
+
 import { createAutocompleteOptions } from './utils';
 
 function JobsSearch({
@@ -54,17 +55,14 @@ function JobsSearch({
         }}
         options={titles}
       />
-
-      {
-        <FiltersPopup
-          includeReasonFilters={includeReasonFilters}
-          jobsFilters={jobsFilters}
-          iconButtonProps={{
-            ...IconButtonProps
-          }}
-          filterJobsProps={filterJobsProps}
-        />
-      }
+      <JobsSearchFilters
+        includeReasonFilters={includeReasonFilters}
+        jobsFilters={jobsFilters}
+        iconButtonProps={{
+          ...IconButtonProps
+        }}
+        filterJobsProps={filterJobsProps}
+      />
     </div>
   );
 }
