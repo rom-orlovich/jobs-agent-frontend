@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GenericRecord } from '@/lib/types/types';
 import { useRouter } from 'next/router';
 
 import useStateSession from './useStateSession';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValues = {}) {
   const [formValues, setFormValues] = useStateSession<T>({
     id: useRouter().pathname,
@@ -26,5 +25,7 @@ function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValue
     handleSearchValue
   };
 }
+
+export type ReturnUseFilterProps<T extends GenericRecord<any>> = ReturnType<typeof useFilters<T>>;
 
 export default useFilters;

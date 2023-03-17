@@ -1,7 +1,7 @@
 import { isJobsMatchesPage } from '@/components/JobsPage/utils';
-// import { useRouter } from 'next/router';
-import useFilters from './useFilters';
-// import useStateSession from './useStateSession';
+
+import useFilters, { ReturnUseFilterProps } from './useFilters';
+
 export interface FilterJobsField {
   title: string;
   reason: string;
@@ -31,35 +31,11 @@ function useFilterJobs(isMatchPage?: boolean) {
     },
     defaultValues
   );
-  // const [formValues, setFormValues] = useStateSession<FilterJobsField>({
-  //   id: useRouter().pathname,
-  //   values: {
-  // title: '',
-  // reason: '',
-  // company: '',
-  // from: '',
-  // location: '',
-
-  // ...isJobsMatchesPage(!!isMatchPage)
-  //   }
-  // });
-  // //Handle the set value of autocomplete.
-  // function handleSearchValue<V extends string>(id: keyof FilterJobsField) {
-  //   return (value: V) => {
-  //     setFormValues((pre) => ({
-  //       ...pre,
-  //       [id]: value,
-  // page: 1,
-  // ...isJobsMatchesPage(!!isMatchPage)
-  // }));
-  //   };
-  // }
-
   return {
     formValues,
     handleSearchValue
   };
 }
 
-export type ReturnUseFilterJobsProps = ReturnType<typeof useFilterJobs>;
+export type ReturnUseFilterJobsProps = ReturnUseFilterProps<FilterJobsField>;
 export default useFilterJobs;
