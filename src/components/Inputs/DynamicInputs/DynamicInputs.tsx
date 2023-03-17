@@ -5,6 +5,7 @@ import CircleRemoveButton from '@/components/Buttons/CircleRemoveButton';
 import CircleAddButton from '@/components/Buttons/CircleAddButton';
 import Overflow from '@/components/Overflow/Overflow';
 import { classNameGenerator } from '@/lib/utils';
+
 /**
  * This component create dynamic array of inputs.
  * Each time the user execute the addMoreInput function which pass as props to the Render element,a new input is created.
@@ -27,10 +28,11 @@ function DynamicInputs<T extends DynamicInputRenderProps>({
   }));
 
   const [inputs, setInputState] = useState<RenderElement<T>[]>(defaultValuesWithID);
+
   useEffect(() => {
     setDynamicInputState && setDynamicInputState(inputs);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputs, setDynamicInputState]);
+  }, [inputs]);
 
   // Set a new value in the input that placed in the provided index.
   // Slice until the index, add the value, slice until the length of the inputs and concat the arrays.

@@ -32,10 +32,12 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       name,
       pass
     }));
-    setFormValues((pre) => ({
-      ...pre,
-      stages: stagesValuesMap
-    }));
+    setFormValues((pre) => {
+      return {
+        ...pre,
+        stages: stagesValuesMap
+      };
+    });
   };
 
   const handleSubmit = async (values: TrackingInfoFormFormat) => {
