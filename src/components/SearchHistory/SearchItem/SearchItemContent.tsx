@@ -6,6 +6,7 @@ import {
   JOB_TYPES_OPTIONS,
   SCOPES_OPTIONS
 } from '@/lib/userQueryOptions';
+import { createLocalDate } from '@/lib/utils';
 import React from 'react';
 import { handleConvertUserQueryToText } from '../utils';
 
@@ -22,9 +23,7 @@ function SearchItemContent(props: UserQuery) {
   const scopeText = handleConvertUserQueryToText(props.scope, SCOPES_OPTIONS);
 
   const createdAtDate = new Date(props.createdAt || '');
-  const createLocalTimeDate = createdAtDate.toLocaleString('he-IL', {
-    timeZone: 'Asia/Jerusalem'
-  });
+  const createLocalTimeDate = createLocalDate(createdAtDate);
   const fieldProps = {
     containerStyle: searchItemContentStyle.fieldItemContainer,
     titleStyle: searchItemContentStyle.title
@@ -32,7 +31,7 @@ function SearchItemContent(props: UserQuery) {
   return (
     <>
       <div>
-        <Field {...fieldProps} title={'נוצר ב-'} value={createLocalTimeDate} />
+        <Field {...fieldProps} title={'עודכן ב-'} value={createLocalTimeDate} />
       </div>
       <div className={searchItemContentStyle.fieldsContainer}>
         <Field {...fieldProps} title={'תפקיד:'} value={props.position} />

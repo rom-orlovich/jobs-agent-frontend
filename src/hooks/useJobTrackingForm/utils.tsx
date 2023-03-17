@@ -36,9 +36,10 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
   initialValues
 ) => {
   const defaultValues = getJobTrackingFormDefaultValues();
+
   return {
     ...initialValues,
-    createdAt: convertDateToValidInputFormat(initialValues?.createdAt),
+    createdAt: new Date(initialValues?.createdAt || new Date()).toISOString() || defaultValues.createdAt,
     statusCV: {
       wasSent: initialValues?.statusCV?.wasSent ? 'כן' : 'לא',
       pass: !!initialValues?.statusCV?.pass,
@@ -60,6 +61,8 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
  */
 
 export function handleConvertToFormResult(formValues: TrackingInfoFormFormat): TrackingInfo {
+  console.log(formValues.createdAt);
+  console.log(new Date(formValues.createdAt));
   return {
     createdAt: new Date(formValues.createdAt),
     statusCV: {
