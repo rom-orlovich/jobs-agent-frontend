@@ -32,6 +32,7 @@ function StageInputs({
             className: 'gap-2 flex-col flex'
           }}
           inputProps={{
+            className: 'xs:min-w-[14rem] min-w-[3rem] ',
             value: name || '',
             id: 'name',
             onChange: onChange
@@ -54,7 +55,7 @@ function StageInputs({
             onChange: onChange
           }}
         >
-          תאריך?
+          תאריך
         </InputLabel>
 
         <InputLabel

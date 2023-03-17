@@ -9,7 +9,7 @@ import JobTrackingFormButtons from './JobTrackingFormButtons';
 import StagesInfo from './StagesInfo/StagesInfo';
 
 export const jobTrackingFormStyle = {
-  form: 'flex flex-col  max-h-[30rem] min-h-[15rem] justify-between relative',
+  form: 'flex flex-col  max-h-[30rem] min-h-[20rem] justify-between relative',
   formContent: 'flex flex-col gap-8 mt-2',
   headingToggle: 'text-xl',
   buttonsContainer: 'flex justify-between w-full ',
