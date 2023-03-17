@@ -17,15 +17,29 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     useForm<TrackingInfoFormFormat>(initialValues);
 
   const handleOnChangeValue: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const target = e.target;
+    const checkedCondition = target.id === 'pass';
     setFormValues((pre) => ({
       ...pre,
-      sendCV: {
-        ...pre.sendCV,
-        [e.target.id]: e.target.id === 'pass' ? e.target.checked : e.target.value
+      statusCV: {
+        ...pre.statusCV,
+        [target.id]: checkedCondition ? target.checked : target.value
       }
     }));
   };
 
+  const handleRadioButtons: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const target = e.target;
+    const checkedCondition = target.id === 'כן';
+
+    setFormValues((pre) => ({
+      ...pre,
+      statusCV: {
+        ...pre.statusCV,
+        wasSent: checkedCondition ? 'כן' : 'לא'
+      }
+    }));
+  };
   const handleSetStagesValues = (values: RenderElement<TrackingInfoFormFormat['stages'][0]>[]) => {
     const stagesValuesMap = values.map(({ date, feedback, name, pass }) => ({
       date,
@@ -41,7 +55,6 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       };
     });
   };
-
   const handleSubmit = async (values: TrackingInfoFormFormat) => {
     const formsValues = handleConvertToFormResult(values);
 
@@ -64,7 +77,8 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     onSubmit: onSubmit(handleSubmit),
 
     handleOnChangeValue,
-    handleSetStagesValues: useDebouncedCallback(handleSetStagesValues, 500)
+    handleSetStagesValues: useDebouncedCallback(handleSetStagesValues, 500),
+    handleRadioButtons
   };
 };
 export type JobTrackingFormComponentsProps<T> = T & ReturnType<typeof useJobTrackingForm>;

@@ -25,7 +25,7 @@ export const useGetJobsTrackingInfo = () => {
 
 export const infoStyle = {
   formContainer: 'mt-[10vh] flex min-h-[75vh] flex-col items-center justify-center pr-[3rem] xs:h-full',
-  card: 'card min-w-[17.5rem] sm:min-w-[20rem]  xs:max-w-[25rem] max-w-[20rem]  min-h-[23rem] p-6',
+  card: 'card min-w-[17.5rem] sm:min-w-[23rem]  xs:max-w-[25rem] max-w-[20rem]  min-h-[23rem] p-6',
   title: 'text-2xl underline mt-2',
   company: 'text-xl underline my-2'
 };

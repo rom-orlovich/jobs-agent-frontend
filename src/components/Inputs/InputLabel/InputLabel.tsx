@@ -3,6 +3,13 @@ import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { InputLabelProps } from './inputLabel.types';
 
+export const inputLabelStyle = {
+  label: 'font-medium',
+  inputContainer: 'w-full h-full relative',
+  input: `px-[0.5rem] py-[0.3rem] text-[0.8rem] w-full rounded-lg input-custom`,
+  textArea: `px-4 py-2 w-full h-full rounded-lg input-custom`
+};
+
 /**
  * Simple input label component that can get also render as textarea input instead the regular input element.
  */
@@ -18,13 +25,6 @@ function InputLabel({
   if (inputProps) {
     ({ inputContainer, ...inputProps } = inputProps);
   }
-  const inputLabelStyle = {
-    label: 'font-medium',
-    inputContainer: 'w-full h-full relative',
-    input: `px-[0.5rem] py-[0.3rem] text-[0.8rem] w-full rounded-lg input-custom`,
-    textArea: `px-4 py-2 w-full h-full rounded-lg input-custom`
-  };
-
   const Input = textAreaProps ? (
     <textarea
       autoComplete="off"

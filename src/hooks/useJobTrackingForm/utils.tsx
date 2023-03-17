@@ -10,7 +10,8 @@ export function getJobTrackingFormDefaultValues(): TrackingInfoFormFormat {
   //Form's default values when current user's job info form is empty.
   const defaultValues: TrackingInfoFormFormat = {
     createdAt: curDate,
-    sendCV: {
+    statusCV: {
+      wasSent: 'לא',
       date: curDate,
       pass: false
     },
@@ -38,9 +39,10 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
   return {
     ...initialValues,
     createdAt: convertDateToValidInputFormat(initialValues?.createdAt),
-    sendCV: {
-      pass: !!initialValues?.sendCV?.pass,
-      date: convertDateToValidInputFormat(initialValues?.sendCV?.date)
+    statusCV: {
+      wasSent: initialValues?.statusCV?.wasSent ? 'כן' : 'לא',
+      pass: !!initialValues?.statusCV?.pass,
+      date: convertDateToValidInputFormat(initialValues?.statusCV?.date)
     },
     stages: initialValues?.stages?.length
       ? //Convert stages if they exist to proper form format else use the default value.
@@ -60,9 +62,10 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
 export function handleConvertToFormResult(formValues: TrackingInfoFormFormat): TrackingInfo {
   return {
     createdAt: new Date(formValues.createdAt),
-    sendCV: {
-      pass: !!formValues?.sendCV?.pass,
-      date: new Date(formValues.sendCV?.date)
+    statusCV: {
+      wasSent: formValues.statusCV.wasSent === 'כן' ? true : false,
+      pass: !!formValues?.statusCV?.pass,
+      date: new Date(formValues.statusCV?.date)
     },
     stages: formValues?.stages.map((stage) => ({
       ...stage,

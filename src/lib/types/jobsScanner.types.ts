@@ -8,12 +8,12 @@ export interface ResponseScanner {
 }
 export interface TrackingInfo {
   createdAt: Date;
-  sendCV?: { date?: Date; pass?: boolean };
+  statusCV?: { date?: Date; pass?: boolean; wasSent: boolean };
   stages: { date?: Date; name: string; pass: boolean; feedback: string }[];
 }
 export type TrackingInfoFormFormat = {
   createdAt: string;
-  sendCV: { date: string; pass: boolean };
+  statusCV: { date: string; pass: boolean; wasSent: string };
   stages: ({ date: string } & OmitKey<TrackingInfo['stages'][0], 'date'>)[];
 };
 
