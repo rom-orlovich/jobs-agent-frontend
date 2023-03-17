@@ -5,7 +5,7 @@ import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 import { createAutocompletePropsArr } from './utils';
-import FiltersPopup from '@/components/FiltersPopup/FiltersPopup';
+import FiltersPopup from '@/components/SearchInput/FiltersPopup';
 
 const JobsSearchFiltersStyle = {
   autocompleteList: 'flex flex-col gap-2',
