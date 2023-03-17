@@ -5,6 +5,7 @@ import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types
 import FiltersPopup from '@/components/SearchInput/FiltersPopup';
 
 import { JobsTrackingSearchProps } from './JobsTrackingSearch';
+import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
 
 const JobsSearchFiltersStyle = {
   filters: 'flex flex-col gap-2',
@@ -22,11 +23,20 @@ function JobsTrackingSearchFilters({
   filtersTrackingJobsProps,
   jobsTrackingFilters
 }: JobsSearchFiltersProps) {
-  const { formValues, handleOnChangeFilterValue } = filtersTrackingJobsProps;
+  const { formValues, handleSetFilterValue, handleOnChange } = filtersTrackingJobsProps;
 
   return (
     <FiltersPopup>
       <div className={JobsSearchFiltersStyle.filters}>
+        <InputLabel
+          inputProps={{
+            type: 'date',
+            value: formValues.afterUpdateDate,
+            onChange: handleOnChange('afterUpdateDate')
+          }}
+        >
+          עודכן אחרי
+        </InputLabel>
         <Autocomplete
           defaultValue={{
             id: 'default',
@@ -34,7 +44,7 @@ function JobsTrackingSearchFilters({
             title: formValues.currentStageName
           }}
           label={'שלב נוכחי'}
-          setValue={handleOnChangeFilterValue('currentStageName')}
+          setValue={handleSetFilterValue('currentStageName')}
           options={jobsTrackingFilters.currentStageNames}
           inputLabelProps={{
             wrapperInputLabel: {

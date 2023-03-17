@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GenericRecord } from '@/lib/types/types';
 import { useRouter } from 'next/router';
+import { ChangeEvent } from 'react';
 
 import useStateSession from './useStateSession';
 /**
  * This hook manage the state of the filters values and memorize them by using browser session.
  * @param initialValues The initial value of the filters values.
  * @param defaultValues The default value of the filters value.
- * @returns The current form values which are memorize by the browser session and on handleOnChangeFilterValue that handle the change of the filters value.
+ * @returns The current form values which are memorize by the browser session and on handleSetFilterValue that handle the change of the filters value.
  */
 function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValues = {}) {
   const [formValues, setFormValues] = useStateSession<T>({
@@ -16,7 +17,7 @@ function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValue
   });
 
   //Handle the set value of autocomplete.
-  function handleOnChangeFilterValue<V extends string>(id: keyof T) {
+  function handleSetFilterValue<V extends string>(id: keyof T) {
     return (value: V) => {
       setFormValues((pre) => ({
         ...pre,
@@ -25,10 +26,17 @@ function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValue
       }));
     };
   }
+  //Handle onChange event of regular input.
+  function handleOnChange(id: keyof T) {
+    return function (e: ChangeEvent<HTMLInputElement>) {
+      handleSetFilterValue(id)(e.target.value);
+    };
+  }
 
   return {
     formValues,
-    handleOnChangeFilterValue
+    handleSetFilterValue,
+    handleOnChange
   };
 }
 export type UseFilters<T extends GenericRecord<any>> = typeof useFilters<T>;

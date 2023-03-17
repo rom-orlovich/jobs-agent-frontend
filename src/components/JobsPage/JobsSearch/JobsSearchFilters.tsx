@@ -27,7 +27,7 @@ function JobsSearchFilters({
   jobsFilters,
   includeReasonFilters
 }: JobsSearchFiltersProps) {
-  const { handleOnChangeFilterValue } = filterJobsProps;
+  const { handleSetFilterValue } = filterJobsProps;
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
 
   return (
@@ -48,7 +48,7 @@ function JobsSearchFilters({
                   title: value
                 }}
                 label={label}
-                setValue={handleOnChangeFilterValue(key)}
+                setValue={handleSetFilterValue(key)}
                 options={options}
                 inputLabelProps={{
                   wrapperInputLabel: {
