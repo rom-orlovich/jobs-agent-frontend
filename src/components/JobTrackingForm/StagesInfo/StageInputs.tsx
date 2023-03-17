@@ -12,13 +12,14 @@ function StageInputs({
   setValue
 }: RenderElement<TrackingInfoFormFormat['stages'][0]>) {
   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
+    const target = e.target as HTMLInputElement;
     if (setValue) {
       setValue({
         name,
         pass,
         feedback,
         date,
-        [e.target.id]: e.target.value === 'on' ? true : e.target.value
+        [target.id]: target.id === 'pass' ? target.checked : target.value
       });
     }
   };
