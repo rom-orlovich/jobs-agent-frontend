@@ -25,7 +25,7 @@ function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValue
     handleSearchValue
   };
 }
-
-export type ReturnUseFilterProps<T extends GenericRecord<any>> = ReturnType<typeof useFilters<T>>;
+export type UseFilters<T extends GenericRecord<any>> = typeof useFilters<T>;
+export type ReturnUseFiltersProps<T extends GenericRecord<any>> = ReturnType<UseFilters<T>>;
 
 export default useFilters;

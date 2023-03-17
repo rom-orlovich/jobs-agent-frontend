@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReturnUseFilterProps } from '@/hooks/useFilters';
+import { ReturnUseFiltersProps } from '@/hooks/useFilters';
 import { GenericRecord } from '@/lib/types/types';
 import React, { PropsWithChildren } from 'react';
 import { BiSearch } from 'react-icons/bi';
@@ -25,25 +25,28 @@ export const IconButtonProps = {
  * @param FV The filters hook inputs values props.
  * @param HRV The filter hook's return values
  */
-interface MainSearchInputProps<FV extends GenericRecord<any>, HRV extends ReturnUseFilterProps<FV>> {
-  filterJobsProps: HRV;
+interface MainSearchInputProps<FV extends GenericRecord<any>> {
   defaultValue?: Option<string>;
-  key: keyof ReturnUseFilterProps<FV>['formValues'];
+  key: keyof ReturnUseFiltersProps<FV>['formValues'];
   options: Option<string>[];
 }
-function SearchInput<FV extends GenericRecord<any>, HRV extends ReturnUseFilterProps<FV>>({
+function SearchInput<FV extends GenericRecord<any>>({
   mainSearchInputProps,
+  filtersJobsHookReturn,
   children
 }: {
-  mainSearchInputProps: MainSearchInputProps<FV, HRV>;
+  // filtersValue: FV;
+  mainSearchInputProps: MainSearchInputProps<FV>;
+  filtersJobsHookReturn: ReturnUseFiltersProps<FV>;
 } & PropsWithChildren) {
-  const { filterJobsProps, key, defaultValue, options } = mainSearchInputProps;
+  const { key, defaultValue, options } = mainSearchInputProps;
+  const { handleSearchValue } = filtersJobsHookReturn;
 
   return (
     <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
       <Autocomplete
         defaultValue={defaultValue}
-        setValue={filterJobsProps.handleSearchValue(key)}
+        setValue={handleSearchValue(key)}
         inputLabelProps={{
           IconButtonProps: IconButtonProps,
           inputProps: {

@@ -1,6 +1,6 @@
 import { isJobsMatchesPage } from '@/components/JobsPage/utils';
 
-import useFilters, { ReturnUseFilterProps } from './useFilters';
+import useFilters, { ReturnUseFiltersProps } from './useFilters';
 
 export interface FilterJobsField {
   title: string;
@@ -37,5 +37,5 @@ function useFilterJobs(isMatchPage?: boolean) {
   };
 }
 
-export type ReturnUseFilterJobsProps = ReturnUseFilterProps<FilterJobsField>;
+export type ReturnUseFilterJobsProps = ReturnUseFiltersProps<FilterJobsField>;
 export default useFilterJobs;
