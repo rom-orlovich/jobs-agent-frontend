@@ -14,6 +14,7 @@ export interface JobsTrackingSearchProps {
   jobsTrackingFilters: JobsTrackingFiltersArr;
   filtersTrackingJobsProps: ReturnUseJobsTrackingFilterProps;
 }
+
 function JobsTrackingSearch({ filtersTrackingJobsProps, jobsTrackingFilters }: JobsTrackingSearchProps) {
   return (
     <SearchInput

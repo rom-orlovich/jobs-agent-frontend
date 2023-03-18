@@ -1,6 +1,9 @@
 import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 
+/**
+ * Create dynamic overflow-y element by active condition the activate the overflow style.
+ */
 function Overflow({
   children,
   active,
@@ -15,8 +18,7 @@ function Overflow({
   activeClassOuter?: string;
   active: boolean;
 }) {
-  // const outerElementStyle = (`overflow-x-hidden `, outerElementClass);
-
+  //Active the overflow effect.
   const isActive = (...className: (string | undefined)[]) => {
     return `${active ? classNameGenerator(...className) : ''}`;
   };
