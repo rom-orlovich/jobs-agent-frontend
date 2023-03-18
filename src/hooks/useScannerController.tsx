@@ -13,7 +13,7 @@ import { MESSAGES, MESSAGE_CODES } from '@/lib/messages';
 import { toast } from 'react-toastify';
 import { APP_ROUTES } from '@/lib/routes';
 import { TriggerByHash } from '@/components/Buttons/Button.types';
-import { UserProfile } from '@/lib/types/api.types';
+import { UserProfile } from '@/lib/types/user.types';
 import { useSwrHook } from '@/lib/swr';
 import axios from 'axios';
 import { useState } from 'react';

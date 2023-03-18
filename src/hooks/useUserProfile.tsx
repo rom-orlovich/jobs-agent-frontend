@@ -1,4 +1,4 @@
-import { UserProfile, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
+import { UserProfile, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/user.types';
 import { useRouter } from 'next/router';
 
 import { useSwrHook } from '../lib/swr';

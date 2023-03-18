@@ -1,5 +1,6 @@
 import { API_ENDPOINTS, CLIENT_URL } from '../endpoints';
-import { ResponseMessage, UserProfileWithOneUserQuery } from '../types/api.types';
+import { ResponseMessage } from '../types/api.types';
+import { UserProfileWithOneUserQuery } from '../types/user.types';
 import { createURLPath } from '../utils';
 import { AxiosAPI } from './axios.api';
 

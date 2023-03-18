@@ -1,6 +1,6 @@
 import { UseDownloadHooksProps } from '@/hooks/useDownloadController';
 import { ReturnTypeUseScannerHooksProps } from '@/hooks/useScannerController';
-import { UserQuery } from '@/lib/types/api.types';
+import { UserQuery } from '@/lib/types/user.types';
 import { TriggerByHash } from '../Buttons/Button.types';
 import SearchItemButtons from './SearchItem/SearchItemButtons';
 

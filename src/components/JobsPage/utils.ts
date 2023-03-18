@@ -2,7 +2,7 @@ import { SWRInfiniteKeyLoader } from 'swr/infinite';
 
 import { API_ENDPOINTS, CLIENT_URL } from '../../lib/endpoints';
 import { Job, ResponseGetJobs } from '../../lib/types/jobsScanner.types';
-import { UserProfileWithOneUserQuery } from '../../lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '../../lib/types/user.types';
 import { GenericRecord } from '../../lib/types/types';
 import { createURL } from '../../lib/utils';
 

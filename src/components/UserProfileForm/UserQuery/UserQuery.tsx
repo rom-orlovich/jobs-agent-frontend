@@ -12,7 +12,7 @@ import { Option, SelectInputProps } from '@/components/Inputs/SelectInput/select
 
 import PositionsAutocomplete from './PositionsAutocomplete';
 import LocationsAutocomplete from './LocationsAutocomplete';
-import { UserQuery } from '@/lib/types/api.types';
+import { UserQuery } from '@/lib/types/user.types';
 
 const userQueryStyle = {
   selectInputsContainer: 'flex gap-2 xs:flex-row flex-col',

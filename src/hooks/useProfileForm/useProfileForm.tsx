@@ -1,6 +1,6 @@
 import { updateUser } from '@/lib/api/users.utils';
 
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/user.types';
 import { ChangeEventHandler } from 'react';
 
 import { toast } from 'react-toastify';

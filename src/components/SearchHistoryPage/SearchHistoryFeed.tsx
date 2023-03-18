@@ -12,7 +12,7 @@ import { API_ENDPOINTS } from '@/lib/endpoints';
 import { toast } from 'react-toastify';
 
 import { useScannerContext } from '@/context/ScannerContext';
-import { UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/user.types';
 
 const searchHistoryFeedStyle = {
   feed: 'justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'

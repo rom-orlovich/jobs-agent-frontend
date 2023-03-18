@@ -1,5 +1,5 @@
 import { HistoryQueriesFiltersFields } from '@/hooks/useFiltersHooks/useHistoryQueriesFilters';
-import { UserQuery } from '@/lib/types/api.types';
+import { UserQuery } from '@/lib/types/user.types';
 import { GenericRecord } from '@/lib/types/types';
 import { Option } from '../Inputs/SelectInput/selectInput.types';
 

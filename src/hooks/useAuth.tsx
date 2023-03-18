@@ -1,4 +1,4 @@
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/user.types';
 import { OmitKey } from '@/lib/types/types';
 import { useSession } from 'next-auth/react';
 

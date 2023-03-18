@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { UserProfile, UserProfileWithOneUserQuery } from '@/lib/types/user.types';
 import { getCollection } from './utils';
 export const getUserByID = async (userID: string) => {
   const users = await getCollection('users');

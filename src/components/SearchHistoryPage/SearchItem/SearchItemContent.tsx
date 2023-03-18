@@ -1,5 +1,5 @@
 import Field from '@/components/Field/Field';
-import { UserQuery } from '@/lib/types/api.types';
+import { UserQuery } from '@/lib/types/user.types';
 import {
   DISTANCE_OPTIONS,
   EXPERIENCE_OPTIONS,

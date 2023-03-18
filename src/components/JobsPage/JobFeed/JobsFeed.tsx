@@ -1,5 +1,5 @@
 import { Job } from '@/lib/types/jobsScanner.types';
-import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
+import { UserProfileWithOneUserQuery } from '@/lib/types/user.types';
 
 import React, { MouseEventHandler } from 'react';
 

@@ -1,4 +1,4 @@
-import { Requirements, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
+import { Requirements, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/user.types';
 import { GenericRecord } from '@/lib/types/types';
 
 import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
