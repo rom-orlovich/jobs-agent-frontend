@@ -5,9 +5,9 @@ import { Option } from '../Inputs/SelectInput/selectInput.types';
 
 /**
  *
- * @param {HistoryQueriesFiltersFields} filterValues The current jobs tracking's filter values fields
- * @param {UserQuery[]} userQueries The current userQueries that suppose to be filtered
- * @returns {UserQuery[]} The current userQueries filter by filter values fields.
+ * @param {HistoryQueriesFiltersFields} filterValues The current user's history search queries filters values fields
+ * @param {UserQuery[]} userQueries The current user's history search queries that suppose to be filtered
+ * @returns {UserQuery[]} The current user's history search queries filter by filter values fields.
  */
 
 export const filterHistoryQueries = (
@@ -35,28 +35,32 @@ export const filterHistoryQueries = (
   return currentUserQueries;
 };
 
+/**
+ * @param {UserQuery[]} userQueries The current user's history search queries
+ * @returns { {locations:string[],positions:string[]}} An object of unique string arrays of locations and positions of all the user's history search queries.
+ */
 export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) => {
-  const positions: Map<string, string> = new Map([]);
-  const locations: Map<string, string> = new Map([]);
+  const positions: Set<string> = new Set([]);
+  const locations: Set<string> = new Set([]);
   userQueries?.forEach((userQuery) => {
-    if (userQuery.position) positions.set(userQuery.position, userQuery.position);
-    if (userQuery.location) locations.set(userQuery.location, userQuery.location);
+    if (userQuery.position) positions.add(userQuery.position);
+    if (userQuery.location) locations.add(userQuery.location);
   });
 
   return {
-    positions: [...positions.values()],
-    locations: [...locations.values()]
+    positions: [...positions],
+    locations: [...locations]
   };
 };
 
 /**
- * @param {UserQuery[]} userHistoryQueries User's search query array.
- * @returns {UserQuery[]} Sorted user's search query array by created date.
+ * @param {UserQuery[]} userQueries The current user's history search queries.
+ * @returns {UserQuery[]} The current sorted user's history search queries array by updated date.
  */
-export const sortUserHistoryQueries = (userHistoryQueries: UserQuery[]): UserQuery[] => {
+export const sortUserHistoryQueries = (userQueries: UserQuery[]): UserQuery[] => {
   const getTime = (createdAt?: string) => new Date(createdAt || '').getTime();
 
-  const sortHistoryQueries = userHistoryQueries
+  const sortHistoryQueries = userQueries
     .slice()
     .sort((a, b) => getTime(b.createdAt) - getTime(a.createdAt));
   return sortHistoryQueries;
