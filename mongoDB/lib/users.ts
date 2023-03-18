@@ -84,6 +84,8 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const users = await getCollection('users');
 
   const newUserData = createNewUserData(userData);
+  //If the current userData has a hash the current user query will be updated with new data.
+  //Else a new user query will be added.
   const pipelines = userData.userQuery.hash
     ? updateUserQueryPipelines(newUserData, userData.userQuery.hash)
     : addUserQueryPipelines(newUserData);
