@@ -13,7 +13,7 @@ import { Option } from '../Inputs/SelectInput/selectInput.types';
 export const filterHistoryQueries = (
   userQueries: UserQuery[],
   filterValues: HistoryQueriesFiltersFields
-) => {
+): UserQuery[] => {
   const { afterUpdateDate, location, position } = filterValues;
   let currentUserQueries = userQueries.filter((userQuery) => userQuery.hash);
 
@@ -39,7 +39,9 @@ export const filterHistoryQueries = (
  * @param {UserQuery[]} userQueries The current user's history search queries
  * @returns { {locations:string[],positions:string[]}} An object of unique string arrays of locations and positions of all the user's history search queries.
  */
-export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) => {
+export const createHistoryQueriesFiltersArrValues = (
+  userQueries: UserQuery[]
+): { locations: string[]; positions: string[] } => {
   const positions: Set<string> = new Set([]);
   const locations: Set<string> = new Set([]);
   userQueries?.forEach((userQuery) => {

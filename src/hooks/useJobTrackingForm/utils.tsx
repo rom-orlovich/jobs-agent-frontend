@@ -55,7 +55,6 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
   };
 };
 /**
-
  * @param {TrackingInfoFormFormat} formValues The job info data as form values.
  * @returns {TrackingInfo} Convert the job info data as form values to the DB to format.
  */
