@@ -10,9 +10,7 @@ const JobsTrackingHeaderStyle = {
 interface SearchHistoryHeaderProps extends HistoryQueriesSearchProps {
   numResultsFound?: number;
 }
-/**
- * The header component of SearchHistory page that display the num results and the search input.
- */
+
 function SearchHistoryHeader({
   numResultsFound,
   historyQueriesSearchFilters,

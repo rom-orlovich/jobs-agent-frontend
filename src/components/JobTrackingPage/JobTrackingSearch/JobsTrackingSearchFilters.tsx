@@ -21,6 +21,7 @@ function JobsTrackingSearchFilters({
   jobsTrackingFilters
 }: JobsSearchFiltersProps) {
   const { formValues, handleSetFilterValue, handleOnChange } = filtersTrackingJobsProps;
+
   const STATUS_CV_OPTIONS: Option<boolean | undefined>[] = [
     {
       id: 'הצג הכל',

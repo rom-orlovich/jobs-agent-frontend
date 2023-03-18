@@ -17,10 +17,6 @@ import { UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/user.types';
 const searchHistoryFeedStyle = {
   feed: 'justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
 };
-
-/**
- * The feed of the user's history search queries.
- */
 function SearchHistoryFeed({
   historyQueries,
   userProfileData
