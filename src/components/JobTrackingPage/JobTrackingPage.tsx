@@ -1,7 +1,8 @@
 import { useAuthContext } from '@/context/AuthContext';
-import useFilterTrackingJobs from '@/hooks/useFiltersTrackingJobs';
+import useJobsTrackingFilter from '@/hooks/useFiltersHooks/useFiltersTrackingJobs';
+
 // import useFilterJobs from '@/hooks/useFilterJobs';
-// import useFilterTrackingJobs from '@/hooks/useFiltersTrackingJobs';
+// import useJobsTrackingFilter from '@/hooks/useFiltersTrackingJobs';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
 import React from 'react';
@@ -9,7 +10,7 @@ import JobsFeed from '../JobsPage/JobFeed/JobsFeed';
 import JobsTrackingHeader from './JobTrackingHeader';
 
 import {
-  createJobsTrackingFilterArrValues,
+  createJobsTrackingFiltersArrValues,
   filtersJobsTracking,
   sortJobsTrackingByCreatedDate
 } from './utils';
@@ -26,10 +27,14 @@ function JobTrackingPage() {
       userProfileData?.tracking
     )
   );
-  const filterTrackingJobsProps = useFilterTrackingJobs();
+
+  const filterTrackingJobsProps = useJobsTrackingFilter();
+
   let jobs = filtersJobsTracking(filterTrackingJobsProps.formValues, userProfileData.tracking);
+
   jobs = sortJobsTrackingByCreatedDate(jobs);
-  const jobsTrackingFilters = createJobsTrackingFilterArrValues(jobs);
+  const jobsTrackingFilters = createJobsTrackingFiltersArrValues(jobs);
+
   return (
     <div className="pl-4 pr-12 xs:pr-20">
       <JobsTrackingHeader

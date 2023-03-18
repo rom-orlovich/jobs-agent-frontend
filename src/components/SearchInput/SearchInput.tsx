@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReturnUseFiltersProps } from '@/hooks/useFilters';
+
+import { ReturnUseFiltersProps } from '@/hooks/useFiltersHooks/useFilters';
 import { GenericRecord } from '@/lib/types/types';
 import React, { PropsWithChildren } from 'react';
 import { BiSearch } from 'react-icons/bi';

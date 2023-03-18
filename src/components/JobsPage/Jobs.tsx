@@ -1,6 +1,4 @@
 import { useAuthContext } from '@/context/AuthContext';
-import useFilterJobs from '@/hooks/useFilterJobs';
-
 import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { useSWRInfiniteHook } from '@/lib/swr';
 
@@ -13,6 +11,7 @@ import JobsFeed from './JobFeed/JobsFeed';
 import { getLastCurJobData, swrInfiniteHandler } from './utils';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
+import useFilterJobs from '@/hooks/useFiltersHooks/useFilterJobs';
 
 const JobsStyle = {
   feedContainer: 'pr-10 xs:pr-16',

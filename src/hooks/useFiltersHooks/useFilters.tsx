@@ -3,7 +3,7 @@ import { GenericRecord } from '@/lib/types/types';
 import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
 
-import useStateSession from './useStateSession';
+import useStateSession from '../useStateSession';
 /**
  * This hook manage the state of the filters values and memorize them by using browser session.
  * @param initialValues The initial value of the filters values.

@@ -3,9 +3,10 @@ import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
-import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
+
 import { createAutocompletePropsArr } from './utils';
 import FiltersPopup from '@/components/SearchInput/FiltersPopup';
+import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
 export const JobsSearchFiltersStyle = {
   autocompleteList: 'flex flex-col gap-2',

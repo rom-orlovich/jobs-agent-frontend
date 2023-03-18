@@ -1,4 +1,4 @@
-import useFilterJobs from '@/hooks/useFilterJobs';
+import useFilterJobs from '@/hooks/useFiltersHooks/useFilterJobs';
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import React from 'react';
 import JobsSearch from './JobsSearch/JobsSearch';

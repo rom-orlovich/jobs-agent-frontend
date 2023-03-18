@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/context/AuthContext';
+// import { useAuthContext } from '@/context/AuthContext';
 import React from 'react';
 import SearchItem from './SearchItem';
 import useDownloadController from '@/hooks/useDownloadController';
@@ -8,33 +8,40 @@ import { TriggerByHash } from '../Buttons/Button.types';
 import { deleteUserQuery } from '@/lib/api/users.utils';
 import { mutate } from 'swr';
 import { API_ENDPOINTS } from '@/lib/endpoints';
-import { sortUserHistoryQueries } from './utils';
+// import { sortUserHistoryQueries } from './utils';
 import { toast } from 'react-toastify';
-import useRedirect from '@/hooks/useRedirect';
-import { createToastsByDataIfExist } from '@/lib/utils';
+// import useRedirect from '@/hooks/useRedirect';
+// import { createToastsByDataIfExist } from '@/lib/utils';
 import { useScannerContext } from '@/context/ScannerContext';
+import { UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
 const searchHistoryFeedStyle = {
-  feed: 'sm:pr-16 pr-8 justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
+  feed: 'justify-center flex flex-col md:max-w-[100%] max-w-[100%] gap-4'
 };
-function SearchHistoryFeed() {
+function SearchHistoryFeed({
+  historyQueries,
+  userProfileData
+}: {
+  userProfileData: UserProfileWithOneUserQuery;
+  historyQueries: UserQuery[];
+}) {
   const router = useRouter();
-  const authContext = useAuthContext();
+  // const authContext = useAuthContext();
   //Initialize the button hooks.
-  const downloadController = useDownloadController(authContext);
+  const downloadController = useDownloadController();
   const scannerController = useScannerContext();
-  const { userHistoryQueries, userProfileData } = authContext;
+  // const { userHistoryQueries, userProfileData } = authContext;
 
-  //Check the status of the data and display proper message.
-  //If The data it not exist, redirect to the home page.
-  useRedirect(
-    createToastsByDataIfExist('SEARCH_HISTORY_FOUND', 'SEARCH_HISTORY_NOT_FOUND', userHistoryQueries)
-  );
+  // //Check the status of the data and display proper message.
+  // //If The data it not exist, redirect to the home page.
+  // useRedirect(
+  //   createToastsByDataIfExist('SEARCH_HISTORY_FOUND', 'SEARCH_HISTORY_NOT_FOUND', userHistoryQueries)
+  // );
 
   //Display only the user Queries that are already been scanned and have hash field.
-  const filterHistoryQueries = userHistoryQueries.filter((userQuery) => userQuery.hash);
+  // const filterHistoryQueries = userHistoryQueries.filter((userQuery) => userQuery.hash);
 
   //Sort the user Queries by the date. The new one will be first.
-  const sortHistoryQueries = sortUserHistoryQueries(filterHistoryQueries);
+  // const sortHistoryQueries = sortUserHistoryQueries(filterHistoryQueries);
 
   //Handle the edit button click.
   const handleEditButton: TriggerByHash = (hash) => (e) => {
@@ -70,7 +77,7 @@ function SearchHistoryFeed() {
   };
   return (
     <ul className={searchHistoryFeedStyle.feed}>
-      {sortHistoryQueries.map((query, i) => {
+      {historyQueries.map((query, i) => {
         const hash = query?.hash || '';
         return (
           <SearchItem

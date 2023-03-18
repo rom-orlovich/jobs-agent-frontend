@@ -1,7 +1,6 @@
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 import SearchInput, { IconButtonProps } from '@/components/SearchInput/SearchInput';
-
-import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
+import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import React from 'react';

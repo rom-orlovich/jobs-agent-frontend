@@ -1,29 +1,39 @@
-import { JobsTrackingFilterFields } from '@/hooks/useFiltersTrackingJobs';
+import { JobsTrackingFiltersFields } from '@/hooks/useFiltersHooks/useFiltersTrackingJobs';
 import { Job } from '@/lib/types/jobsScanner.types';
 import { Option } from '../Inputs/SelectInput/selectInput.types';
 /**
- *
- * @param {JobsTrackingFilterFields} filterValues The current jobs tracking's filter values fields
+ * @param {JobsTrackingFiltersFields} filterValues The current jobs tracking's filter values fields
  * @param {Jobs[] | undefined} jobs The current jobs tracking that suppose to be filtered
  * @returns {Jobs[] | undefined} The current jobs tracking filter by filter values fields.
  */
-export const filtersJobsTracking = (filterValues: JobsTrackingFilterFields, jobs?: Job[]) => {
+export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, jobs?: Job[]) => {
   let currentJobs = jobs;
   const { title, CVwasSent, afterUpdateDate, currentStageName } = filterValues;
 
-  if (title)
-    currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
-  if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);
-  if (afterUpdateDate)
-    currentJobs = currentJobs?.filter(
-      (jobs) =>
-        new Date(jobs.info?.createdAt as unknown as string).getTime() >=
+  currentJobs = currentJobs?.filter((job) => {
+    if (title) return job.title.toLowerCase().includes(title.toLowerCase());
+    if (CVwasSent) return job.info?.statusCV?.wasSent;
+    if (afterUpdateDate)
+      return (
+        new Date(job.info?.createdAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
-    );
-  if (currentStageName)
-    currentJobs = currentJobs?.filter((jobs) =>
-      jobs.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase())
-    );
+      );
+    if (currentStageName)
+      return job.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase());
+  });
+  // if (title)
+  //   currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
+  // if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);
+  // if (afterUpdateDate)
+  //   currentJobs = currentJobs?.filter(
+  //     (jobs) =>
+  //       new Date(jobs.info?.createdAt as unknown as string).getTime() >=
+  //       new Date(afterUpdateDate).getTime()
+  //   );
+  // if (currentStageName)
+  //   currentJobs = currentJobs?.filter((jobs) =>
+  //     jobs.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase())
+  //   );
   return currentJobs;
 };
 
@@ -37,7 +47,7 @@ export const sortJobsTrackingByCreatedDate = (jobs?: Job[]) => {
   );
 };
 
-export const createJobsTrackingFilterArrValues = (jobs?: Job[]) => {
+export const createJobsTrackingFiltersArrValues = (jobs?: Job[]) => {
   const titles: Map<string, Option<string>> = new Map([]);
   const currentStageNames: Map<string, Option<string>> = new Map([]);
   jobs?.forEach((job) => {

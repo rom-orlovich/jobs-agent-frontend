@@ -1,6 +1,6 @@
 import useFilters, { ReturnUseFiltersProps } from './useFilters';
 
-export interface JobsTrackingFilterFields {
+export interface JobsTrackingFiltersFields {
   title: string;
   CVwasSent: boolean;
   afterUpdateDate: string;
@@ -10,8 +10,8 @@ export interface JobsTrackingFilterFields {
 /**
  * @returns The handles function and formState of useFilterJobs.
  */
-function useFilterTrackingJobs() {
-  const useFiltersReturnValues = useFilters<JobsTrackingFilterFields>({
+function useJobsTrackingFilter() {
+  const useFiltersReturnValues = useFilters<JobsTrackingFiltersFields>({
     title: '',
     CVwasSent: false,
     afterUpdateDate: '',
@@ -20,5 +20,5 @@ function useFilterTrackingJobs() {
   return useFiltersReturnValues;
 }
 
-export type ReturnUseFilterTrackingJobsProps = ReturnUseFiltersProps<JobsTrackingFilterFields>;
-export default useFilterTrackingJobs;
+export type ReturnUseJobsTrackingFilterProps = ReturnUseFiltersProps<JobsTrackingFiltersFields>;
+export default useJobsTrackingFilter;

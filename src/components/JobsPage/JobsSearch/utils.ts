@@ -1,5 +1,6 @@
 import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
-import { FilterJobsField } from '@/hooks/useFilterJobs';
+import { FilterJobsField } from '@/hooks/useFiltersHooks/useFilterJobs';
+
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 export const createAutocompleteOptions = (filters?: string[]) => {
   const filtersOptions: Option<string>[] = [];
