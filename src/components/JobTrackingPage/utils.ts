@@ -12,7 +12,11 @@ export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, job
 
   if (title)
     currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
-  if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);
+
+  if (CVwasSent !== undefined)
+    currentJobs = currentJobs?.filter((jobs) => {
+      return jobs.info?.statusCV?.wasSent === CVwasSent;
+    });
   if (afterUpdateDate)
     currentJobs = currentJobs?.filter(
       (jobs) =>

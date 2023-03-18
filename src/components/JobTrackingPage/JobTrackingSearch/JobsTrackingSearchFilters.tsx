@@ -29,21 +29,21 @@ function JobsTrackingSearchFilters({
   jobsTrackingFilters
 }: JobsSearchFiltersProps) {
   const { formValues, handleSetFilterValue, handleOnChange } = filtersTrackingJobsProps;
-  const STATUS_CV_OPTIONS: Option<string>[] = [
+  const STATUS_CV_OPTIONS: Option<boolean | undefined>[] = [
     {
       id: 'הצג הכל',
       title: 'הצג הכל',
-      value: 'הצג הכל'
+      value: undefined
     },
     {
       id: 'נשלחו',
       title: 'נשלחו',
-      value: 'נשלחו'
+      value: true
     },
     {
       id: 'לא נשלחו',
       title: 'לא נשלחו',
-      value: 'לא נשלחו'
+      value: false
     }
   ];
   return (
@@ -60,6 +60,8 @@ function JobsTrackingSearchFilters({
           ?קו"ח נשלחו
         </ToggleButton> */}
         <SelectInput
+          setValue={handleSetFilterValue('CVwasSent')}
+          defaultValue={STATUS_CV_OPTIONS[0]}
           optionsElProps={{
             className: 'text-right'
           }}

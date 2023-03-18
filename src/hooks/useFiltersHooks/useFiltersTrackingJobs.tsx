@@ -2,7 +2,7 @@ import useFilters, { ReturnUseFiltersProps } from './useFilters';
 
 export interface JobsTrackingFiltersFields {
   title: string;
-  CVwasSent: boolean;
+  CVwasSent?: boolean;
   afterUpdateDate: string;
   currentStageName: string;
 }

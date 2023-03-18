@@ -20,7 +20,7 @@ const selectOptionsStyle = {
   option: 'flex flex-row items-center justify-between'
 };
 
-export default function SelectInput<V extends string>({
+export default function SelectInput<V>({
   options,
   optionsElProps,
   labelProps,
