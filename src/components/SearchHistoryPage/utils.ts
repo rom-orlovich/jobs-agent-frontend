@@ -14,8 +14,8 @@ export const filterHistoryQueries = (
   userQueries: UserQuery[],
   filterValues: HistoryQueriesFiltersFields
 ) => {
-  let currentUserQueries = userQueries;
   const { afterUpdateDate, location, position } = filterValues;
+  let currentUserQueries = userQueries.filter((userQuery) => userQuery.hash);
 
   if (position)
     currentUserQueries = currentUserQueries?.filter((userQuery) =>
@@ -32,7 +32,7 @@ export const filterHistoryQueries = (
         new Date(afterUpdateDate).getTime()
     );
 
-  return currentUserQueries.filter((userQuery) => userQuery.hash);
+  return currentUserQueries;
 };
 
 export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) => {
