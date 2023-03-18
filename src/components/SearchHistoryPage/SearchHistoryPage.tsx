@@ -11,6 +11,7 @@ import {
   filterHistoryQueries,
   sortUserHistoryQueries
 } from './utils';
+
 function SearchHistoryPage() {
   const authContext = useAuthContext();
   const { userHistoryQueries, userProfileData } = authContext;
@@ -20,15 +21,20 @@ function SearchHistoryPage() {
     createToastsByDataIfExist('SEARCH_HISTORY_FOUND', 'SEARCH_HISTORY_NOT_FOUND', userHistoryQueries)
   );
 
+  //Initialize the hook the handle user's history search queries filters.
   const historyQueriesFiltersProps = useHistoryQueriesFilters();
 
+  //Filter the user's history search queries by formValues of the useHistoryQueriesFilters hook.
   const historyQueriesAfterFilters = filterHistoryQueries(
     userHistoryQueries,
     historyQueriesFiltersProps.formValues
   );
+
   //Sort the user Queries by the date. The new one will be first.
   const sortHistoryQueries = sortUserHistoryQueries(historyQueriesAfterFilters);
 
+  //Create an object of unique string values arrays that are used to filter
+  //the user's history search queries.
   const historyQueriesSearchFilters = createHistoryQueriesFiltersArrValues(sortHistoryQueries);
 
   // //Display only the user Queries that are already been scanned and have hash field.

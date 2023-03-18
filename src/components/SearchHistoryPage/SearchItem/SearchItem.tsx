@@ -1,15 +1,17 @@
 import { UseDownloadHooksProps } from '@/hooks/useDownloadController';
 import { ReturnTypeUseScannerHooksProps } from '@/hooks/useScannerController';
 import { UserQuery } from '@/lib/types/user.types';
-import { TriggerByHash } from '../Buttons/Button.types';
-import SearchItemButtons from './SearchItem/SearchItemButtons';
+import { TriggerByHash } from '../../Buttons/Button.types';
+import SearchItemButtons from './SearchItemButtons';
 
-import SearchItemContent from './SearchItem/SearchItemContent';
-import SearchItemsHeaders from './SearchItem/SearchItemsHeaders';
+import SearchItemContent from './SearchItemContent';
+import SearchItemsHeaders from './SearchItemsHeaders';
 const searchItemStyle = {
   item: 'bg-white shadow-lg rounded-md flex flex-col border-none sm:max-w-[100%] flex-[50%] p-[1.5rem] gap-3'
 };
-
+/**
+ * User's search query item.
+ */
 function SearchItem({
   handleDeleteButton,
   handleEditButton,

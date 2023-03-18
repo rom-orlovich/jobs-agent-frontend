@@ -3,17 +3,17 @@ import React from 'react';
 import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
 
-import FiltersPopup from '@/components/SearchInput/FiltersPopup';
+import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopup';
 
 import { HistoryQueriesSearchProps } from './HistoryQueriesSearch';
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
-const historyQueriesStyle = {
-  filters: 'flex flex-col gap-3',
-  autocompleteWrapper: 'relative flex flex-col gap-1',
-  autocompleteLabel: 'self-end',
-  label: 'font-semibold',
-  popupInputIcon: 'text-blue-300 absolute  text-xl top-[53%] right-1'
-};
+// const historyQueriesStyle = {
+//   filters: 'flex flex-col gap-3',
+//   autocompleteWrapper: 'relative flex flex-col gap-1',
+//   autocompleteLabel: 'self-end',
+//   label: 'font-semibold',
+//   popupInputIcon: 'text-blue-300 absolute  text-xl top-[53%] right-1'
+// };
 
 interface HistoryQueriesSearchFiltersProps extends HistoryQueriesSearchProps {
   iconButtonProps: IconButtonProps;
@@ -28,11 +28,11 @@ function HistoryQueriesSearchFilters({
 
   return (
     <FiltersPopup>
-      <div className={historyQueriesStyle.filters}>
+      <div className={filtersStyle.filters}>
         <InputLabel
           labelProps={{
             dir: 'rtl',
-            className: historyQueriesStyle.label
+            className: filtersStyle.label
           }}
           inputProps={{
             type: 'date',
@@ -49,15 +49,15 @@ function HistoryQueriesSearchFilters({
           options={historyQueriesSearchFilters.locations}
           inputLabelProps={{
             wrapperInputLabel: {
-              className: historyQueriesStyle.autocompleteWrapper
+              className: filtersStyle.autocompleteWrapper
             },
             labelProps: {
-              className: historyQueriesStyle.autocompleteLabel
+              className: filtersStyle.autocompleteLabel
             },
             IconButtonProps: {
               ...iconButtonProps,
               buttonProps: {
-                className: historyQueriesStyle.popupInputIcon
+                className: filtersStyle.popupInputIcon
               }
             }
           }}
