@@ -10,12 +10,18 @@ import { useDebouncedCallback } from 'use-debounce';
 import useForm from '../useForm';
 import { handleConvertInitialValues, handleConvertToFormResult } from './utils';
 
+/**
+ * This hooks handle the JobTracking info form.
+ */
 export const useJobTrackingForm = (job: Job, userID: string) => {
+  //Convert the job info from the DB to valid form values.
   const initialValues = handleConvertInitialValues(job.info);
 
   const { formState, formValues, onSubmit, setFormValues } =
     useForm<TrackingInfoFormFormat>(initialValues);
 
+  //Handle onChange of input.
+  //If input's id is pass the input's type is checkbox.
   const handleOnChangeValue: ChangeEventHandler<HTMLInputElement> = (e) => {
     const target = e.target;
     const checkedCondition = target.id === 'pass';
@@ -28,6 +34,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
     }));
   };
 
+  //Handle the onChange of the radio button.
   const handleRadioButtons: ChangeEventHandler<HTMLInputElement> = (e) => {
     const target = e.target;
     const checkedCondition = target.id === 'כן';
@@ -40,6 +47,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       }
     }));
   };
+  //Convert the stages values to valid DB format.
   const handleSetStagesValues = (values: RenderElement<TrackingInfoFormFormat['stages'][0]>[]) => {
     const stagesValuesMap = values.map(({ date, feedback, name, pass }) => ({
       date,
@@ -55,6 +63,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
       };
     });
   };
+  //Submit the form and update the job tracking info.
   const handleSubmit = async (values: TrackingInfoFormFormat) => {
     const formsValues = handleConvertToFormResult(values);
 
@@ -63,7 +72,10 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
         ...job,
         info: formsValues
       });
+
+      //Mutate the user profile.
       await mutate(`/api/users/${userID}`);
+
       toast(results.data.message);
     } catch (error) {
       console.log(error);

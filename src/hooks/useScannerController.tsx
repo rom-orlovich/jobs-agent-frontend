@@ -44,8 +44,9 @@ function useScannerController(userID: string) {
       refreshInterval: isRefreshActive ? 1000 * 5 : 0,
       revalidateOnMount: false,
 
-      //Check if the scanner is done.
+      //Check if the scanning is done.
       async onSuccess(data) {
+        //Check if the scanning success.
         if (data.status === 200) {
           setScannerState(data);
 
@@ -58,6 +59,8 @@ function useScannerController(userID: string) {
             }
           });
         }
+
+        //Check if the scanning failed.
         if (data.status === 300) {
           setScannerState(data);
           toast(MESSAGES[MESSAGE_CODES.JOBS_ARE_NOT_FOUND]);
@@ -86,7 +89,7 @@ function useScannerController(userID: string) {
     handleLoadButton,
     scanner: {
       ...scanner,
-      isMutating: scannerState?.status === 100
+      isMutating: scannerState?.status === 100 //If the status is 100 (pending), the isMutating is true.
     }
   };
 }

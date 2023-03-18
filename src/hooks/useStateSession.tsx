@@ -4,9 +4,10 @@ import { GenericRecord } from '@/lib/types/types';
 
 import { useEffect, useState } from 'react';
 /**
- * Help to integrate the stage with session.
+ * Help to integrate the state with browser's session storage.
  */
 function useStateSession<V extends GenericRecord<any>>({ id, values }: { id: string; values: V }) {
+  //Get current session by id or use the provided values.
   const getSession = () => {
     const session = JSON.parse(window.sessionStorage.getItem(id) || JSON.stringify(values));
     return session;
@@ -14,6 +15,7 @@ function useStateSession<V extends GenericRecord<any>>({ id, values }: { id: str
 
   const [state, setState] = useState<V>(getSession());
 
+  //Each time the component unmount, save the values in the browser's session storage.
   useEffect(() => {
     return () => {
       let newState;

@@ -74,7 +74,7 @@ export function transformUserQuery(userQuery: UserQuery): UserQueryTransform {
 }
 
 /**
- *  This function enables the form use the values from the DB as inputs' default values.
+ *  This function enables the form to use the values from the DB as valid inputs' default values.
  */
 export const transformDefaultFormValues = ({
   requirements,

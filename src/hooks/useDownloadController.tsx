@@ -28,7 +28,7 @@ function useDownloadController() {
     a.click();
   };
 
-  // // Handles the download button click event.
+  // Handles the download button click event.
   const handleDownloadButton: TriggerByHash = (hash) => async (e) => {
     e.preventDefault();
     const blob = await downloadState.trigger({

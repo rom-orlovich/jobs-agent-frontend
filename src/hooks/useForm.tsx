@@ -1,8 +1,6 @@
 import { GenericRecord } from '@/lib/types/types';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-// import { useDebounce, useDebouncedCallback } from 'use-debounce';
-
 interface FormState<D> {
   isLoading: boolean;
   data?: D;
@@ -40,21 +38,24 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
     (cb) => async (e) => {
       e.preventDefault();
       try {
+        //Initialize a new form submitting.
         setFromState((pre) => ({
           ...pre,
           data: undefined,
           isLoading: true,
           isSent: true
         }));
-        const res = await cb(formValues);
+        const result = await cb(formValues);
 
+        //Set the result data.
         setFromState({
-          data: res,
+          data: result,
           isLoading: false,
           isSent: false
         });
-        return res;
+        return result;
       } catch (error) {
+        //Handle any error if it is exist.
         setFromState({
           data: undefined,
           isLoading: false,
@@ -67,7 +68,6 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
 
   return {
     setFormValues,
-
     onChange: useDebouncedCallback(onChange, 500),
     onSubmit,
     formValues,
