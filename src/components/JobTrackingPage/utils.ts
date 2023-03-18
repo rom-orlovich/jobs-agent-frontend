@@ -13,13 +13,16 @@ export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, job
   currentJobs = currentJobs?.filter((job) => {
     if (title) return job.title.toLowerCase().includes(title.toLowerCase());
     if (CVwasSent) return job.info?.statusCV?.wasSent;
-    if (afterUpdateDate)
+
+    if (!!afterUpdateDate) {
       return (
         new Date(job.info?.createdAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
       );
+    }
     if (currentStageName)
       return job.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase());
+    return true;
   });
   // if (title)
   //   currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
