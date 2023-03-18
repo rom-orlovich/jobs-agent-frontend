@@ -4,10 +4,11 @@ import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import React, { MouseEventHandler } from 'react';
 
 import JobItem from './JobItem/JobItem';
-import JobTrackingItem from '../../JobTrackingPage/JobTrackingItem';
+
 import { createJobsTrackingMap, handleClickBookmark } from './utils';
 import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 import { capitalFirstLetter, classIsOn, classNameGenerator } from '@/lib/utils';
+import JobTrackingItem from '@/components/JobTrackingPage/JobTrackingItem';
 
 export const jobItemStyle = {
   item: 'card flex-[100%] p-4 md:max-w-[32%] md:flex-[33%]  sm:max-w-[45%] sm:flex-[45%]',

@@ -1,15 +1,8 @@
-// import JobsFeed from '@/components/JobsPage/JobFeed/JobsFeed';
-import JobTrackingPage from '@/components/JobTrackingPage/JobTrackingPage';
-
+import JobsTracking from '@/components/JobTrackingPage/JobsTracking';
 import PageHead from '@/components/Layout/PageHead/PageHead';
-
-// import { useAuthContext } from '@/context/AuthContext';
-// import useRedirect from '@/hooks/useRedirect';
-
-// import { createToastsByDataIfExist } from '@/lib/utils';
 import React from 'react';
 
-function Track() {
+function JobsTrackingPage() {
   return (
     <>
       <PageHead
@@ -17,9 +10,9 @@ function Track() {
         description="Here is the place to find all the jobs which are in your tracking."
       />
 
-      <JobTrackingPage />
+      <JobsTracking />
     </>
   );
 }
 
-export default Track;
+export default JobsTrackingPage;

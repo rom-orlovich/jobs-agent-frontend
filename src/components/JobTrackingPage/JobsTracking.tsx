@@ -15,7 +15,7 @@ import {
   sortJobsTrackingByCreatedDate
 } from './utils';
 
-function JobTrackingPage() {
+function JobsTracking() {
   //Get user profile data.
   const { userProfileData } = useAuthContext();
 
@@ -47,4 +47,4 @@ function JobTrackingPage() {
   );
 }
 
-export default JobTrackingPage;
+export default JobsTracking;
