@@ -14,8 +14,6 @@ export interface JobsTrackingSearchProps {
   filtersTrackingJobsProps: ReturnUseFilterTrackingJobsProps;
 }
 function JobsTrackingSearch({ filtersTrackingJobsProps, jobsTrackingFilters }: JobsTrackingSearchProps) {
-  // const titles: Option<string>[] = createAutocompleteOptions(jobsTrackingFilters?.titles);
-
   return (
     <SearchInput
       filtersJobsHookReturn={filtersTrackingJobsProps}

@@ -15,9 +15,8 @@ function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValue
     id: useRouter().pathname,
     values: initialValues
   });
-
   //Handle the set value of autocomplete.
-  function handleSetFilterValue<V extends string>(id: keyof T) {
+  function handleSetFilterValue<V>(id: keyof T) {
     return (value: V) => {
       setFormValues((pre) => ({
         ...pre,

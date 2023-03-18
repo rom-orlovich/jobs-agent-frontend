@@ -7,7 +7,7 @@ import { ReturnUseFilterJobsProps } from '@/hooks/useFilterJobs';
 import { createAutocompletePropsArr } from './utils';
 import FiltersPopup from '@/components/SearchInput/FiltersPopup';
 
-const JobsSearchFiltersStyle = {
+export const JobsSearchFiltersStyle = {
   autocompleteList: 'flex flex-col gap-2',
   autocompleteWrapper: 'relative flex flex-col gap-1',
   autocompleteLabel: 'self-end',

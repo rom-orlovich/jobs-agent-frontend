@@ -12,6 +12,7 @@ export class AxiosAPI {
   }
 
   async get<R>(URL: { endpoints: string[]; params?: GenericRecord<any> }) {
+    console.log(URL.params, 'params');
     return await this.axios.get<R>(createURLPath(URL.endpoints), {
       params: URL.params
     });

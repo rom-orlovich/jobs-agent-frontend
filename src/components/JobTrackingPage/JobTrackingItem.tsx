@@ -4,10 +4,11 @@ import { classNameGenerator, createLocalDate } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 import { MdTextSnippet } from 'react-icons/md';
+
 import { RiSendPlaneFill } from 'react-icons/ri';
-import TrackButton from '../../../Buttons/TrackButton';
-import Field from '../../../Field/Field';
-import { JobItemProps, jobItemStyle } from '../JobsFeed';
+import TrackButton from '../Buttons/TrackButton';
+import Field from '../Field/Field';
+import { JobItemProps, jobItemStyle } from '../JobsPage/JobFeed/JobsFeed';
 
 function JobTrackingItem(props: JobItemProps) {
   const jobTrackingItemStyle = {
@@ -61,7 +62,7 @@ function JobTrackingItem(props: JobItemProps) {
           {curStage && (
             <div dir="rtl" className={jobTrackingItemStyle.currentStageContainer}>
               <span className="font-bold">שלב נוכחי:</span>
-              <span className="font-medium">{curStage} </span>
+              <span>{curStage} </span>
             </div>
           )}
         </div>

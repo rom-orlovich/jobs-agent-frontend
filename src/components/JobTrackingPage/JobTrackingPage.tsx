@@ -6,7 +6,8 @@ import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
 import React from 'react';
 import JobsFeed from '../JobsPage/JobFeed/JobsFeed';
-import JobsTrackingSearch from './JobTrackingSearch/JobsTrackingSearch';
+import JobsTrackingHeader from './JobTrackingHeader';
+
 import {
   createJobsTrackingFilterArrValues,
   filtersJobsTracking,
@@ -31,7 +32,8 @@ function JobTrackingPage() {
   const jobsTrackingFilters = createJobsTrackingFilterArrValues(jobs);
   return (
     <div className="pl-4 pr-12 xs:pr-20">
-      <JobsTrackingSearch
+      <JobsTrackingHeader
+        numResultsFound={jobs?.length}
         filtersTrackingJobsProps={filterTrackingJobsProps}
         jobsTrackingFilters={jobsTrackingFilters}
       />

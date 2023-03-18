@@ -10,7 +10,7 @@ import { Option } from '../Inputs/SelectInput/selectInput.types';
 export const filtersJobsTracking = (filterValues: JobsTrackingFilterFields, jobs?: Job[]) => {
   let currentJobs = jobs;
   const { title, CVwasSent, afterUpdateDate, currentStageName } = filterValues;
-  console.log(title);
+
   if (title)
     currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
   if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);

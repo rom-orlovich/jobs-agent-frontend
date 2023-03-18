@@ -12,7 +12,6 @@ function RadioButtons({
   return (
     <div className="flex gap-2 px-3">
       {options.map((option) => {
-        console.log(option, curState, option === curState);
         return (
           <label
             key={option}

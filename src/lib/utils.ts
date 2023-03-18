@@ -98,7 +98,8 @@ export const createURL = <T extends GenericRecord<any>>(
 
   if (!params) return `${resourcesURL}`;
   const paramsURL = covertQueryParamsToString(params, keyValueDelimiter, objFieldDelimiter);
-  return `${resourcesURL}?${paramsURL}`;
+
+  return encodeURI(`${resourcesURL}?${paramsURL}`);
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////

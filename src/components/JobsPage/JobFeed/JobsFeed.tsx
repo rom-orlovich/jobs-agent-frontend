@@ -4,13 +4,13 @@ import { UserProfileWithOneUserQuery } from '@/lib/types/api.types';
 import React, { MouseEventHandler } from 'react';
 
 import JobItem from './JobItem/JobItem';
-import JobTrackingItem from './JobItem/JobTrackingItem';
+import JobTrackingItem from '../../JobTrackingPage/JobTrackingItem';
 import { createJobsTrackingMap, handleClickBookmark } from './utils';
 import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 import { capitalFirstLetter, classIsOn, classNameGenerator } from '@/lib/utils';
 
 export const jobItemStyle = {
-  item: 'card flex-[100%] p-4 md:max-w-[30%] md:flex-[30%]',
+  item: 'card flex-[100%] p-4 md:max-w-[32%] md:flex-[33%]  sm:max-w-[45%] sm:flex-[45%]',
   content: 'flex flex-col h-full justify-between',
   bookmarkContainer: 'mb-4 flex w-full justify-between',
   bookmarkButton: 'text-base',
@@ -35,7 +35,6 @@ export interface JobsFeedProps {
   jobs?: Job[];
   userProfileData: UserProfileWithOneUserQuery;
   isTrackingFeed?: boolean;
-  // saveSessionValues?: () => void;
 }
 
 export type JobItemProps = Job & {

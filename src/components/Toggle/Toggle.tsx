@@ -1,8 +1,10 @@
+import { SetState } from '@/hooks/hooks.types';
 import React, { MouseEventHandler, useState } from 'react';
 
 export interface ToggleChildrenProps {
   handleOnClick: MouseEventHandler<HTMLButtonElement>;
   isON: boolean;
+  setIsOff: SetState<boolean>;
 }
 interface ToggleProps {
   children: (props: ToggleChildrenProps) => void;
@@ -23,6 +25,7 @@ function Toggle({ children }: ToggleProps) {
   return (
     <>
       {children({
+        setIsOff,
         handleOnClick,
         isON
       })}
