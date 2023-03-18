@@ -10,33 +10,19 @@ export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, job
   let currentJobs = jobs;
   const { title, CVwasSent, afterUpdateDate, currentStageName } = filterValues;
 
-  currentJobs = currentJobs?.filter((job) => {
-    if (title) return job.title.toLowerCase().includes(title.toLowerCase());
-    if (CVwasSent) return job.info?.statusCV?.wasSent;
-
-    if (!!afterUpdateDate) {
-      return (
-        new Date(job.info?.createdAt as unknown as string).getTime() >=
+  if (title)
+    currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
+  if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);
+  if (afterUpdateDate)
+    currentJobs = currentJobs?.filter(
+      (jobs) =>
+        new Date(jobs.info?.createdAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
-      );
-    }
-    if (currentStageName)
-      return job.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase());
-    return true;
-  });
-  // if (title)
-  //   currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
-  // if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);
-  // if (afterUpdateDate)
-  //   currentJobs = currentJobs?.filter(
-  //     (jobs) =>
-  //       new Date(jobs.info?.createdAt as unknown as string).getTime() >=
-  //       new Date(afterUpdateDate).getTime()
-  //   );
-  // if (currentStageName)
-  //   currentJobs = currentJobs?.filter((jobs) =>
-  //     jobs.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase())
-  //   );
+    );
+  if (currentStageName)
+    currentJobs = currentJobs?.filter((jobs) =>
+      jobs.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase())
+    );
   return currentJobs;
 };
 

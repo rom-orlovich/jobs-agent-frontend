@@ -9,43 +9,31 @@ import { Option } from '../Inputs/SelectInput/selectInput.types';
  * @param {UserQuery[]} userQueries The current userQueries that suppose to be filtered
  * @returns {UserQuery[]} The current userQueries filter by filter values fields.
  */
+
 export const filterHistoryQueries = (
   userQueries: UserQuery[],
   filterValues: HistoryQueriesFiltersFields
 ) => {
+  let currentUserQueries = userQueries;
   const { afterUpdateDate, location, position } = filterValues;
 
-  return userQueries?.filter((userQuery) => {
-    if (position) return userQuery.position.toLowerCase().includes(position.toLowerCase());
-
-    if (location) return userQuery.location.toLowerCase().includes(location.toLowerCase());
-    if (afterUpdateDate)
-      return (
-        new Date(userQuery?.createdAt as unknown as string).getTime() >=
+  if (position)
+    currentUserQueries = currentUserQueries?.filter((userQuery) =>
+      userQuery.position.toLowerCase().includes(position.toLowerCase())
+    );
+  if (location)
+    currentUserQueries = currentUserQueries?.filter((userQuery) =>
+      userQuery.location.toLowerCase().includes(location.toLowerCase())
+    );
+  if (afterUpdateDate)
+    currentUserQueries = currentUserQueries?.filter(
+      (userQuery) =>
+        new Date(userQuery.createdAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
-      );
-    return userQuery.hash;
-  });
-};
-// export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, jobs?: Job[]) => {
-//   let currentJobs = jobs;
-//   const { title, CVwasSent, afterUpdateDate, currentStageName } = filterValues;
+    );
 
-//   if (title)
-//     currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
-//   if (CVwasSent) currentJobs = currentJobs?.filter((jobs) => jobs.info?.statusCV?.wasSent);
-//   if (afterUpdateDate)
-//     currentJobs = currentJobs?.filter(
-//       (jobs) =>
-//         new Date(jobs.info?.createdAt as unknown as string).getTime() >=
-//         new Date(afterUpdateDate).getTime()
-//     );
-//   if (currentStageName)
-//     currentJobs = currentJobs?.filter((jobs) =>
-//       jobs.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase())
-//     );
-//   return currentJobs;
-// };
+  return currentUserQueries;
+};
 
 export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) => {
   const positions: Map<string, Option<string>> = new Map([]);
