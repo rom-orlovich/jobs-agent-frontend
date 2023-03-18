@@ -10,7 +10,7 @@ export interface UserQuery {
   jobType: string;
   scope: string;
   hash?: string;
-  createdAt?: string;
+  updatedAt?: string;
   numResultsFound?: number;
   numMatches?: number;
 }

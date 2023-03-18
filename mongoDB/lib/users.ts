@@ -45,7 +45,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
             ...restUserQuery,
             numMatches: 0,
             numResultsFound: 0,
-            createdAt: new Date()
+            updatedAt: new Date()
           }
         }
       },

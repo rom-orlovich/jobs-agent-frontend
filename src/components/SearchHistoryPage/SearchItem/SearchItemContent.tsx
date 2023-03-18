@@ -22,12 +22,13 @@ function SearchItemContent(props: UserQuery) {
   const jobTypeText = handleConvertUserQueryToText(props.jobType, JOB_TYPES_OPTIONS);
   const scopeText = handleConvertUserQueryToText(props.scope, SCOPES_OPTIONS);
 
-  const createdAtDate = new Date(props.createdAt || '');
-  const createLocalTimeDate = createLocalDate(createdAtDate);
+  const updatedAtDate = new Date(props.updatedAt || '');
+  const createLocalTimeDate = createLocalDate(updatedAtDate);
   const fieldProps = {
     containerStyle: searchItemContentStyle.fieldItemContainer,
     titleStyle: searchItemContentStyle.title
   };
+
   return (
     <>
       <div>

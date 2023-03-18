@@ -28,7 +28,7 @@ export const filterHistoryQueries = (
   if (afterUpdateDate)
     currentUserQueries = currentUserQueries?.filter(
       (userQuery) =>
-        new Date(userQuery.createdAt as unknown as string).getTime() >=
+        new Date(userQuery.updatedAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
     );
 
@@ -58,11 +58,11 @@ export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) =
  * @returns {UserQuery[]} The current sorted user's history search queries array by updated date.
  */
 export const sortUserHistoryQueries = (userQueries: UserQuery[]): UserQuery[] => {
-  const getTime = (createdAt?: string) => new Date(createdAt || '').getTime();
+  const getTime = (updatedAt?: string) => new Date(updatedAt || '').getTime();
 
   const sortHistoryQueries = userQueries
     .slice()
-    .sort((a, b) => getTime(b.createdAt) - getTime(a.createdAt));
+    .sort((a, b) => getTime(b.updatedAt) - getTime(a.updatedAt));
   return sortHistoryQueries;
 };
 
