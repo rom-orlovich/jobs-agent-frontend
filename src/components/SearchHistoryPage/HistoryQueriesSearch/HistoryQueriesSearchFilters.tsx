@@ -7,14 +7,6 @@ import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopu
 
 import { HistoryQueriesSearchProps } from './HistoryQueriesSearch';
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
-// const historyQueriesStyle = {
-//   filters: 'flex flex-col gap-3',
-//   autocompleteWrapper: 'relative flex flex-col gap-1',
-//   autocompleteLabel: 'self-end',
-//   label: 'font-semibold',
-//   popupInputIcon: 'text-blue-300 absolute  text-xl top-[53%] right-1'
-// };
-
 interface HistoryQueriesSearchFiltersProps extends HistoryQueriesSearchProps {
   iconButtonProps: IconButtonProps;
 }
