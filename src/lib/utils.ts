@@ -67,7 +67,7 @@ export const covertQueryParamsToString = <T extends GenericRecord<any>>(
   const query: string[] = [];
 
   Object.entries(obj).forEach(([key, value]) => {
-    if (key && value) query.push(`${key}${keyValueDelimiter}${value}`);
+    if (key && value) query.push(`${key}${keyValueDelimiter}${encodeURIComponent(value)}`);
   });
   return query.join(objFieldDelimiter);
 };
@@ -99,7 +99,7 @@ export const createURL = <T extends GenericRecord<any>>(
   if (!params) return `${resourcesURL}`;
   const paramsURL = covertQueryParamsToString(params, keyValueDelimiter, objFieldDelimiter);
 
-  return encodeURI(`${resourcesURL}?${paramsURL}`);
+  return `${resourcesURL}?${paramsURL}`;
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////

@@ -47,6 +47,7 @@ function Jobs({
     }
   );
   const { isLoading, isValidating, data, setSize } = useSwrInfiniteProps;
+
   //Get last cur update data of SWR infinite
   const { allResponseData, lastResponse } = getLastCurJobData(data);
   const jobsData = allResponseData
