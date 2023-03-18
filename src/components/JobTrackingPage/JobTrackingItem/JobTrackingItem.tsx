@@ -5,9 +5,9 @@ import Link from 'next/link';
 import React from 'react';
 import { MdTextSnippet } from 'react-icons/md';
 
-import { JobItemProps, jobItemStyle } from '../JobsPage/JobFeed/JobsFeed';
-import JobInfo from './JobTrackingItem/JobInfo';
-import TrackingInfo from './JobTrackingItem/TrackingInfo';
+import { JobItemProps, jobItemStyle } from '../../JobsPage/JobFeed/JobsFeed';
+import JobInfo from './JobInfo';
+import TrackingInfo from './TrackingInfo';
 
 export const jobTrackingItemStyle = {
   itemTracking: 'flex flex-col justify-between gap-4',
@@ -24,9 +24,6 @@ export const jobTrackingItemStyle = {
 
 function JobTrackingItem(props: JobItemProps) {
   const { jobID, index, reason, isMatch, reasonStyle } = props;
-  // const localDateStr = createLocalDate(info?.updatedAt);
-  const CVwasSent = props.info?.statusCV?.wasSent;
-  const curStage = props.info?.stages.at(-1)?.name;
   return (
     <li
       className={classNameGenerator(jobItemStyle.item, jobTrackingItemStyle.itemTracking)}
@@ -39,7 +36,7 @@ function JobTrackingItem(props: JobItemProps) {
       </div>
 
       <div>
-        <TrackingInfo curStage={curStage} CVwasSent={CVwasSent} />
+        <TrackingInfo info={props.info} />
         <div className={jobTrackingItemStyle.linkTrackDetailsContainer}>
           <Link
             className={jobTrackingItemStyle.linkTrackDetails}

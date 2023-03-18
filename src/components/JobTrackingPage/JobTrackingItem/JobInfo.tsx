@@ -4,7 +4,7 @@ import { JobItemProps, jobItemStyle } from '@/components/JobsPage/JobFeed/JobsFe
 import { createLocalDate } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
-import { jobTrackingItemStyle } from '../JobTrackingItem';
+import { jobTrackingItemStyle } from './JobTrackingItem';
 
 function JobInfo({
   company,

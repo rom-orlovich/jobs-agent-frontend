@@ -1,8 +1,11 @@
+import { TrackingInfo } from '@/lib/types/jobsScanner.types';
 import React from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
-import { jobTrackingItemStyle } from '../JobTrackingItem';
+import { jobTrackingItemStyle } from './JobTrackingItem';
 
-function TrackingInfo({ CVwasSent, curStage }: { CVwasSent?: boolean; curStage?: string }) {
+function TrackingInfo({ info }: { info?: TrackingInfo }) {
+  const CVwasSent = info?.statusCV?.wasSent;
+  const curStage = info?.stages.at(-1)?.name;
   return (
     <div className={jobTrackingItemStyle.trackingStatus}>
       {CVwasSent && (
