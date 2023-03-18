@@ -14,7 +14,7 @@ import { createToastsByDataIfExist } from '@/lib/utils';
 import useFilterJobs from '@/hooks/useFiltersHooks/useFilterJobs';
 
 const JobsStyle = {
-  feedContainer: 'pr-10 xs:pr-16',
+  feedContainer: 'pr-8 xs:pr-16',
   spinner: '!top-[none] bottom-5'
 };
 

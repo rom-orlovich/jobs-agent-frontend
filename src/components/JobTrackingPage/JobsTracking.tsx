@@ -36,7 +36,7 @@ function JobsTracking() {
   const jobsTrackingFilters = createJobsTrackingFiltersArrValues(jobs);
 
   return (
-    <div className="pr-10 xs:pr-16">
+    <div className="pr-8 xs:pr-16">
       <JobsTrackingHeader
         numResultsFound={jobs?.length}
         filtersTrackingJobsProps={filterTrackingJobsProps}
