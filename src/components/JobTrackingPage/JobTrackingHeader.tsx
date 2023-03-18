@@ -1,9 +1,6 @@
 import React from 'react';
+import { JobsHeaderStyle } from '../JobsPage/JobsHeader';
 import JobsTrackingSearch, { JobsTrackingSearchProps } from './JobTrackingSearch/JobsTrackingSearch';
-
-const JobsTrackingHeaderStyle = {
-  jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col'
-};
 interface JobsTrackingHeaderProps extends JobsTrackingSearchProps {
   numResultsFound?: number;
 }
@@ -15,7 +12,7 @@ function JobsTrackingHeader({
 }: JobsTrackingHeaderProps) {
   const textHeader = 'משרות';
   return (
-    <div className={JobsTrackingHeaderStyle.jobsHeaderContainer}>
+    <div className={JobsHeaderStyle.jobsHeaderContainer}>
       <h1 className="xm:w-full mb-4 w-[105%] text-3xl xs:mb-0">
         כ- {numResultsFound || 0} {textHeader} נמצאו:
       </h1>

@@ -3,8 +3,8 @@ import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import React from 'react';
 import JobsSearch from './JobsSearch/JobsSearch';
 
-const JobsHeaderStyle = {
-  jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col'
+export const JobsHeaderStyle = {
+  jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col px-2'
 };
 interface JobsHeaderProps {
   filterJobsProps: ReturnType<typeof useFilterJobs>;
