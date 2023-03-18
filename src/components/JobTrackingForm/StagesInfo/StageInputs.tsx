@@ -50,7 +50,7 @@ function StageInputs({
           inputProps={{
             type: 'date',
             value: (date || '') as unknown as string,
-            className: jobTrackingFormStyle.dateInput,
+
             id: 'date',
             onChange: onChange
           }}

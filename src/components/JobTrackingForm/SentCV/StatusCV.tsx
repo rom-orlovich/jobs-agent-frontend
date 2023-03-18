@@ -25,7 +25,7 @@ function StatusCV(props: JobTrackingFormComponentsProps<unknown>) {
           }}
           inputProps={{
             type: 'date',
-            className: jobTrackingFormStyle.dateInput,
+
             value: props.formValues.statusCV?.date as unknown as string,
             id: 'date',
             onChange: props.handleOnChangeValue

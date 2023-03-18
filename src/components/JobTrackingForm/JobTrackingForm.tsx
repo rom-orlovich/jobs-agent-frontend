@@ -12,11 +12,8 @@ export const jobTrackingFormStyle = {
   formContent: 'flex flex-col gap-8 mt-2',
   headingToggle: 'text-xl',
   buttonsContainer: 'flex justify-between w-full ',
-  toggleTopicWrapper: 'flex gap-4',
-
   wasSentLabel: 'flex gap-2 mt-2 font-semibold',
-  label: 'flex flex-col gap-2 mt-2 font-semibold',
-  dateInput: 'max-w-[8rem] text-center'
+  label: 'flex flex-col gap-2 mt-2 font-semibold'
 };
 
 function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {
