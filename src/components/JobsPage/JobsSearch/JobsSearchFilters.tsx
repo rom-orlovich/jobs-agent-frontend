@@ -5,14 +5,11 @@ import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
 
 import { createAutocompletePropsArr } from './utils';
-import FiltersPopup from '@/components/SearchInput/FiltersPopup';
+import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopup';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
 export const JobsSearchFiltersStyle = {
-  autocompleteList: 'flex flex-col gap-2',
-  autocompleteWrapper: 'relative flex flex-col gap-1',
-  autocompleteLabel: 'self-end',
-  popupInputIcon: 'text-blue-300 absolute  text-xl top-[53%] right-1'
+  autocompleteList: 'flex flex-col gap-2'
 };
 
 interface JobsSearchFiltersProps {
@@ -49,15 +46,15 @@ function JobsSearchFilters({
                 options={options}
                 inputLabelProps={{
                   wrapperInputLabel: {
-                    className: JobsSearchFiltersStyle.autocompleteWrapper
+                    className: filtersStyle.autocompleteWrapper
                   },
                   labelProps: {
-                    className: JobsSearchFiltersStyle.autocompleteLabel
+                    className: filtersStyle.autocompleteLabel
                   },
                   IconButtonProps: {
                     ...iconButtonProps,
                     buttonProps: {
-                      className: JobsSearchFiltersStyle.popupInputIcon
+                      className: filtersStyle.popupInputIcon
                     }
                   }
                 }}
