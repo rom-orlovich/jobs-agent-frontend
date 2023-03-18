@@ -4,7 +4,7 @@ import React from 'react';
 import JobsSearch from './JobsSearch/JobsSearch';
 
 export const JobsHeaderStyle = {
-  jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col px-2'
+  jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col xs-px-2'
 };
 interface JobsHeaderProps {
   filterJobsProps: ReturnType<typeof useFilterJobs>;
