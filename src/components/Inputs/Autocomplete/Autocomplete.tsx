@@ -4,7 +4,7 @@ import { AutocompleteProps } from './autocomplete.types';
 import { classNameGenerator } from '@/lib/utils';
 import { isActiveStyle } from '../SelectInput/SelectInput';
 import { useDebouncedCallback } from 'use-debounce';
-import { Option } from '../SelectInput/selectInput.types';
+
 const autoCompleteStyle = {
   options:
     'absolute z-50 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll  py-1 text-base card ring-1 sm:text-sm',
@@ -12,7 +12,7 @@ const autoCompleteStyle = {
   input: 'input-custom relative w-full'
 };
 
-export default function Autocomplete<V>({
+export default function Autocomplete<V extends string>({
   setValue,
   options,
 
@@ -27,18 +27,17 @@ export default function Autocomplete<V>({
   ) : (
     <></>
   );
-  const defaultNoValue = {
-    title: 'חפש לפי הכל',
-    id: `${new Date().getTime()}`,
-    value: (inputLabelProps?.inputProps?.value || '') as V
-  };
+  // const defaultNoValue = {
+  //   title: 'חפש לפי הכל',
+  //   id: `${new Date().getTime()}`,
+  //   value: (inputLabelProps?.inputProps?.value || '') as V
+  // };
 
-  const [selectedOption, setSelectedOption] = useState<Option<V>>(defaultValue || defaultNoValue);
+  const [selectedOption, setSelectedOption] = useState<V>((defaultValue || '') as V);
 
   //Handle the select event.
-  const handleOnSelect = (value: Option<V>) => {
-    setValue && setValue(value.value);
-
+  const handleOnSelect = (value: V) => {
+    setValue && setValue(value);
     setSelectedOption(value);
   };
   //Handle input onChange event.
@@ -46,7 +45,7 @@ export default function Autocomplete<V>({
     (event: ChangeEvent<HTMLInputElement>) => {
       setValue && setValue(event.target.value as V);
       if (!event.target.value) {
-        setSelectedOption(defaultNoValue);
+        setSelectedOption('' as V);
       }
     },
 
@@ -77,7 +76,6 @@ export default function Autocomplete<V>({
             {...inputLabelProps?.inputProps}
             autoComplete={'off'}
             value={inputLabelProps?.inputProps?.value}
-            displayValue={(selectedOption) => selectedOption.value as string}
             className={classNameGenerator(
               autoCompleteStyle.input,
               inputLabelProps?.inputProps?.className
@@ -93,9 +91,9 @@ export default function Autocomplete<V>({
         <div className="relative">
           <Combobox.Options className={autoCompleteStyle.options}>
             {options?.map((option) => (
-              <Combobox.Option key={option.id} value={option}>
+              <Combobox.Option key={option as string} value={option}>
                 {({ active }) => {
-                  return <div className={isActiveStyle(active)}>{option.title} </div>;
+                  return <div className={isActiveStyle(active)}>{option as string} </div>;
                 }}
               </Combobox.Option>
             ))}

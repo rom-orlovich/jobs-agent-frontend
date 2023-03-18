@@ -43,11 +43,7 @@ function JobsSearchFilters({
           return (
             <li key={i + key + Date.now()}>
               <Autocomplete
-                defaultValue={{
-                  id: 'default',
-                  value: value,
-                  title: value
-                }}
+                defaultValue={value}
                 label={label}
                 setValue={handleSetFilterValue(key)}
                 options={options}

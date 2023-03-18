@@ -83,11 +83,14 @@ function JobsTrackingSearchFilters({
         />
 
         <Autocomplete
-          defaultValue={{
-            id: 'default',
-            value: formValues.currentStageName,
-            title: formValues.currentStageName
-          }}
+          defaultValue={
+            //   {
+            //   id: 'default',
+            //   value: formValues.currentStageName,
+            //   title: formValues.currentStageName
+            // }
+            formValues.currentStageName
+          }
           label={'שלב נוכחי'}
           setValue={handleSetFilterValue('currentStageName')}
           options={jobsTrackingFilters.currentStageNames}

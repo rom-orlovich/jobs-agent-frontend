@@ -64,7 +64,8 @@ export function transformExcludedRequirementsDefaultValues(
 export function transformUserQuery(userQuery: UserQuery): UserQueryTransform {
   const transformUserQuery: GenericRecord<string | string[]> = {};
   for (const [key, value] of Object.entries(userQuery)) {
-    if (typeof value === 'string') {
+    if (key === 'location' || key === 'position') transformUserQuery[key] = value;
+    else if (typeof value === 'string') {
       const joinValue = value?.split(',');
       transformUserQuery[key] = joinValue;
     }

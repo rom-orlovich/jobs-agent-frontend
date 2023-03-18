@@ -5,7 +5,7 @@ import { GenericRecord } from '@/lib/types/types';
 import React, { PropsWithChildren } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
-import { Option } from '../Inputs/SelectInput/selectInput.types';
+// import { Option } from '../Inputs/SelectInput/selectInput.types';
 
 export const jobsSearchStyle = {
   jobSearchContainer: 'flex xs:justify-start w-full',
@@ -27,9 +27,9 @@ export const IconButtonProps = {
  * @param HRV The filter hook's return values
  */
 interface MainSearchInputProps<FV extends GenericRecord<any>> {
-  defaultValue?: Option<string>;
+  defaultValue?: string;
   key: keyof ReturnUseFiltersProps<FV>['formValues'];
-  options: Option<string>[];
+  options: string[];
 }
 function SearchInput<FV extends GenericRecord<any>>({
   mainSearchInputProps,

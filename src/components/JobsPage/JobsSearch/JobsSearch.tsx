@@ -1,4 +1,3 @@
-import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 import SearchInput, { IconButtonProps } from '@/components/SearchInput/SearchInput';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
@@ -19,18 +18,14 @@ function JobsSearch({
   includeReasonFilters: boolean;
   isMatchPage?: boolean;
 }) {
-  const titles: Option<string>[] = createAutocompleteOptions(jobsFilters?.titles);
+  const titles: string[] = createAutocompleteOptions(jobsFilters?.titles);
 
   return (
     <SearchInput
       filtersJobsHookReturn={filterJobsProps}
       mainSearchInputProps={{
         options: titles,
-        defaultValue: {
-          id: 'default1',
-          value: filterJobsProps.formValues.title,
-          title: filterJobsProps.formValues.title
-        },
+        defaultValue: filterJobsProps.formValues.title,
         key: 'title'
       }}
     >

@@ -43,11 +43,7 @@ function HistoryQueriesSearchFilters({
           עודכן אחרי
         </InputLabel>
         <Autocomplete
-          defaultValue={{
-            id: 'default',
-            value: formValues.location,
-            title: formValues.location
-          }}
+          defaultValue={formValues.location}
           label={'מיקום'}
           setValue={handleSetFilterValue('location')}
           options={historyQueriesSearchFilters.locations}

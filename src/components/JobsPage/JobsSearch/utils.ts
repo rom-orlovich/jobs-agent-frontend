@@ -1,32 +1,26 @@
-import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 import { FilterJobsField } from '@/hooks/useFiltersHooks/useFilterJobs';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
 export const createAutocompleteOptions = (filters?: string[]) => {
-  const filtersOptions: Option<string>[] = [];
-  (filters || []).forEach((filter, i) => {
-    if (filter)
-      filtersOptions.push({
-        id: filter + i,
-        title: filter,
-        value: filter
-      });
+  const filtersOptions: string[] = [];
+  (filters || []).forEach((filter) => {
+    if (filter) filtersOptions.push(filter);
   });
   return filtersOptions;
 };
 
 //Create autocomplete props array.
 export const createAutocompletePropsArr = (jobsFilters: FacetFilterResults) => {
-  const reasonsOptions: Option<string>[] = createAutocompleteOptions(jobsFilters?.reasons);
+  const reasonsOptions: string[] = createAutocompleteOptions(jobsFilters?.reasons);
 
-  const fromOptions: Option<string>[] = createAutocompleteOptions(jobsFilters?.from);
-  const companiesOptions: Option<string>[] = createAutocompleteOptions(jobsFilters?.companies);
-  const locationOptions: Option<string>[] = createAutocompleteOptions(jobsFilters?.locations);
+  const fromOptions: string[] = createAutocompleteOptions(jobsFilters?.from);
+  const companiesOptions: string[] = createAutocompleteOptions(jobsFilters?.companies);
+  const locationOptions: string[] = createAutocompleteOptions(jobsFilters?.locations);
 
   const autocompletePropsArr: {
     label: string;
     key: keyof FilterJobsField;
-    options: Option<string>[];
+    options: string[];
   }[] = [
     {
       label: 'חפש עפ התאמה',

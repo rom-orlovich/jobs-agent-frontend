@@ -1,6 +1,6 @@
 import { JobsTrackingFiltersFields } from '@/hooks/useFiltersHooks/useFiltersTrackingJobs';
 import { Job } from '@/lib/types/jobsScanner.types';
-import { Option } from '../Inputs/SelectInput/selectInput.types';
+
 /**
  * @param {JobsTrackingFiltersFields} filterValues The current jobs tracking's filter values fields
  * @param {Jobs[] | undefined} jobs The current jobs tracking that suppose to be filtered
@@ -41,22 +41,12 @@ export const sortJobsTrackingByCreatedDate = (jobs?: Job[]) => {
 };
 
 export const createJobsTrackingFiltersArrValues = (jobs?: Job[]) => {
-  const titles: Map<string, Option<string>> = new Map([]);
-  const currentStageNames: Map<string, Option<string>> = new Map([]);
+  const titles: Map<string, string> = new Map([]);
+  const currentStageNames: Map<string, string> = new Map([]);
   jobs?.forEach((job) => {
     const curStageName = job.info?.stages.at(-1)?.name;
-    if (job.title)
-      titles.set(job.title, {
-        title: job.title,
-        value: job.title,
-        id: job.jobID
-      });
-    if (curStageName)
-      currentStageNames.set(curStageName, {
-        title: curStageName,
-        value: curStageName,
-        id: job.jobID
-      });
+    if (job.title) titles.set(job.title, job.title);
+    if (curStageName) currentStageNames.set(curStageName, curStageName);
   });
 
   return {

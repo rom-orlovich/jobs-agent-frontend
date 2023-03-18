@@ -36,21 +36,11 @@ export const filterHistoryQueries = (
 };
 
 export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) => {
-  const positions: Map<string, Option<string>> = new Map([]);
-  const locations: Map<string, Option<string>> = new Map([]);
-  userQueries?.forEach((userQuery, i) => {
-    if (userQuery.position)
-      positions.set(userQuery.position, {
-        title: userQuery.position,
-        value: userQuery.position,
-        id: userQuery.hash + '' + i
-      });
-    if (userQuery.location)
-      locations.set(userQuery.location, {
-        title: userQuery.location,
-        value: userQuery.location,
-        id: userQuery.hash + '' + i
-      });
+  const positions: Map<string, string> = new Map([]);
+  const locations: Map<string, string> = new Map([]);
+  userQueries?.forEach((userQuery) => {
+    if (userQuery.position) positions.set(userQuery.position, userQuery.position);
+    if (userQuery.location) locations.set(userQuery.location, userQuery.location);
   });
 
   return {

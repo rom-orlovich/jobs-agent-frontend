@@ -1,4 +1,4 @@
-import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
+// import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 
 import SearchInput, { IconButtonProps } from '@/components/SearchInput/SearchInput';
 import { ReturnUseJobsTrackingFilterProps } from '@/hooks/useFiltersHooks/useFiltersTrackingJobs';
@@ -7,8 +7,8 @@ import React from 'react';
 import JobsTrackingSearchFilters from './JobsTrackingSearchFilters';
 
 export interface JobsTrackingFiltersArr {
-  titles: Option<string>[];
-  currentStageNames: Option<string>[];
+  titles: string[];
+  currentStageNames: string[];
 }
 export interface JobsTrackingSearchProps {
   jobsTrackingFilters: JobsTrackingFiltersArr;
@@ -20,11 +20,7 @@ function JobsTrackingSearch({ filtersTrackingJobsProps, jobsTrackingFilters }: J
       filtersJobsHookReturn={filtersTrackingJobsProps}
       mainSearchInputProps={{
         options: jobsTrackingFilters.titles,
-        defaultValue: {
-          id: 'default1',
-          value: filtersTrackingJobsProps.formValues.title,
-          title: filtersTrackingJobsProps.formValues.title
-        },
+        defaultValue: filtersTrackingJobsProps.formValues.title,
         key: 'title'
       }}
     >

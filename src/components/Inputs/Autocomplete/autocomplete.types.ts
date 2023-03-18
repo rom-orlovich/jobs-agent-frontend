@@ -1,10 +1,10 @@
 import { InputLabelProps } from '../InputLabel/inputLabel.types';
-import { Option } from '../SelectInput/selectInput.types';
-export interface AutocompleteProps<V> {
+
+export interface AutocompleteProps<V extends string> {
   setValue?: (value: V) => void;
-  options: Option<V>[];
+  options: V[];
   multiple?: boolean;
   label?: string;
   inputLabelProps?: InputLabelProps;
-  defaultValue?: Option<V>;
+  defaultValue?: V;
 }
