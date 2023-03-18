@@ -10,7 +10,7 @@ function Dashboard({ children }: PropsWithChildren) {
   return (
     <section className={dashboardStyle.mainContainer}>
       <Sidebar />
-      <section className="w-full p-8">
+      <section className="w-full py-4 pl-4 pr-6">
         {children}
         <Spinner isLoading={scanner.isMutating} />
       </section>
