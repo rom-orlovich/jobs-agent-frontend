@@ -32,7 +32,7 @@ export const filterHistoryQueries = (
         new Date(afterUpdateDate).getTime()
     );
 
-  return currentUserQueries;
+  return currentUserQueries.filter((userQuery) => userQuery.hash);
 };
 
 export const createHistoryQueriesFiltersArrValues = (userQueries: UserQuery[]) => {
