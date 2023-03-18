@@ -8,10 +8,9 @@ import { TriggerByHash } from '../Buttons/Button.types';
 import { deleteUserQuery } from '@/lib/api/users.utils';
 import { mutate } from 'swr';
 import { API_ENDPOINTS } from '@/lib/endpoints';
-// import { sortUserHistoryQueries } from './utils';
+
 import { toast } from 'react-toastify';
-// import useRedirect from '@/hooks/useRedirect';
-// import { createToastsByDataIfExist } from '@/lib/utils';
+
 import { useScannerContext } from '@/context/ScannerContext';
 import { UserProfileWithOneUserQuery, UserQuery } from '@/lib/types/api.types';
 const searchHistoryFeedStyle = {
@@ -25,23 +24,10 @@ function SearchHistoryFeed({
   historyQueries: UserQuery[];
 }) {
   const router = useRouter();
-  // const authContext = useAuthContext();
+
   //Initialize the button hooks.
   const downloadController = useDownloadController();
   const scannerController = useScannerContext();
-  // const { userHistoryQueries, userProfileData } = authContext;
-
-  // //Check the status of the data and display proper message.
-  // //If The data it not exist, redirect to the home page.
-  // useRedirect(
-  //   createToastsByDataIfExist('SEARCH_HISTORY_FOUND', 'SEARCH_HISTORY_NOT_FOUND', userHistoryQueries)
-  // );
-
-  //Display only the user Queries that are already been scanned and have hash field.
-  // const filterHistoryQueries = userHistoryQueries.filter((userQuery) => userQuery.hash);
-
-  //Sort the user Queries by the date. The new one will be first.
-  // const sortHistoryQueries = sortUserHistoryQueries(filterHistoryQueries);
 
   //Handle the edit button click.
   const handleEditButton: TriggerByHash = (hash) => (e) => {
