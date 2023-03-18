@@ -4,14 +4,12 @@ import { classNameGenerator } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 import { MdTextSnippet } from 'react-icons/md';
-// import TrackButton from '../Buttons/TrackButton';
-// import Field from '../Field/Field';
+
 import { JobItemProps, jobItemStyle } from '../JobsPage/JobFeed/JobsFeed';
 import JobInfo from './JobTrackingItem/JobInfo';
 import TrackingInfo from './JobTrackingItem/TrackingInfo';
 
 export const jobTrackingItemStyle = {
-  // ...jobItemStyle,
   itemTracking: 'flex flex-col justify-between gap-4',
   content: `gap-[0.5rem]`,
   dateContainer: 'flex flex-end',
@@ -34,22 +32,8 @@ function JobTrackingItem(props: JobItemProps) {
       className={classNameGenerator(jobItemStyle.item, jobTrackingItemStyle.itemTracking)}
       key={jobID + index}
     >
-      {/* <div className={`${jobItemStyle.content} ${jobTrackingItemStyle.content}`}>
-        <div className={jobItemStyle.bookmarkContainer}>
-          <div className={fromClass}> {from} </div>
-          <TrackButton onClick={props.handleClickBookmark} mark={mark} />
-        </div>
-        <div dir="rtl" className={jobTrackingItemStyle.dateContainer}>
-          <Field value={localDateStr} titleStyle={'font-bold'} title="עודכן ב-" />
-        </div>
-        <div className={jobItemStyle.title}>
-          <Link target="_blank" href={link}>
-            {title}
-          </Link>
-        </div>
-        {props.company && <div className="text-center"> {props.company}</div>}
-      </div> */}
       <JobInfo {...props} />
+
       <div className={classNameGenerator(jobItemStyle.reason, reasonStyle)}>
         {isMatch ? '!יש התאמה' : reason}
       </div>
