@@ -1,4 +1,4 @@
-import { DivProps, LabelProps } from '@/components/HTML.types';
+import { ButtonProps, DivProps, LabelProps } from '@/components/HTML.types';
 
 export interface Option<V> {
   id: string;
@@ -13,4 +13,5 @@ export interface SelectInputProps<V> {
   setValue?: (value: V | V[]) => void;
   defaultValue?: Option<V> | Option<V>[];
   multiple?: boolean;
+  buttonProps?: ButtonProps;
 }

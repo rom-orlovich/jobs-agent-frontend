@@ -7,7 +7,9 @@ import FiltersPopup from '@/components/SearchInput/FiltersPopup';
 
 import { JobsTrackingSearchProps } from './JobsTrackingSearch';
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
-import ToggleButton from '@/components/Toggle/ToggleButton';
+
+import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
+import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 
 const JobsSearchFiltersStyle = {
   filters: 'flex flex-col gap-3',
@@ -27,11 +29,27 @@ function JobsTrackingSearchFilters({
   jobsTrackingFilters
 }: JobsSearchFiltersProps) {
   const { formValues, handleSetFilterValue, handleOnChange } = filtersTrackingJobsProps;
-
+  const STATUS_CV_OPTIONS: Option<string>[] = [
+    {
+      id: 'הצג הכל',
+      title: 'הצג הכל',
+      value: 'הצג הכל'
+    },
+    {
+      id: 'נשלחו',
+      title: 'נשלחו',
+      value: 'נשלחו'
+    },
+    {
+      id: 'לא נשלחו',
+      title: 'לא נשלחו',
+      value: 'לא נשלחו'
+    }
+  ];
   return (
     <FiltersPopup>
       <div className={JobsSearchFiltersStyle.filters}>
-        <ToggleButton
+        {/* <ToggleButton
           labelProps={{
             className: JobsSearchFiltersStyle.label
           }}
@@ -40,7 +58,23 @@ function JobsTrackingSearchFilters({
           onChange={handleSetFilterValue('CVwasSent')}
         >
           ?קו"ח נשלחו
-        </ToggleButton>
+        </ToggleButton> */}
+        <SelectInput
+          optionsElProps={{
+            className: 'text-right'
+          }}
+          buttonProps={{
+            className: 'w-full text-right'
+          }}
+          labelProps={{
+            title: 'סטטוס קו"ח'
+          }}
+          options={STATUS_CV_OPTIONS}
+          selectInputWrapper={{
+            dir: 'rtl',
+            className: 'w-full'
+          }}
+        />
 
         <InputLabel
           labelProps={{

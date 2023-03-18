@@ -27,10 +27,12 @@ export default function SelectInput<V extends string>({
   setValue,
   defaultValue,
   multiple,
-  selectInputWrapper
+  selectInputWrapper,
+  buttonProps
 }: SelectInputProps<V>) {
+  //
   //Check if the defaultValue is array or single value.
-  //If defaultValue is array and has a values so use the defaultValue as is.
+  //If defaultValue is array and has values so use the defaultValue as is.
   //Otherwise use the the first option as array of array.
   //Else, if defaultValue is not array use the first option as is.
 
@@ -74,7 +76,9 @@ export default function SelectInput<V extends string>({
           {labelProps.title}
         </Listbox.Label>
         <div className="relative">
-          <Listbox.Button className={selectOptionsStyle.button}>
+          <Listbox.Button
+            className={classNameGenerator(selectOptionsStyle.button, buttonProps?.className)}
+          >
             {Array.isArray(selectOption)
               ? selectOption.map((el) => el.title).join(', ')
               : selectOption.title}
