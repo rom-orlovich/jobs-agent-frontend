@@ -56,6 +56,7 @@ function JobsTrackingSearchFilters({
           }}
           inputProps={{
             type: 'date',
+
             value: formValues.afterUpdateDate,
             onChange: handleOnChange('afterUpdateDate')
           }}

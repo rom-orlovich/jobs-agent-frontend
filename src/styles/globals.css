@@ -4,25 +4,13 @@
 
 @layer components {
   .input-custom {
-    @apply rounded-lg border border-gray-300 px-2 font-normal focus:border focus:border-blue-300 focus:outline-blue-100;
+    @apply rounded-lg border border-gray-300 bg-white px-2 font-normal focus:border focus:border-blue-300 focus:outline-blue-100;
   }
   .button-custom {
     @apply rounded-lg py-[0.5rem] px-[0.7rem]  text-sm xs:py-[0.5rem] xs:px-[0.8rem]  xs:text-base sm:py-[0.5rem] sm:px-[1rem] sm:text-base;
   }
   .card {
     @apply rounded-lg border-none bg-white shadow-lg;
-  }
-}
-.spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -32,6 +20,20 @@
   box-sizing: border-box;
 }
 
+/*Spinner style*/
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*Scrollbar style*/
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
