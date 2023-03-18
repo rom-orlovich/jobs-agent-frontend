@@ -31,7 +31,7 @@ function ToggleTopic({
                   e.preventDefault();
                 }
               }}
-              className={classNameGenerator('flex items-center gap-2', buttonProps?.className)}
+              className={classNameGenerator('flex w-[90%] items-center gap-2', buttonProps?.className)}
               onClick={handleOnClick}
             >
               <div> {isON ? <AiOutlineArrowDown /> : <AiOutlineArrowLeft />}</div>

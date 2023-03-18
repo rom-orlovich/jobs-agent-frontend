@@ -13,10 +13,10 @@ export const jobTrackingFormStyle = {
   headingToggle: 'text-xl',
   buttonsContainer: 'flex justify-between w-full ',
   toggleTopicWrapper: 'flex gap-4',
-  labelCV: 'flex flex-col gap-2 mt-2',
-  wasSentLabel: 'flex gap-2 mt-2',
-  label: 'flex flex-col gap-2 mt-2',
-  dateInput: 'max-w-[8rem]'
+
+  wasSentLabel: 'flex gap-2 mt-2 font-semibold',
+  label: 'flex flex-col gap-2 mt-2 font-semibold',
+  dateInput: 'max-w-[8rem] text-center'
 };
 
 function JobTrackingForm({ job, userID }: { job: Job; userID: string }) {

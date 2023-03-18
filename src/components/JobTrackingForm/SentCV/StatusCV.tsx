@@ -13,7 +13,7 @@ function StatusCV(props: JobTrackingFormComponentsProps<unknown>) {
         className: jobTrackingFormStyle.headingToggle
       }}
       childrenWrapper={{
-        className: 'p-1'
+        className: 'p-1 flex flex-col gap-2'
       }}
     >
       <SentCVAnswers {...props} />
@@ -21,7 +21,7 @@ function StatusCV(props: JobTrackingFormComponentsProps<unknown>) {
       <div className="flex px-3">
         <InputLabel
           labelProps={{
-            className: jobTrackingFormStyle.labelCV
+            className: jobTrackingFormStyle.label
           }}
           inputProps={{
             type: 'date',
@@ -35,7 +35,7 @@ function StatusCV(props: JobTrackingFormComponentsProps<unknown>) {
         </InputLabel>
         <InputLabel
           labelProps={{
-            className: jobTrackingFormStyle.labelCV
+            className: jobTrackingFormStyle.label
           }}
           inputProps={{
             type: 'checkbox',

@@ -29,10 +29,10 @@ function StageInputs({
       as={() => (
         <InputLabel
           labelProps={{
-            className: 'gap-2 flex-col flex'
+            className: `${jobTrackingFormStyle.label} w-full`
           }}
           inputProps={{
-            className: 'xs:min-w-[14rem] min-w-[3rem] ',
+            className: '',
             value: name || '',
             id: 'name',
             onChange: onChange
@@ -73,6 +73,9 @@ function StageInputs({
         </InputLabel>
       </div>
       <InputLabel
+        labelProps={{
+          className: jobTrackingFormStyle.label
+        }}
         textAreaProps={{
           value: feedback || '',
           id: 'feedback',
