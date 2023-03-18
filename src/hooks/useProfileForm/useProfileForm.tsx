@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { updateUser } from '@/lib/api/users.utils';
 
 import { UserProfileWithOneUserQuery } from '@/lib/types/user.types';
+import { useRouter } from 'next/router';
 import { ChangeEventHandler } from 'react';
 
 import { toast } from 'react-toastify';
@@ -18,6 +20,8 @@ import {
  * @param {UserProfile} user The current login user.
  */
 function useProfileForm(user: UserProfileWithOneUserQuery) {
+  const router = useRouter();
+
   const formInitialValue: UserProfileWithOneUserQuery = user;
   // Initializes the form state and get the utils functions from useForm hook.
   const { formValues, onSubmit, setFormValues, formState } = useForm<
@@ -74,7 +78,16 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
 
   // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserProfileFormSubmit = onSubmit(async (values) => {
-    const result = await updateUser(user?.userID || '', values);
+    const { hash, ...restValue } = values.userQuery;
+    //If url hash query exist,the current submitting is for editing. Else the current submitting is for adding a new query.
+    const curValues = router.query.hash
+      ? values
+      : {
+          ...values,
+          userQuery: restValue
+        };
+
+    const result = await updateUser(user?.userID || '', curValues);
     await mutate(`/api/users/${user?.userID}`);
     toast(result.message);
     return result;
