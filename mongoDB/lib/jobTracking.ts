@@ -13,10 +13,11 @@ export const addJobTracking = async (userID: string, job: Job) => {
           tracking: {
             ...job,
             info: {
-              createdAt: new Date(),
+              updatedAt: new Date(),
               statusCV: {
                 date: new Date(),
-                status: false
+                wasSent: false,
+                pass: false
               },
               stages: []
             }

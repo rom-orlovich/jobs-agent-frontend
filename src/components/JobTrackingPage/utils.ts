@@ -20,7 +20,7 @@ export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, job
   if (afterUpdateDate)
     currentJobs = currentJobs?.filter(
       (jobs) =>
-        new Date(jobs.info?.createdAt as unknown as string).getTime() >=
+        new Date(jobs.info?.updatedAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
     );
   if (currentStageName)
@@ -32,11 +32,11 @@ export const filtersJobsTracking = (filterValues: JobsTrackingFiltersFields, job
 
 /**
  * @param {Jobs[] | undefined} jobs The current tracking jobs that suppose to be sorted
- * @returns {Jobs[] | undefined} The current jobs tracking sort by their createdAt field.
+ * @returns {Jobs[] | undefined} The current jobs tracking sort by their updatedAt field.
  */
 export const sortJobsTrackingByCreatedDate = (jobs?: Job[]) => {
   return jobs?.sort(
-    (a, b) => new Date(b.info?.createdAt || '').getTime() - new Date(a.info?.createdAt || '').getTime()
+    (a, b) => new Date(b.info?.updatedAt || '').getTime() - new Date(a.info?.updatedAt || '').getTime()
   );
 };
 

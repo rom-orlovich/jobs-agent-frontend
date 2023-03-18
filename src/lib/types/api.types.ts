@@ -28,6 +28,7 @@ export interface UserQuery {
 export type MinMaxInputsValueWithoutTitle = OmitKey<MinMaxInputsOption, 'field'>;
 export type Requirements = GenericRecord<MinMaxInputsValueWithoutTitle>;
 export type ExcludeTechsOptions = GenericRecord<boolean>;
+
 export interface UserProfile {
   userID?: string;
   activeHash?: string;

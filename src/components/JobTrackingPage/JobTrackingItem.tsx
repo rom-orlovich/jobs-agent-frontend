@@ -25,7 +25,7 @@ function JobTrackingItem(props: JobItemProps) {
       'button-custom  bg-[#20b2aa] hover:opacity-75 text-white text-sm  flex items-center gap-1'
   };
   const { link, title, jobID, fromClass, from, index, mark, info, reason, isMatch, reasonStyle } = props;
-  const localDateStr = createLocalDate(info?.createdAt);
+  const localDateStr = createLocalDate(info?.updatedAt);
   const CVwasSent = props.info?.statusCV?.wasSent;
   const curStage = props.info?.stages.at(-1)?.name;
   return (

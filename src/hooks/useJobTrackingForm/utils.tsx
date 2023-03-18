@@ -9,7 +9,7 @@ export function getJobTrackingFormDefaultValues(): TrackingInfoFormFormat {
 
   //Form's default values when current user's job info form is empty.
   const defaultValues: TrackingInfoFormFormat = {
-    createdAt: curDate,
+    updatedAt: curDate,
     statusCV: {
       wasSent: 'לא',
       date: curDate,
@@ -39,7 +39,7 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
 
   return {
     ...initialValues,
-    createdAt: new Date(initialValues?.createdAt || new Date()).toISOString() || defaultValues.createdAt,
+    updatedAt: new Date(initialValues?.updatedAt || new Date()).toISOString() || defaultValues.updatedAt,
     statusCV: {
       wasSent: initialValues?.statusCV?.wasSent ? 'כן' : 'לא',
       pass: !!initialValues?.statusCV?.pass,
@@ -62,7 +62,7 @@ export const handleConvertInitialValues: (initialValues?: TrackingInfo) => Track
 
 export function handleConvertToFormResult(formValues: TrackingInfoFormFormat): TrackingInfo {
   return {
-    createdAt: new Date(formValues.createdAt),
+    updatedAt: new Date(),
     statusCV: {
       wasSent: formValues.statusCV.wasSent === 'כן' ? true : false,
       pass: !!formValues?.statusCV?.pass,
