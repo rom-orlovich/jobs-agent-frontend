@@ -69,10 +69,7 @@ function UserQuery(formComponentsProps: ProfileFormComponentsProps<unknown>) {
           }}
           {...formComponentsProps}
         />
-        <SelectInput
-          {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')}
-          multiple={false}
-        />
+        <SelectInput {...selectInputProps('מרחק מהבית', DISTANCE_OPTIONS, 'distance')} />
       </div>
       <div className={userQueryStyle.selectInputsContainer}>
         <SelectInput {...selectInputProps('סוג עבודה', JOB_TYPES_OPTIONS, 'jobType')} />
