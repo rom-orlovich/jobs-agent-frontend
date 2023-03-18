@@ -9,6 +9,7 @@ declare global {
 
       NEXT_PUBLIC_SERVER_URL: string;
       NEXT_PUBLIC_CLIENT_URL: string;
+      NEXT_PUBLIC_CLIENT_DEV_URL: string;
     }
   }
 }
