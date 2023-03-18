@@ -49,16 +49,19 @@ function JobsTrackingSearchFilters({
   return (
     <FiltersPopup>
       <div className={JobsSearchFiltersStyle.filters}>
-        {/* <ToggleButton
+        <InputLabel
           labelProps={{
+            dir: 'rtl',
             className: JobsSearchFiltersStyle.label
           }}
-          name={'קו"ח נשלחו'}
-          checked={formValues.CVwasSent}
-          onChange={handleSetFilterValue('CVwasSent')}
+          inputProps={{
+            type: 'date',
+            value: formValues.afterUpdateDate,
+            onChange: handleOnChange('afterUpdateDate')
+          }}
         >
-          ?קו"ח נשלחו
-        </ToggleButton> */}
+          עודכן אחרי
+        </InputLabel>
         <SelectInput
           setValue={handleSetFilterValue('CVwasSent')}
           defaultValue={STATUS_CV_OPTIONS[0]}
@@ -78,19 +81,6 @@ function JobsTrackingSearchFilters({
           }}
         />
 
-        <InputLabel
-          labelProps={{
-            dir: 'rtl',
-            className: JobsSearchFiltersStyle.label
-          }}
-          inputProps={{
-            type: 'date',
-            value: formValues.afterUpdateDate,
-            onChange: handleOnChange('afterUpdateDate')
-          }}
-        >
-          עודכן אחרי
-        </InputLabel>
         <Autocomplete
           defaultValue={{
             id: 'default',

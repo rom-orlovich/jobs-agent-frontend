@@ -71,7 +71,7 @@ function JobTrackingItem(props: JobItemProps) {
             className={jobTrackingItemStyle.linkTrackDetails}
             href={`/${APP_ROUTES.JOBS_TRACKING_INFO(jobID)}`}
           >
-            <MdTextSnippet /> הוסף פרטים
+            <MdTextSnippet /> ערוך פרטים
           </Link>
         </div>
       </div>
