@@ -1,3 +1,4 @@
+import { ListProps } from '@/components/HTML.types';
 import { InputLabelProps } from '../InputLabel/inputLabel.types';
 
 export interface AutocompleteProps<V extends string> {
@@ -7,4 +8,5 @@ export interface AutocompleteProps<V extends string> {
   label?: string;
   inputLabelProps?: InputLabelProps;
   defaultValue?: V;
+  optionsProps?: ListProps;
 }

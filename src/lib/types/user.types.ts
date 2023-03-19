@@ -21,7 +21,7 @@ export type ExcludeTechsOptions = GenericRecord<boolean>;
 export interface UserProfile {
   userID?: string;
   activeHash?: string;
-  overallEx?: number;
+  overallEx?: string;
   requirements: Requirements;
   excludedRequirements: ExcludeTechsOptions;
   userQueries: UserQuery[];

@@ -23,12 +23,23 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
   // On change handler by input's id.
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormValues((pre) => {
+      console.log({
+        [e.target.id]: e.target.value
+      });
       return {
         ...pre,
         [e.target.id]: e.target.value
       };
     });
   };
+  function handleSetValue<V>(id: keyof T) {
+    return (value: V) => {
+      setFormValues((pre) => ({
+        ...pre,
+        [id]: value
+      }));
+    };
+  }
 
   /**
    * This function return the submit function that execute the callback function that provided to execute during the submit event.
@@ -68,8 +79,9 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
 
   return {
     setFormValues,
-    onChange: useDebouncedCallback(onChange, 500),
+    handleSetValue,
     onSubmit,
+    onChange: useDebouncedCallback(onChange, 500),
     formValues,
     formState
   };

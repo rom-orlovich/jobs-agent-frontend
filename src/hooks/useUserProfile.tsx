@@ -27,7 +27,7 @@ function useUserProfile(userID?: string) {
   //Default values.
   const defaultUserProfile: UserProfileWithOneUserQuery = {
     userID: userID,
-    overallEx: 0,
+    overallEx: '1',
     requirements: {},
     excludedRequirements: {},
     userQuery: {

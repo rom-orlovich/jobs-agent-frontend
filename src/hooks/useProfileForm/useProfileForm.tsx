@@ -3,13 +3,14 @@ import { updateUser } from '@/lib/api/users.utils';
 
 import { UserProfileWithOneUserQuery } from '@/lib/types/user.types';
 import { useRouter } from 'next/router';
-import { ChangeEventHandler } from 'react';
-
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
 import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
 import useForm from '../useForm';
+
 import {
+  getOverallExYearNum,
+  getOverallExYearWords,
   transformDefaultFormValues,
   transformExcludedRequirements,
   transformRequirements
@@ -24,19 +25,16 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
 
   const formInitialValue: UserProfileWithOneUserQuery = user;
   // Initializes the form state and get the utils functions from useForm hook.
-  const { formValues, onSubmit, setFormValues, formState } = useForm<
+  const { formValues, onSubmit, setFormValues, formState, handleSetValue, onChange } = useForm<
     UserProfileWithOneUserQuery,
     { message: string }
   >(formInitialValue);
 
   // Handles the overallExperience on change event.
-  const handleOverallExperience: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setFormValues((pre) => {
-      return {
-        ...pre,
-        [e.target.id]: e.target.value
-      };
-    });
+  const handleOverallExperience = (id: keyof typeof formValues) => (value: string) => {
+    //If value is not undefined use the current input's value.
+    //Else use the last user's years experience default value from DB.
+    handleSetValue(id)(value !== undefined ? value : getOverallExYearWords(formValues.overallEx || ''));
   };
 
   // Handles the transform of requirements values to be valid before form's submitting.
@@ -79,6 +77,10 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
   // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserProfileFormSubmit = onSubmit(async (values) => {
     const { hash, ...restValue } = values.userQuery;
+
+    //Set the current input's years experience by the words of overallEx.
+    values['overallEx'] = getOverallExYearNum(values.overallEx || '');
+
     //If url hash query exist,the current submitting is for editing. Else the current submitting is for adding a new query.
     const curValues = router.query.hash
       ? values
@@ -86,7 +88,6 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
           ...values,
           userQuery: restValue
         };
-
     const result = await updateUser(user?.userID || '', curValues);
     await mutate(`/api/users/${user?.userID}`);
     toast(result.message);
@@ -95,12 +96,13 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
 
   return {
     formValues: transformDefaultFormValues(formValues),
+    formState,
     handleOverallExperience,
     handleUserProfileFormSubmit,
     handleRequirements,
     handleExcludedRequirements,
     handleSelectionInput,
-    formState
+    onChange
   };
 }
 

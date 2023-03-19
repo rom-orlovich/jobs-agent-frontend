@@ -86,10 +86,9 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
   return {
     formValues: formValues,
     formState,
-    onSubmit: onSubmit(handleSubmit),
-
-    handleOnChangeValue,
     handleSetStagesValues: useDebouncedCallback(handleSetStagesValues, 500),
+    onSubmit: onSubmit(handleSubmit),
+    handleOnChangeValue,
     handleRadioButtons
   };
 };

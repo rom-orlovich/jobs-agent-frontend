@@ -1,5 +1,5 @@
 import { GenericRecord } from '@/lib/types/types';
-import { ButtonProps, DivProps, InputProps, ListProps } from '../../HTML.types';
+import { ButtonProps, DivProps, InputProps, ListItemProps } from '../../HTML.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DynamicInputRenderProps = GenericRecord<any> & InputProps;
@@ -20,6 +20,6 @@ export interface DynamicInputsProps<T extends DynamicInputRenderProps> {
     activeClassInner?: string;
     activeClassOuter?: string;
   };
-  liProps?: ListProps;
+  liProps?: ListItemProps;
   setDynamicInputState?: (values: RenderElement<T>[]) => void;
 }

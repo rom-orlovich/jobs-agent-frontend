@@ -7,7 +7,7 @@ import { useDebouncedCallback } from 'use-debounce';
 
 const autoCompleteStyle = {
   options:
-    'absolute z-50 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll  py-1 text-base card ring-1 sm:text-sm',
+    'absolute z-50 mt-1 max-h-60 w-full max-w-xs overflow-y-scroll  py-[0.3rem] text-base card ring-1 sm:text-sm',
   label: 'font-semibold',
   input: 'input-custom relative w-full'
 };
@@ -15,7 +15,7 @@ const autoCompleteStyle = {
 export default function Autocomplete<V extends string>({
   setValue,
   options,
-
+  optionsProps,
   label,
   defaultValue,
   inputLabelProps
@@ -27,12 +27,6 @@ export default function Autocomplete<V extends string>({
   ) : (
     <></>
   );
-  // const defaultNoValue = {
-  //   title: 'חפש לפי הכל',
-  //   id: `${new Date().getTime()}`,
-  //   value: (inputLabelProps?.inputProps?.value || '') as V
-  // };
-
   const [selectedOption, setSelectedOption] = useState<V>((defaultValue || '') as V);
 
   //Handle the select event.
@@ -89,7 +83,9 @@ export default function Autocomplete<V extends string>({
           {iconButton}
         </Combobox.Button>
         <div className="relative">
-          <Combobox.Options className={autoCompleteStyle.options}>
+          <Combobox.Options
+            className={classNameGenerator(autoCompleteStyle.options, optionsProps?.className)}
+          >
             {options?.map((option) => (
               <Combobox.Option key={option as string} value={option}>
                 {({ active }) => {

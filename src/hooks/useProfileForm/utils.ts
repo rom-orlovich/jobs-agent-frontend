@@ -2,7 +2,35 @@ import { Requirements, UserProfileWithOneUserQuery, UserQuery } from '@/lib/type
 import { GenericRecord } from '@/lib/types/types';
 
 import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
-import { UserQueryTransform } from './types';
+import { UserQueryTransform, YearsExperienceObjWordsNumKeys } from './types';
+
+export const YEARS_EXPERIENCE_WORDS_NUM = {
+  'שנה אחת': '1',
+  שנתיים: '2',
+  'שלוש שנים': '3',
+  'ארבע שנים': '4',
+  'חמש שנים': '5',
+  'שש שנים ומעלה': '8' //Max years experience in jobs listing sites.
+};
+
+export const YEARS_EXPERIENCE_WORDS = Object.keys(
+  YEARS_EXPERIENCE_WORDS_NUM
+) as YearsExperienceObjWordsNumKeys[];
+
+/**
+ * @param {string} overallExWords Words of years experience.
+ * @returns {string} The num that represent the years in number.
+ */
+
+export const getOverallExYearNum = (overallExWords: string): string =>
+  YEARS_EXPERIENCE_WORDS_NUM[overallExWords as YearsExperienceObjWordsNumKeys];
+
+/**
+ * @param {string} overallExNum Num of years experience.
+ * @returns {string} The words that represent the years in words.
+ */
+export const getOverallExYearWords = (overallExNum: string): string =>
+  YEARS_EXPERIENCE_WORDS[Number(overallExNum) - 1];
 
 /**
  * @param {MinMaxInputsOption[]} minMaxValues The values of minMax inputs.
@@ -80,10 +108,17 @@ export const transformDefaultFormValues = ({
   requirements,
   excludedRequirements,
   userQuery,
+  overallEx,
   ...formValues
 }: UserProfileWithOneUserQuery) => {
+  //Convert the num years experience to words.
+  const curOverallEx = getOverallExYearWords(overallEx || '');
+
   return {
     ...formValues,
+    //If the overallEx is not valid number in YEARS_EXPERIENCE_WORDS
+    // (it happens when the input's value changes and doesn't match any keys in YEARS_EXPERIENCE_WORDS),so uses the input's value itself as current raw value.
+    overallEx: curOverallEx ? curOverallEx : overallEx,
     requirements: transformRequirementsDefaultValues(requirements),
     excludedRequirements: transformExcludedRequirementsDefaultValues(excludedRequirements),
     userQuery: transformUserQuery(userQuery)

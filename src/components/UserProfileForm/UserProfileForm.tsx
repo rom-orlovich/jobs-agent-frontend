@@ -4,13 +4,15 @@ import UserQuery from './UserQuery/UserQuery';
 
 import useProfileForm from '../../hooks/useProfileForm/useProfileForm';
 
-import InputLabel from '../Inputs/InputLabel/InputLabel';
+// import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 import { useAuthContext } from '@/context/AuthContext';
 import ScannerControlButtons from './ScannerControlButtons/ScannerControlButtons';
-import { classNameGenerator } from '@/lib/utils';
+// import { classNameGenerator } from '@/lib/utils';
+import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
+import { YEARS_EXPERIENCE_WORDS } from '@/hooks/useProfileForm/utils';
 const userProfileFormStyle = {
   form: 'sm:max-w-[32rem]  sm:min-w-[27rem] sm:min-h-[27rem] xs:min-w-[25rem] min-w-[18rem] min-h-[25rem]  max-h-fit flex flex-col justify-between p-6 card gap-4',
   inputsContainer: 'flex flex-col gap-5 sm:max-w-[23rem]',
@@ -33,10 +35,10 @@ function UserProfileForm() {
         <ToggleTopic
           headingProps={{
             className: userProfileFormStyle.heading,
-            title: 'מה הניסיון הכללי שלך?'
+            title: 'כמה שנות ניסיון יש לך?'
           }}
         >
-          <InputLabel
+          {/* <InputLabel
             labelProps={{
               className: classNameGenerator(userProfileFormStyle.label, 'mt-2 gap-3')
             }}
@@ -56,7 +58,29 @@ function UserProfileForm() {
             }}
           >
             שנות ניסיון
-          </InputLabel>
+          </InputLabel> */}
+          <div className="px-3 py-2">
+            <Autocomplete
+              setValue={userForm.handleOverallExperience('overallEx')}
+              options={YEARS_EXPERIENCE_WORDS.filter((el) => {
+                if (userForm.formValues.overallEx) return el.includes(userForm.formValues.overallEx);
+                else return true;
+              })}
+              defaultValue={userForm.formValues.overallEx}
+              optionsProps={{
+                className: '!overflow-y-hidden'
+              }}
+              inputLabelProps={{
+                wrapperInputLabel: {
+                  className: 'max-w-[50%] '
+                }
+                // inputProps: {
+                //   onChange: userForm.onChange,
+                //   id: 'overallEx'
+                // }
+              }}
+            />
+          </div>
         </ToggleTopic>
 
         <ToggleTopic
@@ -70,7 +94,7 @@ function UserProfileForm() {
         <ToggleTopic
           headingProps={{
             className: userProfileFormStyle.heading,
-            title: 'מה אתה לא מחפש?'
+            title: 'במה אינך מעוניינ/ת?'
           }}
         >
           <ExcludedRequirements {...userForm} />
@@ -78,7 +102,7 @@ function UserProfileForm() {
         <ToggleTopic
           headingProps={{
             className: userProfileFormStyle.heading,
-            title: 'מה אתה מחפש?'
+            title: 'מה הינך מחפש?'
           }}
         >
           <UserQuery {...userForm} />
