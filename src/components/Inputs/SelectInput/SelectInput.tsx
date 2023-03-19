@@ -38,9 +38,7 @@ export default function SelectInput<V>({
 
   const curDefaultValue = Array.isArray(defaultValue)
     ? defaultValue?.length
-      ? // ? defaultValue.length === 1
-        //   ? defaultValue[0]
-        defaultValue
+      ? defaultValue
       : [options[0]]
     : options[0];
 
