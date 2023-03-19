@@ -89,6 +89,7 @@ export const updateUser = async (userData: UserProfileWithOneUserQuery) => {
   const pipelines = userData.userQuery.hash
     ? updateUserQueryPipelines(newUserData, userData.userQuery.hash)
     : addUserQueryPipelines(newUserData);
+
   try {
     const res = await users.updateOne(
       {
