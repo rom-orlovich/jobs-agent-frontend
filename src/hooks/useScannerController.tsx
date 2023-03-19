@@ -26,7 +26,7 @@ interface ScannerStatus {
 function useScannerController(userID: string) {
   const router = useRouter();
   const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
-  // const scannerURL = createURLPath([CLIENT_URL, 'api/jobs-agent/test', userID]);
+
   const scannerStatusURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_STATUS]);
   //Initialize scanner mutation.
   const scanner = useSWRMutation<ScannerStatus, any, Key, { hash?: string }>(
