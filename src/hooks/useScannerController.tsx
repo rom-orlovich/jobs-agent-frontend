@@ -36,9 +36,10 @@ function useScannerController(userID: string) {
   );
   const [scannerState, setScannerState] = useState<ScannerStatus | undefined>(undefined);
   const isRefreshActive = scannerState && scannerState.status === 100;
+
   //Initialize status scanner fetcher.
   useSwrHook<ScannerStatus>(
-    scannerState ? createURLPath([scannerStatusURL, scannerState?.id]) : null,
+    isRefreshActive ? createURLPath([scannerStatusURL, scannerState?.id]) : null,
     (url) => axios(url).then((res) => res.data),
     {
       refreshInterval: isRefreshActive ? 1000 * 5 : 0,
