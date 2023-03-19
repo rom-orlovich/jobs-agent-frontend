@@ -26,21 +26,18 @@ export const getDocumentsByName = async <D extends GenericRecord<any>>(
   colName: string,
   fieldName: string,
   page = 1,
-  limit = 20,
+  limit = 25,
   dbName = 'jobs-agent-db'
 ): Promise<D[]> => {
   try {
     const collection = await getCollection(colName, dbName);
-    const regex = new RegExp(`^${name}`, 'i');
+    const regex = new RegExp(`${name}`, 'i');
     const res = collection
       .find<D>({
         [fieldName]: regex
       })
       .limit(limit)
       .skip((page - 1) * limit);
-    // .sort({
-    //   [fieldName]: 1
-    // });
 
     const data = await res.toArray();
     return data;
