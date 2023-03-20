@@ -24,6 +24,7 @@ function SideLinksItems({ isON }: { isON: boolean }) {
     hash: hash,
     page: 1
   };
+  //In order to keep the origin values of the links for comparing the current active link.
   const originLinks = LINKS(sideLinksItemsStyle.icon);
   const linksItems = LINKS(sideLinksItemsStyle.icon);
 
