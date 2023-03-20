@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { BsInfoCircleFill } from 'react-icons/bs';
 import InfoButton, { InfoButtonProps } from '../Buttons/InfoButton';
 const infoTopicStyle = {
-  icon: 'mr-2 text-lg text-orange-400 hover:text-orange-500 z-index-100',
+  icon: 'mr-2 text-lg text-info-400 hover:text-info-500 z-index-100',
   popover:
-    'card shadow-xl min-w-[16rem] w-fit h-fit min-h-[8rem] p-2 bg-slate-50 z-50 l-0 top-[100%] left-[50%] xs:translate-x-[-52%] translate-x-[-52%] hidden group-hover:flex items-center justify-center'
+    'card shadow-xl min-w-[16rem] w-fit h-fit min-h-[8rem] p-2 !bg-slate-50 z-50 l-0 top-[100%] left-[50%] xs:translate-x-[-52%] translate-x-[-52%] hidden group-hover:flex items-center justify-center'
 };
 
 function InfoTopic(infoTopicProps: InfoButtonProps) {
