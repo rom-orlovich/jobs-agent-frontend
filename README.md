@@ -154,7 +154,7 @@ The frontend part is responsible for displaying the UI of job data, improving th
 ### Jobs Tracking Page
    
    <img alt="Jobs Tracking Page" src="./readme-images/jobs-tracking-page.png" width="700" hight="700">
-   <img alt="Job Tracking Page Filters" src="./readme-images/job-tracking-page-filters.png" width="700" hight="700">
+   <img alt="Job Tracking Page Filters" src="./readme-images/jobs-tracking-page-filters.png" width="700" hight="700">
    <img alt="Job Tracking Info Page" src="./readme-images/job-tracking-info-page.png" width="700" hight="700">
    
 ### Search History Page
