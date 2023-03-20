@@ -2,6 +2,7 @@
 import { updateUser } from '@/lib/api/users.utils';
 
 import { UserProfileWithOneUserQuery } from '@/lib/types/user.types';
+import { getResMessage } from '@/lib/utils';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
@@ -77,6 +78,19 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
   // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserProfileFormSubmit = onSubmit(async (values) => {
     const { hash, ...restValue } = values.userQuery;
+    let response;
+
+    //Check for valid location and position fields that their values are not empty.
+    if (!restValue.location) {
+      response = getResMessage('USER_PROFILE_FORM_LOCATION_IS_EMPTY');
+      toast(response.message);
+      return response;
+    }
+    if (!restValue.position) {
+      response = getResMessage('USER_PROFILE_FORM_POSITION_IS_EMPTY');
+      toast(response.message);
+      return response;
+    }
 
     //Set the current input's years experience by the words of overallEx.
     values['overallEx'] = getOverallExYearNum(values.overallEx || '');

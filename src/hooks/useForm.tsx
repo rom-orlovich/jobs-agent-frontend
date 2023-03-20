@@ -63,12 +63,13 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
         });
         return result;
       } catch (error) {
+        const errorObj = error as Error;
         //Handle any error if it is exist.
         setFromState({
           data: undefined,
           isLoading: false,
           isSent: false,
-          error: new Error('Something went wrong')
+          error: new Error(errorObj.message || 'Something went wrong')
         });
       }
       return formState.error;
