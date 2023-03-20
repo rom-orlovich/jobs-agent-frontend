@@ -17,8 +17,6 @@ function TrackButton({
   };
 
   const curMarkStyle = markStyle[`${mark}`];
-
-  //flex items-center gap-2
   return (
     <button
       {...props}
