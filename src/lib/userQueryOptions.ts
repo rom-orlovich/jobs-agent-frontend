@@ -41,11 +41,6 @@ export const DISTANCE_OPTIONS: Option<string>[] = [
     id: '3',
     title: '50 קמ',
     value: '3'
-  },
-  {
-    id: '4',
-    title: '75 קמ',
-    value: '4'
   }
 ];
 
