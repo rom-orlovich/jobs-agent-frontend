@@ -24,8 +24,9 @@ function SideLinksItems({ isON }: { isON: boolean }) {
     hash: hash,
     page: 1
   };
-
+  const originLinks = LINKS(sideLinksItemsStyle.icon);
   const linksItems = LINKS(sideLinksItemsStyle.icon);
+
   //Set jobs page's and jobs matches page's link to be with user's current active hash
   linksItems[1].link = createURL([linksItems[1].link], sharedQueriesParams);
   linksItems[2].link = createURL([linksItems[2].link], {
@@ -39,6 +40,7 @@ function SideLinksItems({ isON }: { isON: boolean }) {
       toast(getResMessage('SEARCH_IS_IN_PROCESS').message);
     }
   };
+
   return (
     <ul
       className={classNameGenerator(
@@ -52,7 +54,7 @@ function SideLinksItems({ isON }: { isON: boolean }) {
             isMutate={(i === 1 || i === 2) && scanner.isMutating}
             isON={isON}
             onClickMutate={disableByMutateHandler}
-            isActiveLink={router.pathname === link.link}
+            isActiveLink={router.pathname === originLinks[i].link}
             key={link.link + i}
             {...link}
           />
