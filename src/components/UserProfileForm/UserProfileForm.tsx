@@ -52,7 +52,7 @@ function UserProfileForm() {
                 if (userForm.formValues.overallEx) return el.includes(userForm.formValues.overallEx);
                 else return true;
               })}
-              defaultValue={userForm.formValues.overallEx}
+              defaultValue={userForm.formValues.overallEx || YEARS_EXPERIENCE_WORDS[0]}
               optionsProps={{
                 className: '!overflow-y-hidden'
               }}
