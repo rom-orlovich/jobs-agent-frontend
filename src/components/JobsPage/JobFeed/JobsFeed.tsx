@@ -11,7 +11,7 @@ import { capitalFirstLetter, classIsOn, classNameGenerator } from '@/lib/utils';
 import JobTrackingItem from '@/components/JobTrackingPage/JobTrackingItem/JobTrackingItem';
 export const jobItemStyle = {
   item: 'card flex-[100%] p-4 md:max-w-[32%] md:flex-[33%]  sm:max-w-[45%] sm:flex-[45%]',
-  content: 'flex flex-col h-full justify-between',
+  content: 'flex flex-col h-full justify-between gap-3',
   bookmarkContainer: 'mb-4 flex w-full justify-between',
   bookmarkButton: 'text-base',
   from: 'text-white card rounded-md p-[0.3rem] px-2 text-sm hover:opacity-80',

@@ -1,34 +1,31 @@
 import { classNameGenerator } from '@/lib/utils';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ButtonProps, SpanProps } from '../HTML.types';
 
 function ButtonInfo({
   Icon,
-  buttonProps,
-  popOverText,
-  popOverProps
+
+  children,
+  popOverProps,
+  ...props
 }: {
   Icon: () => JSX.Element;
-  buttonProps: ButtonProps;
-  popOverText: string;
-  popOverProps: SpanProps;
-}) {
+
+  children: ReactNode;
+  popOverProps?: SpanProps;
+} & ButtonProps) {
   const buttonInfoStyle = {
     button: 'text-whit text-2xl relative group',
     popOverText:
       'opacity-0 absolute mr-3 bg-transparent w-2 h-2  duration-100 group-hover:opacity-100 text-base'
   };
   return (
-    <button
-      {...buttonProps}
-      dir={'rtl'}
-      className={classNameGenerator(buttonInfoStyle.button, buttonProps.className)}
-    >
+    <button {...props} className={classNameGenerator(buttonInfoStyle.button, props.className)}>
       <span
         {...popOverProps}
-        className={classNameGenerator(buttonInfoStyle.popOverText, popOverProps.className)}
+        className={classNameGenerator(buttonInfoStyle.popOverText, popOverProps?.className)}
       >
-        {popOverText}
+        {children}
       </span>
       <Icon />
     </button>

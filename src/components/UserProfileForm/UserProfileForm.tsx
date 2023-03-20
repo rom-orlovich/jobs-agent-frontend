@@ -3,14 +3,12 @@ import React from 'react';
 import UserQuery from './UserQuery/UserQuery';
 
 import useProfileForm from '../../hooks/useProfileForm/useProfileForm';
-
-// import InputLabel from '../Inputs/InputLabel/InputLabel';
 import ExcludedRequirements from './ExcludedRequirements';
 import Requirements from './Requirements/Requirements';
 import ToggleTopic from './ToggleTopic';
 import { useAuthContext } from '@/context/AuthContext';
 import ScannerControlButtons from './ScannerControlButtons/ScannerControlButtons';
-// import { classNameGenerator } from '@/lib/utils';
+
 import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
 import { YEARS_EXPERIENCE_WORDS } from '@/hooks/useProfileForm/utils';
 const userProfileFormStyle = {
@@ -38,27 +36,6 @@ function UserProfileForm() {
             title: 'כמה שנות ניסיון יש לך?'
           }}
         >
-          {/* <InputLabel
-            labelProps={{
-              className: classNameGenerator(userProfileFormStyle.label, 'mt-2 gap-3')
-            }}
-            textProps={{
-              className: userProfileFormStyle.text
-            }}
-            inputProps={{
-              inputContainer: {
-                className: userProfileFormStyle.inputContainer
-              },
-              value: userForm.formValues.overallEx,
-              id: 'overallEx',
-              className: userProfileFormStyle.input,
-              type: 'number',
-              min: 1,
-              onChange: userForm.handleOverallExperience
-            }}
-          >
-            שנות ניסיון
-          </InputLabel> */}
           <div className="px-3 py-2">
             <Autocomplete
               setValue={userForm.handleOverallExperience('overallEx')}
@@ -74,10 +51,6 @@ function UserProfileForm() {
                 wrapperInputLabel: {
                   className: 'max-w-[50%] '
                 }
-                // inputProps: {
-                //   onChange: userForm.onChange,
-                //   id: 'overallEx'
-                // }
               }}
             />
           </div>

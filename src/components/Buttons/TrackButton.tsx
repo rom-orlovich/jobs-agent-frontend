@@ -3,14 +3,11 @@ import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { MdTrackChanges } from 'react-icons/md';
 import { ButtonProps } from '../HTML.types';
+import ButtonInfo from './ButtonInfo';
 function TrackButton({
   mark,
   ...props
 }: ButtonProps & PropsWithChildren & { className?: string; mark: boolean }) {
-  const trackButtonStyle = {
-    button: 'text-whit text-2xl relative group',
-    text: 'opacity-0 absolute mr-3 bg-transparent w-2 h-2  duration-100 group-hover:opacity-100 text-base'
-  };
   const markStyle = {
     true: 'text-status-400 hover:text-status-500',
     false: 'text-error-400 hover:text-error-500'
@@ -18,14 +15,14 @@ function TrackButton({
 
   const curMarkStyle = markStyle[`${mark}`];
   return (
-    <button
+    <ButtonInfo
+      Icon={() => <MdTrackChanges />}
       {...props}
       dir={'rtl'}
-      className={classNameGenerator(trackButtonStyle.button, curMarkStyle, props.className)}
+      className={classNameGenerator(curMarkStyle, props.className)}
     >
-      <span className={trackButtonStyle.text}> {mark ? 'הסר' : 'עקוב'}</span>
-      <MdTrackChanges />
-    </button>
+      {mark ? 'הסר' : 'עקוב'}
+    </ButtonInfo>
   );
 }
 

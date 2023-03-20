@@ -20,7 +20,7 @@ function JobItem(props: JobItemProps) {
             {title}
           </Link>
         </div>
-        {props.company && <div className="text-center"> {props.company}</div>}
+        {<div className="text-center"> {props.company ? props.company : 'אנונימי'}</div>}
 
         <Locations locations={location} />
         <div className={classNameGenerator(jobItemStyle.reason, reasonStyle)}>
