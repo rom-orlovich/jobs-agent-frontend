@@ -15,14 +15,16 @@ function TrackButton({
 
   const curMarkStyle = markStyle[`${mark}`];
   return (
-    <InfoButton
-      Icon={() => <MdTrackChanges />}
-      {...props}
-      dir={'rtl'}
-      className={classNameGenerator(curMarkStyle, props.className)}
-    >
-      {mark ? 'הסר' : 'עקוב'}
-    </InfoButton>
+    <button {...props}>
+      <InfoButton
+        Icon={() => <MdTrackChanges />}
+        // {...props}
+        dir={'rtl'}
+        className={classNameGenerator(curMarkStyle, props.className)}
+      >
+        {mark ? 'הסר' : 'עקוב'}
+      </InfoButton>
+    </button>
   );
 }
 

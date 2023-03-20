@@ -17,7 +17,7 @@ import OverallExInfo from './InfoTexts/OverallExInfo';
 const userProfileFormStyle = {
   form: 'sm:max-w-[32rem]  sm:min-w-[27rem] sm:min-h-[27rem] xs:min-w-[25rem] min-w-[18rem] min-h-[25rem]  max-h-fit flex flex-col justify-between p-6 card gap-4',
   inputsContainer: 'flex flex-col gap-6 sm:max-w-[23rem]',
-  heading: 'text-2xl font-[500]',
+  heading: 'xs:text-2xl text-lg font-[500] flex items-center',
   label: 'flex items-center text-center gap-1',
   text: '',
   inputContainer: 'max-w-[4rem]',
@@ -72,7 +72,7 @@ function UserProfileForm() {
           }}
           infoTopicProps={{
             popOverProps: {
-              className: 'min-w-[24rem] p-3'
+              className: 'xs:min-w-[24rem] min-w-[17rem] p-3'
             },
             children: <RequirementsInfo />
           }}

@@ -8,9 +8,9 @@ import StatusCV from './SentCV/StatusCV';
 import StagesInfo from './StagesInfo/StagesInfo';
 
 export const jobTrackingFormStyle = {
-  form: 'flex flex-col  max-h-[30rem] min-h-[20rem] justify-between relative',
-  formContent: 'flex flex-col gap-8 mt-2',
-  headingToggle: 'text-xl',
+  form: 'flex flex-col  max-h-[30rem] min-h-[22rem] justify-between relative',
+  formContent: 'flex flex-col gap-6 mt-2',
+  headingToggle: 'xs:text-2xl text-xl',
   buttonsContainer: 'flex justify-between w-full ',
   wasSentLabel: 'flex gap-2 mt-2 font-semibold',
   label: 'flex flex-col gap-2 mt-2 font-semibold'

@@ -25,7 +25,7 @@ function StagesInfo(props: JobTrackingFormComponentsProps<unknown>) {
             className: 'p-3 h-[5rem]'
           },
           outerDiv: {
-            className: 'p-1 h-[8rem]'
+            className: 'p-1 h-[12em]'
           },
           activeClassOuter: 'min-h-[14rem]',
           activeClassInner: 'min-h-[18rem]'

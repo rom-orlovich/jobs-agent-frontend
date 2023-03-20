@@ -36,7 +36,7 @@ function ToggleTopic({
                 }
               }}
               className={classNameGenerator(
-                'relative flex w-[90%] items-center gap-2',
+                'relative flex w-[95%] items-center gap-2',
                 buttonProps?.className
               )}
               onClick={handleOnClick}

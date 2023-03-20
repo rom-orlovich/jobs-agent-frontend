@@ -23,7 +23,6 @@ export type ButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
-
 export type LinksProps = Parameters<typeof Link>;
 
 export type HeadingProps = React.DetailedHTMLProps<

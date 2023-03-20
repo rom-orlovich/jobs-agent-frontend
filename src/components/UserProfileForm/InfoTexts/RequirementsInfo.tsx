@@ -2,7 +2,7 @@ import React from 'react';
 
 function RequirementsInfo() {
   return (
-    <div className="flex flex-col gap-1 p-4 text-right">
+    <div className="flex flex-col gap-1 p-2 text-right xs:p-4">
       <p>
         דרישה יכולה להיות<b> ניסיון מקצועי\מומחיות\תכונת אופי כלשהי</b> שיופיעו בתיאור המשרות.
       </p>
