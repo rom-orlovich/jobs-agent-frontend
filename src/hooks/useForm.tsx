@@ -23,9 +23,6 @@ function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
   // On change handler by input's id.
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormValues((pre) => {
-      console.log({
-        [e.target.id]: e.target.value
-      });
       return {
         ...pre,
         [e.target.id]: e.target.value

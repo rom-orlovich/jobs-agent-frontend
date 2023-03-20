@@ -20,7 +20,6 @@ function PositionsAutocomplete({
   const POSITIONS_URL = createURL([CLIENT_URL, API_ENDPOINTS.POSITIONS], {
     name: positionValue.position
   });
-
   const { data: positionData } = useSwrHook<{ data: Position[] }>(POSITIONS_URL);
   return (
     <Autocomplete
