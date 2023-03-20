@@ -1,4 +1,4 @@
-import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
+import ToggleTopic from '@/components/ToggleTopic/ToggleTopic';
 import React from 'react';
 const locationsStyle = {
   locationsWrapper: 'flex flex-col flex-wrap ',

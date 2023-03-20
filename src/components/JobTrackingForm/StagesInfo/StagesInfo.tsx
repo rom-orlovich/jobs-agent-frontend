@@ -2,7 +2,7 @@ import React from 'react';
 
 import DynamicInputs from '../../Inputs/DynamicInputs/DynamicInputs';
 
-import ToggleTopic from '../../UserProfileForm/ToggleTopic';
+import ToggleTopic from '../../ToggleTopic/ToggleTopic';
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import StageInputs from './StageInputs';
 import { jobTrackingFormStyle } from '../JobTrackingForm';

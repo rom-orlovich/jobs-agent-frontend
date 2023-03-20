@@ -1,19 +1,16 @@
 import { classNameGenerator } from '@/lib/utils';
 import React, { ReactNode } from 'react';
+import { IconType } from 'react-icons';
 import { ButtonProps, SpanProps } from '../HTML.types';
 
-function ButtonInfo({
-  Icon,
+export interface InfoButtonProps extends ButtonProps {
+  Icon?: IconType;
 
-  children,
-  popOverProps,
-  ...props
-}: {
-  Icon: () => JSX.Element;
-
-  children: ReactNode;
+  children?: ReactNode;
   popOverProps?: SpanProps;
-} & ButtonProps) {
+}
+
+function InfoButton({ Icon, children, popOverProps, ...props }: InfoButtonProps) {
   const buttonInfoStyle = {
     button: 'text-whit text-2xl relative group',
     popOverText:
@@ -27,9 +24,9 @@ function ButtonInfo({
       >
         {children}
       </span>
-      <Icon />
+      {Icon && <Icon />}
     </button>
   );
 }
 
-export default ButtonInfo;
+export default InfoButton;

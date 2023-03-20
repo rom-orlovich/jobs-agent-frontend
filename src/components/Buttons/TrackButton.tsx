@@ -3,7 +3,7 @@ import { classNameGenerator } from '@/lib/utils';
 import React, { PropsWithChildren } from 'react';
 import { MdTrackChanges } from 'react-icons/md';
 import { ButtonProps } from '../HTML.types';
-import ButtonInfo from './ButtonInfo';
+import InfoButton from './InfoButton';
 function TrackButton({
   mark,
   ...props
@@ -15,14 +15,14 @@ function TrackButton({
 
   const curMarkStyle = markStyle[`${mark}`];
   return (
-    <ButtonInfo
+    <InfoButton
       Icon={() => <MdTrackChanges />}
       {...props}
       dir={'rtl'}
       className={classNameGenerator(curMarkStyle, props.className)}
     >
       {mark ? 'הסר' : 'עקוב'}
-    </ButtonInfo>
+    </InfoButton>
   );
 }
 

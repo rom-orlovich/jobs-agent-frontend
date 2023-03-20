@@ -1,5 +1,6 @@
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
-import ToggleTopic from '@/components/UserProfileForm/ToggleTopic';
+import ToggleTopic from '@/components/ToggleTopic/ToggleTopic';
+
 import { JobTrackingFormComponentsProps } from '@/hooks/useJobTrackingForm/useJobTrackingForm';
 import React from 'react';
 import { jobTrackingFormStyle } from '../JobTrackingForm';
