@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Dashboard from './Dashboard/Dashboard';
 
 import { ReturnTypeUseAuthProfileExist } from '@/hooks/useAuth';
@@ -17,6 +18,7 @@ export function Layout(props: PropsWithChildren) {
           <Dashboard>{props.children}</Dashboard>
         </ScannerContext>
       </AuthContext>
+      <Analytics />
     </Main>
   );
 }
