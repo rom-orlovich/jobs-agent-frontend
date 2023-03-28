@@ -16,8 +16,11 @@ import useOnce from './useOnce';
 function useRedirect<D>({ data, cb }: ReturnCreateToastCBWithData<D>, url = '/'): D {
   const router = useRouter();
   const { trigger } = useOnce();
+  const { trigger: triggerOnChange } = useOnce();
   router.events.on('routeChangeComplete', () => {
-    trigger(() => delayFun(cb, 200));
+    triggerOnChange(() => {
+      delayFun(cb, 200);
+    });
   });
   useEffect(() => {
     if (!data) trigger(() => router.push(url, url));
