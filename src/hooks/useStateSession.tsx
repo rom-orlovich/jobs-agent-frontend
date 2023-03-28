@@ -18,14 +18,7 @@ function useStateSession<V extends GenericRecord<any>>({ id, values }: { id: str
   //Each time the component unmount, save the values in the browser's session storage.
   useEffect(() => {
     return () => {
-      let newState;
-      if (state['page']) {
-        const { page, ...rest } = state;
-        newState = {
-          ...rest
-        };
-      }
-      window.sessionStorage.setItem(id, JSON.stringify(newState || state));
+      window.sessionStorage.setItem(id, JSON.stringify(state));
     };
   }, [state, id]);
 

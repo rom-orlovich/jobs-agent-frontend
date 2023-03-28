@@ -34,6 +34,7 @@ export default function Autocomplete<V extends string>({
     setValue && setValue(value);
     setSelectedOption(value);
   };
+
   //Handle input onChange event.
   const handleOnChange = useDebouncedCallback(
     (event: ChangeEvent<HTMLInputElement>) => {

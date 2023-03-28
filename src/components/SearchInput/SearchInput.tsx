@@ -41,7 +41,7 @@ function SearchInput<FV extends GenericRecord<any>>({
 } & PropsWithChildren) {
   const { key, defaultValue, options } = mainSearchInputProps;
   const { handleSetFilterValue } = filtersJobsHookReturn;
-
+  console.log(defaultValue || 'empty');
   return (
     <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
       <Autocomplete
