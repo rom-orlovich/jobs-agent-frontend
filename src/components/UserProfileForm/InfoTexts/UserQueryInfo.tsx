@@ -4,7 +4,7 @@ function UserQueryInfo() {
   return (
     <div>
       <p>
-        <b>הקטגוריות</b> שסורק המשרות יחפש בכל אתר.
+        <strong>הקטגוריות</strong> שסורק המשרות יחפש בכל אתר.
       </p>
     </div>
   );
