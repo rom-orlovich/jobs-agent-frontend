@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { delayFun, ReturnCreateToastCBWithData } from '@/lib/utils';
-// import { delayFun } from '@/lib/utils';
+import { ReturnCreateToastCBWithData } from '@/lib/utils';
+
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -16,10 +16,11 @@ import useOnce from './useOnce';
 function useRedirect<D>({ data, cb }: ReturnCreateToastCBWithData<D>, url = '/'): D {
   const router = useRouter();
   const { trigger } = useOnce();
-  const { trigger: triggerOnChange } = useOnce();
+  const { trigger: triggerOnRouteChange } = useOnce();
+
   router.events.on('routeChangeComplete', () => {
-    triggerOnChange(() => {
-      delayFun(cb, 200);
+    triggerOnRouteChange(() => {
+      cb();
     });
   });
   useEffect(() => {
