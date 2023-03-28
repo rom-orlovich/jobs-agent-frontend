@@ -1,7 +1,9 @@
 import { RenderElement } from '@/components/Inputs/DynamicInputs/dynamicInputs.types';
 import { updateJobsTracking } from '@/lib/api/jobsTracking.utils';
+import { APP_ROUTES } from '@/lib/routes';
 import { Job, TrackingInfoFormFormat } from '@/lib/types/jobsScanner.types';
 import { getResMessage } from '@/lib/utils';
+import { useRouter } from 'next/router';
 
 import { ChangeEventHandler } from 'react';
 import { toast } from 'react-toastify';
@@ -14,6 +16,7 @@ import { handleConvertInitialValues, handleConvertToFormResult } from './utils';
  * This hooks handle the JobTracking info form.
  */
 export const useJobTrackingForm = (job: Job, userID: string) => {
+  const router = useRouter();
   //Convert the job info from the DB to valid form values.
   const initialValues = handleConvertInitialValues(job.info);
 
@@ -75,7 +78,7 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
 
       //Mutate the user profile.
       await mutate(`/api/users/${userID}`);
-
+      await router.push('/' + APP_ROUTES.JOBS_TRACKING);
       toast(results.data.message);
     } catch (error) {
       console.log(error);
