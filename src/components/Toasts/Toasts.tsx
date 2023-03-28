@@ -12,7 +12,7 @@ function Toasts() {
   return (
     <ToastContainer
       position="bottom-left"
-      autoClose={2000}
+      autoClose={1500}
       toastClassName={(props) =>
         contextClass[props?.type || 'default'] +
         ' relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
