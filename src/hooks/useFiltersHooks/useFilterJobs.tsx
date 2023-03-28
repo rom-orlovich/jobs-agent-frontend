@@ -26,7 +26,6 @@ function useFilterJobs(isMatchPage?: boolean) {
       company: '',
       from: '',
       location: '',
-
       ...isJobsMatchesFilter
     },
     defaultValues

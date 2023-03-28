@@ -27,7 +27,7 @@ export const IconButtonProps = {
  * @param HRV The filter hook's return values
  */
 interface MainSearchInputProps<FV extends GenericRecord<any>> {
-  defaultValue?: string;
+  // defaultValue?: string;
   key: keyof ReturnUseFiltersProps<FV>['formValues'];
   options: string[];
 }
@@ -39,14 +39,15 @@ function SearchInput<FV extends GenericRecord<any>>({
   mainSearchInputProps: MainSearchInputProps<FV>;
   filtersJobsHookReturn: ReturnUseFiltersProps<FV>;
 } & PropsWithChildren) {
-  const { key, defaultValue, options } = mainSearchInputProps;
-  const { handleSetFilterValue } = filtersJobsHookReturn;
-  console.log(defaultValue || 'empty');
+  const { key, options } = mainSearchInputProps;
+  const { handleSetFilterValue, formValues } = filtersJobsHookReturn;
+
   return (
     <div dir="ltr" className={jobsSearchStyle.jobSearchContainer}>
       <Autocomplete
-        defaultValue={defaultValue}
+        defaultValue={formValues[key]}
         setValue={handleSetFilterValue(key)}
+        options={options}
         inputLabelProps={{
           IconButtonProps: IconButtonProps,
           inputProps: {
@@ -56,7 +57,6 @@ function SearchInput<FV extends GenericRecord<any>>({
             className: jobsSearchStyle.autocompleteWrapper
           }
         }}
-        options={options}
       />
       {children}
     </div>

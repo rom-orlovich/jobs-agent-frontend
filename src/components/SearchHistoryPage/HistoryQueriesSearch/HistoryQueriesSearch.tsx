@@ -20,7 +20,7 @@ function HistoryQueriesSearch({
       filtersJobsHookReturn={historyQueriesSearchProps}
       mainSearchInputProps={{
         options: historyQueriesSearchFilters.positions,
-        defaultValue: historyQueriesSearchProps.formValues.position,
+
         key: 'position'
       }}
     >

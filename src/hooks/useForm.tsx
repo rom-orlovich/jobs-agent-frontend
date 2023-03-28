@@ -15,6 +15,7 @@ interface FormState<D> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useForm<T extends GenericRecord<any>, D = any>(initialState: T) {
   const [formValues, setFormValues] = useState(initialState);
+
   const [formState, setFromState] = useState<FormState<D>>({
     isLoading: false,
     data: undefined,

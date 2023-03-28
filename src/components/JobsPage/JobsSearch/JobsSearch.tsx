@@ -19,13 +19,11 @@ function JobsSearch({
   isMatchPage?: boolean;
 }) {
   const titles: string[] = createAutocompleteOptions(jobsFilters?.titles);
-
   return (
     <SearchInput
       filtersJobsHookReturn={filterJobsProps}
       mainSearchInputProps={{
         options: titles,
-        defaultValue: filterJobsProps.formValues.title,
         key: 'title'
       }}
     >

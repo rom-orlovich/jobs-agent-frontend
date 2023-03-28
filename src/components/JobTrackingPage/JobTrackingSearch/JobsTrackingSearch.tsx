@@ -21,7 +21,6 @@ function JobsTrackingSearch({ filtersTrackingJobsProps, jobsTrackingFilters }: J
       filtersJobsHookReturn={filtersTrackingJobsProps}
       mainSearchInputProps={{
         options: jobsTrackingFilters.titles,
-        defaultValue: filtersTrackingJobsProps.formValues.title,
         key: 'title'
       }}
     >

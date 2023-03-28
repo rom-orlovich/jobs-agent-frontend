@@ -36,7 +36,6 @@ function JobsSearchFilters({
           if (i === 0 && !includeReasonFilters) return <li key={key + i}></li>;
 
           const value = filterJobsProps.formValues[key];
-
           return (
             <li key={i + key + Date.now()}>
               <Autocomplete
