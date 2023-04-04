@@ -5,8 +5,20 @@ import TrackButton from '../../../Buttons/TrackButton';
 import { JobItemProps, jobItemStyle } from '../JobsFeed';
 import Locations from './Locations';
 function JobItem(props: JobItemProps) {
-  const { fromClass, link, title, from, reason, jobID, index, mark, location, isMatch, reasonStyle } =
-    props;
+  const {
+    fromClass,
+    link,
+    title,
+    from,
+    reason,
+    jobID,
+    index,
+    mark,
+    location,
+    isMatch,
+    reasonStyle,
+    handleAddUserObserveList
+  } = props;
 
   return (
     <li className={jobItemStyle.item} key={jobID + index}>
@@ -16,7 +28,7 @@ function JobItem(props: JobItemProps) {
           <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div className={jobItemStyle.title}>
-          <Link target="_blank" href={link}>
+          <Link target="_blank" href={link} onClick={handleAddUserObserveList}>
             {title}
           </Link>
         </div>

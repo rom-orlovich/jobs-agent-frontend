@@ -1,4 +1,4 @@
-import Spinner from '@/components/Spinner/Spinner';
+// import Spinner from '@/components/Spinner/Spinner';
 import useAuth, { ReturnTypeUseAuthProfileExist } from '@/hooks/useAuth';
 import React, { createContext, PropsWithChildren, useContext } from 'react';
 
@@ -8,10 +8,13 @@ export const context = createContext({} as ReturnTypeUseAuthProfileExist);
 function AuthContext(props: PropsWithChildren) {
   const auth = useAuth();
 
-  const { isAuthenticated, isLoading, isValidating } = auth;
+  const {
+    isAuthenticated
+    // isLoading, isValidating
+  } = auth;
 
   if (!isAuthenticated) return <></>;
-  if (isLoading || isValidating) return <Spinner isLoading={isLoading || isValidating} />;
+  // if (isLoading || isValidating) return <Spinner isLoading={isLoading || isValidating} />;
 
   return <context.Provider value={auth}>{props.children}</context.Provider>;
 }

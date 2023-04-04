@@ -6,4 +6,3 @@ export interface CircleButtonProps extends ButtonProps {
   iconsProps?: IconBaseProps;
 }
 export type TriggerByHash = (hash?: string) => MouseEventHandler<HTMLButtonElement>;
-// export type TriggerByHashPromise = (hash?: string) => Promise<MouseEventHandler<HTMLButtonElement>>;

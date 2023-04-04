@@ -40,6 +40,7 @@ export interface JobsFeedProps {
 export type JobItemProps = Job & {
   index: number;
   handleClickBookmark: MouseEventHandler<HTMLButtonElement>;
+  handleAddUserObserveList: MouseEventHandler<HTMLAnchorElement>;
   mark: boolean;
   isMatch: boolean;
   reasonStyle: string;
@@ -53,6 +54,11 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
 
   //Handle the click on track button.
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
+  //Handle add to observed list
+  const handleAddUserObserveList: (jobsID: string) => MouseEventHandler<HTMLAnchorElement> =
+    (jobsID: string) => () => {
+      console.log(jobsID);
+    };
 
   return (
     <>
@@ -62,6 +68,7 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
           const from = job.from as keyof typeof tagColorStyle;
           const jobItemProps: JobItemProps = {
             ...job,
+            handleAddUserObserveList: handleAddUserObserveList(job.jobID),
             mark: !!jobsTrackMap[job?.jobID],
             key: job?.jobID + i,
             index: i,
