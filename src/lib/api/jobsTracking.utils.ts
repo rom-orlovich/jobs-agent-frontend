@@ -23,7 +23,7 @@ export const createNewJobTracking = async (userID: string, job: Job) => {
     },
     job
   );
-  console.log(result);
+
   return result;
 };
 

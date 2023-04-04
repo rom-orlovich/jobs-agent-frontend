@@ -69,10 +69,10 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
           const jobItemProps: JobItemProps = {
             ...job,
             handleAddUserObserveList: handleAddUserObserveList(job.jobID),
+            handleClickBookmark: handleClickBookmarkFun(job),
             mark: !!jobsTrackMap[job?.jobID],
             key: job?.jobID + i,
             index: i,
-            handleClickBookmark: handleClickBookmarkFun(job),
             reasonStyle: classIsOn(isMatch, jobItemStyle.matchColor, jobItemStyle.noMatchColor),
             isMatch,
             from: capitalFirstLetter(job.from),

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import { GenericRecord } from '../types/types';
 import { createURLPath } from '../utils';
+import { ResponseMessage } from '../types/api.types';
 
 export class AxiosAPI {
   axios: AxiosInstance;
@@ -31,5 +32,11 @@ export class AxiosAPI {
     return await this.axios.delete<R>(createURLPath(URL.endpoints), {
       params: URL.params
     });
+  }
+
+  static handleError(error: unknown): ResponseMessage {
+    const err = error as AxiosError;
+    const resMessage = err.response?.data as ResponseMessage;
+    return resMessage;
   }
 }

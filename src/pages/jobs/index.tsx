@@ -9,7 +9,7 @@ import React from 'react';
 import { authOptions } from '../api/auth/[...nextauth]';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 
-import { getJobs } from '@/lib/api/jobs.util';
+import { getJobs } from '@/lib/api/jobs.utils';
 import Jobs from '@/components/JobsPage/Jobs';
 import { APP_ROUTES } from '@/lib/routes';
 import { isJobsMatchesPage } from '@/components/JobsPage/utils';
