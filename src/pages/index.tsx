@@ -2,6 +2,13 @@ import UserProfileForm from '@/components/UserProfileForm/UserProfileForm';
 
 import PageHead from '@/components/Layout/PageHead/PageHead';
 
+import { GetServerSidePropsContext } from 'next';
+import { getInitialUserProfile } from '@/lib/getInitialUserProfile';
+
+//Get the initial user profile before the client load.
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  return getInitialUserProfile(ctx);
+}
 export default function Home() {
   return (
     <>

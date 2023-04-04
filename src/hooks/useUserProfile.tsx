@@ -2,6 +2,7 @@ import { UserProfile, UserProfileWithOneUserQuery, UserQuery } from '@/lib/types
 import { useRouter } from 'next/router';
 
 import { useSwrHook } from '../lib/swr';
+import { ReturnTypeGetInitialUserProfile } from '@/lib/getInitialUserProfile';
 
 /**
  *This hook fetches the user data from the DB.
@@ -10,17 +11,19 @@ import { useSwrHook } from '../lib/swr';
  * @param {string} userID The userID of the current login user.
  * @returns The user data, and the state of the fetch request.
  */
-function useUserProfile(userID?: string) {
+function useUserProfile(initialUserProfile: ReturnTypeGetInitialUserProfile, userID?: string) {
   const router = useRouter();
   //Initial the fetching of current login user's data.
-  const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile }>(
+  const { data, error, isLoading, isValidating } = useSwrHook<{ data: UserProfile | undefined }>(
     userID ? `/api/users/${userID}` : null,
     {
       revalidateIfStale: true,
       revalidateOnMount: true,
       refreshWhenOffline: false,
       revalidateOnReconnect: false,
-      revalidateOnFocus: false
+      revalidateOnFocus: false,
+
+      fallbackData: initialUserProfile
     }
   );
 

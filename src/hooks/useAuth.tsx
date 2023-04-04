@@ -3,15 +3,16 @@ import { OmitKey } from '@/lib/types/types';
 import { useSession } from 'next-auth/react';
 
 import useUserProfile from './useUserProfile';
+import { ReturnTypeGetInitialUserProfile } from '@/lib/getInitialUserProfile';
 
 /**
  * @returns The data about the current login user
  */
-export default function useAuth() {
+export default function useAuth(initialUserProfile: ReturnTypeGetInitialUserProfile) {
   const { data, status } = useSession({
     required: true
   });
-  const userProfileData = useUserProfile(data?.user.id || '');
+  const userProfileData = useUserProfile(initialUserProfile, data?.user.id || '');
   return {
     isAuthenticated: status === 'authenticated',
     ...data,

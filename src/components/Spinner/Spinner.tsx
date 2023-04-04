@@ -2,7 +2,7 @@ import { classNameGenerator } from '@/lib/utils';
 import React from 'react';
 import { MdOutlineDataSaverOff } from 'react-icons/md';
 
-function Spinner({ isLoading, className }: { isLoading: boolean; className?: string }) {
+function Spinner({ isLoading, className }: { isLoading?: boolean; className?: string }) {
   return isLoading ? (
     <MdOutlineDataSaverOff
       className={classNameGenerator(

@@ -8,12 +8,14 @@ import AuthContext from '@/context/AuthContext';
 import Main from './Main/Main';
 import ScannerContext from '@/context/ScannerContext';
 
+import { ReturnTypeGetInitialUserProfile } from '@/lib/getInitialUserProfile';
+
 export type ChildrenWithAuthData = { children: (props: ReturnTypeUseAuthProfileExist) => ReactNode };
 
-export function Layout(props: PropsWithChildren) {
+export function Layout(props: PropsWithChildren & ReturnTypeGetInitialUserProfile) {
   return (
     <Main>
-      <AuthContext>
+      <AuthContext data={props.data}>
         <ScannerContext>
           <Dashboard>{props.children}</Dashboard>
         </ScannerContext>

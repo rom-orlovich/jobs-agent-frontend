@@ -8,8 +8,10 @@ import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopu
 import { JobsTrackingSearchProps } from './JobsTrackingSearch';
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
 
-import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
-import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
+// import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
+// import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
+
+import SelectCVStatus from './SelectCVStatus';
 
 interface JobsSearchFiltersProps extends JobsTrackingSearchProps {
   iconButtonProps: IconButtonProps;
@@ -22,23 +24,23 @@ function JobsTrackingSearchFilters({
 }: JobsSearchFiltersProps) {
   const { formValues, handleSetFilterValue, handleOnChange } = filtersTrackingJobsProps;
 
-  const STATUS_CV_OPTIONS: Option<boolean | undefined>[] = [
-    {
-      id: 'הצג הכל',
-      title: 'הצג הכל',
-      value: undefined
-    },
-    {
-      id: 'נשלחו',
-      title: 'נשלחו',
-      value: true
-    },
-    {
-      id: 'לא נשלחו',
-      title: 'לא נשלחו',
-      value: false
-    }
-  ];
+  // const STATUS_CV_OPTIONS: Option<boolean | undefined>[] = [
+  //   {
+  //     id: 'הצג הכל',
+  //     title: 'הצג הכל',
+  //     value: undefined
+  //   },
+  //   {
+  //     id: 'נשלחו',
+  //     title: 'נשלחו',
+  //     value: true
+  //   },
+  //   {
+  //     id: 'לא נשלחו',
+  //     title: 'לא נשלחו',
+  //     value: false
+  //   }
+  // ];
   return (
     <FiltersPopup>
       <div className={filtersStyle.filters}>
@@ -56,7 +58,8 @@ function JobsTrackingSearchFilters({
         >
           עודכן אחרי
         </InputLabel>
-        <SelectInput
+        <SelectCVStatus {...filtersTrackingJobsProps} />
+        {/* <SelectInput
           setValue={handleSetFilterValue('CVwasSent')}
           defaultValue={STATUS_CV_OPTIONS[0]}
           optionsElProps={{
@@ -73,7 +76,7 @@ function JobsTrackingSearchFilters({
             dir: 'rtl',
             className: 'w-full'
           }}
-        />
+        /> */}
 
         <Autocomplete
           defaultValue={formValues.currentStageName}
