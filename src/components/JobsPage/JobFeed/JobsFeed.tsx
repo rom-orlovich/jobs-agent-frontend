@@ -5,10 +5,11 @@ import React, { MouseEventHandler } from 'react';
 
 import JobItem from './JobItem/JobItem';
 
-import { createJobsTrackingMap, handleClickBookmark } from './utils';
+import { createJobsTrackingMap, handleClickBookmark, handleSaveObservedJob } from './utils';
 import ScrollUpButton from '@/components/Buttons/ScrollUpButton';
 import { capitalFirstLetter, classIsOn, classNameGenerator } from '@/lib/utils';
 import JobTrackingItem from '@/components/JobTrackingPage/JobTrackingItem/JobTrackingItem';
+
 export const jobItemStyle = {
   item: 'card flex-[100%] p-4 md:max-w-[32%] md:flex-[33%]  sm:max-w-[45%] sm:flex-[45%]',
   content: 'flex flex-col h-full justify-between gap-3',
@@ -40,7 +41,7 @@ export interface JobsFeedProps {
 export type JobItemProps = Job & {
   index: number;
   handleClickBookmark: MouseEventHandler<HTMLButtonElement>;
-  handleAddUserObserveList: MouseEventHandler<HTMLAnchorElement>;
+  handleSaveObservedJob: MouseEventHandler<HTMLAnchorElement>;
   mark: boolean;
   isMatch: boolean;
   reasonStyle: string;
@@ -54,12 +55,6 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
 
   //Handle the click on track button.
   const handleClickBookmarkFun = handleClickBookmark(jobsTrackMap, userProfileData?.userID);
-  //Handle add to observed list
-  const handleAddUserObserveList: (jobsID: string) => MouseEventHandler<HTMLAnchorElement> =
-    (jobsID: string) => () => {
-      console.log(jobsID);
-    };
-
   return (
     <>
       <ul dir="ltr" className={jobsFeedStyle.feed}>
@@ -68,7 +63,7 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
           const from = job.from as keyof typeof tagColorStyle;
           const jobItemProps: JobItemProps = {
             ...job,
-            handleAddUserObserveList: handleAddUserObserveList(job.jobID),
+            handleSaveObservedJob: handleSaveObservedJob(job.jobID, userProfileData?.userID),
             handleClickBookmark: handleClickBookmarkFun(job),
             mark: !!jobsTrackMap[job?.jobID],
             key: job?.jobID + i,

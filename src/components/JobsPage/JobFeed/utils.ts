@@ -6,6 +6,7 @@ import { MouseEventHandler } from 'react';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
 import { AxiosAPI } from '@/lib/api/axios.api';
+import { addNewJobObserved } from '@/lib/api/jobsObserved.utils';
 /**
  * This function is for indexing the current user's jobs tracking.
  * The indexing enable to lookup easily if there is some job from the feed that is already exist in user's jobs tracking list.
@@ -24,15 +25,16 @@ export const handleClickBookmark: (
 ) => (job: Job) => MouseEventHandler<HTMLButtonElement> = (jobsTrackMap, userID) => (job) => {
   return async (e) => {
     e.preventDefault();
-    const curUserID = userID || '';
+    if (!userID) return;
+
     let result;
     try {
       //Check if the job exist in the jobsTrackMap. If it doesn't add it. Otherwise delete it.
-      if (!jobsTrackMap[job.jobID]) result = await createNewJobTracking(curUserID, job);
-      else result = await deleteJobTracking(curUserID, job.jobID);
+      if (!jobsTrackMap[job.jobID]) result = await createNewJobTracking(userID, job);
+      else result = await deleteJobTracking(userID, job.jobID);
 
       //Update the user profile.
-      await mutate(`/${API_ENDPOINTS.USERS}/${curUserID}`).then((el) => console.log(el));
+      await mutate(`/${API_ENDPOINTS.USERS}/${userID}`).then((el) => console.log(el));
 
       //Fire a toast.
       toast(result.data.message);
@@ -40,4 +42,27 @@ export const handleClickBookmark: (
       toast(AxiosAPI.handleError(error).message);
     }
   };
+};
+
+/**
+ Save the job that the user has currently observed.
+ * @param {string} jobsID The id of the observed job.
+ * @param {string | undefined} userID The id of the user.
+ */
+export const handleSaveObservedJob: (
+  jobsID: string,
+  userID?: string
+) => MouseEventHandler<HTMLAnchorElement> = (jobsID: string, userID: string | undefined) => async () => {
+  if (!userID) return;
+  try {
+    //Save the job that the user has currently observed.
+    await addNewJobObserved(userID, jobsID);
+    //Update the user profile.
+    await mutate(`/${API_ENDPOINTS.USERS}/${userID}`).then((el) => console.log(el));
+
+    //Fire a toast.
+    // toast(result.data.message);
+  } catch (error) {
+    // toast(AxiosAPI.handleError(error).message);
+  }
 };

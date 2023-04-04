@@ -17,7 +17,7 @@ function JobItem(props: JobItemProps) {
     location,
     isMatch,
     reasonStyle,
-    handleAddUserObserveList
+    handleSaveObservedJob
   } = props;
 
   return (
@@ -28,7 +28,7 @@ function JobItem(props: JobItemProps) {
           <TrackButton onClick={props.handleClickBookmark} mark={mark} />
         </div>
         <div className={jobItemStyle.title}>
-          <Link target="_blank" href={link} onClick={handleAddUserObserveList}>
+          <Link target="_blank" href={link} onClick={handleSaveObservedJob}>
             {title}
           </Link>
         </div>

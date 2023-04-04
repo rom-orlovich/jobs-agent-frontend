@@ -6,7 +6,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const userID = String(req.query.userID);
   if (!userID) return res.status(400).send(getResMessage('USER_ID_NOT_VALID'));
-
   let result;
 
   //POST request to /api/users/<userID>/tracking

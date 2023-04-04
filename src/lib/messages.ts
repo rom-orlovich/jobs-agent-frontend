@@ -5,6 +5,7 @@ export const MESSAGE_CODES = {
   JOBS_ARE_NOT_FOUND: '1003',
   JOB_IS_FOUND: '1004',
   JOB_IS_NOT_FOUND: '1005',
+  JOB_ID_IS_NOT_VALID: '1006',
   USER_IS_FOUND: '2000',
   USER_NOT_FOUND: '2001',
   USER_ID_NOT_VALID: '2002',
@@ -24,6 +25,8 @@ export const MESSAGE_CODES = {
   SEARCH_HISTORY_NOT_FOUND: '4001',
   USER_PROFILE_FORM_LOCATION_IS_EMPTY: '5000',
   USER_PROFILE_FORM_POSITION_IS_EMPTY: '5001',
+  JOBS_OBSERVED_CREATED: '6000',
+  JOBS_OBSERVED_NOT_CREATED: '6001',
   FOUNDED: '8000',
   FOUNDED_BUT_NOT_MODIFIED: '8001',
   SOMETHING_WRONG: '10000'
@@ -37,6 +40,7 @@ export const MESSAGES = {
   [MESSAGE_CODES.JOBS_ARE_NOT_FOUND]: 'אף משרה לא נמצאה, אנא בצע חיפוש נוסף.',
   [MESSAGE_CODES.JOB_IS_FOUND]: 'המשרה נמצאה בהצלחה!.',
   [MESSAGE_CODES.JOB_IS_NOT_FOUND]: 'המשרה לא קיימת יותר,אנא הוסף משרה חדשה.',
+  [MESSAGE_CODES.JOB_ID_IS_NOT_VALID]: 'אנא הכנס מזהה עבודה חוקי.',
   //USERS
   [MESSAGE_CODES.USER_IS_FOUND]: 'המשתמש נמצא בהצלחה!',
   [MESSAGE_CODES.USER_NOT_FOUND]: ':( לא הצלחנו למצוא את המשתמש',
@@ -60,6 +64,9 @@ export const MESSAGES = {
   //USER PROFILE FORM
   [MESSAGE_CODES.SEARCH_HISTORY_FOUND]: 'היסטוריה החיפושים נמצאה!',
   [MESSAGE_CODES.SEARCH_HISTORY_NOT_FOUND]: 'לא נמצאו חיפושים אחרונים!',
+  //USER PROFILE FORM
+  [MESSAGE_CODES.JOBS_OBSERVED_CREATED]: 'המשרה נוספה לרשימת המשרות שנצפו עי המשתמש',
+  [MESSAGE_CODES.JOBS_OBSERVED_NOT_CREATED]: 'בעיה בהוספה המשרה לרשימת הצפייה של המשתמש!',
   //GENERAL
   [MESSAGE_CODES.FOUNDED]: 'נמצא!',
   [MESSAGE_CODES.FOUNDED_BUT_NOT_MODIFIED]: 'המשאב נמצא אך לא עודכן.',
