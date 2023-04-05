@@ -2,7 +2,7 @@ import { useAuthContext } from '@/context/AuthContext';
 import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { useSWRInfiniteHook } from '@/lib/swr';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Spinner from '../Spinner/Spinner';
 
 import JobsHeader from './JobsHeader';
@@ -12,7 +12,6 @@ import { getLastCurJobData, swrInfiniteHandler } from './utils';
 import useRedirect from '@/hooks/useRedirect';
 import { createToastsByDataIfExist } from '@/lib/utils';
 import useFilterJobs from '@/hooks/useFiltersHooks/useFilterJobs';
-
 const JobsStyle = {
   feedContainer: 'pr-8 xs:pr-16',
   spinner: '!top-[none] bottom-5'
@@ -42,12 +41,17 @@ function Jobs({
     }),
     {
       revalidateIfStale: true,
-
       revalidateFirstPage: false,
       fallbackData: [initialsProps]
     }
   );
-  const { isLoading, isValidating, data, setSize } = useSwrInfiniteProps;
+
+  const { isLoading, isValidating, data, setSize, mutate } = useSwrInfiniteProps;
+
+  //Mutate the jobs when the jobObserved indicator changes.
+  useEffect(() => {
+    mutate();
+  }, [formValues.jobObserved, mutate]);
 
   //Get last cur update data of SWR infinite
   const { allResponseData, lastResponse } = getLastCurJobData(data);
