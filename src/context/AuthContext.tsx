@@ -14,14 +14,9 @@ function AuthContext({
 }: PropsWithChildren & ReturnTypeGetInitialUserProfile) {
   const auth = useAuth(initialUserProfile); // Pass the initial userProfile data.
 
-  const {
-    isAuthenticated
-    // isLoading, isValidating
-  } = auth;
+  const { isAuthenticated } = auth;
 
   if (!isAuthenticated) return <></>;
-  // if (isLoading || isValidating) return <Spinner isLoading={isLoading || isValidating} />;
-
   return <context.Provider value={auth}>{children}</context.Provider>;
 }
 
