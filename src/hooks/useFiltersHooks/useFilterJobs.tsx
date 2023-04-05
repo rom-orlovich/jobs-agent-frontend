@@ -4,6 +4,7 @@ import useFilters, { ReturnUseFiltersProps } from './useFilters';
 
 export interface FilterJobsField {
   title: string;
+  jobObserved?: boolean;
   reason: string;
   from: string;
   company: string;
@@ -26,6 +27,7 @@ function useFilterJobs(isMatchPage?: boolean) {
       company: '',
       from: '',
       location: '',
+      jobObserved: undefined,
       ...isJobsMatchesFilter
     },
     defaultValues

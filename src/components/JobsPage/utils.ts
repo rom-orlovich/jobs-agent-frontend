@@ -55,6 +55,7 @@ export const swrInfiniteHandler: (
     //Check if there it is possible to page to the next results page.
     if (preData?.pagination.hasMore === false) return null;
     //Create the jobs url with the cur URL parameters.
+
     return createJobsURl(userProfileData?.userID, {
       ...params,
       page: prePage + 1,

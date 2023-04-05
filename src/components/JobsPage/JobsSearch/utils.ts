@@ -1,6 +1,7 @@
 import { FilterJobsField } from '@/hooks/useFiltersHooks/useFilterJobs';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
+import { OmitKey } from '@/lib/types/types';
 export const createAutocompleteOptions = (filters?: string[]) => {
   const filtersOptions: string[] = [];
   (filters || []).forEach((filter) => {
@@ -19,7 +20,7 @@ export const createAutocompletePropsArr = (jobsFilters: FacetFilterResults) => {
 
   const autocompletePropsArr: {
     label: string;
-    key: keyof FilterJobsField;
+    key: keyof OmitKey<FilterJobsField, 'jobObserved'>;
     options: string[];
   }[] = [
     {

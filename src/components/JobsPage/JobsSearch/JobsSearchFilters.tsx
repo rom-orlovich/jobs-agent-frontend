@@ -7,6 +7,7 @@ import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types
 import { createAutocompletePropsArr } from './utils';
 import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopup';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
+import SelectStatusObserved from './StatusObserved';
 
 export const JobsSearchFiltersStyle = {
   autocompleteList: 'flex flex-col gap-2'
@@ -31,6 +32,9 @@ function JobsSearchFilters({
   return (
     <FiltersPopup>
       <ul className={JobsSearchFiltersStyle.autocompleteList}>
+        <li>
+          <SelectStatusObserved {...filterJobsProps} />
+        </li>
         {autocompletePropsArr.map(({ key, label, options }, i) => {
           //If it is match page, the reason filter will be empty.
           if (i === 0 && !includeReasonFilters) return <li key={key + i}></li>;

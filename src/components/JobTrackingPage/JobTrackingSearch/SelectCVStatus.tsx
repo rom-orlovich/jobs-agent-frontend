@@ -23,8 +23,9 @@ function SelectCVStatus({handleSetFilterValue,formValues}: ReturnUseJobsTracking
       value: false
     }
   ];
+
   const defaultValue=STATUS_CV_OPTIONS.find(status=>status.value===formValues.CVwasSent)
-  console.log(defaultValue);
+
   return (
     <SelectInput
       setValue={handleSetFilterValue('CVwasSent')}

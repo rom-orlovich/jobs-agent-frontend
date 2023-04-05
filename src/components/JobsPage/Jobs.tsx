@@ -42,6 +42,7 @@ function Jobs({
     }),
     {
       revalidateIfStale: true,
+
       revalidateFirstPage: false,
       fallbackData: [initialsProps]
     }

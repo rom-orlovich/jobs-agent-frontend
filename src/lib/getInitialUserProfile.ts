@@ -14,8 +14,6 @@ export const getInitialUserProfile = async ({ req, res }: GetServerSidePropsCont
         permanent: false
       }
     };
-  console.log(data?.user.id);
-
   const userProfile = await getUserByID(data?.user.id);
 
   const serializeUserProfile: UserProfile = JSON.parse(JSON.stringify(userProfile));

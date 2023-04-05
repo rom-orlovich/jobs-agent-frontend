@@ -26,6 +26,7 @@ export interface UserProfile {
   excludedRequirements: ExcludeTechsOptions;
   userQueries: UserQuery[];
   tracking?: Job[];
+  jobsObserved?: string[];
 }
 
 export type UserProfileWithOneUserQuery = OmitKey<UserProfile, 'userQueries'> & { userQuery: UserQuery };
