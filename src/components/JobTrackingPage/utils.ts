@@ -11,7 +11,7 @@ export const filtersJobsTracking = (
   jobs?: Job[]
 ): Job[] | undefined => {
   let currentJobs = jobs;
-  const { title, CVwasSent, afterUpdateDate, currentStageName } = filterValues;
+  const { title, CVwasSent, afterUpdateDate, currentStageName, company } = filterValues;
 
   if (title)
     currentJobs = currentJobs?.filter((jobs) => jobs.title.toLowerCase().includes(title.toLowerCase()));
@@ -20,12 +20,19 @@ export const filtersJobsTracking = (
     currentJobs = currentJobs?.filter((jobs) => {
       return jobs.info?.statusCV?.wasSent === CVwasSent;
     });
+
   if (afterUpdateDate)
     currentJobs = currentJobs?.filter(
       (jobs) =>
         new Date(jobs.info?.updatedAt as unknown as string).getTime() >=
         new Date(afterUpdateDate).getTime()
     );
+
+  if (company)
+    currentJobs = currentJobs?.filter((jobs) =>
+      jobs.company.toLowerCase().includes(company.toLowerCase())
+    );
+
   if (currentStageName)
     currentJobs = currentJobs?.filter((jobs) =>
       jobs.info?.stages.at(-1)?.name.toLowerCase().includes(currentStageName.toLowerCase())

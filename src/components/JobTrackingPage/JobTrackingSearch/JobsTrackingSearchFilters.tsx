@@ -38,7 +38,7 @@ function JobsTrackingSearchFilters({
         />
         <AutocompleteFilter
           defaultValue={formValues.currentStageName}
-          label={'חברה'}
+          label={'חפש עפ חברה'}
           setValue={handleSetFilterValue('company')}
           options={jobsTrackingFilters.companies}
         />
