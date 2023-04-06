@@ -1,4 +1,5 @@
 // import Spinner from '@/components/Spinner/Spinner';
+import Spinner from '@/components/Spinner/Spinner';
 import useAuth, { ReturnTypeUseAuthProfileExist } from '@/hooks/useAuth';
 
 import { ReturnTypeGetInitialUserProfile } from '@/lib/getInitialUserProfile';
@@ -16,7 +17,7 @@ function AuthContext({
 
   const { isAuthenticated } = auth;
 
-  if (!isAuthenticated) return <></>;
+  if (!isAuthenticated) return <Spinner isLoading={true} />;
   return <context.Provider value={auth}>{children}</context.Provider>;
 }
 

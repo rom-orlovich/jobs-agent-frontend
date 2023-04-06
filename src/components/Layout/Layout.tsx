@@ -9,7 +9,6 @@ import Main from './Main/Main';
 import ScannerContext from '@/context/ScannerContext';
 
 import { ReturnTypeGetInitialUserProfile } from '@/lib/getInitialUserProfile';
-
 export type ChildrenWithAuthData = { children: (props: ReturnTypeUseAuthProfileExist) => ReactNode };
 
 export function Layout(props: PropsWithChildren & ReturnTypeGetInitialUserProfile) {
