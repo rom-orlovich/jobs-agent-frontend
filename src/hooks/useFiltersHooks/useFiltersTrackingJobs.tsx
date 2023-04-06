@@ -5,6 +5,7 @@ export interface JobsTrackingFiltersFields {
   CVwasSent?: boolean;
   afterUpdateDate: string;
   currentStageName: string;
+  company: string;
 }
 
 /**
@@ -15,6 +16,7 @@ function useJobsTrackingFilter() {
     title: '',
     CVwasSent: false,
     afterUpdateDate: '',
+    company: '',
     currentStageName: ''
   });
   return useFiltersReturnValues;

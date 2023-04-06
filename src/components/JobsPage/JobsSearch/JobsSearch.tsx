@@ -1,4 +1,4 @@
-import SearchInput, { IconButtonProps } from '@/components/SearchInput/SearchInput';
+import SearchInput from '@/components/SearchInput/SearchInput';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
@@ -30,7 +30,6 @@ function JobsSearch({
       <JobsSearchFilters
         includeReasonFilters={includeReasonFilters}
         jobsFilters={jobsFilters}
-        iconButtonProps={IconButtonProps}
         filterJobsProps={filterJobsProps}
       />
     </SearchInput>

@@ -1,17 +1,13 @@
 // import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 
-import SearchInput, { IconButtonProps } from '@/components/SearchInput/SearchInput';
+import SearchInput from '@/components/SearchInput/SearchInput';
 import { ReturnUseJobsTrackingFilterProps } from '@/hooks/useFiltersHooks/useFiltersTrackingJobs';
 
 import React from 'react';
 import JobsTrackingSearchFilters from './JobsTrackingSearchFilters';
-
-export interface JobsTrackingFiltersArr {
-  titles: string[];
-  currentStageNames: string[];
-}
+import { JobsTrackingFiltersValues } from '../utils';
 export interface JobsTrackingSearchProps {
-  jobsTrackingFilters: JobsTrackingFiltersArr;
+  jobsTrackingFilters: JobsTrackingFiltersValues;
   filtersTrackingJobsProps: ReturnUseJobsTrackingFilterProps;
 }
 
@@ -25,7 +21,6 @@ function JobsTrackingSearch({ filtersTrackingJobsProps, jobsTrackingFilters }: J
       }}
     >
       <JobsTrackingSearchFilters
-        iconButtonProps={IconButtonProps}
         filtersTrackingJobsProps={filtersTrackingJobsProps}
         jobsTrackingFilters={jobsTrackingFilters}
       />

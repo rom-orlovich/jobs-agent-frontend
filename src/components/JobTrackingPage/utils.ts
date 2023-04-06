@@ -43,23 +43,30 @@ export const sortJobsTrackingByCreatedDate = (jobs?: Job[]): Job[] | undefined =
   );
 };
 
+export interface JobsTrackingFiltersValues {
+  titles: string[];
+  currentStageNames: string[];
+  companies: string[];
+}
+
 /**
  * @param {Job[]} jobs The current jobs tracking.
- * @returns { {titles:string[],currentStageNames:string[]}} An object of unique string arrays of titles and currentStageNames of all the user's jobs tracking data.
+ * @returns { JobsTrackingFiltersValues} An object of unique string arrays of titles and currentStageNames of all the user's jobs tracking data.
  */
-export const createJobsTrackingFiltersArrValues = (
-  jobs?: Job[]
-): { titles: string[]; currentStageNames: string[] } => {
+export const createJobsTrackingFiltersArrValues = (jobs?: Job[]): JobsTrackingFiltersValues => {
   const titles: Set<string> = new Set([]);
   const currentStageNames: Set<string> = new Set([]);
+  const companies: Set<string> = new Set([]);
   jobs?.forEach((job) => {
     const curStageName = job.info?.stages.at(-1)?.name;
     if (job.title) titles.add(job.title);
     if (curStageName) currentStageNames.add(curStageName);
+    if (job.company) companies.add(job.company);
   });
 
   return {
     titles: [...titles],
-    currentStageNames: [...currentStageNames]
+    currentStageNames: [...currentStageNames],
+    companies: [...companies]
   };
 };

@@ -1,4 +1,4 @@
-import SearchInput, { IconButtonProps } from '@/components/SearchInput/SearchInput';
+import SearchInput from '@/components/SearchInput/SearchInput';
 import { ReturnUseHistoryQueriesFilters } from '@/hooks/useFiltersHooks/useHistoryQueriesFilters';
 
 import React from 'react';
@@ -25,7 +25,6 @@ function HistoryQueriesSearch({
       }}
     >
       <HistoryQueriesSearchFilters
-        iconButtonProps={IconButtonProps}
         historyQueriesSearchProps={historyQueriesSearchProps}
         historyQueriesSearchFilters={historyQueriesSearchFilters}
       />

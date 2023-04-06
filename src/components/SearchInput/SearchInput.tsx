@@ -5,8 +5,6 @@ import { GenericRecord } from '@/lib/types/types';
 import React, { PropsWithChildren } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import Autocomplete from '../Inputs/Autocomplete/Autocomplete';
-// import { Option } from '../Inputs/SelectInput/selectInput.types';
-
 export const jobsSearchStyle = {
   jobSearchContainer: 'flex xs:justify-start w-full',
   autocompleteWrapper: 'relative w-fit items-center',

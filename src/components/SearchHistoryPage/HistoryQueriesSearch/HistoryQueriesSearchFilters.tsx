@@ -1,21 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
-import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
-
 import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopup';
 
 import { HistoryQueriesSearchProps } from './HistoryQueriesSearch';
 import InputLabel from '@/components/Inputs/InputLabel/InputLabel';
-interface HistoryQueriesSearchFiltersProps extends HistoryQueriesSearchProps {
-  iconButtonProps: IconButtonProps;
-}
-
+import AutocompleteFilter from '@/components/SearchInput/AutocompleteFilter';
 function HistoryQueriesSearchFilters({
-  iconButtonProps,
   historyQueriesSearchFilters,
   historyQueriesSearchProps
-}: HistoryQueriesSearchFiltersProps) {
+}: HistoryQueriesSearchProps) {
   const { formValues, handleSetFilterValue, handleOnChange } = historyQueriesSearchProps;
 
   return (
@@ -34,25 +27,11 @@ function HistoryQueriesSearchFilters({
         >
           עודכן אחרי
         </InputLabel>
-        <Autocomplete
+        <AutocompleteFilter
           defaultValue={formValues.location}
           label={'מיקום'}
           setValue={handleSetFilterValue('location')}
           options={historyQueriesSearchFilters.locations}
-          inputLabelProps={{
-            wrapperInputLabel: {
-              className: filtersStyle.autocompleteWrapper
-            },
-            labelProps: {
-              className: filtersStyle.autocompleteLabel
-            },
-            IconButtonProps: {
-              ...iconButtonProps,
-              buttonProps: {
-                className: filtersStyle.popupInputIcon
-              }
-            }
-          }}
         />
       </div>
     </FiltersPopup>

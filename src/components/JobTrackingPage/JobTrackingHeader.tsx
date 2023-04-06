@@ -7,7 +7,6 @@ interface JobsTrackingHeaderProps extends JobsTrackingSearchProps {
 function JobsTrackingHeader({
   numResultsFound,
   filtersTrackingJobsProps,
-
   jobsTrackingFilters
 }: JobsTrackingHeaderProps) {
   const textHeader = 'משרות';

@@ -1,27 +1,22 @@
 import React from 'react';
-import Autocomplete from '@/components/Inputs/Autocomplete/Autocomplete';
-
 import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
-import { IconButtonProps } from '@/components/Inputs/InputLabel/inputLabel.types';
-
 import { createAutocompletePropsArr } from './utils';
-import FiltersPopup, { filtersStyle } from '@/components/SearchInput/FiltersPopup';
+import FiltersPopup from '@/components/SearchInput/FiltersPopup';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 import SelectStatusObserved from './StatusObserved';
+import AutocompleteFilter from '@/components/SearchInput/AutocompleteFilter';
 
 export const JobsSearchFiltersStyle = {
   autocompleteList: 'flex flex-col gap-2'
 };
 
 interface JobsSearchFiltersProps {
-  iconButtonProps: IconButtonProps;
   filterJobsProps: ReturnUseFilterJobsProps;
   jobsFilters: FacetFilterResults;
   includeReasonFilters: boolean;
 }
 
 function JobsSearchFilters({
-  iconButtonProps,
   filterJobsProps,
   jobsFilters,
   includeReasonFilters
@@ -42,25 +37,11 @@ function JobsSearchFilters({
           const value = filterJobsProps.formValues[key];
           return (
             <li key={i + key + Date.now()}>
-              <Autocomplete
+              <AutocompleteFilter
                 defaultValue={value}
                 label={label}
                 setValue={handleSetFilterValue(key)}
                 options={options}
-                inputLabelProps={{
-                  wrapperInputLabel: {
-                    className: filtersStyle.autocompleteWrapper
-                  },
-                  labelProps: {
-                    className: filtersStyle.autocompleteLabel
-                  },
-                  IconButtonProps: {
-                    ...iconButtonProps,
-                    buttonProps: {
-                      className: filtersStyle.popupInputIcon
-                    }
-                  }
-                }}
               />
             </li>
           );
