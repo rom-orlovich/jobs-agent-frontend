@@ -132,9 +132,10 @@ export function createToastCBWithData<D>(data: D, keyCode: KeyCode): { cb: AnyFu
   const messageObj = getResMessage(keyCode);
   return {
     cb: () => {
-      toast(messageObj.message, {
-        toastId: 'message'
-      });
+      messageObj.message &&
+        toast(messageObj.message, {
+          toastId: 'message'
+        });
     },
     data
   };

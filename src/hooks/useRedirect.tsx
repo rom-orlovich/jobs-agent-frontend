@@ -18,11 +18,12 @@ function useRedirect<D>({ data, cb }: ReturnCreateToastCBWithData<D>, url = '/')
   const { trigger } = useOnce();
   const { trigger: triggerOnRouteChange } = useOnce();
 
-  router.events.on('routeChangeComplete', () => {
+  const handle = () => {
     triggerOnRouteChange(() => {
-      cb();
+      !router.query.noMessage && cb();
     });
-  });
+  };
+  router.events.on('routeChangeComplete', handle);
   useEffect(() => {
     if (!data) trigger(() => router.push(url, url));
   }, [router, trigger, url, data]);

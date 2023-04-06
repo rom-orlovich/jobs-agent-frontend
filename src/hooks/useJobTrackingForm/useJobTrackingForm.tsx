@@ -78,7 +78,12 @@ export const useJobTrackingForm = (job: Job, userID: string) => {
 
       //Mutate the user profile.
       await mutate(`/api/users/${userID}`);
-      await router.push('/' + APP_ROUTES.JOBS_TRACKING);
+      await router.push({
+        pathname: '/' + APP_ROUTES.JOBS_TRACKING,
+        query: {
+          noMessage: true
+        }
+      });
       toast(results.data.message);
     } catch (error) {
       console.log(error);

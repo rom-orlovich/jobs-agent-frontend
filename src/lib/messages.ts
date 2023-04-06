@@ -29,7 +29,8 @@ export const MESSAGE_CODES = {
   JOBS_OBSERVED_NOT_CREATED: '6001',
   FOUNDED: '8000',
   FOUNDED_BUT_NOT_MODIFIED: '8001',
-  SOMETHING_WRONG: '10000'
+  SOMETHING_WRONG: '10000',
+  NO_MESSAGE: '10001'
 } as const;
 
 export const MESSAGES = {
@@ -70,5 +71,6 @@ export const MESSAGES = {
   //GENERAL
   [MESSAGE_CODES.FOUNDED]: 'נמצא!',
   [MESSAGE_CODES.FOUNDED_BUT_NOT_MODIFIED]: 'המשאב נמצא אך לא עודכן.',
-  [MESSAGE_CODES.SOMETHING_WRONG]: '.השירות לא זמין כרגע. אנא נסה שנית מאוחר יותר.'
+  [MESSAGE_CODES.SOMETHING_WRONG]: '.השירות לא זמין כרגע. אנא נסה שנית מאוחר יותר.',
+  [MESSAGE_CODES.NO_MESSAGE]: ''
 } as const;
