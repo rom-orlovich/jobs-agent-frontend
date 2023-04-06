@@ -23,7 +23,7 @@ export const jobTrackingItemStyle = {
 };
 
 function JobTrackingItem(props: JobItemProps) {
-  const { jobID, index, reason, isMatch, reasonStyle } = props;
+  const { jobID, index, reason, isMatch, reasonStyle, handleSaveObservedJob } = props;
   return (
     <li
       className={classNameGenerator(jobItemStyle.item, jobTrackingItemStyle.itemTracking)}
@@ -39,6 +39,7 @@ function JobTrackingItem(props: JobItemProps) {
         <TrackingInfo info={props.info} />
         <div className={jobTrackingItemStyle.linkTrackDetailsContainer}>
           <Link
+            onClick={handleSaveObservedJob}
             className={jobTrackingItemStyle.linkTrackDetails}
             href={`/${APP_ROUTES.JOBS_TRACKING_INFO(jobID)}`}
           >
