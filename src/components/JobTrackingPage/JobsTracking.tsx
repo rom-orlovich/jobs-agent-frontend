@@ -29,7 +29,6 @@ function JobsTracking() {
   );
 
   const filterTrackingJobsProps = useJobsTrackingFilter();
-
   let jobs = filtersJobsTracking(filterTrackingJobsProps.formValues, userProfileData.tracking);
 
   jobs = sortJobsTrackingByCreatedDate(jobs);

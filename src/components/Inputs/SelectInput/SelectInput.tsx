@@ -30,17 +30,17 @@ export default function SelectInput<V>({
   selectInputWrapper,
   buttonProps
 }: SelectInputProps<V>) {
-  //
-  //Check if the defaultValue is array or single value.
-  //If defaultValue is array and has values so use the defaultValue as is.
-  //Otherwise use the the first option as array of array.
-  //Else, if defaultValue is not array use the first option as is.
+  let curDefaultValue: OptionV<V> | OptionV<V>[];
 
-  const curDefaultValue = Array.isArray(defaultValue)
-    ? defaultValue?.length
-      ? defaultValue
-      : [options[0]]
-    : options[0];
+  //Check if the defaultValue is array and it has values and if it has values use them as defaultValue.
+  //Else, use the first value of options array as array of array.
+  if (Array.isArray(defaultValue))
+    if (defaultValue?.length) curDefaultValue = defaultValue;
+    else curDefaultValue = [options[0]];
+  //Else check if the default value exist and if it does use the defaultValue.
+  //Else use the first options array value.
+  else if (defaultValue) curDefaultValue = defaultValue;
+  else curDefaultValue = options[0];
 
   //Extract the value from the input as single value or array of values depends on the type of the option.
   const getCurValue = (value: OptionV<V> | OptionV<V>[]) =>

@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GenericRecord } from '@/lib/types/types';
-import { useRouter } from 'next/router';
-import { ChangeEvent } from 'react';
 
-import useStateSession from '../useStateSession';
+import { ChangeEvent, useState } from 'react';
 /**
  * This hook manage the state of the filters values and memorize them by using browser session.
  * @param initialValues The initial value of the filters values.
@@ -11,10 +9,8 @@ import useStateSession from '../useStateSession';
  * @returns The current form values which are memorize by the browser session and on handleSetFilterValue that handle the change of the filters value.
  */
 function useFilters<T extends GenericRecord<any>>(initialValues: T, defaultValues = {}) {
-  const [formValues, setFormValues] = useStateSession<T>({
-    id: useRouter().pathname,
-    values: initialValues
-  });
+  const [formValues, setFormValues] = useState<T>(initialValues);
+
   //Handle the set value of autocomplete.
   function handleSetFilterValue<V>(id: keyof T) {
     return (value: V) => {

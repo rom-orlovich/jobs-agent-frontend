@@ -14,7 +14,7 @@ export interface JobsTrackingFiltersFields {
 function useJobsTrackingFilter() {
   const useFiltersReturnValues = useFilters<JobsTrackingFiltersFields>({
     title: '',
-    CVwasSent: false,
+    CVwasSent: undefined,
     afterUpdateDate: '',
     company: '',
     currentStageName: ''
