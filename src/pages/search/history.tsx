@@ -1,13 +1,10 @@
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import SearchHistoryPage from '@/components/SearchHistoryPage/SearchHistoryPage';
-import { getInitialUserProfile } from '@/lib/getInitialUserProfile';
-import { GetServerSidePropsContext } from 'next';
-
 import React from 'react';
+import { getServerSideProps } from '@/lib/getInitialUserProfile';
 //Get the initial user profile before the client load.
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  return getInitialUserProfile(ctx);
-}
+export { getServerSideProps };
+
 function History() {
   return (
     <>

@@ -53,12 +53,11 @@ export const handleSaveObservedJob: (
   try {
     //Save the job that the user has currently observed.
     await addNewJobObserved(userID, jobsID);
+
     //Update the user profile.
     await mutate(`/${API_ENDPOINTS.USERS}/${userID}`).then((el) => console.log(el));
-
-    //Fire a toast.
-    // toast(result.data.message);
   } catch (error) {
+    console.log(error);
     // toast(AxiosAPI.handleError(error).message);
   }
 };

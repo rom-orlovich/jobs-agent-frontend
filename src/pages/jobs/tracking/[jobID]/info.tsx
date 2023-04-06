@@ -1,4 +1,5 @@
 import JobTrackingForm from '@/components/JobTrackingForm/JobTrackingForm';
+import { handleSaveObservedJob } from '@/components/JobsPage/JobFeed/utils';
 import PageHead from '@/components/Layout/PageHead/PageHead';
 import { useAuthContext } from '@/context/AuthContext';
 
@@ -8,6 +9,10 @@ import { createToastsByDataIfExist } from '@/lib/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+
+import { getServerSideProps } from '@/lib/getInitialUserProfile';
+//Get the initial user profile before the client load.
+export { getServerSideProps };
 
 /**
  * The hooks find and return current user profile data and the requested job.
@@ -32,7 +37,7 @@ export const infoStyle = {
 
 function JobTracking() {
   const jobTrackingData = useGetJobsTrackingInfo();
-  const { curJobTracking } = jobTrackingData;
+  const { curJobTracking, userProfileData } = jobTrackingData;
 
   //Check the status of the data and display proper message.
   //If The data it not exist, redirect to the home page.
@@ -49,7 +54,11 @@ function JobTracking() {
       <div className={infoStyle.formContainer}>
         <div className={infoStyle.card}>
           <h1 dir={'ltr'} className={infoStyle.title}>
-            <Link target="_blank" href={curJobTracking?.link || ''}>
+            <Link
+              onClick={handleSaveObservedJob(job.jobID, userProfileData.userID)}
+              target="_blank"
+              href={curJobTracking?.link || ''}
+            >
               {curJobTracking?.title}
             </Link>
           </h1>

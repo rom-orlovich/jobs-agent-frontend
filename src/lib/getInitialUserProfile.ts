@@ -4,7 +4,7 @@ import { UserProfile } from './types/user.types';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
-export const getInitialUserProfile = async ({ req, res }: GetServerSidePropsContext) => {
+export const getServerSideProps = async ({ req, res }: GetServerSidePropsContext) => {
   const data = await getServerSession(req, res, authOptions);
 
   if (!data?.user.id)
