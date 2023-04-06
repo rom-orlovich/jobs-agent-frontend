@@ -32,15 +32,15 @@ function JobsTrackingSearchFilters({
         <SelectCVStatus {...filtersTrackingJobsProps} />
         <AutocompleteFilter
           defaultValue={formValues.currentStageName}
-          label={'שלב נוכחי'}
-          setValue={handleSetFilterValue('currentStageName')}
-          options={jobsTrackingFilters.currentStageNames}
-        />
-        <AutocompleteFilter
-          defaultValue={formValues.currentStageName}
           label={'חפש עפ חברה'}
           setValue={handleSetFilterValue('company')}
           options={jobsTrackingFilters.companies}
+        />
+        <AutocompleteFilter
+          defaultValue={formValues.currentStageName}
+          label={'שלב נוכחי'}
+          setValue={handleSetFilterValue('currentStageName')}
+          options={jobsTrackingFilters.currentStageNames}
         />
       </div>
     </FiltersPopup>
