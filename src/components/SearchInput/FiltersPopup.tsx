@@ -13,9 +13,6 @@ const filterPopupStyle = {
 export const filtersStyle = {
   filters: 'flex flex-col gap-2',
   label: 'font-semibold'
-  // autocompleteWrapper: 'relative flex flex-col gap-1',
-  // autocompleteLabel: 'self-end',
-  // icon: 'text-blue-300 absolute  text-xl top-[53%] right-1'
 };
 
 function FiltersPopup({ children }: PropsWithChildren) {
