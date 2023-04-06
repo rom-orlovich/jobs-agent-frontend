@@ -32,7 +32,7 @@ function useFilterJobs(isMatchPage?: boolean) {
     },
     defaultValues
   );
-  console.log(useFiltersReturnValues.formValues);
+
   return useFiltersReturnValues;
 }
 

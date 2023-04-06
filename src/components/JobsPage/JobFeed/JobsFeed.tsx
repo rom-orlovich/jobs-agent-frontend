@@ -61,11 +61,12 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
         {jobs?.map((job, i) => {
           const isMatch = job.reason === 'match';
           const from = job.from as keyof typeof tagColorStyle;
+          const isMark = !!jobsTrackMap[job?.jobID];
           const jobItemProps: JobItemProps = {
             ...job,
             handleSaveObservedJob: handleSaveObservedJob(job.jobID, userProfileData?.userID),
             handleClickBookmark: handleClickBookmarkFun(job),
-            mark: !!jobsTrackMap[job?.jobID],
+            mark: isMark,
             key: job?.jobID + i,
             index: i,
             reasonStyle: classIsOn(isMatch, jobItemStyle.matchColor, jobItemStyle.noMatchColor),
@@ -74,7 +75,11 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
             fromClass: classNameGenerator(jobItemStyle.from, tagColorStyle[from])
           };
 
-          return isTrackingFeed ? <JobTrackingItem {...jobItemProps} /> : <JobItem {...jobItemProps} />;
+          return isTrackingFeed || isMark ? (
+            <JobTrackingItem {...jobItemProps} />
+          ) : (
+            <JobItem {...jobItemProps} />
+          );
         })}
       </ul>
       <ScrollUpButton />
