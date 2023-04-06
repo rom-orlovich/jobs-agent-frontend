@@ -26,7 +26,7 @@ export const getDocumentsByName = async <D extends GenericRecord<any>>(
   colName: string,
   fieldName: string,
   page = 1,
-  limit = 25,
+  limit = 30,
   dbName = 'jobs-agent-db'
 ): Promise<D[]> => {
   try {
