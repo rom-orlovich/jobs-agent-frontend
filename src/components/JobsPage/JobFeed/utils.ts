@@ -26,19 +26,15 @@ export const handleClickBookmark: (
   return async (e) => {
     e.preventDefault();
     if (!userID) return;
-
-    let result;
     try {
       //Check if the job exist in the jobsTrackMap. If it doesn't add it. Otherwise delete it.
-      if (!jobsTrackMap[job.jobID]) result = await createNewJobTracking(userID, job);
-      else result = await deleteJobTracking(userID, job.jobID);
+      if (!jobsTrackMap[job.jobID]) await createNewJobTracking(userID, job);
+      else await deleteJobTracking(userID, job.jobID);
 
       //Update the user profile.
       await mutate(`/${API_ENDPOINTS.USERS}/${userID}`).then((el) => console.log(el));
-
-      //Fire a toast.
-      toast(result.data.message);
     } catch (error) {
+      //Fire a toast if there is error.
       toast(AxiosAPI.handleError(error).message);
     }
   };
