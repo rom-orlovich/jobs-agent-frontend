@@ -3,6 +3,7 @@ import { GenericRecord } from '@/lib/types/types';
 
 import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirements/MinMaxInputs';
 import { UserQueryTransform, YearsExperienceObjWordsNumKeys } from './types';
+import { getResMessage } from '@/lib/utils';
 
 export const YEARS_EXPERIENCE_WORDS_NUM = {
   'שנה אחת': '1',
@@ -123,4 +124,13 @@ export const transformDefaultFormValues = ({
     excludedRequirements: transformExcludedRequirementsDefaultValues(excludedRequirements),
     userQuery: transformUserQuery(userQuery)
   };
+};
+
+/**
+ * Check for valid location and position fields that their values are not empty.
+ */
+export const checkUserProfileValid = (userProfile: UserProfileWithOneUserQuery) => {
+  const { location, position } = userProfile.userQuery;
+  if (!position) return getResMessage('USER_PROFILE_FORM_POSITION_IS_NOT_VALID');
+  if (!location) return getResMessage('USER_PROFILE_FORM_LOCATION_IS_NOT_VALID');
 };

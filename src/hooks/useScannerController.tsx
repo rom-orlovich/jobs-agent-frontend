@@ -17,6 +17,8 @@ import { UserProfile } from '@/lib/types/user.types';
 import { useSwrHook } from '@/lib/swr';
 import axios from 'axios';
 import { useState } from 'react';
+import { useAuthContext } from '@/context/AuthContext';
+import { checkUserProfileValid } from './useProfileForm/utils';
 
 interface ScannerStatus {
   status: number;
@@ -24,6 +26,7 @@ interface ScannerStatus {
 }
 
 function useScannerController(userID: string) {
+  const { userProfileData } = useAuthContext();
   const router = useRouter();
   const scannerURL = createURLPath([CLIENT_URL, API_ENDPOINTS.SCANNER_START, userID]);
 
@@ -73,6 +76,15 @@ function useScannerController(userID: string) {
   // Handles the Load button click event.
   const handleLoadButton: TriggerByHash = (hash) => async (e) => {
     e.preventDefault();
+
+    //Check for valid location and position fields that their values are not empty.
+    const messageObj = checkUserProfileValid(userProfileData);
+
+    if (messageObj) {
+      toast(messageObj.message);
+      return messageObj;
+    }
+
     try {
       toast(MESSAGES[MESSAGE_CODES.SEARCH_IS_IN_PROCESS]);
       const res = await scanner.trigger({

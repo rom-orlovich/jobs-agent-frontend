@@ -12,6 +12,7 @@ export default function useAuth(initialUserProfile: ReturnTypeGetInitialUserProf
   const { data, status } = useSession({
     required: true
   });
+
   const userProfileData = useUserProfile(initialUserProfile, data?.user.id || '');
   return {
     isAuthenticated: status === 'authenticated',

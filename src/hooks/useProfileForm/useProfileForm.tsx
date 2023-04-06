@@ -10,6 +10,7 @@ import { MinMaxInputsOption } from '../../components/UserProfileForm/Requirement
 import useForm from '../useForm';
 
 import {
+  checkUserProfileValid,
   getOverallExYearNum,
   getOverallExYearWords,
   transformDefaultFormValues,
@@ -78,20 +79,14 @@ function useProfileForm(user: UserProfileWithOneUserQuery) {
   // Pass the callback that execute during the submit event and execute the submit event.
   const handleUserProfileFormSubmit = onSubmit(async (values) => {
     const { hash, ...restValue } = values.userQuery;
-    let response;
 
     //Check for valid location and position fields that their values are not empty.
-    if (!restValue.location) {
-      response = getResMessage('USER_PROFILE_FORM_LOCATION_IS_EMPTY');
-      toast(response.message);
-      return response;
-    }
-    if (!restValue.position) {
-      response = getResMessage('USER_PROFILE_FORM_POSITION_IS_EMPTY');
-      toast(response.message);
-      return response;
-    }
+    const messageObj = checkUserProfileValid(values);
 
+    if (messageObj) {
+      toast(messageObj.message);
+      return messageObj;
+    }
     //Set the current input's years experience by the words of overallEx.
     values['overallEx'] = getOverallExYearNum(values.overallEx || '');
 

@@ -34,12 +34,12 @@ function useUserProfile(initialUserProfile: ReturnTypeGetInitialUserProfile, use
     requirements: {},
     excludedRequirements: {},
     userQuery: {
-      distance: '',
-      experience: '',
-      jobType: '',
+      distance: '1',
+      experience: '1',
+      jobType: '1',
       location: '',
       position: '',
-      scope: '',
+      scope: '1',
       numResultsFound: 0
     }
   };
