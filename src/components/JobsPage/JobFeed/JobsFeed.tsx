@@ -77,7 +77,7 @@ function JobsFeed({ jobs, userProfileData, isTrackingFeed }: JobsFeedProps) {
             fromClass: classNameGenerator(jobItemStyle.from, tagColorStyle[from])
           };
 
-          return isTrackingFeed || isMark ? (
+          return isMark || isTrackingFeed ? (
             <JobTrackingItem {...jobItemProps} />
           ) : (
             <JobItem {...jobItemProps} />
