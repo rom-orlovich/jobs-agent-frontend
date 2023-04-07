@@ -1,4 +1,6 @@
+import { KeyedMutator } from 'swr';
 import { MESSAGES } from '../messages';
+
 import { OmitKey } from './types';
 export type MessageKeys = keyof typeof MESSAGES;
 export interface ResponseScanner {
@@ -50,3 +52,5 @@ export type ResponseGetJobs = {
   filters: FacetFilterResults;
 };
 export type Args = Readonly<{ arg: { hash?: string } }>;
+
+export type MutateJobs = KeyedMutator<ResponseGetJobs[]>;

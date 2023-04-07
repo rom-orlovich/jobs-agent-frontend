@@ -20,18 +20,17 @@ function useFilterJobs(isMatchPage?: boolean) {
     page: 1,
     ...isJobsMatchesFilter
   };
-  const useFiltersReturnValues = useFilters<FilterJobsField>(
-    {
-      title: '',
-      reason: '',
-      company: '',
-      from: '',
-      location: '',
-      jobObserved: undefined,
-      ...isJobsMatchesFilter
-    },
-    defaultValues
-  );
+  const initializeValue = {
+    title: '',
+    reason: '',
+    company: '',
+    from: '',
+    location: '',
+    jobObserved: undefined,
+    ...isJobsMatchesFilter
+  };
+
+  const useFiltersReturnValues = useFilters<FilterJobsField>(initializeValue, defaultValues);
 
   return useFiltersReturnValues;
 }

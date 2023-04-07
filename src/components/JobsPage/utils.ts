@@ -53,7 +53,7 @@ export const swrInfiniteHandler: (
 ) => SWRInfiniteKeyLoader<ResponseGetJobs, string | null> =
   (userProfileData, params) => (prePage: number, preData) => {
     //Check if there it is possible to page to the next results page.
-    if (preData?.pagination.hasMore === false) return null;
+    if (preData?.pagination.hasMore === false || !userProfileData.activeHash) return null;
     //Create the jobs url with the cur URL parameters.
 
     return createJobsURl(userProfileData?.userID, {

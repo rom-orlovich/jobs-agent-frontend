@@ -34,6 +34,10 @@ function Jobs({
 
   //Get user profile data.
   const { userProfileData } = useAuthContext();
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues]);
+
   //Use swr infinite.
   const useSwrInfiniteProps = useSWRInfiniteHook<ResponseGetJobs>(
     swrInfiniteHandler(userProfileData, {
@@ -41,17 +45,13 @@ function Jobs({
     }),
     {
       revalidateIfStale: true,
+
       revalidateFirstPage: false,
       fallbackData: [initialsProps]
     }
   );
 
   const { isLoading, isValidating, data, setSize, mutate } = useSwrInfiniteProps;
-
-  //Mutate the jobs when the jobObserved indicator changes.
-  useEffect(() => {
-    mutate();
-  }, [formValues.jobObserved, mutate]);
 
   //Get last cur update data of SWR infinite
   const { allResponseData, lastResponse } = getLastCurJobData(data);
@@ -63,6 +63,7 @@ function Jobs({
   return (
     <div className={JobsStyle.feedContainer}>
       <JobsHeader
+        mutate={mutate}
         filterJobsProps={filterJobsProps}
         filters={lastResponse.filters}
         isMatchPage={!!isMatchPage}

@@ -4,9 +4,11 @@ import { Option } from '@/components/Inputs/SelectInput/selectInput.types';
 
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
-import React from 'react';
+import { MutateJobs } from '@/lib/types/jobsScanner.types';
 
-function SelectStatusObserved({handleSetFilterValue,formValues}: ReturnUseFilterJobsProps) {
+import React, { useMemo } from 'react';
+
+function SelectStatusObserved({handleSetFilterValue,formValues,mutate}: ReturnUseFilterJobsProps&{ mutate: MutateJobs;}) {
   
   const STATUS_OBSERVED_OPTIONS: Option<boolean | undefined>[] = [
     {
@@ -27,11 +29,11 @@ function SelectStatusObserved({handleSetFilterValue,formValues}: ReturnUseFilter
   
   ];
 
-  const defaultValue=STATUS_OBSERVED_OPTIONS.find(status=>status.value===formValues.jobObserved)
+  const defaultValue=useMemo(()=>STATUS_OBSERVED_OPTIONS.find(status=>status.value===formValues.jobObserved),[STATUS_OBSERVED_OPTIONS,formValues.jobObserved])
 
   return (
     <SelectInput
-      setValue={handleSetFilterValue('jobObserved')}
+      setValue={(v)=>{handleSetFilterValue('jobObserved')(v); mutate()}}
       defaultValue={defaultValue|| STATUS_OBSERVED_OPTIONS[0]}
       optionsElProps={{
         className: 'text-right'

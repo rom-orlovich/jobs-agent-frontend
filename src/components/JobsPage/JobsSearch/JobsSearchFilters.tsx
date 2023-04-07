@@ -1,11 +1,10 @@
 import React from 'react';
-import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
+import { FacetFilterResults, MutateJobs } from '@/lib/types/jobsScanner.types';
 import { createAutocompletePropsArr } from './utils';
 import FiltersPopup from '@/components/SearchInput/FiltersPopup';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 import SelectStatusObserved from './StatusObserved';
 import AutocompleteFilter from '@/components/SearchInput/AutocompleteFilter';
-
 export const JobsSearchFiltersStyle = {
   autocompleteList: 'flex flex-col gap-2'
 };
@@ -14,12 +13,14 @@ interface JobsSearchFiltersProps {
   filterJobsProps: ReturnUseFilterJobsProps;
   jobsFilters: FacetFilterResults;
   includeReasonFilters: boolean;
+  mutate: MutateJobs;
 }
 
 function JobsSearchFilters({
   filterJobsProps,
   jobsFilters,
-  includeReasonFilters
+  includeReasonFilters,
+  mutate
 }: JobsSearchFiltersProps) {
   const { handleSetFilterValue } = filterJobsProps;
   const autocompletePropsArr = createAutocompletePropsArr(jobsFilters);
@@ -28,7 +29,7 @@ function JobsSearchFilters({
     <FiltersPopup>
       <ul className={JobsSearchFiltersStyle.autocompleteList}>
         <li>
-          <SelectStatusObserved {...filterJobsProps} />
+          <SelectStatusObserved mutate={mutate} {...filterJobsProps} />
         </li>
         {autocompletePropsArr.map(({ key, label, options }, i) => {
           //If it is match page, the reason filter will be empty.

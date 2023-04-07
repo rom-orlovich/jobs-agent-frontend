@@ -1,23 +1,21 @@
 import SearchInput from '@/components/SearchInput/SearchInput';
 import { ReturnUseFilterJobsProps } from '@/hooks/useFiltersHooks/useFilterJobs';
 
-import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
+import { FacetFilterResults, MutateJobs } from '@/lib/types/jobsScanner.types';
 import React from 'react';
 
 import JobsSearchFilters from './JobsSearchFilters';
 
 import { createAutocompleteOptions } from './utils';
-
-function JobsSearch({
-  filterJobsProps,
-  jobsFilters,
-  includeReasonFilters
-}: {
+interface JobSearchProps {
   jobsFilters: FacetFilterResults;
   filterJobsProps: ReturnUseFilterJobsProps;
   includeReasonFilters: boolean;
   isMatchPage?: boolean;
-}) {
+  mutate: MutateJobs;
+}
+
+function JobsSearch({ filterJobsProps, jobsFilters, includeReasonFilters, mutate }: JobSearchProps) {
   const titles: string[] = createAutocompleteOptions(jobsFilters?.titles);
   return (
     <SearchInput
@@ -28,6 +26,7 @@ function JobsSearch({
       }}
     >
       <JobsSearchFilters
+        mutate={mutate}
         includeReasonFilters={includeReasonFilters}
         jobsFilters={jobsFilters}
         filterJobsProps={filterJobsProps}

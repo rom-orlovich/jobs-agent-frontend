@@ -1,8 +1,7 @@
 import useFilterJobs from '@/hooks/useFiltersHooks/useFilterJobs';
-import { FacetFilterResults } from '@/lib/types/jobsScanner.types';
+import { FacetFilterResults, MutateJobs } from '@/lib/types/jobsScanner.types';
 import React from 'react';
 import JobsSearch from './JobsSearch/JobsSearch';
-
 export const JobsHeaderStyle = {
   jobsHeaderContainer: 'flex justify-between xs:flex-col flex-col xs-px-2'
 };
@@ -11,8 +10,15 @@ interface JobsHeaderProps {
   numResultsFound?: number;
   isMatchPage: boolean;
   filters: FacetFilterResults;
+  mutate: MutateJobs;
 }
-function JobsHeader({ filterJobsProps, numResultsFound, isMatchPage, filters }: JobsHeaderProps) {
+function JobsHeader({
+  filterJobsProps,
+  numResultsFound,
+  isMatchPage,
+  filters,
+  mutate
+}: JobsHeaderProps) {
   const textHeader = isMatchPage ? 'התאמות' : 'משרות';
   return (
     <div className={JobsHeaderStyle.jobsHeaderContainer}>
@@ -20,6 +26,7 @@ function JobsHeader({ filterJobsProps, numResultsFound, isMatchPage, filters }: 
         כ- {numResultsFound || 0} {textHeader} נמצאו:
       </h1>
       <JobsSearch
+        mutate={mutate}
         filterJobsProps={filterJobsProps}
         jobsFilters={filters}
         includeReasonFilters={!isMatchPage}
