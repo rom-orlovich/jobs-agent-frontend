@@ -2,7 +2,7 @@ import { useAuthContext } from '@/context/AuthContext';
 import { ResponseGetJobs } from '@/lib/types/jobsScanner.types';
 import { useSWRInfiniteHook } from '@/lib/swr';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Spinner from '../Spinner/Spinner';
 
 import JobsHeader from './JobsHeader';
@@ -34,10 +34,6 @@ function Jobs({
 
   //Get user profile data.
   const { userProfileData } = useAuthContext();
-  useEffect(() => {
-    console.log(formValues);
-  }, [formValues]);
-
   //Use swr infinite.
   const useSwrInfiniteProps = useSWRInfiniteHook<ResponseGetJobs>(
     swrInfiniteHandler(userProfileData, {
