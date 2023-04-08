@@ -46,13 +46,6 @@ export default function SelectInput<V>({
   const getCurValue = (value: OptionV<V> | OptionV<V>[]) =>
     Array.isArray(value) ? value.map((el) => el.value) : value.value;
 
-  // // Set the cur default value during the mounting stage of the component.
-  // useEffect(() => {
-  //   const defaultValue = getCurValue(curDefaultValue);
-
-  //   setValue && setValue(defaultValue);
-  // }, []);
-
   const [selectOption, setOption] = useState<OptionV<V> | OptionV<V>[]>(curDefaultValue);
   return (
     <Listbox
