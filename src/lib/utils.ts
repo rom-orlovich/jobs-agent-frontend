@@ -26,7 +26,11 @@ export const createLocalDate = (date?: Date) => {
 };
 
 export const convertDateToValidInputFormat = (date?: Date) => {
-  return (date instanceof Date ? date : new Date()).toISOString().slice(0, 10) as string;
+  let currentDate;
+  if (date) currentDate = new Date(date);
+  else currentDate = new Date();
+
+  return currentDate.toISOString().slice(0, 10);
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////

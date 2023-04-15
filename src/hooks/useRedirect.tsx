@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import useOnce from './useOnce';
 
 /**
- * If the data is not found redirect to the provided url.
+ * If the data is not found redirect to the provided url. Default : '/'.
  * @param {ReturnCreateToastCBWithData} ToastCBWithData object that contains a callback that trigger a toast execution and the data to be return.
  * @returns {R} The data itself.
  */

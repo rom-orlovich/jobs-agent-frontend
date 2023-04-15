@@ -17,13 +17,15 @@ export { getServerSideProps };
 /**
  * The hooks find and return current user profile data and the requested job.
  */
-export const useGetJobsTrackingInfo = () => {
+export const useGetJobTrackingFormInfo = () => {
   const router = useRouter();
   const { userProfileData } = useAuthContext();
   const jobID = String(router.query.jobID);
-  const curJobTracking = userProfileData.tracking?.find((jobTracking) => jobTracking.jobID === jobID);
+  const currentJobTrackingInfo = userProfileData.tracking?.find(
+    (jobTracking) => jobTracking.jobID === jobID
+  );
   return {
-    curJobTracking,
+    currentJobTrackingInfo,
     userProfileData
   };
 };
@@ -36,15 +38,13 @@ export const infoStyle = {
 };
 
 function JobTracking() {
-  const jobTrackingData = useGetJobsTrackingInfo();
-  const { curJobTracking, userProfileData } = jobTrackingData;
-
+  const jobTrackingData = useGetJobTrackingFormInfo();
+  const { currentJobTrackingInfo, userProfileData } = jobTrackingData;
   //Check the status of the data and display proper message.
   //If The data it not exist, redirect to the home page.
   const job = useRedirect(
-    createToastsByDataIfExist('TRACKING_JOB_IS_FOUND', 'TRACKING_JOB_NOT_FOUND', curJobTracking)
+    createToastsByDataIfExist('TRACKING_JOB_IS_FOUND', 'TRACKING_JOB_NOT_FOUND', currentJobTrackingInfo)
   );
-
   return (
     <>
       <PageHead
@@ -57,13 +57,13 @@ function JobTracking() {
             <Link
               onClick={handleSaveObservedJob(job.jobID, userProfileData.userID)}
               target="_blank"
-              href={curJobTracking?.link || ''}
+              href={currentJobTrackingInfo?.link || ''}
             >
-              {curJobTracking?.title}
+              {currentJobTrackingInfo?.title}
             </Link>
           </h1>
           <h2 className={infoStyle.company} dir={'ltr'}>
-            {curJobTracking?.company}
+            {currentJobTrackingInfo?.company}
           </h2>
           <JobTrackingForm job={job} userID={jobTrackingData.userProfileData.userID || ''} />
         </div>
